@@ -1,0 +1,2 @@
+class GenericTask < ApplicationRecord
+end

@@ -10,9 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_27_110639) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_27_155628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "couples", force: :cascade do |t|
+    t.string "address"
+    t.integer "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "generic_rewards", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "generic_tasks", force: :cascade do |t|
+    t.string "title"
+    t.integer "base_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mood_categories", force: :cascade do |t|
+    t.string "title"
+    t.string "image_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +51,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_110639) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "nickname"
+    t.date "date_of_birth"
+    t.integer "score"
+    t.string "mode"
+    t.bigint "couple_id"
+    t.index ["couple_id"], name: "index_users_on_couple_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "users", "couples"
 end

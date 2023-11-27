@@ -1,0 +1,2 @@
+class GenericReward < ApplicationRecord
+end
