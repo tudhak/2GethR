@@ -9,4 +9,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :couples, only: [:show, :create, :update] do
+    resources :messages, only: [:index, :create]
+    resources :tasks
+    resources :rewards, except: [:destroy]
+  end
+
+  resources :users, only: [:show, :edit, :update]
+  resources :generic_tasks, except: [:show]
+  resources :generic_rewards, only: [:index, :update, :destroy]
+
+  get "couples/:id/score-dashboard", to: "couples#score"
+
 end
