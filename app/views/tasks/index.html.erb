@@ -5,7 +5,8 @@
         <p>My pending tasks</p>
         </div>
           <% @my_pending_tasks.each do |pending_task| %>
-          <div class="border d-flex justify-content-between">
+          <div class="border d-flex justify-content-between align-items-center p-3">
+            <span><%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span>
             <span><%= pending_task.title %></span>
             <span><%= pending_task.date %></span>
             <i class="fa-solid fa-circle-dot"></i>
