@@ -1,0 +1,2 @@
+class GenericTasksController < ApplicationController
+end
