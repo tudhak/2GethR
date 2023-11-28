@@ -11,15 +11,15 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :couples, only: [:show, :create, :update] do
+    member do
+      get :score_dashboard
+    end
     resources :messages, only: [:index, :create]
     resources :tasks
     resources :rewards, except: [:destroy]
   end
 
-  resources :users, only: [:show, :edit, :update]
   resources :generic_tasks, except: [:show]
   resources :generic_rewards, only: [:index, :update, :destroy]
-
-  get "couples/:id/score-dashboard", to: "couples#score"
 
 end
