@@ -1,15 +1,28 @@
 <div class="container">
-  <div class="row">
-    <div class="col-6">
-      <h1>My tasks</h1>
-      <div class="d-flex">
-        <a href=#>Today</a>
+  <div class="row justify-content-center">
+    <div class="col-4">
+        <div class="my-pending-tasks border">
+        <p>My pending tasks</p>
+        </div>
+          <% @my_pending_tasks.each do |pending_task| %>
+          <div class="border d-flex justify-content-between">
+            <span><%= pending_task.title %></span>
+            <span><%= pending_task.date %></span>
+            <i class="fa-solid fa-circle-dot"></i>
+          </div>
+           <% end %>
+      <div class="d-flex justify-content-between align-items-center">
+        <span><strong>Filters</strong></span>
+        <div class="assigned-to border shadow-sm bg-white">Assigned to</div>
+        <div class="Status border shadow-sm bg-white">Status</div>
+        <a href=# class="btn btn-primary">Today</a>
       </div>
     <div class="my current tasks">
     </div>
     <div>
       <% @tasks.each do |task| %>
         <p><%= task.title %></p>
+        <p><%= task.date %></p>
       <% end %>
     </div>
     </div>

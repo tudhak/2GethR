@@ -28,6 +28,7 @@ puts "Creating users"
 user1 = User.create(
   email: 'user1@example.com',
   password: 'password123',
+  password_confirmation: 'password123',
   last_name: 'Dujardin',
   first_name: 'Jean',
   nickname: 'Loulou',
@@ -37,9 +38,10 @@ user1 = User.create(
   couple: couple1
 )
 
-user2 =User.create(
+user2 = User.create(
   email: 'user2@example.com',
   password: 'password456',
+  password_confirmation: 'password456',
   last_name: 'Lamy',
   first_name: 'Alexandra',
   nickname: 'chouchou',
@@ -52,6 +54,7 @@ user2 =User.create(
 user3 = User.create(
   email: 'user3@example.com',
   password: 'password123',
+  password_confirmation: 'password123',
   last_name: 'Kardashian',
   first_name: 'Kimberly',
   nickname: 'Kim',
@@ -64,6 +67,7 @@ user3 = User.create(
  user4 = User.create(
   email: 'user4@example.com',
   password: 'password345',
+  password_confirmation: 'password345',
   last_name: 'West',
   first_name: 'Kanye',
   nickname: 'Ye',
@@ -128,7 +132,7 @@ puts "Creating task instances (tasks)..."
 Task.create(
   title: "Feed the fishes",
   description: "Feed our lovely fishes with adapted pet food.",
-  date: "30/11/2023",
+  date: Date.parse("30/11/2023"),
   base_score: 15,
   user: user2,
   statue: "pending",
@@ -138,7 +142,7 @@ Task.create(
 Task.create(
   title: "Water the plants",
   description: "Our plants look rather dry.",
-  date: "1/12/2023",
+  date: Date.parse("01/12/2023"),
   base_score: 15,
   user: user2,
   statue: "pending"
@@ -147,7 +151,7 @@ Task.create(
 Task.create(
   title: "Book winter holidays",
   description: "Time flies. Please take some time to book our next holidays.",
-  date: "30/11/2023",
+  date: Date.parse("30/11/2023"),
   base_score: 70,
   user: user2,
   statue: "pending",
@@ -157,7 +161,7 @@ Task.create(
 Task.create(
   title: "Clean the carpet",
   description: "There is dust all over the carpet. It pisses me off.",
-  date: "06/12/2023",
+  date: Date.parse("06/12/2023"),
   base_score: 15,
   user: user2,
   statue: "pending"
@@ -166,7 +170,7 @@ Task.create(
 Task.create(
   title: "Buy a gift for my nephew",
   description: "I think he likes video games.",
-  date: "15/12/2023",
+  date: Date.parse("15/12/2023"),
   base_score: 50,
   user: user4,
   statue: "pending",
@@ -176,7 +180,7 @@ Task.create(
 Task.create(
   title: "Order some wine for Christmas",
   description: "Please take some quality wine this time. I don't like piss.",
-  date: "16/12/2023",
+  date: Date.parse("16/12/2023"),
   base_score: 40,
   user: user4,
   statue: "pending",
@@ -186,7 +190,7 @@ Task.create(
 Task.create(
   title: "Take my dress to the dry cleaning",
   description: "There are some blemishes on my dress I would like to get rid of.",
-  date: "09/12/2023",
+  date: Date.parse("09/12/2023"),
   base_score: 25,
   user: user3,
   statue: "pending",
@@ -196,7 +200,7 @@ Task.create(
 Task.create(
   title: "Go to the grocery store",
   description: "We ran out of pasta.",
-  date: "12/12/2023",
+  date: Date.parse("12/12/2023"),
   base_score: 25,
   user: user1,
   statue: "pending"
@@ -205,7 +209,7 @@ Task.create(
 Task.create(
   title: "Fix the cupboard",
   description: "I can't stand this defective cupboard anymore. Do something.",
-  date: "07/12/2023",
+  date: Date.parse("07/12/2023"),
   base_score: 30,
   user: user4,
   statue: "pending",
@@ -215,7 +219,7 @@ Task.create(
 Task.create(
   title: "Send back my headphones for refund",
   description: "This garbage does not work.",
-  date: "08/12/2023",
+  date: Date.parse("08/12/2023"),
   base_score: 25,
   user: user3,
   statue: "pending"
@@ -224,7 +228,7 @@ Task.create(
 Task.create(
   title: "Buy some painkillers at the drugstore",
   description: "My back hurts.",
-  date: "02/12/2023",
+  date: Date.parse("02/12/2023"),
   base_score: 25,
   user: user3,
   statue: "pending"
@@ -233,7 +237,7 @@ Task.create(
 Task.create(
   title: "Change the bedding",
   description: "A fresh bed for a deep sleep.",
-  date: "03/12/2023",
+  date: Date.parse("03/12/2023"),
   base_score: 30,
   user: user1,
   statue: "pending"
@@ -242,7 +246,7 @@ Task.create(
 Task.create(
   title: "Do the dishes",
   description: "Keeping the kitchen clean is a good medicine.",
-  date: "01/12/2023",
+  date: Date.parse("01-12-2023"),
   base_score: 40,
   user: user2,
   statue: "pending"

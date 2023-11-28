@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :set_couple, only: [:index]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.where(user: User.where(couple_id: params[:couple_id]))
+    @my_pending_tasks = Task.where(user: current_user).where(statue: "pending").order(date: :desc)
   end
 
   def show
@@ -20,6 +21,6 @@ class TasksController < ApplicationController
   private
 
   def set_couple
-    @couple = Couple.find(params[:id])
+    @couple = Couple.find(params[:couple_id])
   end
 end
