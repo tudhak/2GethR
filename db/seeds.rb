@@ -25,7 +25,7 @@ couple2 = Couple.create(address: '58 rue pierre charron', token: 789012)
 puts "Couples created"
 
 puts "Creating users"
-User.create(
+user1 = User.create(
   email: 'user1@example.com',
   password: 'password123',
   last_name: 'Dujardin',
@@ -37,7 +37,7 @@ User.create(
   couple: couple1
 )
 
-User.create(
+user2 =User.create(
   email: 'user2@example.com',
   password: 'password456',
   last_name: 'Lamy',
@@ -49,7 +49,7 @@ User.create(
   couple: couple1
 )
 
-User.create(
+user3 = User.create(
   email: 'user3@example.com',
   password: 'password123',
   last_name: 'Kardashian',
@@ -61,7 +61,7 @@ User.create(
   couple: couple2
 )
 
- User.create(
+ user4 = User.create(
   email: 'user4@example.com',
   password: 'password345',
   last_name: 'West',
@@ -75,5 +75,177 @@ User.create(
 puts "Users created."
 
 puts "Creating task templates (generic tasks)..."
+GenericTask.create(
+  title: "Let the dogs out",
+  description: "The dogs should take a walk to keep the flat clean.",
+  base_score: 30
+)
 
+GenericTask.create(
+  title: "Do the dishes",
+  description: "Keeping the kitchen clean is a good medicine.",
+  base_score: 40
+)
+
+GenericTask.create(
+  title: "Iron clothes",
+  description: "A little ironing to have presentable outfits.",
+  base_score: 25
+)
+
+GenericTask.create(
+  title: "Full house cleaning",
+  description: "Basic hygiene for a better life.",
+  base_score: 60
+)
+
+GenericTask.create(
+  title: "Vacuum",
+  description: "Keep the house tidy with some vacuum cleaning.",
+  base_score: 15
+)
+
+GenericTask.create(
+  title: "Prepare the dinner",
+  description: "Cook some good food.",
+  base_score: 50
+)
+
+GenericTask.create(
+  title: "Wash and hang clothes",
+  description: "Taking showers is not enough, our clothes also have to smell good.",
+  base_score: 35
+)
+
+GenericTask.create(
+  title: "Change the bedding",
+  description: "A fresh bed for a deep sleep.",
+  base_score: 30
+)
 puts "Task templates created."
+
+puts "Creating task instances (tasks)..."
+Task.create(
+  title: "Feed the fishes",
+  description: "Feed our lovely fishes with adapted pet food.",
+  date: "30/11/2023",
+  base_score: 15,
+  user: user2,
+  statue: "pending",
+  assigned_to: user1
+)
+
+Task.create(
+  title: "Water the plants",
+  descriptioN: "Our plants look rather dry.",
+  date: "1/12/2023",
+  base_score: 15,
+  user: user2,
+  statue: "pending"
+)
+
+Task.create(
+  title: "Book winter holidays",
+  description: "Time flies. Please take some time to book our next holidays.",
+  date: "30/11/2023",
+  base_score: 70,
+  user: user2,
+  statue: "pending",
+  assigned_to: user1
+)
+
+Task.create(
+  title: "Clean the carpet",
+  description: "There is dust all over the carpet. It pisses me off.",
+  date: "06/12/2023",
+  base_score: 15,
+  user: user2,
+  statue: "pending"
+)
+
+Task.create(
+  title: "Buy a gift for my nephew",
+  description: "I think he likes video games.",
+  date: "15/12/2023",
+  base_score: 50,
+  user: user4,
+  statue: "pending",
+  assigned_to: user3
+)
+
+Task.create(
+  title: "Order some wine for Christmas",
+  description: "Please take some quality wine this time. I don't like piss.",
+  date: "16/12/2023",
+  base_score: 40,
+  user: user4,
+  statue: "pending",
+  assigned_to: user3
+)
+
+Task.create(
+  title: "Take my dress to the dry cleaning",
+  description: "There are some blemishes on my dress I would like to get rid of.",
+  date: "09/12/2023",
+  base_score: 25,
+  user: user3,
+  statue: "pending",
+  assigned_to: user4
+)
+
+Task.create(
+  title: "Go to the grocery store",
+  description: "We ran out of pasta.",
+  date: "12/12/2023",
+  base_score: 25,
+  user: user1,
+  statue: "pending"
+)
+
+Task.create(
+  title: "Fix the cupboard",
+  description: "I can't stand this defective cupboard anymore. Do something.",
+  date: "07/12/2023",
+  base_score: 30,
+  user: user4,
+  statue: "pending",
+  assigned_to: user3
+)
+
+Task.create(
+  title: "Send back my headphones for refund",
+  description: "This garbage does not work.",
+  date: "08/12/2023",
+  base_score: 25,
+  user: user3,
+  statue: "pending"
+)
+
+Task.create(
+  title: "Buy some painkillers at the drugstore",
+  description: "My back hurts.",
+  date: "02/12/2023",
+  base_score: 25,
+  user: user3,
+  statue: "pending"
+)
+
+Task.create(
+  title: "Change the bedding",
+  description: "A fresh bed for a deep sleep.",
+  date: "03/12/2023",
+  base_score: 30,
+  user: user1,
+  statue: "pending"
+)
+
+Task.create(
+  title: "Do the dishes",
+  description: "Keeping the kitchen clean is a good medicine.",
+  date: "01/12/2023",
+  base_score: 40,
+  user: user2,
+  statue: "pending"
+)
+
+puts "Task instances created."
