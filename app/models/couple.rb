@@ -1,4 +1,4 @@
 class Couple < ApplicationRecord
-  has_many :users
-  has_many :messages
+  has_many :users, :messages
+  # has_many :messages
 end
