@@ -3,7 +3,7 @@ class TasksController < ApplicationController
     @task_bookings = Task.all
   end
 
-  def Show
+  def show
   end
 
   def create
