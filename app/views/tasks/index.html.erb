@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h1>My tasks</h1>
+      <div class="d-flex">
+        <a href=#>Today</a>
+      </div>
+    <div class="my current tasks">
+    </div>
+    <div>
+      <% @tasks.each do |task| %>
+        <p><%= task.title %></p>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

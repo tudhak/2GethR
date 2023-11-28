@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
+  before_action :set_couple, only: [:index]
+
   def index
-    @task_bookings = Task.all
+    @tasks = Task.all
   end
 
   def show
@@ -13,5 +15,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def set_couple
+    @couple = Couple.find(params[:id])
   end
 end

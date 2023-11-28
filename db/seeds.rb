@@ -137,7 +137,7 @@ Task.create(
 
 Task.create(
   title: "Water the plants",
-  descriptioN: "Our plants look rather dry.",
+  description: "Our plants look rather dry.",
   date: "1/12/2023",
   base_score: 15,
   user: user2,
