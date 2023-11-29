@@ -3,7 +3,8 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.where(user: User.where(couple_id: params[:couple_id]))
-    @my_pending_tasks = Task.where(user: current_user).where(statue: "pending").order(date: :desc)
+    @my_pending_tasks = Task.where(assigned_to: current_user.nickname).where(statue: "pending").order(date: :desc)
+    @partner = User.where(couple_id: current_user.couple_id).where.not(id: current_user.id).first
   end
 
   def show

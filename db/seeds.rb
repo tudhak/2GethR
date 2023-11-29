@@ -37,6 +37,7 @@ user1 = User.create(
   mode: 'normal',
   couple: couple1
 )
+user1.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/965/fpnjxvl3i4atlsmwjqmvzdr4twi-724.jpg"), filename: "user1.jpg", content_type: "image/jpg")
 
 user2 = User.create(
   email: 'user2@example.com',
@@ -44,12 +45,13 @@ user2 = User.create(
   password_confirmation: 'password456',
   last_name: 'Lamy',
   first_name: 'Alexandra',
-  nickname: 'chouchou',
+  nickname: 'Chouchou',
   date_of_birth: Date.parse('1992-03-15'),
   score: 120,
   mode: 'normal',
-  couple: couple1
+  couple: couple1,
 )
+user2.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/978/b7qnddsqzri4wfy26msigfmftho-468.jpg"), filename: "user2.jpg", content_type: "image/jpg")
 
 user3 = User.create(
   email: 'user3@example.com',
@@ -63,6 +65,7 @@ user3 = User.create(
   mode: 'normal',
   couple: couple2
 )
+user3.photo.attach(io: URI.open("https://img-3.journaldesfemmes.fr/Si7QKJ-qnM9z6DN9XzKSH7ilc3U=/1500x/smart/45ebd918085745208e74acd424eb68c0/ccmcms-jdf/39927151.jpg"), filename: "user3.jpg", content_type: "image/jpg")
 
  user4 = User.create(
   email: 'user4@example.com',
@@ -76,6 +79,8 @@ user3 = User.create(
   mode: 'normal',
   couple: couple2
 )
+user4.photo.attach(io: URI.open("https://ngroup.gumlet.io/IMAGE/IMAGE-S1-00016/68445-kanye-west.jpg?w=600"), filename: "user4.jpg", content_type: "image/jpg")
+
 puts "Users created."
 
 puts "Creating task templates (generic tasks)..."
@@ -136,7 +141,7 @@ Task.create(
   base_score: 15,
   user: user2,
   statue: "pending",
-  assigned_to: user1
+  assigned_to: "Loulou"
 )
 
 Task.create(
@@ -155,7 +160,7 @@ Task.create(
   base_score: 70,
   user: user2,
   statue: "pending",
-  assigned_to: user1
+  assigned_to: "Loulou"
 )
 
 Task.create(
@@ -174,7 +179,7 @@ Task.create(
   base_score: 50,
   user: user4,
   statue: "pending",
-  assigned_to: user3
+  assigned_to: "Kim"
 )
 
 Task.create(
@@ -182,9 +187,9 @@ Task.create(
   description: "Please take some quality wine this time. I don't like piss.",
   date: Date.parse("16/12/2023").strftime('%B %d, %Y'),
   base_score: 40,
-  user: user4,
+  user: user3,
   statue: "pending",
-  assigned_to: user3
+  assigned_to: "Kim"
 )
 
 Task.create(
@@ -194,7 +199,7 @@ Task.create(
   base_score: 25,
   user: user3,
   statue: "pending",
-  assigned_to: user4
+  assigned_to: "Ye"
 )
 
 Task.create(
@@ -211,9 +216,9 @@ Task.create(
   description: "I can't stand this defective cupboard anymore. Do something.",
   date: Date.parse("07/12/2023").strftime('%B %d, %Y'),
   base_score: 30,
-  user: user4,
+  user: user3,
   statue: "pending",
-  assigned_to: user3
+  assigned_to: "Ye"
 )
 
 Task.create(
@@ -221,7 +226,7 @@ Task.create(
   description: "This garbage does not work.",
   date: Date.parse("08/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
-  user: user3,
+  user: user4,
   statue: "pending"
 )
 
@@ -230,7 +235,7 @@ Task.create(
   description: "My back hurts.",
   date: Date.parse("02/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
-  user: user3,
+  user: user4,
   statue: "pending"
 )
 

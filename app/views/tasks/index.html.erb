@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-4">
+
       <div class="dropdown">
         <div class="my-pending-tasks dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           <p class="m-0 p-3">My pending tasks</p>
@@ -10,7 +10,7 @@
           <div class="dropdown-menu w-100 p-0 border-0">
             <% @my_pending_tasks.each do |pending_task| %>
               <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
-                <%# <span><%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span> %>
+                <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span>
                 <span><%= pending_task.title %></span>
                 <span><%= pending_task.date.strftime('%b %d, %Y') %></span>
                 <i class="fa-solid fa-circle-dot"></i>
@@ -18,20 +18,35 @@
            <% end %>
           </div>
       </div>
+
       <div class="d-flex justify-content-between align-items-center">
         <span><strong>Filters</strong></span>
-        <div class="assigned-to border shadow-sm bg-white">Assigned to</div>
-        <div class="Status border shadow-sm bg-white">Status</div>
+        <div class="dropdown">
+          <a class="border shadow-sm btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Assigned to</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><%= current_user.nickname %></a></li>
+            <li><a class="dropdown-item" href="#"><%= @partner.nickname %></a></li>
+            <li><a class="dropdown-item" href="#">Nobobdy</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <a class="border shadow-sm btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Status</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Pending</a></li>
+            <li><a class="dropdown-item" href="#">Done</a></li>
+          </ul>
+        </div>
         <a href=# class="btn btn-primary">Today</a>
       </div>
-    <div class="my current tasks">
+
+    <div class="task-container" data-controller="task-container">
+      <div data-task-container-target="task-content">
+        <% @tasks.each do |task| %>
+          <p><%= task.title %></p>
+          <p><%= task.date %></p>
+        <% end %>
+      </div>
     </div>
-    <div>
-      <% @tasks.each do |task| %>
-        <p><%= task.title %></p>
-        <p><%= task.date %></p>
-      <% end %>
-    </div>
-    </div>
+
   </div>
 </div>
