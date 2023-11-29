@@ -1,0 +1,11 @@
+<h1>Your Sentences</h1>
+
+<% if @to_do_rewards.any? %>
+  <ul>
+    <% @to_do_rewards.each do |reward| %>
+      <li><%= reward.title %> - <%= reward.description %> - <%= reward.cost %> points</li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No slavery at the moment.</p>
+<% end %>

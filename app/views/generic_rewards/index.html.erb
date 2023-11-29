@@ -1,0 +1,10 @@
+<h1>Generic Rewards</h1>
+
+<ul>
+  <% @generic_rewards.each do |generic_reward| %>
+    <li><%= generic_reward.title %></li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Create New Reward", new_couple_reward_path, class: "btn btn-success" %>
