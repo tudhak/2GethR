@@ -1,7 +1,6 @@
-<div data-task-container-target="content d-none">
-  <% @tasks.each do |task| %>
+  <% tasks.each do |task| %>
+    <div data-task-container-target="content">
       <p><%= task.title %></p>
       <p><%= task.date %></p>
+    </div>
   <% end %>
-  </div>
-</div>

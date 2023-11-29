@@ -27,13 +27,13 @@
               "mb-4", data: {task_container_target: "form"}} do |f| %>
               <%= f.input :assigned_to,
                      collection: [current_user.nickname, @partner.nickname],
-                     input_html: { data: {task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
+                     input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
               <%= f.input :statue,
                     collection: ["pending", "done"],
                      input_html: { data: { task_container_target: "statueInput", action: "change->task-container#reveal" } } %>
               <%= f.button :submit %>
               <% end %>
-              <%= render 'tasks/content' %>
+              <%= render 'tasks/content', tasks: @tasks %>
       </div>
         <div class="dropdown">
 
