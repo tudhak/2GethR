@@ -1,92 +1,52 @@
 
 
 <div class="container">
-  <div class="row justify-content-center">
 
     <div class="dropdown">
-      <div class="my-pending-tasks dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="my-tasks dropdown-toggle mb-4" data-bs-toggle="dropdown" aria-expanded="false">
         <p class="m-0 p-3">My pending tasks</p>
-        </div>
-          <div class="dropdown-menu w-100 p-0 border-0">
-            <% @my_pending_tasks.each do |pending_task| %>
-              <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
-                <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span>
-                <span><%= pending_task.title %></span>
-                <span><%= pending_task.date.strftime('%b %d, %Y') %></span>
-                <i class="fa-solid fa-circle-dot"></i>
-              </div>
-           <% end %>
+      </div>
+      <div class="dropdown-menu w-100 p-0 border-0">
+        <% @my_pending_tasks.each do |pending_task| %>
+          <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
+            <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span>
+            <span><%= pending_task.title %></span>
+            <span><%= pending_task.date.strftime('%b %d, %Y') %></span>
+            <i class="fa-solid fa-circle-dot"></i>
           </div>
+        <% end %>
       </div>
-
-      <div class="d-flex justify-content-between align-items-center">
-        <span><strong>Filters</strong></span>
-    <div data-controller="task-container" class="task-container">
-
-          <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
-              "mb-4", data: {task_container_target: "form"}} do |f| %>
-              <%= f.input :assigned_to,
-                     collection: [current_user.nickname, @partner.nickname],
-                     input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
-              <%= f.input :statue,
-                    collection: ["pending", "done"],
-                     input_html: { data: { task_container_target: "statueInput", action: "change->task-container#reveal" } } %>
-              <%= f.button :submit %>
-              <% end %>
-              <%= render 'tasks/content', tasks: @tasks %>
-      </div>
-        <div class="dropdown">
-
-          <%# <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><%= current_user.nickname %>
-
-            <%# <li><a class="dropdown-item" href="#"><%= @partner.nickname %>
-            <%# <li><a class="dropdown-item" href="#">Nobobdy</a></li> %>
-          <%# </ul> %>
-        </div>
-        <div class="dropdown">
-          <a class="border shadow-sm btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Status</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-action="click->task-container#reveal" data-task-container-target="pending">Pending</a></li>
-            <li><a class="dropdown-item" href="#">Done</a></li>
-          </ul>
-        </div>
-        <a href=# class="btn btn-primary">Today</a>
-
-      <div>
-        <span>Today</span>
-      </div>
-      <div>
-        <span>This week</span>
-      </div>
-      <div>
-        <span>Earlier</span>
-        <%# <%= form_with url: couple_render_filtered_path, method: :get, html: {class: %>
-        <%# "mb-4", data: {data_container_target: "form"}} do |f| %>
-          <%# <%= f.text_field :query, class: "form-control", placeholder: %>
-                     <%# "Please enter a date", value: params[:query], %>
-                     <%# data: { %>
-                        <%# data_container_target: "input", %>
-                        <%# action: "submit->data-container#reveal" %>
-                      <%# } %>
-      </div>
-      <div>
-        <span>Later</span>
-      </div>
-</div>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center">
+        <div data-controller="task-container" class="task-container">
+          <div class="d-flex justify-content-center align-items-center">
+            <span class="me-3"><strong>Filters</strong></span>
+            <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
+              "mb-4 row row-cols-auto", data: {task_container_target: "form"} } do |f| %>
+              <%= f.input :assigned_to,
+                         collection: [current_user.nickname, @partner.nickname, "any"],
+                         selected: current_user.nickname,
+                         input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
+              <%= f.input :statue,
+                        collection: ["pending", "done"],
+                        selected: "status",
+                        input_html: { data: { task_container_target: "statueInput", action: "change->task-container#reveal" } } %>
+              <%= f.button :submit %>
+            <% end %>
+        </div>
+
+        <div class="row">
+          <%= render 'tasks/content', tasks: @tasks %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="d-flex justify-content-around align-items-center">
       <a class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa-solid fa-plus"></i></a>
-       <%# <%= render 'tasks/add_task_modal', couple: @couple, task: @task %>
+       <%= render 'tasks/add_task_modal', task: @task %>
       <a class="btn btn-primary rounded-circle"><i class="fa-solid fa-list"></i></a>
     </div>
 
   </div>
-
-  <%# <ul>
-  <% @tasks.each do |task| %>
-  <%# <li><%= task.title %>
-  <%# <% end %>
-  <%# </ul>  %>
 </div>

@@ -1,6 +1,71 @@
-  <% tasks.each do |task| %>
-    <div data-task-container-target="content">
-      <p><%= task.title %></p>
-      <p><%= task.date %></p>
+<div data-task-container-target="content">
+
+    <div class="dropdown">
+      <div class="my-tasks dropdown-toggle mb-4" data-bs-toggle="dropdown" aria-expanded="false">
+        <p class="m-0 p-3">Today</p>
+      </div>
+
+        <div class="dropdown-menu w-100 p-0 border-0">
+         <% tasks.each do |task| %>
+          <% if task.date == Date.today %>
+          <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
     </div>
-  <% end %>
+
+    <div class="dropdown">
+      <div class="my-tasks dropdown-toggle mb-4" data-bs-toggle="dropdown" aria-expanded="false">
+        <p class="m-0 p-3">This week</p>
+      </div>
+
+        <div class="dropdown-menu w-100 p-0 border-0">
+         <% tasks.sort_by{ |item| item.date }.each do |task| %>
+          <% if Date.today.all_week.to_a.include?(task.date) %>
+          <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
+    </div>
+
+    <div class="dropdown">
+      <div class="my-tasks dropdown-toggle mb-4" data-bs-toggle="dropdown" aria-expanded="false">
+        <p class="m-0 p-3">Earlier</p>
+      </div>
+
+        <div class="dropdown-menu w-100 p-0 border-0">
+         <% tasks.sort_by{ |item| item.date }.each do |task| %>
+          <% if task.date < Date.today.at_beginning_of_week %>
+          <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
+    </div>
+
+    <div class="dropdown">
+      <div class="my-tasks dropdown-toggle mb-4" data-bs-toggle="dropdown" aria-expanded="false">
+        <p class="m-0 p-3">Later</p>
+      </div>
+
+        <div class="dropdown-menu w-100 p-0 border-0">
+         <% tasks.sort_by{ |item| item.date }.each do |task| %>
+          <% if task.date > Date.today.at_end_of_week %>
+          <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
+    </div>
+
+</div>

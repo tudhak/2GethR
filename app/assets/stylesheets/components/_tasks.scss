@@ -1,11 +1,11 @@
-.my-pending-tasks {
+.my-tasks {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 0.5px solid #ACACAC;
 }
 
-.my-pending-tasks:hover {
+.my-tasks:hover {
   border: 1px solid #ACACAC;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   font-weight: bold;

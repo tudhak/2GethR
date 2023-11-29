@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # Follow regular flow of Rails
+      format.html
       format.text { render partial: "tasks/content", locals: { tasks: @tasks }, formats: [:html] }
     end
   end

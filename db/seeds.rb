@@ -150,7 +150,8 @@ Task.create(
   date: Date.parse("01/12/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending"
+  statue: "pending",
+  assigned_to: "any"
 )
 
 Task.create(
@@ -169,7 +170,8 @@ Task.create(
   date: Date.parse("06/12/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending"
+  statue: "pending",
+  assigned_to: "any"
 )
 
 Task.create(
@@ -208,7 +210,8 @@ Task.create(
   date: Date.parse("12/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user1,
-  statue: "pending"
+  statue: "pending",
+  assigned_to: "any"
 )
 
 Task.create(
@@ -227,7 +230,8 @@ Task.create(
   date: Date.parse("08/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user4,
-  statue: "pending"
+  statue: "pending",
+  assigned_to: "any"
 )
 
 Task.create(
@@ -236,7 +240,8 @@ Task.create(
   date: Date.parse("02/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user4,
-  statue: "pending"
+  statue: "pending",
+  assigned_to: "any"
 )
 
 Task.create(
@@ -245,7 +250,8 @@ Task.create(
   date: Date.parse("03/12/2023").strftime('%B %d, %Y'),
   base_score: 30,
   user: user1,
-  statue: "pending"
+  statue: "pending",
+  assigned_to: "any"
 )
 
 Task.create(
@@ -254,7 +260,8 @@ Task.create(
   date: Date.parse("01-12-2023").strftime('%B %d, %Y'),
   base_score: 40,
   user: user2,
-  statue: "pending"
+  statue: "pending",
+  assigned_to: "any"
 )
 
 puts "Task instances created."
