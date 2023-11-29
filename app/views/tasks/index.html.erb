@@ -3,17 +3,21 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-4">
-        <div class="my-pending-tasks border">
-        <p>My pending tasks</p>
+      <div class="dropdown">
+        <div class="my-pending-tasks dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <p class="m-0 p-3">My pending tasks</p>
         </div>
-          <% @my_pending_tasks.each do |pending_task| %>
-          <div class="border d-flex justify-content-between align-items-center p-3">
-            <span><%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span>
-            <span><%= pending_task.title %></span>
-            <span><%= pending_task.date %></span>
-            <i class="fa-solid fa-circle-dot"></i>
-          </div>
+          <div class="dropdown-menu w-100 p-0 border-0">
+            <% @my_pending_tasks.each do |pending_task| %>
+              <div class="border d-flex justify-content-between align-items-center p-3 dropdown-item">
+                <%# <span><%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span> %>
+                <span><%= pending_task.title %></span>
+                <span><%= pending_task.date.strftime('%b %d, %Y') %></span>
+                <i class="fa-solid fa-circle-dot"></i>
+              </div>
            <% end %>
+          </div>
+      </div>
       <div class="d-flex justify-content-between align-items-center">
         <span><strong>Filters</strong></span>
         <div class="assigned-to border shadow-sm bg-white">Assigned to</div>
