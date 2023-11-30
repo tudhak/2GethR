@@ -1,4 +1,4 @@
 class Couple < ApplicationRecord
-  has_many :users
-  has_many :messages
+  has_many :users, dependent: :destroy
+  has_many :messages, dependent: :destroy
 end

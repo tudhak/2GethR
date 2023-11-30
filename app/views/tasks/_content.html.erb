@@ -1,0 +1,64 @@
+<div data-task-container-target="content" class="my-4">
+
+      <div class="my-tasks" data-bs-toggle="collapse" data-bs-target="#collapseTodayTasks" aria-expanded="false" aria-controls="collapseTodayTasks">
+        <p class="m-0 p-3">Today</p>
+      </div>
+
+        <div class="w-100 p-0 border-0 collapse" id="collapseTodayTasks">
+         <% tasks.each do |task| %>
+          <% if task.date == Date.today %>
+          <div class="border d-flex justify-content-between align-items-center p-3">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
+
+      <div class="my-tasks mt-4" data-bs-toggle="collapse" data-bs-target="#collapseWeekTasks" aria-expanded="false" aria-controls="collapseWeekTasks">
+        <p class="m-0 p-3">This week</p>
+      </div>
+
+        <div class="w-100 p-0 border-0 collapse" id="collapseWeekTasks">
+         <% tasks.sort_by{ |item| item.date }.each do |task| %>
+          <% if Date.today.all_week.to_a.include?(task.date) %>
+          <div class="border d-flex justify-content-between align-items-center p-3">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
+
+
+     <div class="my-tasks mt-4" data-bs-toggle="collapse" data-bs-target="#collapseEarlierTasks" aria-expanded="false" aria-controls="collapseEarlierTasks">
+        <p class="m-0 p-3">Earlier</p>
+      </div>
+
+        <div class="w-100 p-0 border-0 collapse" id="collapseEarlierTasks">
+         <% tasks.sort_by{ |item| item.date }.each do |task| %>
+          <% if task.date < Date.today.at_beginning_of_week %>
+          <div class="border d-flex justify-content-between align-items-center p-3">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
+
+      <div class="my-tasks my-4" data-bs-toggle="collapse" data-bs-target="#collapseLaterTasks" aria-expanded="false" aria-controls="collapseLaterTasks">
+        <p class="m-0 p-3">Later</p>
+      </div>
+
+        <div class="w-100 p-0 border-0 collapse" id="collapseLaterTasks">
+         <% tasks.sort_by{ |item| item.date }.each do |task| %>
+          <% if task.date > Date.today.at_end_of_week %>
+          <div class="border d-flex justify-content-between align-items-center p-3">
+            <span><%= task.title %></span>
+            <span><%= task.date.strftime('%b %d, %Y') %></span>
+          </div>
+          <% end %>
+      <% end %>
+        </div>
+
+</div>

@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   belongs_to :couple
-  has_many :statues
-  has_many :rewards
-  has_many :tasks
-  has_many :messages
+  has_many :statues, dependent: :destroy
+  has_many :rewards, dependent: :destroy
+  has_many :tasks, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_one_attached :photo
 
 
