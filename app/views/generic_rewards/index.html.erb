@@ -1,0 +1,13 @@
+
+
+<h1>Generic Rewards</h1>
+
+<div class="cards-container">
+  <% @generic_rewards.each do |generic_reward| %>
+    <%= link_to generic_reward_path(generic_reward) do %>
+      <div class="card">
+        <h2><%= generic_reward.title %></h2>
+      </div>
+    <% end %>
+  <% end %>
+</div>

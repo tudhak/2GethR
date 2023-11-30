@@ -8,6 +8,9 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+puts "Destroying reward templates (generic rewards)..."
+GenericReward.destroy_all
+
 puts "Destroying status..."
 Statue.destroy_all
 
@@ -17,14 +20,20 @@ MoodCategory.destroy_all
 puts "Destroying users..."
 User.destroy_all
 
-puts "Destroying couples..."
-Couple.destroy_all
+puts "Destroying reward instances (Rewards)..."
+Reward.destroy_all
 
 puts "Destroying task templates (generic tasks)..."
 GenericTask.destroy_all
 
 puts "Destroying task instances (tasks)..."
 Task.destroy_all
+
+puts "Destroying users..."
+User.destroy_all
+
+puts "Destroying couples..."
+Couple.destroy_all
 
 puts "Creating couples..."
 couple1 = Couple.create(address: '12 rue de passy', token: 123456)
@@ -323,3 +332,48 @@ Task.create(
 )
 
 puts "Task instances created."
+
+GenericReward.create(
+  title: 'Movie Night',
+  description: 'Enjoy a movie night together.',
+  cost: 50
+)
+GenericReward.create(
+  title: 'Dinner Date',
+  description: 'Have a romantic dinner at your favorite restaurant.',
+  cost: 80
+)
+GenericReward.create(
+  title: 'Weekend Getaway',
+  description: 'Plan a weekend getaway to relax and unwind.',
+  cost: 150
+)
+
+Reward.create!(
+  date: "02/12/2023",
+  user: user1,
+  status: 'pending',
+  description: 'A special reward',
+  title: 'Special Reward',
+  cost: 100
+)
+
+Reward.create!(
+  date: "02/12/2023",
+  user: user2,
+  status: 'approved',
+  description: 'Another reward',
+  title: 'Another Reward',
+  cost: 75
+)
+
+Reward.create!(
+  date: "02/12/2023",
+  user: user2,
+  status: 'rejected',
+  description: 'A rejected reward',
+  title: 'Rejected Reward',
+  cost: 120
+)
+
+puts 'Seed data for rewards created successfully!'

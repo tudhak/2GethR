@@ -1,0 +1,12 @@
+
+<h1>Your well deserved recompenses</h1>
+
+<% @rewards.each do |reward| %>
+  <div class="reward-card">
+    <strong>Title:</strong> <%= reward.title %><br>
+    <strong>Date:</strong> <%= reward.date %><br>
+    <strong>Description:</strong> <%= reward.description %><br>
+    <strong>Statue:</strong> <%= reward.status %> <br>
+  </div>
+  <hr>
+<% end %>

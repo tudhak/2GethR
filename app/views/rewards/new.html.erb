@@ -1,0 +1,9 @@
+<h1>Create a New Reward</h1>
+
+<%= simple_form_for @reward do |form| %>
+  <%= form.input :title %>
+  <%= form.input :description %>
+  <%= form.input :cost %>
+
+  <%= form.button :submit, "Create Reward" %>
+<% end %>
