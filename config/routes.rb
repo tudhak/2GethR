@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   resources :generic_tasks, except: [:show]
   resources :generic_rewards, only: [:index, :update, :destroy]
 
-  get "couples/:id/score_dashboard", to: "pages#score", as: :score
+  get "score_dashboard", to: "pages#score", as: :score
 
 end

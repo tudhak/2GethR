@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     set_user
     set_couple
     set_partner
+    # raise
   end
 
   def score

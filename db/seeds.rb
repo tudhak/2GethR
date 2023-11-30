@@ -72,11 +72,7 @@ user3 = User.create(
   couple: couple2
 )
 
-<<<<<<< HEAD
 user4 = User.create(
-=======
- user4 = User.create(
->>>>>>> 92946a51340d02086b36b3b0b29b61454165b674
   email: 'user4@example.com',
   password: 'password345',
   last_name: 'West',
@@ -139,7 +135,6 @@ GenericTask.create(
 )
 puts "Task templates created."
 
-<<<<<<< HEAD
 #------------------------------Mood Categories----------------------------------
 puts "Creating Mood Categories"
 
@@ -190,7 +185,6 @@ u4_status3.save
 puts "4 status created for user 4"
 
 #-------------------------------------------------------------------------------
-=======
 puts "Creating task instances (tasks)..."
 Task.create(
   title: "Feed the fishes",
@@ -316,4 +310,3 @@ Task.create(
 )
 
 puts "Task instances created."
->>>>>>> 92946a51340d02086b36b3b0b29b61454165b674
