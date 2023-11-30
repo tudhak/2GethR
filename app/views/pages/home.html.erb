@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container bg-info h-100 w-100 d-flex flex-column" >
+
+  <div><%= render "home_status", partner: @partner %></div>
+
+  <div class="flex-grow-1 d-flex flex-column"><%= render "home_actions", user: @user, partner: @partner %></div>
+
+</div>
