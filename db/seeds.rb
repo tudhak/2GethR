@@ -66,7 +66,7 @@ user2 = User.create(
   date_of_birth: Date.parse('1992-03-15'),
   score: 120,
   mode: 'normal',
-  couple: couple1,
+  couple: couple1
 )
 user2.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/978/b7qnddsqzri4wfy26msigfmftho-468.jpg"), filename: "user2.jpg", content_type: "image/jpg")
 
@@ -100,57 +100,8 @@ user4.photo.attach(io: URI.open("https://ngroup.gumlet.io/IMAGE/IMAGE-S1-00016/6
 
 puts "Users created."
 
-puts "Creating task templates (generic tasks)..."
-GenericTask.create(
-  title: "Let the dogs out",
-  description: "The dogs should take a walk to keep the flat clean.",
-  base_score: 30
-)
-
-GenericTask.create(
-  title: "Do the dishes",
-  description: "Keeping the kitchen clean is a good medicine.",
-  base_score: 40
-)
-
-GenericTask.create(
-  title: "Iron clothes",
-  description: "A little ironing to have presentable outfits.",
-  base_score: 25
-)
-
-GenericTask.create(
-  title: "Full house cleaning",
-  description: "Basic hygiene for a better life.",
-  base_score: 60
-)
-
-GenericTask.create(
-  title: "Vacuum",
-  description: "Keep the house tidy with some vacuum cleaning.",
-  base_score: 15
-)
-
-GenericTask.create(
-  title: "Prepare the dinner",
-  description: "Cook some good food.",
-  base_score: 50
-)
-
-GenericTask.create(
-  title: "Wash and hang clothes",
-  description: "Taking showers is not enough, our clothes also have to smell good.",
-  base_score: 35
-)
-
-GenericTask.create(
-  title: "Change the bedding",
-  description: "A fresh bed for a deep sleep.",
-  base_score: 30
-)
-puts "Task templates created."
-
 #------------------------------Mood Categories----------------------------------
+
 puts "Creating Mood Categories"
 
 mood_cat = [
@@ -163,7 +114,9 @@ mood_cat = [
 mood_cat.each { |mood| MoodCategory.create(title: mood[:title], image_path: mood[:url]) }
 
 puts "Four Categories created"
+
 #------------------------------Status-------------------------------------------
+
 puts "Creating status for user4"
 puts "...day1"
 u4_status1 = Statue.create(
@@ -199,15 +152,89 @@ u4_status3.save
 
 puts "4 status created for user 4"
 
-#-------------------------------------------------------------------------------
+#------------------------------Task templates----------------------------------
+
+puts "Creating task templates (generic tasks)..."
+
+GenericTask.create(
+  title: "Let the dogs out",
+  description: "The dogs should take a walk to keep the flat clean.",
+  base_score: 30,
+  couple: couple1
+)
+
+GenericTask.create(
+  title: "Do the dishes",
+  description: "Keeping the kitchen clean is a good medicine.",
+  base_score: 40,
+  couple: couple1
+)
+
+GenericTask.create(
+  title: "Iron clothes",
+  description: "A little ironing to have presentable outfits.",
+  base_score: 25,
+  couple: couple1
+)
+
+GenericTask.create(
+  title: "Full house cleaning",
+  description: "Basic hygiene for a better life.",
+  base_score: 60,
+  couple: couple1
+)
+
+GenericTask.create(
+  title: "Vacuum",
+  description: "Keep the house tidy with some vacuum cleaning.",
+  base_score: 15,
+  couple: couple2
+)
+
+GenericTask.create(
+  title: "Prepare the dinner",
+  description: "Cook some good food.",
+  base_score: 50,
+  couple: couple2
+)
+
+GenericTask.create(
+  title: "Wash and hang clothes",
+  description: "Taking showers is not enough, our clothes also have to smell good.",
+  base_score: 35,
+  couple: couple2
+)
+
+GenericTask.create(
+  title: "Change the bedding",
+  description: "A fresh bed for a deep sleep.",
+  base_score: 30,
+  couple: couple2
+)
+
+GenericTask.create(
+  title: "Other",
+  couple: couple1
+)
+
+GenericTask.create(
+  title: "Other",
+  couple: couple2
+)
+
+puts "Task templates created."
+
+#------------------------------Task instances----------------------------------
+
 puts "Creating task instances (tasks)..."
+
 Task.create(
   title: "Feed the fishes",
   description: "Feed our lovely fishes with adapted pet food.",
   date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Loulou"
 )
 
@@ -217,7 +244,7 @@ Task.create(
   date: Date.parse("01/12/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -227,7 +254,7 @@ Task.create(
   date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
   base_score: 70,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Loulou"
 )
 
@@ -237,7 +264,7 @@ Task.create(
   date: Date.parse("06/12/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -247,7 +274,7 @@ Task.create(
   date: Date.parse("15/12/2023").strftime('%B %d, %Y'),
   base_score: 50,
   user: user4,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Kim"
 )
 
@@ -257,7 +284,7 @@ Task.create(
   date: Date.parse("16/12/2023").strftime('%B %d, %Y'),
   base_score: 40,
   user: user3,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Kim"
 )
 
@@ -267,7 +294,7 @@ Task.create(
   date: Date.parse("09/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user3,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Ye"
 )
 
@@ -277,7 +304,7 @@ Task.create(
   date: Date.parse("12/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user1,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -287,7 +314,7 @@ Task.create(
   date: Date.parse("07/12/2023").strftime('%B %d, %Y'),
   base_score: 30,
   user: user3,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Ye"
 )
 
@@ -297,7 +324,7 @@ Task.create(
   date: Date.parse("08/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user4,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -307,7 +334,7 @@ Task.create(
   date: Date.parse("02/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user4,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -317,7 +344,7 @@ Task.create(
   date: Date.parse("03/12/2023").strftime('%B %d, %Y'),
   base_score: 30,
   user: user1,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -327,7 +354,7 @@ Task.create(
   date: Date.parse("01-12-2023").strftime('%B %d, %Y'),
   base_score: 40,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 

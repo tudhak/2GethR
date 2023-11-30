@@ -5,15 +5,38 @@
         <h1 class="modal-title fs-5 color-blue" id="addTaskModalLabel">Add a new task</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" data-controller="add-task">
         <%= simple_form_for [task] do |f| %>
-          <%= f.input :title, label: false, placeholder: "Title" %>
-          <%= f.input :description, label: false, placeholder: "Description" %>
+          <%= f.input :title,
+                      collection: GenericTask.where(couple: current_user.couple).pluck(:title),
+                      label: false,
+                      placeholder: "Title",
+                      input_html: { data: { add_task_target: "firstTitle", action: "change->add-task#toggle add-task#untoggle"} } %>
+          <%= f.input :title,
+                      placeholder: "Please enter the title of your new task",
+                      label: false,
+                      value: "p",
+                      input_html: { class: "d-none", value: "", data: { add_task_target: "secondTitle"} } %>
+          <%= f.input :description,
+                      label: false,
+                      placeholder: "Description",
+                      input_html: { data: { add_task_target: "description"} }
+                       %>
           <%= f.input :photos, as: :file, input_html: { multiple: true } %>
           <%= f.input :date, label: false, placeholder: "Date" %>
-          <%= f.input :base_score, placeholder: "Base score" %>
-          <%= f.input :status, label: false, placeholder: "Status" %>
-          <%= f.input :assigned_to, label: false, placeholder: "Assigned to" %>
+          <%= f.input :base_score,
+                      label: false,
+                      placeholder: "Base score",
+                      input_html: { data: { add_task_target: "score"} }  %>
+          <%= f.input :status,
+                      collection: ["pending", "done"],
+                      selected: "pending",
+                      placeholder: "Status" %>
+          <%= f.input :assigned_to,
+                      collection: [current_user.nickname, @partner.nickname, "any"],
+                      selected: current_user.nickname,
+                      placeholder: "Assigned to" %>
+          <%= f.button :submit %>
           <% end %>
       </div>
     </div>
