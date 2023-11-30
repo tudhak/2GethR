@@ -16,7 +16,9 @@ class TasksController < ApplicationController
       format.text { render partial: "tasks/content", locals: { tasks: @tasks }, formats: [:html] }
     end
 
-    @description = GenericTask.where()
+    # if params[:other_params].present?
+    #   @description = GenericTask.find(title: params[:other_params][:title]).description
+    # end
   end
 
   def show
