@@ -189,6 +189,41 @@ u4_status3.end_date = u4_status4.created_at
 u4_status3.save
 
 puts "4 status created for user 4"
+#-------------------------------------------------------------------------------
+puts "Creating status for user3"
+puts "...day1"
+u3_status1 = Statue.create(
+  mood_category_id: MoodCategory.first.id,
+  user: user3
+)
+sleep(5)
+puts "...day2"
+u3_status2 = Statue.create(
+  mood_category_id: (MoodCategory.first.id + 1),
+  user: user3
+)
+u3_status1.end_date = u3_status2.created_at
+u3_status1.save
+
+sleep(5)
+puts "...day3"
+u3_status3 = Statue.create(
+  mood_category_id: (MoodCategory.first.id + 2),
+  user: user3
+)
+u3_status2.end_date = u3_status3.created_at
+u3_status2.save
+
+sleep(5)
+puts "...day4"
+u3_status4 = Statue.create(
+  mood_category_id: (MoodCategory.first.id + 3),
+  user: user3
+)
+u3_status3.end_date = u3_status4.created_at
+u3_status3.save
+
+puts "4 status created for user 4"
 
 #-------------------------------------------------------------------------------
 puts "Creating task instances (tasks)..."
