@@ -20,7 +20,9 @@
 
         <div data-controller="task-container" class="task-container">
           <div class="d-flex justify-content-center align-items-center">
-            <span class="me-3"><strong>Filters</strong></span>
+            <div class="bg-primary d-flex justify-content-center align-items-center">
+            <p class="me-3 text-white"><strong>Filters</strong></p>
+            </div>
             <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
               "mb-4 row row-cols-auto", data: {task_container_target: "form"} } do |f| %>
               <%= f.input :assigned_to,
@@ -29,9 +31,8 @@
                          input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
               <%= f.input :statue,
                         collection: ["pending", "done"],
-                        selected: "status",
+                        selected: "pending",
                         input_html: { data: { task_container_target: "statueInput", action: "change->task-container#reveal" } } %>
-              <%= f.button :submit %>
             <% end %>
         </div>
 
