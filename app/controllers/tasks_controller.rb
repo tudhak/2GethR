@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
-    if @task.save
+    if @task.save!
       redirect_to task_path(@task)
     else
       render "tasks/add_task_modal", status: :unprocessable_entity
