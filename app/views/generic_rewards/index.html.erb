@@ -1,10 +1,13 @@
+
+
 <h1>Generic Rewards</h1>
 
-<ul>
+<div class="cards-container">
   <% @generic_rewards.each do |generic_reward| %>
-    <li><%= generic_reward.title %></li>
+    <%= link_to generic_reward_path(generic_reward) do %>
+      <div class="card">
+        <h2><%= generic_reward.title %></h2>
+      </div>
+    <% end %>
   <% end %>
-</ul>
-
-
-<%= link_to "Create New Reward", new_couple_reward_path, class: "btn btn-success" %>
+</div>

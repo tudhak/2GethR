@@ -11,6 +11,13 @@ class RewardsController < ApplicationController
     @to_do_rewards = @other_person.rewards
   end
 
+  def mark_as_done
+    @reward = Reward.find(params[:id])
+    @reward.update(status: 'Done')
+    redirect_to mark_as_done_couple_reward_path, notice: 'Reward marked as done.'
+  end
+
+
   def new
     @reward = Reward.new
   end
