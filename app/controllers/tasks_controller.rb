@@ -15,6 +15,8 @@ class TasksController < ApplicationController
       format.html
       format.text { render partial: "tasks/content", locals: { tasks: @tasks }, formats: [:html] }
     end
+
+    @description = GenericTask.where()
   end
 
   def show
