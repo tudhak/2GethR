@@ -1,0 +1,56 @@
+<div class="container p-5">
+  <h1 class="text-center">Dashboard</h1>
+
+  <div class="d-flex justify-content-between">
+    <p>Loulou : <%= @user.score %></p>
+    <p>Choucou : <%= @partner.score %></p>
+  </div>
+
+  <div>
+    <h2 class="text-center">Test_Chart</h2>
+    <div class="chart">
+      <canvas data-controller="chart">
+        <!-- TODO: Display doughnut chart below -->
+      </canvas>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="text-center">Couple meteo</h2>
+    <div class="chart d-flex justify-content-between">
+      <div>
+        <h4 class="text-center">Me</h2>
+        <%= @user_mood %>
+        <canvas data-controller="user-mood">
+          <!-- TODO: Display doughnut chart below -->
+        </canvas>
+      </div>
+      <div>
+        <h4 class="text-center">her</h2>
+        <%= @partner_mood %>
+        <canvas data-controller="partner-mood">
+          <!-- TODO: Display doughnut chart below -->
+        </canvas>
+      </div>
+    </div>
+
+
+    <div>
+      <h2 class="text-center">Who does what?</h2>
+      <div class="chart">
+        <h4>Task_name</h2>
+        <canvas data-controller="task-split">
+          <!-- TODO: Display horizontal bar chart 100% below -->
+        </canvas>
+      </div>
+    </div>
+
+  <div class="chart">
+    <h2  class="text-center">Reward split</h2>
+      <canvas data-controller="rewards-split">
+        <!-- TODO: Display  horizontal bar chart 100% chart below -->
+      </canvas>
+    </div>
+  </div>
+
+</div>
