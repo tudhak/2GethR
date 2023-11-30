@@ -21,7 +21,7 @@
         <div data-controller="task-container" class="task-container">
           <div class="d-flex justify-content-center align-items-center">
             <div class="bg-primary d-flex justify-content-center align-items-center">
-            <span class="me-3 text-white"><strong>Filters</strong></span>
+            <p class="me-3 text-white"><strong>Filters</strong></p>
             </div>
             <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
               "mb-4 row row-cols-auto", data: {task_container_target: "form"} } do |f| %>
