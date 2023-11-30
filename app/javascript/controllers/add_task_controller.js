@@ -9,12 +9,19 @@ export default class extends Controller {
     console.log(this.firstTitleTarget)
   }
 
-  react() {
+  toggle() {
     if (this.firstTitleTarget.value === "Other") {
       this.secondTitleTarget.classList.toggle("d-none")
+      this.secondTitleTarget.classList.add("revealed")
     }
-    if (this.secondTitleTarget.classList.includes("d-none")) {
+    }
+
+  untoggle() {
+      if (this.firstTitleTarget.value !== "Other" && this.secondTitleTarget.classList.contains("revealed")) {
         this.secondTitleTarget.classList.toggle("d-none")
+        this.secondTitleTarget.classList.remove("revealed")
       }
     }
+
+
   }

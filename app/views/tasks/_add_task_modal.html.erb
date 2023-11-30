@@ -11,7 +11,7 @@
                       collection: GenericTask.where(couple: current_user.couple).pluck(:title),
                       label: false,
                       placeholder: "Title",
-                      input_html: { data: { add_task_target: "firstTitle", action: "change->add-task#react"} } %>
+                      input_html: { data: { add_task_target: "firstTitle", action: "change->add-task#toggle add-task#untoggle"} } %>
           <%= f.input :title,
                       placeholder: "Please enter the title of your new task",
                       label: false,
