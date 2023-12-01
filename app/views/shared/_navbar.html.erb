@@ -15,13 +15,13 @@
 
           <div data-incoming-target="inyourface" class="d-flex flex-row-reverse align-items-center px-2" style="height:50px;"></div>
           <div data-action="click->incoming#unleash">
-            <%#= link_to delete_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
+            <%= link_to delete_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
               <div class="d-flex align-items-center me-2" style="height:50px; border-radius:50%; ">
                 <% received_actions_nb = current_user.received_actions.nil? ? 0 : (current_user.received_actions.split(";").size - 1)  %>
                 <%= "#{received_actions_nb} incoming!" if received_actions_nb > 0  %>
                 <i class="fa-solid fa-bolt mt-2" style="font-size:30px"></i>
               </div>
-            <%# end %>
+            <% end %>
           </div>
         </div> <%# End Incoming %>
 
