@@ -231,7 +231,7 @@ puts "Creating task instances (tasks)..."
 Task.create(
   title: "Feed the fishes",
   description: "Feed our lovely fishes with adapted pet food.",
-  date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
+  date: Date.parse("30/11/2023"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -241,7 +241,7 @@ Task.create(
 Task.create(
   title: "Water the plants",
   description: "Our plants look rather dry.",
-  date: Date.parse("01/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("01/12/2023"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -251,7 +251,7 @@ Task.create(
 Task.create(
   title: "Book winter holidays",
   description: "Time flies. Please take some time to book our next holidays.",
-  date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
+  date: Date.parse("30/11/2023"),
   base_score: 70,
   user: user2,
   status: "pending",
@@ -261,7 +261,7 @@ Task.create(
 Task.create(
   title: "Clean the carpet",
   description: "There is dust all over the carpet. It pisses me off.",
-  date: Date.parse("06/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("06/12/2023"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -271,7 +271,7 @@ Task.create(
 Task.create(
   title: "Buy a gift for my nephew",
   description: "I think he likes video games.",
-  date: Date.parse("15/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("15/12/2023"),
   base_score: 50,
   user: user4,
   status: "pending",
@@ -281,7 +281,7 @@ Task.create(
 Task.create(
   title: "Order some wine for Christmas",
   description: "Please take some quality wine this time. I don't like piss.",
-  date: Date.parse("16/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("16/12/2023"),
   base_score: 40,
   user: user3,
   status: "pending",
@@ -291,7 +291,7 @@ Task.create(
 Task.create(
   title: "Take my dress to the dry cleaning",
   description: "There are some blemishes on my dress I would like to get rid of.",
-  date: Date.parse("09/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("09/12/2023"),
   base_score: 25,
   user: user3,
   status: "pending",
@@ -301,7 +301,7 @@ Task.create(
 Task.create(
   title: "Go to the grocery store",
   description: "We ran out of pasta.",
-  date: Date.parse("12/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("12/12/2023"),
   base_score: 25,
   user: user1,
   status: "pending",
@@ -311,7 +311,7 @@ Task.create(
 Task.create(
   title: "Fix the cupboard",
   description: "I can't stand this defective cupboard anymore. Do something.",
-  date: Date.parse("07/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("07/12/2023"),
   base_score: 30,
   user: user3,
   status: "pending",
@@ -321,7 +321,7 @@ Task.create(
 Task.create(
   title: "Send back my headphones for refund",
   description: "This garbage does not work.",
-  date: Date.parse("08/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("08/12/2023"),
   base_score: 25,
   user: user4,
   status: "pending",
@@ -331,7 +331,7 @@ Task.create(
 Task.create(
   title: "Buy some painkillers at the drugstore",
   description: "My back hurts.",
-  date: Date.parse("02/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("02/12/2023"),
   base_score: 25,
   user: user4,
   status: "pending",
@@ -341,7 +341,7 @@ Task.create(
 Task.create(
   title: "Change the bedding",
   description: "A fresh bed for a deep sleep.",
-  date: Date.parse("03/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("03/12/2023"),
   base_score: 30,
   user: user1,
   status: "pending",
@@ -351,7 +351,7 @@ Task.create(
 Task.create(
   title: "Do the dishes",
   description: "Keeping the kitchen clean is a good medicine.",
-  date: Date.parse("01-12-2023").strftime('%B %d, %Y'),
+  date: Date.parse("01-12-2023"),
   base_score: 40,
   user: user2,
   status: "pending",

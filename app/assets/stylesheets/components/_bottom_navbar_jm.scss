@@ -6,3 +6,7 @@
   padding: 10px; /* Espace intérieur (optionnel) */
   text-align: center; /* Alignement du texte (optionnel) */
 }
+
+.content-wrapper{
+  min-height: calc(100vh - 185px - 100px);
+}

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
-  <body class="vh-100 d-flex flex-column justify-content-between">
+  <body class="d-flex flex-column justify-content-between">
     <div>
       <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
@@ -28,12 +28,12 @@
       <p class="alert"><%= alert %></p>
     </div>
 
-    <div class="h-100">
+    <div class="content-wrapper">
       <%= yield %>
     </div>
 
     <%# JM : Garder cette div vide  %>
-    <div class="bg-danger" style="height:105px"><h1></h1></div>
+    <div style="height:105px"><h1></h1></div>
     <div>
       <%# JM : Bottom-NavBar en attendant celle de Samuel  %>
       <%# JM : Remplacer par un render ici  %>

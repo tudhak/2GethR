@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_couple, only: [:index]
-  before_action :set_task, only: [:show, :destroy]
+  before_action :set_task, only: [:show, :update, :destroy]
+  before_action :set_partner, only: [:index, :show]
 
   def index
     @tasks = Task.where(user: User.where(couple_id: @couple.id))
     @my_pending_tasks = Task.where(assigned_to: current_user.nickname).where(status: "pending").order(date: :desc)
-    @partner = User.where(couple_id: current_user.couple_id).where.not(id: current_user.id).first
     @task = Task.new
 
     if params[:my_params].present?
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Item was successfully updated.'
+      redirect_to @task, notice: 'Task was successfully updated.'
     else
       # render :edit, status: :unprocessable_entity
     end
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: 'Item was successfully destroyed.'
+    redirect_to tasks_path, notice: 'Task was successfully destroyed.'
   end
 
   def mark_as_done
@@ -70,6 +70,10 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def set_partner
+    @partner = User.where(couple_id: current_user.couple_id).where.not(id: current_user.id).first
   end
 
   def task_params
