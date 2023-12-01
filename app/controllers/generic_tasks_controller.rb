@@ -1,5 +1,5 @@
 class GenericTasksController < ApplicationController
-  before_action :set_task, only: [:destroy]
+  before_action :set_generic_task, only: [:update, :destroy]
 
   def index
     @generic_tasks = GenericTask.where(couple: current_user.couple)
@@ -8,7 +8,7 @@ class GenericTasksController < ApplicationController
 
   def destroy
     @generic_task.destroy
-    redirect_to generic_tasks_path, notice: 'Task was successfully destroyed.'
+    redirect_to generic_tasks_path, notice: 'Generic task was successfully destroyed.'
   end
 
   def create
@@ -21,10 +21,18 @@ class GenericTasksController < ApplicationController
     end
   end
 
+  def update
+    if @generic_task.update(task_params)
+      redirect_to @generic_tasks, notice: 'Generic Task was successfully updated.'
+    else
+      render "generic_tasks/edit_generic_task", status: :unprocessable_entity
+    end
+  end
+
   private
 
-  def set_task
-    @task = Task.find(params[:id])
+  def set_generic_task
+    @generic_task = GenericTask.find(params[:id])
   end
 
   def generic_task_params
