@@ -11,7 +11,7 @@
 
       <div class="d-flex justify-content-between"> <%# Start Incoming + Avatar %>
         <%# Start Incoming %>
-        <div class="d-flex justify-content">
+        <div data-controller="incoming" data-incoming-list-value="<%= current_user.received_actions %>" class="d-flex justify-content">
 
           <div data-incoming-target="inyourface" class="d-flex flex-row-reverse align-items-center px-2" style="height:50px;"></div>
           <div data-action="click->incoming#unleash">
