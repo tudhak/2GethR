@@ -17,9 +17,6 @@ Statue.destroy_all
 puts "Destroying mood categories..."
 MoodCategory.destroy_all
 
-puts "Destroying users..."
-User.destroy_all
-
 puts "Destroying reward instances (Rewards)..."
 Reward.destroy_all
 
@@ -421,9 +418,18 @@ Reward.create!(
 )
 
 Reward.create!(
+  date: "06/12/2023",
+  user: user1,
+  status: 'done',
+  description: 'A well deserved massage',
+  title: 'Special Massage',
+  cost: 100
+)
+
+Reward.create!(
   date: "02/12/2023",
   user: user2,
-  status: 'approved',
+  status: 'pending',
   description: 'Another reward',
   title: 'Another Reward',
   cost: 75
@@ -432,7 +438,7 @@ Reward.create!(
 Reward.create!(
   date: "02/12/2023",
   user: user2,
-  status: 'rejected',
+  status: 'done',
   description: 'A rejected reward',
   title: 'Rejected Reward',
   cost: 120

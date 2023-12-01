@@ -24,9 +24,9 @@ class RewardsController < ApplicationController
 
   def create
     @reward = current_user.rewards.build(reward_params)
-
+    @reward.status = "pending"
     if @reward.save
-      redirect_to given_rewards_rewards_path, notice: 'Reward was successfully created.'
+      redirect_to couple_rewards_path(current_user.couple), notice: 'Reward was successfully created.'
     else
       render :new
     end
@@ -35,6 +35,6 @@ class RewardsController < ApplicationController
   private
 
   def reward_params
-    params.require(:reward).permit(:title, :description, :cost, :category)
+    params.require(:reward).permit(:title, :description, :cost, :category, :date)
   end
 end
