@@ -1,10 +1,21 @@
 <h1><%= @generic_reward.title %></h1>
 
-<div class="card">
-
-  <p><strong>Description:</strong> <%= @generic_reward.description %></p>
-  <p><strong>Cost:</strong> <%= @generic_reward.cost %></p>
-
-</div>
+<%# <div class="card" id="reward-card">
+  <p><strong>Description:</strong> %>
+  <%#= @generic_reward.description %>
+  <%# </p>
+  <p><strong>Cost:</strong> %>
+  <%#= @generic_reward.cost %>
+  <%# </p>
+</div> %>
 
 <%= link_to 'Back to Rewards', generic_rewards_path %>
+
+
+<%= simple_form_for [current_user.couple, @reward], class: 'reward-form', style: 'display: none;' do |f| %>
+  <%= f.input :date, label: 'Choose Date' %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :cost %>
+  <%= f.button :submit, 'Create Reward' %>
+<% end %>
