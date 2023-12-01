@@ -17,7 +17,10 @@
     <% end %>
 
   </div>
-  <div id="meteo" style="background-image: url('<%= @partner.statues.last.mood_category.image_path %>'); background-position: center;  background-size: cover;" class="bg-danger flex-grow-1 py-5 d-flex justify-content-center align-items-center">
+
+  <% image_path =  @partner.statues == [] ? MoodCategory.first.image_path : @image_path %>
+
+  <div id="meteo" style="background-image: url('<%= image_path %>'); background-position: center;  background-size: cover;" class="bg-danger flex-grow-1 py-5 d-flex justify-content-center align-items-center">
     <div id="big-avatar" class="d-flex justify-content-center" style="background-image: url('<%= cl_image_path @partner.photo.key %>');background-position: center;  background-size: cover; height:250px; width:250px; border-radius:50%;">
       <div id="action-punch" data-interactions-target="punch" class="action-sent d-none"><h1 class="fa-solid fa-hand-fist" style="font-size:200px; color:white;"></h1></div>
       <div id="action-love" data-interactions-target="love" class="action-sent d-none"><h1 class="fa-solid fa-heart" style="font-size:200px; color:white;"></h1></div>

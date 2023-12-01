@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     @actions_received = @user.received_actions
     @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
     @nb_actions = @received_actions.size
-
+    @image_path =  @partner.statues == [] ? MoodCategory.first.image_path : @partner.statues.last.mood_category.image_path
 
   end
 
@@ -52,7 +52,6 @@ class PagesController < ApplicationController
   end
 
   def delete_action
-
     home
     @user.received_actions = nil
     @user.save
