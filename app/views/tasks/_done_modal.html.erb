@@ -1,0 +1,27 @@
+<div class="modal fade" id="doneModal" tabindex="-1" aria-labelledby="doneModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="doneModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Add proofs</p>
+         <%= simple_form_for task do |f| %>
+           <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+           <%= f.button :submit, "Submit proofs"  %>
+         <% end %>
+         <p>This task will earn you <%= @task.base_score %> points.</p>
+         <p>New score after confirmation:
+         <% unless @task.base_score.nil? %>
+         <%= current_user.score + @task.base_score %>
+         <% end %>
+         </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         <%= link_to 'Mark as done', mark_as_done_task_path(@task), data: {turbo_method: :patch}, class:"btn btn-success text-white" %>
+      </div>
+    </div>
+  </div>
+</div>

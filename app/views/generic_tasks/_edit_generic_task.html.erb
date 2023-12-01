@@ -1,0 +1,22 @@
+<div class="collapse" id="editGenericCollapse">
+  <div class="d-flex justify-content-center">
+    <div class="card card-body">
+      <%= simple_form_for generic_task do |f| %>
+            <%= f.input :title,
+                        label: false,
+                        placeholder: "Title"
+                        %>
+            <%= f.input :description,
+                        label: false,
+                        placeholder: "Description"
+                        %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+            <%= f.input :base_score,
+                        label: false,
+                        placeholder: "Base score"
+                        %>
+            <%= f.button :submit, "Edit task"  %>
+            <% end %>
+    </div>
+  </div>
+</div>
