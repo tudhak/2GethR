@@ -41,7 +41,9 @@
 
   <div class="d-flex justify-content-around align-items-center">
     <a class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa-solid fa-plus"></i></a>
-    <a class="btn btn-primary rounded-circle"><i class="fa-solid fa-list"></i></a>
+    <%= link_to generic_tasks_path, class:"bg-primary rounded-circle" do %>
+      <i class="fa-solid fa-list"></i>
+    <% end %>
   </div>
 
   <%= render 'tasks/add_task_modal', task: @task %>

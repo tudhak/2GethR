@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row px-3">
+    <h2 class="text-center my-3">Your list of generic tasks</h2>
+      <ul class="list-group">
+        <% @generic_tasks.each do |generic_task| %>
+          <% unless generic_task.title == "Other" %>
+            <li class="list-group-item shadow-sm border-2 mb-3">
+                <span class="d-block mb-2"><strong><%= generic_task.title %></strong></span>
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-file me-3"></i>
+                    <span> <%= generic_task.description %></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-star me-2"></i>
+                    <span> <%= generic_task.base_score %></span>
+                  </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+  </div>
+</div>

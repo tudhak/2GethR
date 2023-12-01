@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="add-task"
 export default class extends Controller {
   static targets = ["firstTitle", "secondTitle", "description", "score", "taskForm"]
+  static values = { description: Array, score: Array, title: Array }
 
   connect() {
     // console.log(this.element)
@@ -31,6 +32,16 @@ export default class extends Controller {
   }
 
   autoComplete() {
+    console.log(this.descriptionValue)
+    console.log(this.scoreValue)
+    console.log(this.titleValue)
+    // console.log(this.titleValue.length)
+    // for (let i = 0; i++; i <= this.titleValue.length ) {
+    //   if (this.firstTitleTarget.value === this.titleValue[i]) {
+    //     this.descriptionTarget.value = this.descriptionValue[i]
+    //     this.scoreTarget.value = this.scoreValue[i]
+    //   }
+    // }
     // event.preventDefault();
     // const url = this.taskFormTarget.action
     // const url = `${this.taskFormTarget.action}?other_params[title]=${this.firstTitleTarget.value}`

@@ -5,13 +5,19 @@
         <h1 class="modal-title fs-5 color-blue" id="addTaskModalLabel">Add a new task</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" data-controller="add-task">
-        <%= simple_form_for task, html: { data: {add_task_target: "taskForm"} } do |f| %>
+      <div class="modal-body" data-controller="add-task"
+      data-add-task-title-value="<%= GenericTask.where(couple: current_user.couple).pluck(:title) %>"
+      data-add-task-description-value="<%= GenericTask.where(couple: current_user.couple).pluck(:description) %>"
+      data-add-task-score-value="<%= GenericTask.where(couple: current_user.couple).pluck(:base_score) %>"
+      >
+        <%= simple_form_for task, html: { data: { add_task_target: "taskForm" } } do |f| %>
           <%= f.input :title,
                       collection: GenericTask.where(couple: current_user.couple).pluck(:title),
                       label: false,
                       placeholder: "Title",
-                      input_html: { data: { add_task_target: "firstTitle", action: "change->add-task#toggle add-task#untoggle add-task#fill add-task#autoComplete"} } %>
+                      input_html: { data: { add_task_target: "firstTitle",
+                      action: "change->add-task#toggle add-task#untoggle add-task#fill add-task#autoComplete"
+                      } } %>
           <%= f.input :title,
                       placeholder: "Please enter the title of your new task",
                       label: false,

@@ -46,7 +46,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to @task, notice: 'Task was successfully updated.'
     else
-      # render :edit, status: :unprocessable_entity
+      render "tasks/edit_task_modal", status: :unprocessable_entity
     end
   end
 
@@ -57,6 +57,7 @@ class TasksController < ApplicationController
 
   def mark_as_done
     @task = Task.find(params[:id])
+    # raise
     @task.update(status: "done")
     current_user.score += @task.base_score unless @task.base_score.nil?
     redirect_to task_path(@task), notice: "Status updated to #{@task.status}"
