@@ -17,9 +17,6 @@ Statue.destroy_all
 puts "Destroying mood categories..."
 MoodCategory.destroy_all
 
-puts "Destroying users..."
-User.destroy_all
-
 puts "Destroying reward instances (Rewards)..."
 Reward.destroy_all
 
@@ -207,7 +204,7 @@ Task.create(
   date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Loulou"
 )
 
@@ -217,7 +214,7 @@ Task.create(
   date: Date.parse("01/12/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -227,7 +224,7 @@ Task.create(
   date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
   base_score: 70,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Loulou"
 )
 
@@ -237,7 +234,7 @@ Task.create(
   date: Date.parse("06/12/2023").strftime('%B %d, %Y'),
   base_score: 15,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -247,7 +244,7 @@ Task.create(
   date: Date.parse("15/12/2023").strftime('%B %d, %Y'),
   base_score: 50,
   user: user4,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Kim"
 )
 
@@ -257,7 +254,7 @@ Task.create(
   date: Date.parse("16/12/2023").strftime('%B %d, %Y'),
   base_score: 40,
   user: user3,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Kim"
 )
 
@@ -267,7 +264,7 @@ Task.create(
   date: Date.parse("09/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user3,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Ye"
 )
 
@@ -277,7 +274,7 @@ Task.create(
   date: Date.parse("12/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user1,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -287,7 +284,7 @@ Task.create(
   date: Date.parse("07/12/2023").strftime('%B %d, %Y'),
   base_score: 30,
   user: user3,
-  statue: "pending",
+  status: "pending",
   assigned_to: "Ye"
 )
 
@@ -297,7 +294,7 @@ Task.create(
   date: Date.parse("08/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user4,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -307,7 +304,7 @@ Task.create(
   date: Date.parse("02/12/2023").strftime('%B %d, %Y'),
   base_score: 25,
   user: user4,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -317,7 +314,7 @@ Task.create(
   date: Date.parse("03/12/2023").strftime('%B %d, %Y'),
   base_score: 30,
   user: user1,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -327,7 +324,7 @@ Task.create(
   date: Date.parse("01-12-2023").strftime('%B %d, %Y'),
   base_score: 40,
   user: user2,
-  statue: "pending",
+  status: "pending",
   assigned_to: "any"
 )
 
@@ -359,9 +356,18 @@ Reward.create!(
 )
 
 Reward.create!(
+  date: "06/12/2023",
+  user: user1,
+  status: 'done',
+  description: 'A well deserved massage',
+  title: 'Special Massage',
+  cost: 100
+)
+
+Reward.create!(
   date: "02/12/2023",
   user: user2,
-  status: 'approved',
+  status: 'pending',
   description: 'Another reward',
   title: 'Another Reward',
   cost: 75
@@ -370,7 +376,7 @@ Reward.create!(
 Reward.create!(
   date: "02/12/2023",
   user: user2,
-  status: 'rejected',
+  status: 'done',
   description: 'A rejected reward',
   title: 'Rejected Reward',
   cost: 120
