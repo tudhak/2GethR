@@ -40,5 +40,4 @@
 *.swp
 .DS_Store
 .env*
-.emv*
 .env*

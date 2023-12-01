@@ -17,9 +17,6 @@ Statue.destroy_all
 puts "Destroying mood categories..."
 MoodCategory.destroy_all
 
-puts "Destroying users..."
-User.destroy_all
-
 puts "Destroying reward instances (Rewards)..."
 Reward.destroy_all
 
@@ -105,7 +102,7 @@ puts "Users created."
 puts "Creating Mood Categories"
 
 mood_cat = [
-  {title: "stormy", url: "https://w0.peakpx.com/wallpaper/1010/238/HD-wallpaper-into-the-storm-lightning-thunder-strike-thumbnail.jpg"},
+  {title: "stormy", url: "https://gifdb.com/images/high/lightning-strikes-from-different-angles-nmtna33cvgzsao7g.gif"},
   {title: "rainy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLuW0GIlrYKhIzynv9ITRKUnVzFvDkD5LU9Q&usqp=CAU"},
   {title: "cloudy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBeFuUS1xlGXN994FpFwVLhmZgUhEIfl8FDg&usqp=CAU"},
   {title: "sunny", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGv6foDhUwklEvERo1MuHykzepVY8cc64ipQ&usqp=CAU"}
@@ -149,6 +146,41 @@ u4_status4 = Statue.create(
 )
 u4_status3.end_date = u4_status4.created_at
 u4_status3.save
+
+puts "4 status created for user 4"
+#-------------------------------------------------------------------------------
+puts "Creating status for user3"
+puts "...day1"
+u3_status1 = Statue.create(
+  mood_category_id: MoodCategory.first.id,
+  user: user3
+)
+sleep(5)
+puts "...day2"
+u3_status2 = Statue.create(
+  mood_category_id: (MoodCategory.first.id + 1),
+  user: user3
+)
+u3_status1.end_date = u3_status2.created_at
+u3_status1.save
+
+sleep(5)
+puts "...day3"
+u3_status3 = Statue.create(
+  mood_category_id: (MoodCategory.first.id + 2),
+  user: user3
+)
+u3_status2.end_date = u3_status3.created_at
+u3_status2.save
+
+sleep(5)
+puts "...day4"
+u3_status4 = Statue.create(
+  mood_category_id: (MoodCategory.first.id),
+  user: user3
+)
+u3_status3.end_date = u3_status4.created_at
+u3_status3.save
 
 puts "4 status created for user 4"
 
@@ -231,7 +263,7 @@ puts "Creating task instances (tasks)..."
 Task.create(
   title: "Feed the fishes",
   description: "Feed our lovely fishes with adapted pet food.",
-  date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
+  date: Date.parse("30/11/2023"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -241,7 +273,7 @@ Task.create(
 Task.create(
   title: "Water the plants",
   description: "Our plants look rather dry.",
-  date: Date.parse("01/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("01/12/2023"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -251,7 +283,7 @@ Task.create(
 Task.create(
   title: "Book winter holidays",
   description: "Time flies. Please take some time to book our next holidays.",
-  date: Date.parse("30/11/2023").strftime('%B %d, %Y'),
+  date: Date.parse("30/11/2023"),
   base_score: 70,
   user: user2,
   status: "pending",
@@ -261,7 +293,7 @@ Task.create(
 Task.create(
   title: "Clean the carpet",
   description: "There is dust all over the carpet. It pisses me off.",
-  date: Date.parse("06/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("06/12/2023"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -271,7 +303,7 @@ Task.create(
 Task.create(
   title: "Buy a gift for my nephew",
   description: "I think he likes video games.",
-  date: Date.parse("15/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("15/12/2023"),
   base_score: 50,
   user: user4,
   status: "pending",
@@ -281,7 +313,7 @@ Task.create(
 Task.create(
   title: "Order some wine for Christmas",
   description: "Please take some quality wine this time. I don't like piss.",
-  date: Date.parse("16/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("16/12/2023"),
   base_score: 40,
   user: user3,
   status: "pending",
@@ -291,7 +323,7 @@ Task.create(
 Task.create(
   title: "Take my dress to the dry cleaning",
   description: "There are some blemishes on my dress I would like to get rid of.",
-  date: Date.parse("09/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("09/12/2023"),
   base_score: 25,
   user: user3,
   status: "pending",
@@ -301,7 +333,7 @@ Task.create(
 Task.create(
   title: "Go to the grocery store",
   description: "We ran out of pasta.",
-  date: Date.parse("12/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("12/12/2023"),
   base_score: 25,
   user: user1,
   status: "pending",
@@ -311,7 +343,7 @@ Task.create(
 Task.create(
   title: "Fix the cupboard",
   description: "I can't stand this defective cupboard anymore. Do something.",
-  date: Date.parse("07/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("07/12/2023"),
   base_score: 30,
   user: user3,
   status: "pending",
@@ -321,7 +353,7 @@ Task.create(
 Task.create(
   title: "Send back my headphones for refund",
   description: "This garbage does not work.",
-  date: Date.parse("08/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("08/12/2023"),
   base_score: 25,
   user: user4,
   status: "pending",
@@ -331,7 +363,7 @@ Task.create(
 Task.create(
   title: "Buy some painkillers at the drugstore",
   description: "My back hurts.",
-  date: Date.parse("02/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("02/12/2023"),
   base_score: 25,
   user: user4,
   status: "pending",
@@ -341,7 +373,7 @@ Task.create(
 Task.create(
   title: "Change the bedding",
   description: "A fresh bed for a deep sleep.",
-  date: Date.parse("03/12/2023").strftime('%B %d, %Y'),
+  date: Date.parse("03/12/2023"),
   base_score: 30,
   user: user1,
   status: "pending",
@@ -351,7 +383,7 @@ Task.create(
 Task.create(
   title: "Do the dishes",
   description: "Keeping the kitchen clean is a good medicine.",
-  date: Date.parse("01-12-2023").strftime('%B %d, %Y'),
+  date: Date.parse("01-12-2023"),
   base_score: 40,
   user: user2,
   status: "pending",
@@ -386,9 +418,18 @@ Reward.create!(
 )
 
 Reward.create!(
+  date: "06/12/2023",
+  user: user1,
+  status: 'done',
+  description: 'A well deserved massage',
+  title: 'Special Massage',
+  cost: 100
+)
+
+Reward.create!(
   date: "02/12/2023",
   user: user2,
-  status: 'approved',
+  status: 'pending',
   description: 'Another reward',
   title: 'Another Reward',
   cost: 75
@@ -397,7 +438,7 @@ Reward.create!(
 Reward.create!(
   date: "02/12/2023",
   user: user2,
-  status: 'rejected',
+  status: 'done',
   description: 'A rejected reward',
   title: 'Rejected Reward',
   cost: 120
