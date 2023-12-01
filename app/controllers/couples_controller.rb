@@ -3,6 +3,8 @@ class CouplesController < ApplicationController
   end
 
   def show
+    @couple = Couple.find(params[:id])
+    @message = Message.new
   end
 
   def new
