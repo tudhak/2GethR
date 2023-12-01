@@ -2,7 +2,7 @@
 
   <div><%= render "home_status", partner: @partner %></div>
 
-  <div data-controller="interactions" data-interactions-sound-value="<%= asset_url("Punch.mp3") %>" class="flex-grow-1 d-flex flex-column">
+  <div id="intercation" data-controller="interactions" data-interactions-sound-value="<%= asset_url("Punch.mp3") %>" class="flex-grow-1 d-flex flex-column">
     <%= render "home_actions", user: @user, partner: @partner %>
   </div>
 

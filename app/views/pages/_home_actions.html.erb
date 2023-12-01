@@ -1,5 +1,5 @@
 <div class="h-100">
-  <div id="actions-div" class="border-5 d-flex justify-content-between my-2">
+  <div id="actions-div" class="border-5 d-flex justify-content-between my-2 px-2">
 
     <%= link_to love_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
       <div id="love" data-action="click->interactions#firelove" style="border: 2px solid black;" class="rounded-circle action-picto d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-heart"></h1></div>
@@ -22,7 +22,7 @@
   <%# La ligne ci-dessous sert juste à stocker une variable et ne s'affiche pas %>
   <% image_path = @partner.statues == [] ? MoodCategory.last.image_path : @partner_mood_img   %>
 
-  <div id="meteo" style="background-image: url('<%= image_path %>'); background-position: center;  background-size: cover;" class="h-100 flex-grow-1 py-5 d-flex justify-content-center align-items-center">
+  <div id="meteo" style="background-image: url('<%= image_path %>'); background-position: center;  background-size: cover; height:100%;" class="flex-grow-1 py-5 d-flex justify-content-center align-items-center">
     <div id="big-avatar" class="d-flex justify-content-center" style="background-image: url('<%= cl_image_path @partner.photo.key %>');background-position: center;  background-size: cover; height:250px; width:250px; border-radius:50%;">
       <div id="action-punch" data-interactions-target="punch" class="action-sent d-none"><h1 class="fa-solid fa-hand-fist" style="font-size:200px; color:white;"></h1></div>
       <div id="action-love" data-interactions-target="love" class="action-sent d-none"><h1 class="fa-solid fa-heart" style="font-size:200px; color:white;"></h1></div>
