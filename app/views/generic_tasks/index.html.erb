@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row px-3">
+    <h2 class="text-center my-3">Your list of generic tasks</h2>
+      <ul class="list-group mb-3">
+        <% @generic_tasks.each do |generic_task| %>
+          <% unless generic_task.title == "Other" %>
+            <li class="list-group-item shadow-sm border-2 mb-3 generic-task-card">
+                <span class="d-block mb-2"><strong><%= generic_task.title %></strong></span>
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-file me-3"></i>
+                    <span> <%= generic_task.description %></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-star me-3"></i>
+                    <span> <%= generic_task.base_score %></span>
+                  </div>
+                   <%= link_to generic_task_path(generic_task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-generic-task border-white" do %>
+                    <i class="fa-solid fa-xmark"></i>
+                   <% end %>
+                   <button class="border-0 generic-task-edit bg-transparent" data-bs-toggle="collapse" data-bs-target="#editGenericCollapse" aria-expanded="false" aria-controls="editGenericCollapse"><i class="fa-solid fa-pen"></i></button>
+            </li>
+              <%= render 'generic_tasks/edit_generic_task', generic_task: @generic_task %>
+          <% end %>
+        <% end %>
+      </ul>
+      <div class="d-flex justify-content-around">
+        <%= link_to tasks_path, class:"bg-secondary text-decoration-none text-white rounded-circle link-button" do %>
+         <i class="fa-solid fa-backward"></i>
+        <% end %>
+        <a class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#addGenericTaskModal"><i class="fa-solid fa-plus"></i></a>
+        <%= render 'generic_tasks/add_generic_task_modal', generic_task: @generic_task %>
+      </div>
+  </div>
+</div>

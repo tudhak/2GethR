@@ -16,35 +16,34 @@
     <% end %>
   </div>
 
-        <div data-controller="task-container" class="task-container mt-5">
-          <div class="d-flex justify-content-center align-items-center">
-            <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
-              "mb-3 row row-cols-auto", data: {task_container_target: "form"} } do |f| %>
-              <%= f.input :assigned_to,
-                         collection: [current_user.nickname, @partner.nickname, "any"],
-                         selected: current_user.nickname,
-                         label: "Assigned to",
-                         input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
-              <%= f.input :status,
-                        collection: ["pending", "done"],
-                        selected: "pending",
-                        label: "Status",
-                        input_html: { data: { task_container_target: "statueInput", action: "change->task-container#reveal" } } %>
-            <% end %>
-        </div>
-
-        <div class="row">
-          <%= render 'tasks/content', tasks: @tasks %>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="d-flex justify-content-around align-items-center">
-      <a class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa-solid fa-plus"></i></a>
-       <%= render 'tasks/add_task_modal', task: @task %>
-      <a class="btn btn-primary rounded-circle"><i class="fa-solid fa-list"></i></a>
-    </div>
-
+  <div data-controller="task-container" class="task-container mt-5">
+    <div class="d-flex justify-content-center align-items-center">
+      <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
+        "mb-3 row row-cols-auto", data: {task_container_target: "form"} } do |f| %>
+        <%= f.input :assigned_to,
+                    collection: [current_user.nickname, @partner.nickname, "any"],
+                    selected: current_user.nickname,
+                    label: "Assigned to",
+                    input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
+        <%= f.input :status,
+                  collection: ["pending", "done"],
+                  selected: "pending",
+                  label: "Status",
+                  input_html: { data: { task_container_target: "statusInput", action: "change->task-container#reveal" } } %>
+      <% end %>
   </div>
+
+    <div class="row">
+      <%= render 'tasks/content', tasks: @tasks %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-around align-items-center">
+    <a class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa-solid fa-plus"></i></a>
+      <%= link_to generic_tasks_path, class:"bg-primary rounded-circle link-button text-white" do %>
+        <i class="fa-solid fa-list"></i>
+      <% end %>
+  </div>
+
+  <%= render 'tasks/add_task_modal', task: @task %>
 </div>

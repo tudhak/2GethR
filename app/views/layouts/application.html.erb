@@ -17,36 +17,22 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
-  <body class="vh-100 d-flex flex-column justify-content-between">
+  <body class="d-flex flex-column justify-content-between">
     <div>
-      <%= render "shared/navbar" %>
+      <%= render "shared/navbar", nb_actions: @nb_actions %>
       <%= render "shared/flashes" %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <p class="notice mb-0"><%= notice %></p>
+      <p class="alert mb-0"><%= alert %></p>
     </div>
 
-    <div class="h-100">
+    <div class="min-h-83 mb-layout">
       <%= yield %>
     </div>
 
-    <%# JM : Garder cette div vide  %>
-    <div class="bg-danger" style="height:105px"><h1></h1></div>
-    <div>
-      <%# JM : Bottom-NavBar en attendant celle de Samuel  %>
-      <%# JM : Remplacer par un render ici  %>
-      <div id="actions-div" style="width:100%;" class="py-4 px-4 sticky-bottom d-flex justify-content-between">
-        <h1 class="fa-regular fa-message"></h1>
-        <h1 class="fa-solid fa-trophy"></h1>
-        <%= link_to tasks_path do %><h1 class="fa-solid fa-list-check"></h1><% end %>
-        <h1 class="fa-regular fa-calendar-days"></h1>
-        <%= link_to score_path do %><h1 class="fa-regular fa-star"></h1><% end %>
-      </div>
-    </div>
-
-
+    <%= render "shared/bottom_navbar" %>
 
   </body>
 </html>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,7 +11,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
+  resources :pages, only: :home do
+    patch "punch_action", on: :collection
+    patch "kiss_action", on: :collection
+    patch "love_action", on: :collection
+    patch "peace_action", on: :collection
+    patch "delete_action", on: :collection
+  end
   resources :couples, only: [:show, :create, :update] do
     resources :messages, only: [:index, :create]
 
@@ -24,9 +31,16 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :generic_tasks, except: [:show]
+  resources :generic_tasks, only: [:index, :update, :create, :destroy]
   resources :generic_rewards, only: [:index, :show, :update, :destroy]
-  resources :tasks
+
+  resources :tasks do
+    member do
+      patch "mark_as_done"
+    end
+  end
+
+  resources :statues, only: [:new, :create, :show]
 
   get "score_dashboard", to: "pages#score", as: :score
 
