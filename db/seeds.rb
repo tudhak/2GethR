@@ -102,7 +102,7 @@ puts "Users created."
 puts "Creating Mood Categories"
 
 mood_cat = [
-  {title: "stormy", url: "https://w0.peakpx.com/wallpaper/1010/238/HD-wallpaper-into-the-storm-lightning-thunder-strike-thumbnail.jpg"},
+  {title: "stormy", url: "https://gifdb.com/images/high/lightning-strikes-from-different-angles-nmtna33cvgzsao7g.gif"},
   {title: "rainy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLuW0GIlrYKhIzynv9ITRKUnVzFvDkD5LU9Q&usqp=CAU"},
   {title: "cloudy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBeFuUS1xlGXN994FpFwVLhmZgUhEIfl8FDg&usqp=CAU"},
   {title: "sunny", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGv6foDhUwklEvERo1MuHykzepVY8cc64ipQ&usqp=CAU"}
@@ -146,6 +146,41 @@ u4_status4 = Statue.create(
 )
 u4_status3.end_date = u4_status4.created_at
 u4_status3.save
+
+puts "4 status created for user 4"
+#-------------------------------------------------------------------------------
+puts "Creating status for user3"
+puts "...day1"
+u3_status1 = Statue.create(
+  mood_category_id: MoodCategory.first.id,
+  user: user3
+)
+sleep(5)
+puts "...day2"
+u3_status2 = Statue.create(
+  mood_category_id: (MoodCategory.first.id + 1),
+  user: user3
+)
+u3_status1.end_date = u3_status2.created_at
+u3_status1.save
+
+sleep(5)
+puts "...day3"
+u3_status3 = Statue.create(
+  mood_category_id: (MoodCategory.first.id + 2),
+  user: user3
+)
+u3_status2.end_date = u3_status3.created_at
+u3_status2.save
+
+sleep(5)
+puts "...day4"
+u3_status4 = Statue.create(
+  mood_category_id: (MoodCategory.first.id),
+  user: user3
+)
+u3_status3.end_date = u3_status4.created_at
+u3_status3.save
 
 puts "4 status created for user 4"
 
