@@ -1,0 +1,27 @@
+<div class="modal fade" id="addGenericTaskModal" tabindex="-1" aria-labelledby="addGenericTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 color-blue" id="addGenericTaskModalLabel">Add a new generic task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for generic_task do |f| %>
+          <%= f.input :title,
+                      label: false,
+                      placeholder: "Title"
+                      %>
+          <%= f.input :description,
+                      label: false,
+                      placeholder: "Description"
+                       %>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+          <%= f.input :base_score,
+                      label: false,
+                      placeholder: "Base score" %>
+          <%= f.button :submit, "Create task", class:"btn btn-primary"  %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

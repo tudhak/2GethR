@@ -19,14 +19,15 @@ export default class extends Controller {
     arraylist.pop()
     console.log(arraylist);
 
-    // Itération : pour chaque élément du tableau :
-    // 1. Afficher la div : innerHtml dans la target
-    // 2.Jouer le son associé
-    // 3. Wait
-    // 3.Fermer la div
-    // 4.Repeat
-    // 5.Recharger la page
-    await this.dodo(600);
+    // arraylist.forEach(function(element) {
+    //   // Code à exécuter pour chaque élément
+    //   console.log(element);
+    //   this.inyourfaceTarget.innertext = element;
+    //   await this.dodo(250);
+    //   this.inyourfaceTarget.innerText = "";
+    // });
+
+    await this.dodo(2000);
     location.reload();
 
 

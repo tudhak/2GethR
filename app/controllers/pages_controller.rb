@@ -7,8 +7,7 @@ class PagesController < ApplicationController
     @actions_received = @user.received_actions
     @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
     @nb_actions = @received_actions.size
-    @image_path =  @partner.statues == [] ? MoodCategory.first.image_path : @partner.statues.last.mood_category.image_path
-
+    @partner_mood_img = @partner.statues == [] ? MoodCategory.last.image_path : @partner.statues.last.mood_category.image_path
   end
 
   def punch_action
