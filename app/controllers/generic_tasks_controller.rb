@@ -22,7 +22,7 @@ class GenericTasksController < ApplicationController
   end
 
   def update
-    if @generic_task.update(task_params)
+    if @generic_task.update!(generic_task_params)
       redirect_to @generic_tasks, notice: 'Generic Task was successfully updated.'
     else
       render "generic_tasks/edit_generic_task", status: :unprocessable_entity
