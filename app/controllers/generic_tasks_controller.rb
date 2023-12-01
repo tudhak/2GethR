@@ -4,6 +4,7 @@ class GenericTasksController < ApplicationController
   def index
     @generic_tasks = GenericTask.where(couple: current_user.couple)
     @generic_task = GenericTask.new
+    #test
   end
 
   def destroy
