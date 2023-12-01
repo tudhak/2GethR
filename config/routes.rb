@@ -26,7 +26,11 @@ Rails.application.routes.draw do
 
   resources :generic_tasks, except: [:show]
   resources :generic_rewards, only: [:index, :show, :update, :destroy]
-  resources :tasks
+  resources :tasks do
+    member do
+      patch "mark_as_done"
+    end
+  end
 
   get "score_dashboard", to: "pages#score", as: :score
 

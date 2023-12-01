@@ -24,7 +24,7 @@
         <div class="w-100 p-0 border-0 collapse" id="collapseWeekTasks">
           <% tasks.sort_by{ |item| item.date }.each do |task| %>
             <% if Date.today.all_week.to_a.include?(task.date) %>
-              <%= link_to task_path(task) do %>
+              <%= link_to task_path(task), class:"text-decoration-none text-black" do %>
                 <div class="border d-flex justify-content-between align-items-center p-3">
                   <span><%= task.title %></span>
                   <span><%= task.date.strftime('%b %d, %Y') %></span>
@@ -42,7 +42,7 @@
         <div class="w-100 p-0 border-0 collapse" id="collapseEarlierTasks">
           <% tasks.sort_by{ |item| item.date }.each do |task| %>
             <% if task.date < Date.today.at_beginning_of_week %>
-              <%= link_to task_path(task) do %>
+              <%= link_to task_path(task), class:"text-decoration-none text-black" do %>
                 <div class="border d-flex justify-content-between align-items-center p-3">
                   <span><%= task.title %></span>
                   <span><%= task.date.strftime('%b %d, %Y') %></span>
@@ -59,7 +59,7 @@
         <div class="w-100 p-0 border-0 collapse" id="collapseLaterTasks">
           <% tasks.sort_by{ |item| item.date }.each do |task| %>
             <% if task.date > Date.today.at_end_of_week %>
-              <%= link_to task_path(task) do %>
+              <%= link_to task_path(task), class:"text-decoration-none text-black" do %>
                 <div class="border d-flex justify-content-between align-items-center p-3">
                   <span><%= task.title %></span>
                   <span><%= task.date.strftime('%b %d, %Y') %></span>

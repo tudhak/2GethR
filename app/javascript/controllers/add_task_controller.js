@@ -11,6 +11,7 @@ export default class extends Controller {
 
   toggle() {
     if (this.firstTitleTarget.value === "Other") {
+      this.secondTitleTarget.value = ""
       this.secondTitleTarget.classList.toggle("d-none")
       this.secondTitleTarget.classList.add("revealed")
     }
@@ -23,15 +24,26 @@ export default class extends Controller {
       }
     }
 
-  update() {
-    console.log("test")
-    // this.descriptionTarget.value = this.firstTitleTarget.value
-    // const url = `${this.formTarget.action}?other_params=${this.firstTitleTarget.value}`
+  fill() {
+    if (this.firstTitleTarget.value !== "Other") {
+      this.secondTitleTarget.value = this.firstTitleTarget.value
+    }
+  }
+
+  autoComplete() {
+    // event.preventDefault();
+    // const url = this.taskFormTarget.action
+    // const url = `${this.taskFormTarget.action}?other_params[title]=${this.firstTitleTarget.value}`
     // console.log(url)
-    // fetch(url, {headers: { "Accept": "text/plain" }})
-    //     .then(response => response.text())
-    //     .then((data) => {
-    //       console.log(data)
-    //     })
+    // fetch(url, {
+      // method: "POST",
+      // headers: { "Accept": "text/plain" },
+      // body: new FormData(this.taskFormTarget)
+    // })
+    //   .then(response => response.text())
+    //   .then((data) => {
+    //     console.log(data)
+        // this.descriptionTarget.value = data
+        // })
     }
   }

@@ -6,12 +6,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" data-controller="add-task">
-        <%= simple_form_for @task, html: { data: {add_task_target: "taskForm"} } do |f| %>
+        <%= simple_form_for task, html: { data: {add_task_target: "taskForm"} } do |f| %>
           <%= f.input :title,
                       collection: GenericTask.where(couple: current_user.couple).pluck(:title),
                       label: false,
                       placeholder: "Title",
-                      input_html: { data: { add_task_target: "firstTitle", action: "change->add-task#toggle add-task#untoggle add-task#update"} } %>
+                      input_html: { data: { add_task_target: "firstTitle", action: "change->add-task#toggle add-task#untoggle add-task#fill add-task#autoComplete"} } %>
           <%= f.input :title,
                       placeholder: "Please enter the title of your new task",
                       label: false,
@@ -19,7 +19,7 @@
           <%= f.input :description,
                       label: false,
                       placeholder: "Description",
-                      input_html: { data: { add_task_target: "description", } }
+                      input_html: { data: { add_task_target: "description" } }
                        %>
           <%= f.input :photos, as: :file, input_html: { multiple: true } %>
           <%= f.input :date,

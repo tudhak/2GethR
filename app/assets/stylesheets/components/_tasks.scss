@@ -15,3 +15,20 @@
 .fa-circle-dot {
   color: #BB4C28;
 }
+
+.task-picture {
+  width: 100%;
+  object-fit: content;
+}
+
+.task-card {
+  position: relative;
+}
+
+.delete-task {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  color: 000;
+}
