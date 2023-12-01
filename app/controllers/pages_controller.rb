@@ -1,10 +1,59 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
 
   def home
     set_user
     set_couple
     set_partner
+    @actions_received = @user.received_actions
+    @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
+    @nb_actions = @received_actions.size
+    # raise
+  end
+
+  def punch_action
+    home
+    if @partner.received_actions == nil
+      then @partner.received_actions = "punch;"
+    else
+      @partner.received_actions += "punch;"
+    end
+    @partner.save
+  end
+
+  def love_action
+    home
+    if @partner.received_actions == nil
+      then @partner.received_actions = "love;"
+    else
+      @partner.received_actions += "love;"
+    end
+      @partner.save
+  end
+
+  def peace_action
+    home
+    if @partner.received_actions == nil
+      then @partner.received_actions = "peace;"
+    else
+      @partner.received_actions += "peace;"
+    end
+    @partner.save
+  end
+
+  def kiss_action
+    home
+    if @partner.received_actions == nil
+      then @partner.received_actions = "kiss;"
+    else
+      @partner.received_actions += "kiss;"
+    end
+    @partner.save
+  end
+
+  def delete_action
+    home
+    @user.received_actions = nil
+    @user.save
     # raise
   end
 

@@ -145,7 +145,7 @@ puts "Task templates created."
 puts "Creating Mood Categories"
 
 mood_cat = [
-  {title: "stormy", url: "https://w0.peakpx.com/wallpaper/1010/238/HD-wallpaper-into-the-storm-lightning-thunder-strike-thumbnail.jpg"},
+  {title: "stormy", url: "https://gifdb.com/images/high/lightning-strikes-from-different-angles-nmtna33cvgzsao7g.gif"},
   {title: "rainy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLuW0GIlrYKhIzynv9ITRKUnVzFvDkD5LU9Q&usqp=CAU"},
   {title: "cloudy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBeFuUS1xlGXN994FpFwVLhmZgUhEIfl8FDg&usqp=CAU"},
   {title: "sunny", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGv6foDhUwklEvERo1MuHykzepVY8cc64ipQ&usqp=CAU"}
@@ -217,7 +217,7 @@ u3_status2.save
 sleep(5)
 puts "...day4"
 u3_status4 = Statue.create(
-  mood_category_id: (MoodCategory.first.id + 3),
+  mood_category_id: (MoodCategory.first.id),
   user: user3
 )
 u3_status3.end_date = u3_status4.created_at
