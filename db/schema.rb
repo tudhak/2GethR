@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_151837) do
     t.integer "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "couple_id"
+    t.index ["couple_id"], name: "index_generic_rewards_on_couple_id"
   end
 
   create_table "generic_tasks", force: :cascade do |t|
@@ -63,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_151837) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
+    t.bigint "couple_id"
+    t.index ["couple_id"], name: "index_generic_tasks_on_couple_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -113,7 +117,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_151837) do
     t.date "date"
     t.integer "base_score"
     t.bigint "user_id", null: false
-    t.string "statue"
+    t.string "status"
     t.string "assigned_to"
     t.string "done_by"
     t.datetime "created_at", null: false
@@ -144,6 +148,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_151837) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "generic_rewards", "couples"
+  add_foreign_key "generic_tasks", "couples"
   add_foreign_key "messages", "couples"
   add_foreign_key "messages", "users"
   add_foreign_key "rewards", "users"
