@@ -7,7 +7,8 @@ class PagesController < ApplicationController
     @actions_received = @user.received_actions
     @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
     @nb_actions = @received_actions.size
-    # raise
+
+
   end
 
   def punch_action
@@ -51,10 +52,11 @@ class PagesController < ApplicationController
   end
 
   def delete_action
+
     home
     @user.received_actions = nil
     @user.save
-    # raise
+
   end
 
   def score

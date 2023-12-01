@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     @actions_received = @user.received_actions
     @received_actions = @actions_received == nil ? [] : actions_received.split(";")
     @nb_actions = @received_actions.size
+
   end
 
   private

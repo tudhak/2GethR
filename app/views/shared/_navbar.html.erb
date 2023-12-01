@@ -1,28 +1,23 @@
 <% if user_signed_in? %>
-
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon px-2">
     <div class="container-fluid">
-
       <%= link_to "/", class: "navbar-brand" do %>
         <div style="border: 2px solid red; color:red;" class="py-1 px-3">  Logo Stylé </div>
       <% end %>
-
-      <div data-controller="incoming" data-incoming-list-value="<%= @user.received_actions %>" class="d-flex justify-content">
-
+      <div data-controller="incoming" data-incoming-list-value="<%= current_user.received_actions %>" class="d-flex justify-content">
         <div data-incoming-target="inyourface" class="d-flex flex-row-reverse align-items-center px-2" style="height:50px; width:500px;"></div>
-
         <div data-action="click->incoming#unleash">
           <%= link_to delete_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
-            <div class="me-2" style="width:50px; height:50px; border-radius:50%; ">
+            <div class="me-2" style="width:150px; height:50px; border-radius:50%; ">
+              <% received_actions_nb = current_user.received_actions.nil? ? 0 : (current_user.received_actions.split(";").size - 1)  %>
+              <%= "#{received_actions_nb} incomiiiing!" if received_actions_nb > 0  %>
               <i class="fa-solid fa-bolt mt-2" style="font-size:30px"></i>
-              <%= nb_actions if nb_actions > 0  %>
             </div>
           <% end %>
         </div>
-
         <div>
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= cl_image_tag @user.photo.key, class: "avatar", style:"width:50px; height:50px; border-radius:50%; border: 1px solid black;", alt: "dropdown menu" %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar", style:"width:50px; height:50px; border-radius:50%; border: 1px solid black;", alt: "dropdown menu" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My profile", "#", class: "dropdown-item" %>
@@ -31,8 +26,6 @@
             </div>
         </div>
       </div>
-
     </div>
   </div>
-
 <% end %>
