@@ -34,7 +34,6 @@ Rails.application.routes.draw do
   resources :generic_tasks, except: [:show]
   resources :generic_rewards, only: [:index, :show, :update, :destroy]
   resources :tasks
-  resources :users, only: [:edit, :update, :show]
   resources :statues, only: [:new, :create, :show]
 
 
