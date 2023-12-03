@@ -1,1 +1,62 @@
-<h1>C'EST LA REDIRECTION POTO</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card p-0 task-card overflow-auto" style="width: 18rem;">
+      <% if @task.photos.attached? %>
+        <% @task.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 200, width: 200, crop: :fill, class:"task-picture" %>
+        <% end %>
+      <% end %>
+        <div class="card-body">
+          <h4 class="card-title text-center"></i><strong> <%= @task.title %></strong></h4>
+          <div class="d-flex mb-2">
+            <i class="fa-regular fa-folder me-3"></i>
+            <p class="card-text"><%= @task.description %></p>
+          </div>
+          <div class="d-flex mb-2">
+            <i class="fa-solid fa-person me-3"></i>
+            <p class="card-text"><%= @task.user.nickname %></p>
+          </div>
+          <div class="d-flex mb-2">
+            <i class="fa-solid fa-person-chalkboard me-3"></i>
+            <p class="card-text"><%= @task.assigned_to %></p>
+          </div>
+          <div class="d-flex mb-2">
+            <i class="fa-solid fa-person-circle-check me-3"></i>
+            <p class="card-text"><%= @task.done_by %></p>
+          </div>
+           <div class="d-flex mb-2">
+            <i class="fa-solid fa-list me-3"></i>
+            <p class="card-text"><%= @task.status %></p>
+          </div>
+           <div class="d-flex mb-2">
+           <i class="fa-solid fa-calendar-days me-3"></i>
+            <p class="card-text"><%= @task.date.strftime('%B %d, %Y') %></p>
+          </div>
+           <div class="d-flex mb-2">
+           <i class="fa-solid fa-star me-3"></i>
+            <p class="card-text"><%= @task.base_score %></p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+              <%= link_to tasks_path, class:"btn btn-secondary py-3" do %>
+                <span><i class="fa-solid fa-backward"></i> Back</span>
+              <% end %>
+            </div>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-warning border-white py-3", data-bs-toggle="collapse" href="#editTaskCollapse" role="button" aria-expanded="false" aria-controls="editTaskCollapse"><i class="fa-solid fa-pen"></i> Edit</button>
+            </div>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-success border-white py-3", data-bs-toggle="modal", data-bs-target="#doneModal"><i class="fa-solid fa-check"></i> Done</button>
+            </div>
+            <%= render "tasks/done_modal", task: @task %>
+          </div>
+        </div>
+        <% if @task.user == current_user %>
+          <%= link_to task_path(@task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-task border-white" do %>
+            <i class="fa-solid fa-xmark"></i>
+          <% end %>
+        <% end %>
+    </div>
+    <%= render "edit_task_card", task: @task, partner: @partner %>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="collapse" id="editTaskCollapse">
+  <div class="d-flex justify-content-center">
+    <div class="card card-body">
+      <%= simple_form_for task do |f| %>
+            <%= f.input :title,
+                        label: false,
+                        placeholder: "Title"
+                        %>
+            <%= f.input :description,
+                        label: false,
+                        placeholder: "Description"
+                        %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+            <%= f.input :date,
+                        as: :string,
+                        label: false,
+                        placeholder: "Date"
+                        %>
+            <%= f.input :base_score,
+                        label: false,
+                        placeholder: "Base score"
+                        %>
+            <%= f.input :status,
+                        collection: ["pending", "done"],
+                        selected: "pending",
+                        placeholder: "Status" %>
+            <%= f.input :assigned_to,
+                        collection: [current_user.nickname, partner.nickname, "any"],
+                        selected: current_user.nickname,
+                        placeholder: "Assigned to" %>
+            <%= f.button :submit, "Edit task"  %>
+            <% end %>
+    </div>
+  </div>
+</div>
