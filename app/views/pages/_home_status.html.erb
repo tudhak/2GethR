@@ -7,7 +7,20 @@
     </h4>
     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <div class="my-3">
+          <h4><strong><%= partner.statues.last.main_statue_message %><strong></h4>
+        </div>
+
+        <div class="my-3">
+          <p>That would make me so happy if ... </p>
+          <h4>...<%= partner.statues.last.love_statue_message %></h4>
+        </div>
+
+        <div class="my-3">
+          <p>You really drove / drive me mad when ...</p>
+          <h4>...<%= partner.statues.last.hate_statue_message %></h4>
+        </div>
+
       </div>
     </div>
   </div>
