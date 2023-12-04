@@ -5,19 +5,19 @@
 
     <%# Boutons d'action en position absolute  - start %>
     <%= link_to love_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
-      <div id="love" data-action="click->interactions#firelove" style="position:absolute; top: 40%; left: 5%; border: 2px solid black;" class="bg-light rounded-circle action-picto d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-heart"></h1></div>
+      <div id="love" data-action="click->interactions#firelove" style="position:absolute; top: 30%; left: 5%; border: 2px solid black;" class="bg-light rounded-circle action-picto d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-heart"></h1></div>
     <% end %>
 
      <%= link_to punch_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
-      <div id="punch" data-action="click->interactions#firepunch" style="position:absolute; top: 40%; right: 5%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-hand-fist"></h1></div>
+      <div id="punch" data-action="click->interactions#firepunch" style="position:absolute; top: 30%; right: 5%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-hand-fist"></h1></div>
     <% end %>
 
     <%= link_to kiss_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;"  do %>
-      <div id="kiss" data-action="click->interactions#firekiss" style="position:absolute; top: 25%; left: 23%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-regular fa-face-kiss-wink-heart"></h1></div>
+      <div id="kiss" data-action="click->interactions#firekiss" style="position:absolute; top: 15%; left: 23%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-regular fa-face-kiss-wink-heart"></h1></div>
     <% end %>
 
     <%= link_to peace_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;"  do %>
-      <div  id="peace" data-action="click->interactions#firepeace" style="position:absolute; top: 25%; right: 27%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-peace"></h1></div>
+      <div  id="peace" data-action="click->interactions#firepeace" style="position:absolute; top: 15%; right: 27%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-peace"></h1></div>
     <% end %>
     <%# Boutons d'action en position absolute - end %>
 
