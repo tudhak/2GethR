@@ -1,0 +1,39 @@
+<div class="m-3 p-2">
+
+  <h1 class="pb-3 border-bottom"> My profile </h1>
+
+
+  <div class="my-3 border-bottom">
+    <h4><i>What's on your mind today?</i></h4>
+    <div class="d-flex">
+      <div style="background-image: url('<%= @user_mood_img %>'); background-position: center; background-size: cover; width:100px; height:100px;"></div>
+      <div class="ms-3">
+        <p><strong><%= @statue.main_statue_message %></strong></p>
+        <p>Weather forecast for today is <%= @statue.mood_category.title %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-3 border-bottom">
+    <h4><i>That would make me so happy if ... </i></h4>
+    <p><strong><%= @statue.love_statue_message %></strong></p>
+  </div>
+
+  <div class="my-3 border-bottom">
+    <h4><i>You really drove / drive me mad when ...</i></h4>
+    <p><strong><%= @statue.hate_statue_message %></strong></p>
+  </div>
+
+  <%= link_to new_statue_path do %>
+    <div class="btn btn-primary">
+      Update status
+    </div>
+  <% end %>
+
+  <%= link_to root_path do %>
+    <div class="btn btn-primary">
+      Back
+    </div>
+  <% end %>
+
+</div>
