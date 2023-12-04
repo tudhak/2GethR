@@ -11,3 +11,14 @@
   display: flex;
   justify-content: center;
 }
+
+
+@media(max-width: 576px) {
+  .event {
+    font-size: 0.7rem;
+  }
+}
+
+#calendar-display {
+  width: 80%;
+}
