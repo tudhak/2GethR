@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%# Debut ajout JM : configuration Mobile App %>
     <%# Step 1: Prepare app for A2HS %>
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,8 +12,9 @@
     <%# Step 2: Link the manifest to the layout %>
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
-    <%# Fin ajout JM : configuration Mobile App %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
+    <%# Fin ajout JM : configuration Mobile App %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
