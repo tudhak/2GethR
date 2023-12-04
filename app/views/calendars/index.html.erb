@@ -2,11 +2,16 @@
   <div class="row">
     <h1 class="mt-3">My calendar</h1>
 
-      <%= month_calendar(events: @tasks) do |date, tasks| %>
+      <%= week_calendar(events: [@tasks, @rewards]) do |date, tasks, rewards| %>
         <%= date.day %>
         <% tasks.each do |task| %>
           <div class="tasks-display">
-            <%= link_to task.title, task, class:"event" %>
+            <%= link_to task.title, task, class:"task-event" %>
+          </div>
+        <% end %>
+        <% rewards.each do |reward| %>
+          <div class="rewards-display">
+            <%= link_to reward.title, task, class:"reward-event" %>
           </div>
         <% end %>
       <% end %>

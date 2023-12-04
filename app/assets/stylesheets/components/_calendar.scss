@@ -1,5 +1,11 @@
-.event {
+.task-event {
   color: #8052BD;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.reward-event {
+  color: #A1C284;
   font-weight: bolder;
   text-decoration: none;
 }
@@ -19,5 +25,5 @@
 }
 
 #calendar-display {
-  width: 80%;
+  width: 100%;
 }
