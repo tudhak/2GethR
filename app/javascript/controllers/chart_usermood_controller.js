@@ -22,7 +22,7 @@ export default class extends Controller {
 
   connect() {
 
-    console.log("hello from user mood chart")
+    // console.log("hello from user mood chart")
 
     console.log(Object.keys(this.usermoodValue));
     const labels = Object.keys(this.usermoodValue);

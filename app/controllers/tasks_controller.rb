@@ -4,13 +4,13 @@ class TasksController < ApplicationController
   before_action :set_partner, only: [:index, :show]
 
   def index
-    @tasks = Task.where(user: User.where(couple_id: @couple.id))
+    # @tasks = Task.where(user: User.where(couple_id: @couple.id))
+    @tasks = ""
     @my_pending_tasks = Task.where(assigned_to: current_user.nickname).where(status: "pending").order(date: :desc)
     @task = Task.new
 
     if params[:my_params].present?
-      # raise
-      @tasks = Task.where(assigned_to: params[:my_params][:assigned_to], status: params[:my_params][:status])
+      @tasks = Task.where(assigned_to: params[:my_params][:assigned_to], status: params[:my_params][:status], user: [current_user, @partner])
     end
 
     respond_to do |format|
@@ -32,14 +32,8 @@ class TasksController < ApplicationController
     end
 
     if params[:other_params].present?
-      # raise
       @description = GenericTask.where(title: params[:other_params][:title]).description
     end
-
-    # respond_to do |format|
-    #   format.html { redirect_to tasks_path }
-    #   format.text { render partial: "tasks/add_task_modal", locals: { description: @description }, formats: [:html] }
-    # end
   end
 
   def update
@@ -57,10 +51,11 @@ class TasksController < ApplicationController
 
   def mark_as_done
     @task = Task.find(params[:id])
-    # raise
-    @task.update(status: "done")
-    current_user.score += @task.base_score unless @task.base_score.nil?
-    current_user.save!
+    unless @task.base_score.nil? || @task.status == "done" || @task.user.nickname == @task.assigned_to
+      current_user.score += @task.base_score
+      current_user.save!
+    end
+    @task.update(status: "done", done_by: current_user.nickname)
     redirect_to task_path(@task), notice: "Status updated to #{@task.status}"
   end
 

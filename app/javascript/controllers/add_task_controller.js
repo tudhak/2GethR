@@ -3,7 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="add-task"
 export default class extends Controller {
   static targets = ["firstTitle", "secondTitle", "description", "score", "titleTemplates", "descriptionTemplates", "scoreTemplates"]
-  static values = { description: Array, score: Array, title: Array }
 
   connect() {
   }
