@@ -5,7 +5,7 @@
       <%= month_calendar(events: @tasks) do |date, tasks| %>
         <%= date.day %>
         <% tasks.each do |task| %>
-          <div class="task-container">
+          <div class="tasks-display">
             <%= link_to task.title, task, class:"event" %>
           </div>
         <% end %>
