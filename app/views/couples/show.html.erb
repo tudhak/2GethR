@@ -1,17 +1,21 @@
 <div class="container couple-chatroom"
     data-controller="couple-subscription"
     data-couple-subscription-couple-id-value="<%= @couple.id %>"
+    data-couple-subscription-current-user-id-value="<%= current_user.id %>"
 >
   <h1>#Chatroom</h1>
 
   <div class="messages" data-couple-subscription-target="messages">
     <% @couple.messages.each do |message| %>
-      <%= render "messages/message", message: message %>
+      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+          <%= render "messages/message", message: message %>
+        </div>
+      </div>
     <% end %>
   </div>
 
-  <%= simple_form_for [@couple, @message], html: { data: { action: "turbo:submit-end->couple-subscription#resetForm" }}, class: "d-flex"  do |f| %>
-    <%= f.input :content, label: false, placeholder: "Type a message...", wrapper_html: {class: "flex-grow-1"} %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
+  <div data-couple-subscription-target="form">
+    <%= render "couple_form", couple: @couple, message: @message %>
+  </div>
 </div>
