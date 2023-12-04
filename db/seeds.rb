@@ -113,76 +113,240 @@ mood_cat.each { |mood| MoodCategory.create(title: mood[:title], image_path: mood
 puts "Four Categories created"
 
 #------------------------------Status-------------------------------------------
+#---------------------------Status_User2----------------------------------------
+puts "Creating status for user2"
+puts "...7 days ago"
 
-puts "Creating status for user4"
-puts "...day1"
-u4_status1 = Statue.create(
-  mood_category: MoodCategory.all[0],
-  user: user4
-)
-sleep(5)
-puts "...day2"
-u4_status2 = Statue.create(
-  mood_category: MoodCategory.all[1],
-  user: user4
-)
-u4_status1.end_date = u4_status2.created_at
-u4_status1.save
-
-sleep(5)
-puts "...day3"
-u4_status3 = Statue.create(
-  mood_category: MoodCategory.all[2],
-  user: user4
-)
-u4_status2.end_date = u4_status3.created_at
-u4_status2.save
-
-sleep(5)
-puts "...day4"
-u4_status4 = Statue.create(
+Statue.create(
   mood_category: MoodCategory.all[3],
-  user: user4
+  user: user2,
+  start_date: Time.now - 86400*7,
+  main_statue_message: "Love you darling!",
+  love_statue_message: "We could go out and dance tonight",
 )
-u4_status3.end_date = u4_status4.created_at
-u4_status3.save
 
-puts "4 status created for user 4"
-#-------------------------------------------------------------------------------
-puts "Creating status for user3"
-puts "...day1"
-u3_status1 = Statue.create(
+puts "...5 fays ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[1],
+  user: user2,
+  start_date: Time.now - 86400*5,
+  main_statue_message: "You better have a good reason for not returning my calls!",
+  love_statue_message: "you prepare a nice dinner tonight",
+  hate_statue_message: "you do not recall my call!"
+)
+
+puts "...4 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[2],
+  user: user2,
+  start_date: Time.now - 86400*4,
+  main_statue_message: "You're so annoying!",
+  love_statue_message: "you apologize and make it up to me!" ,
+  hate_statue_message: "you forget my birthday!"
+)
+
+puts "...2 days ago"
+
+Statue.create(
   mood_category: MoodCategory.all[0],
-  user: user3
+  user: user2,
+  start_date: Time.now - 86400*2,
+  main_statue_message: "Don't even talk to me!",
+  love_statue_message: "you clean up your mess! ",
+  hate_statue_message: "you come back completely drunk at 5am and trow up in the bed!"
 )
-sleep(5)
-puts "...day2"
-u3_status2 = Statue.create(
+
+user2stat = user2.statues
+
+user2stat.each_with_index do |status, index|
+  status[:end_date] = user2stat[index+1].nil? ? Time.now : user2stat[index+1].start_date
+  status.save
+end
+user2stat.last[:end_date] = nil
+user2stat.last.save
+
+
+puts "4 status created for user 2"
+
+#---------------------------Status_User1----------------------------------------
+puts "Creating status for user1"
+puts "...7 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[0],
+  user: user1,
+  start_date: Time.now - 86400*7,
+  main_statue_message: "You drive me f**in' maad!",
+  love_statue_message: "you can leave my stuff where they are! ",
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+
+)
+
+puts "...5 days ago"
+
+Statue.create(
   mood_category: (MoodCategory.all[1]),
-  user: user3
-)
-u3_status1.end_date = u3_status2.created_at
-u3_status1.save
+  user: user1,
+  start_date: Time.now - 86400*5,
+  main_statue_message: "Not so happy",
+  love_statue_message: "you can leave my stuff where they are! ",
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
 
-sleep(5)
-puts "...day3"
-u3_status3 = Statue.create(
+)
+
+puts "...3 days ago"
+
+Statue.create(
+  mood_category: (MoodCategory.all[3]),
+  user: user1,
+  start_date: Time.now - 86400*3,
+  main_statue_message: "Life is good!",
+  love_statue_message: "I could spend the week-end with my homies",
+  love_statue_message: "it's soccer game night and you make me watch The f**ing notebook! "
+)
+
+puts "...yesterday"
+
+Statue.create(
   mood_category: (MoodCategory.all[2]),
-  user: user3
+  user: user1,
+  start_date: Time.now - 86400,
+  main_statue_message: "So so",
+  love_statue_message: "you can leave my stuff where they are! ",
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
 )
-u3_status2.end_date = u3_status3.created_at
-u3_status2.save
 
-sleep(5)
-puts "...day4"
-u3_status4 = Statue.create(
-  mood_category: (MoodCategory.all[0]),
-  user: user3
+
+user1stat = user1.statues
+
+user1stat.each_with_index do |status, index|
+  status[:end_date] = user1stat[index+1].nil? ? Time.now : user1stat[index+1].start_date
+  status.save
+end
+user1stat.last[:end_date] = nil
+user1stat.last.save
+
+puts "4 status created for user 1"
+
+#---------------------------Status_User4----------------------------------------
+puts "Creating status for user4"
+puts "...7 days ago"
+Statue.create(
+  mood_category: MoodCategory.all[0],
+  user: user4,
+  start_date: Time.now - 85400*7,
+  main_statue_message: "You drive me f**in' maad!",
+  love_statue_message: "you can leave my stuff where they are! ",
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
 )
-u3_status3.end_date = u3_status4.created_at
-u3_status3.save
+
+puts "...4 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[1],
+  user: user4,
+  start_date: Time.now - 85400*4,
+  main_statue_message: "Not so happy",
+  love_statue_message: "you can leave my stuff where they are! ",
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+
+)
+
+puts "...3 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[2],
+  user: user4,
+  start_date: Time.now - 85400*3,
+  main_statue_message: "So so",
+  love_statue_message: "you can leave my stuff where they are! ",
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+
+)
+
+puts "...2 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[3],
+  user: user4,
+  start_date: Time.now - 85400*2,
+  main_statue_message: "Life is good!",
+  love_statue_message: "I could spend the week-end with my homies",
+  love_statue_message: "it's soccer game night and you make me watch The f**ing notebook! "
+)
+
+user4stat = user4.statues
+
+user4stat.each_with_index do |status, index|
+  status[:end_date] = user4stat[index+1].nil? ? Time.now : user4stat[index+1].start_date
+  status.save
+end
+user4stat.last[:end_date] = nil
+user4stat.last.save
+
 
 puts "4 status created for user 4"
+
+#---------------------------Status_User3----------------------------------------
+puts "Creating status for user3"
+puts "...7 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[0],
+  user: user3,
+  start_date: Time.now - 85400*7,
+  main_statue_message: "Don't even talk to me!",
+  love_statue_message: "you clean up your mess! ",
+  hate_statue_message: "you come back completely drunk at 5am and trow up in the bed!"
+)
+
+puts "...6 days ago"
+
+Statue.create(
+  mood_category: (MoodCategory.all[1]),
+  user: user3,
+  start_date: Time.now - 85400*6,
+  main_statue_message: "You better have a good reason for not returning my calls!",
+  love_statue_message: "you prepare a nice dinner tonight",
+  hate_statue_message: "you do not recall my call!"
+)
+
+puts "...3 days ago"
+
+Statue.create(
+  mood_category: (MoodCategory.all[2]),
+  user: user3,
+  start_date: Time.now - 85400*3,
+  main_statue_message: "You're so annoying!",
+  love_statue_message: "you apologize and make it up to me!" ,
+  hate_statue_message: "you forget my birthday!"
+
+)
+
+puts "...2 days ago"
+
+Statue.create(
+  mood_category: (MoodCategory.all[0]),
+  user: user3,
+  start_date: Time.now - 85400*2,
+  main_statue_message: "Don't even talk to me!",
+  love_statue_message: "you clean up your mess! ",
+  hate_statue_message: "you come back completely drunk at 5am and trow up in the bed!"
+
+)
+
+user3stat = user3.statues
+
+user3stat.each_with_index do |status, index|
+  status[:end_date] = user3stat[index+1].nil? ? Time.now : user3stat[index+1].start_date
+  status.save
+end
+user3stat.last[:end_date] = nil
+user3stat.last.save
+
+puts "4 status created for user 3"
 
 #------------------------------Task templates----------------------------------
 
