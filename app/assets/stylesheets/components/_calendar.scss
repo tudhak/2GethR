@@ -1,4 +1,13 @@
 .event {
   color: #8052BD;
   font-weight: bolder;
+  text-decoration: none;
+}
+
+.task-container {
+  border: 0.5px solid #333;
+  background-color: #D6B4C3;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }

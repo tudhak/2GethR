@@ -1,17 +1,13 @@
 <div class="container">
   <div class="row">
-    <h1>My calendar</h1>
+    <h1 class="mt-3">My calendar</h1>
 
       <%= month_calendar(events: @tasks) do |date, tasks| %>
         <%= date.day %>
         <% tasks.each do |task| %>
-          <div>
-            <%= link_to task.title, task, class:"text-decoration-none event" %>
+          <div class="task-container">
+            <%= link_to task.title, task, class:"event" %>
           </div>
-          <div>
-            <em><%= task.assigned_to %></em>
-          </div>
-
         <% end %>
       <% end %>
   </div>
