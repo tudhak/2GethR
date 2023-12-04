@@ -4,15 +4,24 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.couple = @couple
     @message.user = current_user
+
     if @message.save
       CoupleChannel.broadcast_to(
         @couple,
-        render_to_string(partial: "message", locals: { message: @message })
+        {
+          form: render_to_string(partial: "couples/couple_form", locals: { couple: @couple, message: Message.new }),
+          message: render_to_string(partial: "message", locals: { message: @message }),
+          sender_id: @message.user.id
+        }
       )
       head :ok
-      # redirect_to couple_path(@couple)
     else
-      render "couples/show", status: :unprocessable_entity
+      CoupleChannel.broadcast_to(
+        @couple,
+        {
+          form: render_to_string(partial: "couples/couple_form", locals: { couple: @couple, message: @message })
+        }
+      )
     end
   end
 

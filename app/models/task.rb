@@ -3,4 +3,8 @@ class Task < ApplicationRecord
   has_many_attached :photos
 
   validates :date, presence: true
+
+  def start_time
+    self.date
+  end
 end

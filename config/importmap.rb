@@ -9,5 +9,6 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 pin "chart.js", to: "https://ga.jspm.io/npm:chart.js@4.2.0/dist/chart.js", preload: true
 pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js", preload: true
+pin "swiper", to: "https://ga.jspm.io/npm:swiper@11.0.5/swiper.mjs"
 pin "@rails/actioncable", to: "https://cdn.jsdelivr.net/npm/@rails/actioncable@7.1.2/app/assets/javascripts/actioncable.esm.js"
 pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js"

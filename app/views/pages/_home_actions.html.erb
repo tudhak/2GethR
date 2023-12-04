@@ -1,32 +1,54 @@
 <div class="h-100">
-  <div id="actions-div" class="border-5 d-flex justify-content-between my-2 px-2">
+  <%# les boutons d'action étaient anciennement ici - cf. en comm bas de page %>
 
+  <div id="meteo" style="position:relative; background-image: url('<%= @partner_mood_img %>'); background-position: center;  background-size: cover; height:100%;" class="flex-grow-1 py-5">
+
+    <%# Boutons d'action en position absolute  - start %>
     <%= link_to love_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
-      <div id="love" data-action="click->interactions#firelove" style="border: 2px solid black;" class="rounded-circle action-picto d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-heart"></h1></div>
+      <div id="love" data-action="click->interactions#firelove" style="position:absolute; top: 30%; left: 5%; border: 2px solid black;" class="bg-light rounded-circle action-picto d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-heart"></h1></div>
     <% end %>
 
-    <%= link_to punch_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
-      <div id="punch" data-action="click->interactions#firepunch" style="border: 2px solid black;" class="rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-hand-fist"></h1></div>
+     <%= link_to punch_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
+      <div id="punch" data-action="click->interactions#firepunch" style="position:absolute; top: 30%; right: 5%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-hand-fist"></h1></div>
     <% end %>
 
     <%= link_to kiss_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;"  do %>
-      <div id="kiss" data-action="click->interactions#firekiss" style="border: 2px solid black;" class="rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-regular fa-face-kiss-wink-heart"></h1></div>
+      <div id="kiss" data-action="click->interactions#firekiss" style="position:absolute; top: 15%; left: 23%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-regular fa-face-kiss-wink-heart"></h1></div>
     <% end %>
 
     <%= link_to peace_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;"  do %>
-      <div  id="peace" data-action="click->interactions#firepeace" style="border: 2px solid black;" class="rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-peace"></h1></div>
+      <div  id="peace" data-action="click->interactions#firepeace" style="position:absolute; top: 15%; right: 27%; border: 2px solid black;" class="bg-light rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-peace"></h1></div>
     <% end %>
+    <%# Boutons d'action en position absolute - end %>
 
-  </div>
-
-  <%# La ligne ci-dessous sert juste à stocker une variable et ne s'affiche pas %>
-
-  <div id="meteo" style="background-image: url('<%= @partner_mood_img %>'); background-position: center;  background-size: cover; height:100%;" class="flex-grow-1 py-5 d-flex justify-content-center align-items-center">
-    <div id="big-avatar" class="d-flex justify-content-center" style="background-image: url('<%= cl_image_path @partner.photo.key %>');background-position: center;  background-size: cover; height:250px; width:250px; border-radius:50%;">
+    <div id="big-avatar" class="d-flex justify-content-center" style="position:absolute; bottom:-30px; left:10%; background-image: url('<%= cl_image_path @partner.photo.key %>');background-position: center;  background-size: cover; width:80%; aspect-ratio: 1/1; border-radius:50%; border:solid; border-width:2px; border-color:white;">
+      <%# Affichage action à toggle d-none - start %>
       <div id="action-punch" data-interactions-target="punch" class="action-sent d-none"><h1 class="fa-solid fa-hand-fist" style="font-size:200px; color:white;"></h1></div>
       <div id="action-love" data-interactions-target="love" class="action-sent d-none"><h1 class="fa-solid fa-heart" style="font-size:200px; color:white;"></h1></div>
       <div id="action-kiss" data-interactions-target="kiss" class="action-sent d-none"><h1 class="fa-regular fa-face-kiss-wink-heart" style="font-size:200px; color:white;"></div>
       <div id="action-peace" data-interactions-target="peace" class="action-sent d-none"><h1 class="fa-solid fa-peace" style="font-size:200px; color:white;"></h1></div>
+      <%# Affichage action à toggle d-none - end %>
     </div>
   </div>
 </div>
+
+
+<%# <div id="actions-div" class="border-5 d-flex justify-content-between my-2 px-2"> %>
+
+  <%#= link_to love_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
+    <%# <div id="love" data-action="click->interactions#firelove" style="border: 2px solid black;" class="rounded-circle action-picto d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-heart"></h1></div> %>
+  <%# end %>
+
+  <%#= link_to punch_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
+    <%# <div id="punch" data-action="click->interactions#firepunch" style="border: 2px solid black;" class="rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-hand-fist"></h1></div> %>
+  <%# end %>
+
+  <%#= link_to kiss_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;"  do %>
+    <%# <div id="kiss" data-action="click->interactions#firekiss" style="border: 2px solid black;" class="rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-regular fa-face-kiss-wink-heart"></h1></div> %>
+  <%# end %>
+
+  <%#= link_to peace_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;"  do %>
+    <%# <div  id="peace" data-action="click->interactions#firepeace" style="border: 2px solid black;" class="rounded-circle action-picto ms-4 d-flex justify-content-center align-items-center"><h1 class="fa-solid fa-peace"></h1></div> %>
+  <%# end %>
+
+<%# </div> %>
