@@ -31,12 +31,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :generic_tasks, except: [:show]
+  resources :generic_tasks, only: [:index, :update, :create, :destroy]
   resources :generic_rewards, only: [:index, :show, :update, :destroy]
-  resources :tasks
-  resources :statues, only: [:new, :create, :show]
 
+  resources :tasks do
+    member do
+      patch "mark_as_done"
+    end
+  end
+
+  resources :statues, only: [:new, :create, :show]
 
   get "score_dashboard", to: "pages#score", as: :score
 
+  resources :calendars, only: [:index]
 end
