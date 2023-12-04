@@ -8,6 +8,6 @@ export default class extends Controller {
   }
 
   display() {
-    this.editFormTarget.classList.toggle("d-none");
+    this.editFormTarget.classList.toggle("edit-display");
   }
 }

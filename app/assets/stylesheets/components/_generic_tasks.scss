@@ -18,6 +18,7 @@
   color: #333;
 }
 
-.d-none {
-  transition: height .35s ease;
+.edit-display {
+  display: none;
+  transition: all .35s ease;
 }

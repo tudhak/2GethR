@@ -5,12 +5,11 @@
         <h1 class="modal-title fs-5 color-blue" id="addTaskModalLabel">Add a new task</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" data-controller="add-task"
-      data-add-task-title-value="<%= GenericTask.where(couple: current_user.couple).pluck(:title) %>"
-      data-add-task-description-value="<%= GenericTask.where(couple: current_user.couple).pluck(:description) %>"
-      data-add-task-score-value="<%= GenericTask.where(couple: current_user.couple).pluck(:base_score) %>"
-      >
-        <%= simple_form_for task, html: { data: { add_task_target: "taskForm" } } do |f| %>
+      <div class="modal-body" data-controller="add-task">
+        <%= simple_form_for task do |f| %>
+          <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:title) %>" data-add-task-target="titleTemplates">
+          <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:description) %>" data-add-task-target="descriptionTemplates">
+          <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:base_score) %>" data-add-task-target="scoreTemplates">
           <%= f.input :title,
                       collection: GenericTask.where(couple: current_user.couple).pluck(:title),
                       label: false,

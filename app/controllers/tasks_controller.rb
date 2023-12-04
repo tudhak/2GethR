@@ -60,6 +60,7 @@ class TasksController < ApplicationController
     # raise
     @task.update(status: "done")
     current_user.score += @task.base_score unless @task.base_score.nil?
+    current_user.save!
     redirect_to task_path(@task), notice: "Status updated to #{@task.status}"
   end
 
