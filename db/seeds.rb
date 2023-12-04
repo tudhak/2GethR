@@ -556,20 +556,23 @@ Task.create(
 
 puts "Task instances created."
 
-GenericReward.create(
+GenericReward.create!(
   title: 'Movie Night',
   description: 'Enjoy a movie night together.',
-  cost: 50
+  cost: 50,
+  couple: couple1
 )
-GenericReward.create(
+GenericReward.create!(
   title: 'Dinner Date',
   description: 'Have a romantic dinner at your favorite restaurant.',
-  cost: 80
+  cost: 80,
+  couple: couple1
 )
-GenericReward.create(
+GenericReward.create!(
   title: 'Weekend Getaway',
   description: 'Plan a weekend getaway to relax and unwind.',
-  cost: 150
+  cost: 150,
+  couple: couple1
 )
 
 Reward.create!(
