@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     patch "delete_action", on: :collection
   end
   resources :couples, only: [:show, :create, :update] do
+    member do
+      get :chatroom
+    end
     resources :messages, only: [:index, :create]
 
     resources :rewards, except: [:destroy] do

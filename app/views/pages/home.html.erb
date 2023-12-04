@@ -1,9 +1,14 @@
-<div class="h-100 w-100 d-flex flex-column" >
-
-  <div><%= render "home_status", partner: @partner %></div>
-
-  <div id="intercation" data-controller="interactions" data-interactions-sound-value="<%= asset_url("Punch.mp3") %>" class="flex-grow-1 d-flex flex-column">
-    <%= render "home_actions", user: @user, partner: @partner %>
-  </div>
-
+<div class="avatars d-flex justify-content-center gap-2">
+  <%= image_tag('avatar_0.png') %>
+  <%= image_tag('avatar_0.png') %>
+</div>
+<h1 class="logo text-center">
+  2gethr
+</h1>
+<div class="cta text-center mt-5">
+  <% if user_signed_in? %>
+    <%= link_to "Play", couple_path(current_user.couple) %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path %>
+  <% end %>
 </div>
