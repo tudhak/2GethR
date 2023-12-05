@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="row">
+  <div class="row" data-controller="calendar">
+
+    <input type="hidden" value="<%= @tasks %>" data-calendar-target="tasks" >
+    <input type="hidden" value="<%= @rewards %>" data-calendar-target="rewards" >
 
       <%= month_calendar(events: @tasks+@rewards) do |date, events| %>
-        <%= date.day %>
-        <% events.each do |event| %>
+        <span data-calendar-target="targetDate" data-action="click->calendar#showEvents"><%= date.day %></span>
+
         <div>
           <%# <% if event.is_a? Task %>
             <%# <% if events.count == 1 %>
@@ -25,8 +28,8 @@
           <%# </div> %>
           <%# <% end %>
         </div>
-        <% end %>
-      <% end %>
+
+    <% end %>
 
   </div>
 </div>

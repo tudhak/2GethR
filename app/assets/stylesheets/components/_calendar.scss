@@ -45,6 +45,7 @@
   background-color: transparent;
   border: none;
   opacity: 0.8;
+  text-align: center;
 }
 
 .simple-calendar {
@@ -52,5 +53,18 @@
     background-color: transparent;
     height: 20px;
     border: none;
+    text-align: center;
+    color: #fff;
+  }
+
+  .today {
+
+    span {
+      border: 2px solid #fff;
+      border-radius: 50%;
+      border-color: #CE7E29;
+      padding: 10px;
+      color: #CE7E29;
+    }
   }
 }
