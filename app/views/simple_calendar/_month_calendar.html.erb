@@ -1,19 +1,26 @@
-<div class="simple-calendar">
-  <div class="calendar-heading">
-    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
-
-    <nav>
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
-    </nav>
-  </div>
+<div class="simple-calendar mt-2">
+  <nav class="calendar-heading mb-2">
+    <div>
+      <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+      <%= link_to calendar.url_for_today_view do %>
+        <i class="fa-solid fa-arrow-rotate-left text-white text-decoration-none"></i>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to calendar.url_for_previous_view, class:"text-decoration-none" do %>
+        <i class="fa-solid fa-chevron-left text-white me-2"></i>
+      <% end %>
+      <%= link_to calendar.url_for_next_view, class:"text-decoration-none" do %>
+        <i class="fa-solid fa-chevron-right text-white"></i>
+      <% end %>
+    </div>
+  </nav>
 
   <table class="table table-striped" id="calendar-display">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+          <th id="week-days"><%= t('date.abbr_day_names')[day.wday] %></th>
         <% end %>
       </tr>
     </thead>

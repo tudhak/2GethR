@@ -1,19 +1,32 @@
 <div class="container">
   <div class="row">
-    <h1 class="mt-3">My calendar</h1>
 
-      <%= week_calendar(events: [@tasks, @rewards]) do |date, tasks, rewards| %>
+      <%= month_calendar(events: @tasks+@rewards) do |date, events| %>
         <%= date.day %>
-        <% tasks.each do |task| %>
-          <div class="tasks-display">
-            <%= link_to task.title, task, class:"task-event" %>
-          </div>
-        <% end %>
-        <% rewards.each do |reward| %>
-          <div class="rewards-display">
-            <%= link_to reward.title, task, class:"reward-event" %>
-          </div>
+        <% events.each do |event| %>
+        <div>
+          <%# <% if event.is_a? Task %>
+            <%# <% if events.count == 1 %>
+              <%# <% display_task = "task"  %>
+            <%# <% elsif events.count >= 2 %>
+              <%# <% display_task = "tasks" %>
+            <%# <% end %>
+          <%# <div class="tasks-display"> %>
+            <%# <%= link_to event.title, event, class:"task-event" %>
+          <%# </div> %>
+          <%# <% elsif event.is_a? Reward %>
+           <%# <% if events.count == 1 %>
+             <%# <% display_reward = "reward"  %>
+           <%# <% elsif events.count >= 2 %>
+             <%# <% display_reward = "rewards" %>
+           <%# <% end %>
+          <%# <div class="rewards-display"> %>
+              <%# <%= link_to event.title, @couple_reward_path, class:"reward-event" %>
+          <%# </div> %>
+          <%# <% end %>
+        </div>
         <% end %>
       <% end %>
+
   </div>
 </div>

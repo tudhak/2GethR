@@ -5,7 +5,7 @@
 }
 
 .reward-event {
-  color: #A1C284;
+  color: #D5C6D0;
   font-weight: bolder;
   text-decoration: none;
 }
@@ -18,12 +18,39 @@
   justify-content: center;
 }
 
-@media(max-width: 576px) {
-  .event {
-    font-size: 0.7rem;
-  }
+.rewards-display {
+  border: 0.5px solid #333;
+  background-color: #6B8CD3;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 #calendar-display {
   width: 100%;
+  border: none;
+}
+
+.calendar-title {
+  color: #fff;
+}
+
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+#week-days {
+  color: #626262;
+  background-color: transparent;
+  border: none;
+  opacity: 0.8;
+}
+
+.simple-calendar {
+  .day {
+    background-color: transparent;
+    height: 20px;
+    border: none;
+  }
 }
