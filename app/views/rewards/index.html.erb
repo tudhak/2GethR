@@ -1,58 +1,59 @@
 <div class="py-5 bg_purple">
   <div class="container text-white">
-    <h1 class="text-white text-left poppins-20 mb-4">Ask a reward to your partner</h1>
-    <div style="width: 94vw; overflow-x: hidden; overflow-y: visible;">
-      <div class="d-flex flex-nowrap align-items-center" style="width: 100%; overflow-x: scroll;">
+    <h1 class="text-white text-left poppins-20">Ask a reward to your partner</h1>
+    <div style="width: 94vw; overflow-x: hidden;">
+      <div class="d-flex flex-nowrap align-items-center pt-5" style="width: 100%; overflow-x: auto;">
         <% @generic_rewards.each do |generic_reward| %>
-          <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative" do %>
+          <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
             <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward">📽️</div>
+            <div class="div-blur-transparent position-absolute"></div>
             <h2 class="text-white text-center mt-3"><%= generic_reward.title %></h2>
           <% end %>
         <% end %>
       </div>
     </div>
-    <h3 class="my-3 text-center">or</h3>
+    <h3 class="my-3 text-center poppins-20">or</h3>
 
-    <%= link_to "Ask a new reward", generic_rewards_path, class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white" %>
+    <%= link_to "Ask a new reward", new_couple_reward_path(current_user.couple), class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
 
-
-    <ul class="nav nav-pills mb-3 d-flex align-items-center justify-content-between" id="pills-tab" role="tablist">
-      <h3 class="my-3 text-left">Pending Rewards</h3>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-hers-tab" data-bs-toggle="pill" data-bs-target="#pills-hers" type="button" role="tab" aria-controls="pills-hers" aria-selected="true">Hers</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-yours-tab" data-bs-toggle="pill" data-bs-target="#pills-yours" type="button" role="tab" aria-controls="pills-yours" aria-selected="false">yours</button>
-      </li>
+    <ul class="nav nav-pills mb-1 d-flex align-items-center justify-content-between" id="pills-tab" role="tablist">
+      <h3 class="mb-4 mt-5 text-left poppins-20">All the rewards</h3>
+      <div class="d-flex">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-hers-tab" data-bs-toggle="pill" data-bs-target="#pills-hers" type="button" role="tab" aria-controls="pills-hers" aria-selected="true">Hers</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-yours-tab" data-bs-toggle="pill" data-bs-target="#pills-yours" type="button" role="tab" aria-controls="pills-yours" aria-selected="false">yours</button>
+        </li>
+      </div>
     </ul>
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-hers" role="tabpanel" aria-labelledby="pills-hers-tab">
-        <%= current_user.rewards %>
+        <% current_user.rewards.each do |rewards_for_me| %>
+          <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center justify-content-center emoji_reward_small">📽️</div>
+              <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_for_me.title %></p>
+            </div>
+            <div class="badge <%= rewards_for_me.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_for_me.status %></div>
+            <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_for_me.date.strftime("%d/%m") %></p>
+          </div>
+        <% end %>
       </div>
       <div class="tab-pane fade" id="pills-yours" role="tabpanel" aria-labelledby="pills-yours-tab">
-        <%= current_user.mate.rewards %>
+        <% current_user.mate.rewards.each do |rewards_to_do| %>
+          <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center justify-content-center emoji_reward_small">📽️</div>
+              <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_to_do.title %></p>
+            </div>
+            <div class="badge <%= rewards_to_do.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_to_do.status %></div>
+            <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_to_do.date.strftime("%d/%m") %></p>
+          </div>
+        <% end %>
       </div>
     </div>
-
-
-
-<div class="cards-container">
-      <div class="card">
-        <h2><%= link_to "Create Your Reward!", new_couple_reward_path(current_user.couple) %></h2>
-      </div>
-</div>
-
-
-
-
-
-    <%= link_to "Your Rewards", given_rewards_couple_rewards_path, class: "btn btn-primary" %>
-
-
-    <%= link_to "Sentence/Penalty", to_do_rewards_couple_rewards_path, class: "btn btn-primary" %>
   </div>
 </div>
-
-
 
 
