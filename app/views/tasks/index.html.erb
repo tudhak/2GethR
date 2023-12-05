@@ -1,5 +1,3 @@
-
-
 <div class="container">
 
   <div class="my-tasks" data-bs-toggle="collapse" data-bs-target="#collapsePendingTasks" aria-expanded="false" aria-controls="collapsePendingTasks">
@@ -7,10 +5,10 @@
   </div>
   <div class="w-100 p-0 border-0 collapse" id="collapsePendingTasks">
     <% @my_pending_tasks.each do |pending_task| %>
-      <div class="border d-flex justify-content-between align-items-center p-3 shadow-sm">
-        <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class:"rounded-circle" %></span>
-        <span><%= pending_task.title %></span>
-        <span><%= pending_task.date.strftime('%b %d, %Y') %></span>
+      <div class="border d-flex justify-content-between align-items-center p-2 shadow-sm">
+        <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle" %></span>
+        <strong><%= link_to pending_task.title, task_path(pending_task), class: "text-decoration-none text-black dropdown-items" %></strong>
+        <span class="dropdown-items"><%= pending_task.date.strftime('%b %d, %Y') %></span>
         <i class="fa-solid fa-circle-dot"></i>
       </div>
     <% end %>
@@ -21,15 +19,17 @@
       <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
         "mb-3 row row-cols-auto", data: {task_container_target: "form"} } do |f| %>
         <%= f.input :assigned_to,
-                    collection: [current_user.nickname, @partner.nickname, "any"],
-                    selected: current_user.nickname,
+                    collection: [current_user.nickname, @partner.nickname, "any", "Choose a user"],
+                    selected: "Choose a user",
+                    disabled: "Choose a user",
                     label: "Assigned to",
-                    input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal"} } %>
+                    input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal onload->task-container#reveal"} } %>
         <%= f.input :status,
-                  collection: ["pending", "done"],
-                  selected: "pending",
+                  collection: ["pending", "done", "Choose a status"],
+                  selected: "Choose a status",
+                  disabled: "Choose a status",
                   label: "Status",
-                  input_html: { data: { task_container_target: "statusInput", action: "change->task-container#reveal" } } %>
+                  input_html: { data: { task_container_target: "statusInput", action: "change->task-container#reveal onload->task-container#reveal" } } %>
       <% end %>
   </div>
 

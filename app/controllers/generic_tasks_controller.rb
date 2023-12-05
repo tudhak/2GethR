@@ -4,7 +4,6 @@ class GenericTasksController < ApplicationController
   def index
     @generic_tasks = GenericTask.where(couple: current_user.couple)
     @generic_task = GenericTask.new
-    #test
   end
 
   def destroy
@@ -24,7 +23,7 @@ class GenericTasksController < ApplicationController
 
   def update
     if @generic_task.update!(generic_task_params)
-      redirect_to @generic_tasks, notice: 'Generic Task was successfully updated.'
+      redirect_to generic_tasks_path, notice: 'Generic Task was successfully updated.'
     else
       render "generic_tasks/edit_generic_task", status: :unprocessable_entity
     end
