@@ -1,7 +1,7 @@
 <div class="simple-calendar mt-2 bg-primary">
   <nav class="calendar-heading mb-2">
     <div>
-      <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+      <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title" data-calendar-target="calendarTitle"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
       <%= link_to calendar.url_for_today_view do %>
         <i class="fa-solid fa-arrow-rotate-left text-white text-decoration-none"></i>
       <% end %>
@@ -30,7 +30,9 @@
         <tr>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+              <% if day.month == start_date.month %>
+                <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+              <% end %>
             <% end %>
           <% end %>
         </tr>

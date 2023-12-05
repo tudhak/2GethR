@@ -1,0 +1,15 @@
+<div data-calendar-target="events">
+
+  <% tasks.each do |task| %>
+    <div class="event-show">
+      <p><%= task.title %></p>
+    </div>
+  <% end %>
+
+  <% rewards.each do |reward| %>
+    <div class="event-show">
+      <p><%= reward.title %></p>
+    </div>
+  <% end %>
+
+</div>
