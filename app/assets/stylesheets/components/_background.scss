@@ -1,14 +1,10 @@
-<<<<<<< HEAD:app/assets/stylesheets/components/_backgrounds.scss
-.bg_pages_home {
-=======
 .bg_purple {
   background-image: url('background_purple.png');
   background-size: cover;
   background-position: top;
 }
 
-#pages_home {
->>>>>>> master:app/assets/stylesheets/components/_background.scss
+.bg_pages_home  {
   background-image: asset_url('backgrounds/landing_bg.svg');
 }
 
