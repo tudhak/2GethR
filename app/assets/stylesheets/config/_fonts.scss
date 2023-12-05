@@ -4,4 +4,13 @@
 
 // Define fonts for body and headers
 $body-font: 'Poppins', sans-serif;
-$headers-font: 'VT323', monospace;
+$headers-font: 'Poppins', sans-serif;
+
+.font_vt323 {
+  font-family: 'VT323', monospace;
+}
+
+.poppins-20 {
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
