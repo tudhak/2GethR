@@ -1,15 +1,26 @@
 <div data-calendar-target="events">
 
   <% tasks.each do |task| %>
-    <div class="event-show">
-      <p><%= task.title %></p>
+    <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex align-items-center position-relative">
+      <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-center emoji_reward_small">📽️</div>
+          <p class="mb-0 ms-2 poppins-18 fw-bold"><%= task.title %></p>
+        </div>
+        <div class="badge <%= task.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= task.status %></div>
+      <p class="mb-0 ms-2 poppins-18 fw-bold"><%= task.date.strftime("%d/%m") %></p>
     </div>
   <% end %>
 
   <% rewards.each do |reward| %>
-    <div class="event-show">
-      <p><%= reward.title %></p>
+    <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex align-items-center position-relative">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-center emoji_reward_small">📽️</div>
+        <div class="d-flex flex-column">
+          <p class="mb-0 ms-2 poppins-18 fw-bold"><%= reward.title %></p>
+          <p class="mb-0 ms-2 poppins-18"><%= reward.date.strftime("%d/%m") %></p>
+        </div>
+         <p class="mb-0 ms-2 poppins-18 fw-bold"><%= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle" %></p>
+      </div>
+     <div class="badge <%= reward.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= reward.status %></div>
     </div>
   <% end %>
-
-</div>
