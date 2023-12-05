@@ -1,0 +1,20 @@
+body.layout {
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  background-size: cover;
+  background-position: bottom;
+  // > div {
+  //   border: 1px solid red;
+  // }
+  .layout-header {
+    flex-shrink: 0;
+  }
+  .layout-main {
+    flex-grow: 1;
+    overflow: scroll;
+  }
+  .layout-footer {
+    flex-shrink: 0;
+  }
+}

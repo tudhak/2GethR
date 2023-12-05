@@ -1,21 +1,29 @@
-<div class="container couple-chatroom"
-    data-controller="couple-subscription"
-    data-couple-subscription-couple-id-value="<%= @couple.id %>"
-    data-couple-subscription-current-user-id-value="<%= current_user.id %>"
->
-  <h1>#Chatroom</h1>
 
-  <div class="messages" data-couple-subscription-target="messages">
-    <% @couple.messages.each do |message| %>
-      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-          <%= render "messages/message", message: message %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+<%= render "shared/top_navbar" %>
 
-  <div data-couple-subscription-target="form">
-    <%= render "couple_form", couple: @couple, message: @message %>
+<div class="layout-main mt-4">
+ <div class="d-flex justify-content-center position-relative" id="partner-avatar">
+  <%= image_tag('partner.png') %>
+  <div class="action1 position-absolute">💋</div>
+  <div class="action2 position-absolute">⚡️</div>
+  <div class="action3 position-absolute">💖</div>
+  <div class="action4 position-absolute">😏</div>
+ </div>
+</div>
+
+
+<div class="layout-footer mb-4">
+  <div class="d-flex align-items-center justify-content-around gap-3 mb-4">
+    <div class="Player1 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
+      <div class="player1-pp d-flex flex-column justify-content-center align-items-center"><%= image_tag('avatar_0.png') %></div>
+      Chouchou
+      <div class="score-p1">120 pts</div>
+    </div>
+    <div class="vs poppins-20 fw-bold">vs</div>
+    <div class="Player2 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
+      <div class="player2-pp d-flex flex-column justify-content-center align-items-center"><%= image_tag('avatar_0.png') %></div>
+      Loulou
+      <div class="score-p2">300 pts</div>
+    </div>
   </div>
 </div>

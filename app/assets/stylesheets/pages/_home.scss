@@ -1,1 +1,27 @@
 // Specific CSS for your home-page
+.bg_pages_home {
+
+  .avatars {
+    img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+    img:last-child {
+      transform: rotate(45deg);
+    }
+  }
+
+  h1 {
+    font-size: 56px;
+    color: white;
+  }
+
+  .cta {
+    a {
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
+    }
+  }
+}

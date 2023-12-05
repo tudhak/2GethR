@@ -4,7 +4,7 @@
     <%# JM : Bottom-NavBar en attendant celle de Samuel  %>
     <%# JM : Remplacer par un render ici  %>
     <div id="actions-div" style="width:100%;" class="py-4 px-4 sticky-bottom d-flex justify-content-between">
-      <%= link_to couple_path(current_user.couple) do %><h1 class="fa-regular fa-message"></h1><% end %>
+      <%= link_to chatroom_couple_path(current_user.couple) do %><h1 class="fa-regular fa-message"></h1><% end %>
       <%= link_to couple_rewards_path(current_user.couple) do %><h1 class="fa-solid fa-trophy"></h1><% end %>
       <%= link_to tasks_path do %><h1 class="fa-solid fa-list-check"></h1><% end %>
       <%= link_to calendars_path do %><h1 class="fa-regular fa-calendar-days"></h1><% end %>

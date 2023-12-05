@@ -4,6 +4,10 @@ class CouplesController < ApplicationController
 
   def show
     @couple = Couple.find(params[:id])
+  end
+
+  def chatroom
+    @couple = Couple.find(params[:id])
     @message = Message.new
   end
 
