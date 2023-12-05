@@ -1,6 +1,10 @@
 class RewardsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @generic_rewards = GenericReward.all
+  end
+
   def given_rewards
     @rewards = current_user.rewards
     @pending_rewards = current_user.rewards.where(status: 'pending').order(:date)
