@@ -1,0 +1,32 @@
+<div class="layout-header">
+  <div class="d-flex flex-column align-items-center mt-2">
+    <h1 class="font_vt323">2gethr</h1>
+    <div class="navbar-top d-flex align-items-center gap-4 mt-1">
+
+      <%= link_to chatroom_couple_path(current_user.couple) do %>
+      <%= image_tag('icons/chat.svg') %>
+      <% end%>
+
+      <%= link_to tasks_path do %>
+      <%= image_tag('icons/task.svg') %>
+      <% end%>
+
+      <%= link_to calendars_path(current_user.couple) do %>
+      <%= image_tag('icons/calendar.svg') %>
+      <% end%>
+
+      <%= link_to couple_rewards_path(current_user.couple) do %>
+      <%= image_tag('icons/reward.svg') %>
+      <% end%>
+
+      <%= link_to score_path(current_user.couple) do %>
+      <%= image_tag('icons/analytics.svg') %>
+      <% end%>
+
+      <%= link_to user_session_path(current_user.couple) do %>
+      <%= image_tag('icons/profile.svg') %>
+      <% end%>
+
+    </div>
+  </div>
+</div>

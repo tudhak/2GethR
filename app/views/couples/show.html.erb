@@ -1,41 +1,28 @@
-<div class="layout-header">
-  <div class="d-flex flex-column align-items-center mt-4">
-    <h1>2gethr</h1>
+<%= render "shared/top_navbar" %>
 
-  <div class="navbar-top d-flex align-items-center gap-4 mt-1">
-
-    <%= link_to chatroom_couple_path(current_user.couple) do %>
-    <%= image_tag('icons/chat.svg') %>
-    <% end%>
-
-    <%= link_to tasks_path do %>
-    <%= image_tag('icons/task.svg') %>
-    <% end%>
-
-    <%= link_to calendars_path(current_user.couple) do %>
-    <%= image_tag('icons/calendar.svg') %>
-    <% end%>
-
-    <%= link_to couple_rewards_path(current_user.couple) do %>
-    <%= image_tag('icons/reward.svg') %>
-    <% end%>
-
-    <%= link_to score_path(current_user.couple) do %>
-    <%= image_tag('icons/analytics.svg') %>
-    <% end%>
-
-    <%= link_to user_session_path(current_user.couple) do %>
-    <%= image_tag('icons/profile.svg') %>
-    <% end%>
-
-  </div>
-
-  </div>
-
-
-</div>
-
-<div class="layout-main justify-content-center">
+<div class="layout-main">
+ <div class="d-flex justify-content-center position-relative" id="partner-avatar">
   <%= image_tag('partner.png') %>
+  <div class="action1 position-absolute">💋</div>
+  <div class="action2 position-absolute">⚡️</div>
+  <div class="action3 position-absolute">💖</div>
+  <div class="action4 position-absolute">😏</div>
+ </div>
 </div>
-<div class="layout-footer"></div>
+
+
+<div class="layout-footer">
+  <div class="d-flex align-items-center justify-content-around gap-3 mb-4">
+    <div class="Player1 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
+      <div class="player1-pp d-flex flex-column justify-content-center align-items-center"><%= image_tag('avatar_0.png') %></div>
+      Chouchou
+      <div class="score-p1">120 pts</div>
+    </div>
+    <div class="vs poppins-20 fw-bold">vs</div>
+    <div class="Player2 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
+      <div class="player2-pp d-flex flex-column justify-content-center align-items-center"><%= image_tag('avatar_0.png') %></div>
+      Loulou
+      <div class="score-p2">300 pts</div>
+    </div>
+  </div>
+</div>
