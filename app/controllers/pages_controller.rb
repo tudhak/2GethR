@@ -65,8 +65,8 @@ class PagesController < ApplicationController
     @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
     @partner_mood = {sunny: 0.3, stormy: 0.1, rainy: 0.2, cloudy: 0.4 }.to_json
 
-    @user_tasks = tasks_metrics(@user)
-    @partner_tasks = tasks_metrics(@partner)
+    @user_tasks = tasks_metrics["user_prop"].to_json
+    @partner_tasks = tasks_metrics["partner_prop"].to_json
     # @user_tasks = {dishwashing: 0.3, laundry: 0.6, cleaning: 0.2, cooking: 0.4 }.to_json
     # @partner_tasks = {dishwashing: 0.7, laundry: 0.4, cleaning: 0.8, cooking: 0.6 }.to_json
 
@@ -128,18 +128,24 @@ class PagesController < ApplicationController
     return [statuses_duration, cumul_duration]
   end
 
-  def tasks_metrics(user)
-    partner = (user.couple.users - [current_user])[0]
-    user_nickname = user.nickname
-    partner_nickname = partner.nickname
-    tasks_scope = Task.all.where('(done_by = ? OR done_by = ?) AND date >= ?', user.nickname,  partner.nickname, opening_date)
+  def tasks_metrics
+    user_nickname = @user.nickname
+    partner_nickname = @partner.nickname
+    tasks_scope = Task.all.where('(done_by = ? OR done_by = ?) AND date >= ?', @user.nickname,  @partner.nickname, opening_date)
     gen_tasks = GenericTask.where(couple: current_user.couple).pluck(:title)
     gen_tasks = !gen_tasks.include?("Other") ? gen_tasks + ["Other"] : gen_tasks
-    tasks_summary = {user_nickname => {}, partner_nickname => {} }
+    tasks_summary = {user_nickname => {}, partner_nickname => {}, "couple" => {}, "user_prop" => {}, "partner_prop" => {} }
     tasks_scope.each do |task|
       task_title = gen_tasks.include?(task.title) ? task.title : "Other"
       tasks_summary[task.done_by][task_title] = tasks_summary[task.done_by][:task_title].nil? ? task.base_score : tasks_summary[task.done_by][:task_title] + task.base_score
+      tasks_summary["couple"][task_title] = tasks_summary["couple"][:task_title].nil? ? task.base_score : tasks_summary["couple"][:task_title] + task.base_score
     end
+    tasks_summary["user_prop"] = tasks_summary["couple"].map do |key, value|
+      [key, tasks_summary[user_nickname][key].to_f / value.to_f]
+    end.compact.to_h
+    tasks_summary["partner_prop"] = tasks_summary["couple"].map do |key, value|
+      [key, tasks_summary[partner_nickname][key].to_f / value.to_f]
+    end.compact.to_h
     return tasks_summary
   end
 

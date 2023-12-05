@@ -1,28 +1,28 @@
 <div class="p-3">
 
-<div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center">
 
-  <div>
-    <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="bg-danger mini-avatar"></div>
-    <h4 class="pt-2"> <%= @user.score %></h4>
+    <div>
+      <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="bg-danger mini-avatar"></div>
+      <h4 class="pt-2"> <%= @user.score %></h4>
+    </div>
+
+    <div>
+      <h1 class="text-center">Score Board</h1>
+    </div>
+
+    <div>
+      <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="bg-danger mini-avatar"></div>
+      <h4 class="pt-2"> <%= @partner.score %></h4>
+    </div>
   </div>
 
-  <div>
-    <h1 class="text-center">Score Board</h1>
-  </div>
+    <div class="score-card p-3"><%= render "score_global", user: @user, partner: @partner%> </div>
 
-  <div>
-    <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="bg-danger mini-avatar"></div>
-    <h4 class="pt-2"> <%= @partner.score %></h4>
-  </div>
-</div>
+    <div class="score-card p-3"><%= render "score_meteo", user: @user, partner: @partner %></div>
 
-  <div class="score-card p-3"><%= render "score_global", user: @user, partner: @partner</div> %>
+    <div class="score-card p-3"><%= render "score_task", user: @user, partner: @partner %></div>
 
-  <div class="score-card p-3"><%= render "score_meteo", user: @user, partner: @partner %></div>
-
-  <div class="score-card p-3"><%= render "score_task", user: @user, partner: @partner %></div>
-
-  <div class="score-card p-3"><%= render "score_reward", user: @user, partner: @partner %></div>
+    <div class="score-card p-3"><%= render "score_reward", user: @user, partner: @partner %></div>
 
 </div>
