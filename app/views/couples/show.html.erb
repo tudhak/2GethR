@@ -19,8 +19,17 @@
   <% end %>
   <%# <div class="action3 position-absolute">💖</div> %>
 
-  <div class="action4 position-absolute">😏</div>
+  <%= link_to peace_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;"  do %>
+    <div  id="peace" data-action="click->interactions#firepeace" class="action4 position-absolute">😏</div>
+  <% end %>
+  <%# <div class="action4 position-absolute"></div> %>
 
+  <%# Affichage action à toggle d-none - start %>
+  <div id="action-punch" data-interactions-target="punch" class="position-absolute action-sent d-none">⚡️</div>
+  <div id="action-love" data-interactions-target="love" class="position-absolute action-sent d-none">💖</div>
+  <div id="action-kiss" data-interactions-target="kiss" class="position-absolute action-sent d-none">💋</div>
+  <div id="action-peace" data-interactions-target="peace" class="position-absolute action-sent d-none">😏</div>
+  <%# Affichage action à toggle d-none - end %>
 </div>
 
 
