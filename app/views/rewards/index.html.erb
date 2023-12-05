@@ -1,31 +1,13 @@
+<div class="py-5 bg_purple">
+  <h1 class="text-white text-center">Ask a reward to your partner</h1>
 
-<div class=body-reward>
-  <div class="swiper-container">
-    <div class="swiper" data-controller="swiper">
+  <%= link_to "Your Rewards", given_rewards_couple_rewards_path, class: "btn btn-primary" %>
 
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" style="background-image:url('<%= asset_path('mvp.png') %>')">
+  <%= link_to "Create New Reward", generic_rewards_path, class: "btn btn-success" %>
 
-        <%= link_to "Your Rewards", given_rewards_couple_rewards_path, class: "btn btn-primary" %>
-        </div>
-        <div class="swiper-slide" style="background-image:url('<%= asset_path('gift.png') %>')">
-
-        <%= link_to "Create New Reward", generic_rewards_path, class: "btn btn-success" %>
-      </div>
-        <div class="swiper-slide" style="background-image:url('<%= asset_path('pillory.png') %>')">
-
-        <%= link_to "Sentence/Penalty", to_do_rewards_couple_rewards_path, class: "btn btn-primary" %>
-        </div>
-      </div>
-    <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-
-      <!-- If we need scrollbar -->
-      <div class="swiper-scrollbar"></div>
-    </div>
-  </div>
+  <%= link_to "Sentence/Penalty", to_do_rewards_couple_rewards_path, class: "btn btn-primary" %>
 </div>
+
+
+
+
