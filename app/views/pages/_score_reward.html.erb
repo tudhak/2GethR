@@ -1,7 +1,20 @@
-  <div class="chart">
-    <h2  class="text-center">Reward split</h2>
-      <canvas  data-controller="chart-rewards-main">
-        <!-- TODO: Display  horizontal bar chart 100% chart below -->
+<div>
+
+  <h2 class="text-center">How many points were won through rewards?</h2
+  >
+  <div class="d-flex justify-content-between">
+
+    <div class="chart" style="width:50%;">
+        <canvas data-controller="chart-rewards-user" data-chart-rewards-user-rewards-value="<%= @user_rewards %>">
+        <!-- TODO: Display doughnut chart below -->
+        </canvas>
+    </div>
+
+    <div class="chart" style="width:50%;">
+      <canvas data-controller="chart-rewards-partner" data-chart-rewards-partner-rewards-value="<%= @partner_rewards %>">
+        <!-- TODO: Display doughnut chart below -->
       </canvas>
     </div>
   </div>
+
+</div>

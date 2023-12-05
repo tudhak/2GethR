@@ -35,7 +35,7 @@ export default class extends Controller {
       {
         type: 'doughnut',
         data: {
-          labels: labels,
+          // labels: labels,
           datasets: [
             {
               label: 'Gender Ratio',

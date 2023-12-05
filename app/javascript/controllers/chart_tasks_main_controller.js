@@ -17,29 +17,37 @@ export default class extends Controller {
   static values = {
     keystring: String,
     keynumber: Number,
-    usertasks: Object,
-    partnertasks: Object
   }
 
   connect() {
 
     console.log("hello from tasks chart")
 
-    const labels = Object.keys(this.worldPopulation);
-    const data = Object.values(this.worldPopulation);
-    console.log(labels);
-    console.log(data);
+    // const labels = Object.keys(this.worldPopulation);
+    // const data = Object.values(this.worldPopulation);
+    // console.log(labels);
+    // console.log(data);
 
     new Chart(
       this.element,
       {
         type: 'radar',
         data: {
-          labels,
+          labels: ["dishwashing", "laundry", "cleaning", "cooking", "ironing", "shopping", "dog", "kids", "other",],
           datasets: [
             {
               label: 'I am a legend',
-              data,
+              data: [0.3, 0.7, 0.4, 0.6, 0.3, 0.7, 0.4, 0.6, 0.4],
+              fill: true,
+              backgroungColor: 'rgb(255, 99, 132, 0.2)',
+              borderColor: 'rgb(255, 99, 132)',
+              pointBackgroundColor: 'rgb(255, 99, 132)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgb(255, 99, 132)'
+            }, {
+              label: 'I am a legend',
+              data: [0.7, 0.3, 0.6, 0.4,0.7, 0.4, 0.6, 0.4, 0.6 ],
               fill: true,
               backgroungColor: 'rgb(255, 99, 132, 0.2)',
               borderColor: 'rgb(255, 99, 132)',

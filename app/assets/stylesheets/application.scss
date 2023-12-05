@@ -28,4 +28,16 @@
   width: 100%;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin-bottom: 12px;
+  border-radius: 25px;
 }
+
+.mini-avatar {
+  background-position: center;
+  background-size: cover;
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius:50%;
+  border:solid;
+  border-width:2px;
+  border-color:white;
+  }
