@@ -1,4 +1,4 @@
-#couples_show {
+.bg_mood {
 
   h1{
     color: white;
@@ -6,7 +6,53 @@
 
   }
 
+  #partner-avatar img {
+    padding-top: 120px;
+    width: 45%;
+    padding-left: 20px;
+  }
 
+  .layout-footer {
+    color: white;
+  }
 
+  .Player1, .Player2 {
+    font-size:25px;
+  }
+
+  .action1 {
+    font-size: 56px;
+    top: 150px;
+    left: 40px;
+  }
+
+  .action2 {
+    font-size: 56px;
+    top: 35px;
+    left: 85px;
+  }
+
+  .action3 {
+    font-size: 56px;
+    top: 65px;
+    left: 260px;
+  }
+
+  .action4 {
+    font-size: 56px;
+    top: 165px;
+    left: 305px;
+    transform: rotate(45deg);
+  }
+//  footer
+  .player1-pp img, .player2-pp img {
+    width:50%;
+
+  }
+  .score-p1, .score-p2 {
+    font-family: 'VT323';
+    font-size: 35px;
+    line-height: 30px;
+  }
 
 }

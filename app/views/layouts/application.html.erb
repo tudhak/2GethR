@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
-  <body class="layout d-flex flex-column justify-content-center" id="<%= controller_name %>_<%= action_name %>">
+  <body class="layout d-flex flex-column justify-content-center <%= action_name == 'home' && controller_name == 'pages' ? 'bg_pages_home' : 'bg_mood' %>">
     <%= yield %>
-    
+
   <!-- <body class="d-flex flex-column justify-content-between">
     <div>
       <%= render "shared/navbar", nb_actions: @nb_actions %>
@@ -37,6 +37,6 @@
 
     <%= render "shared/bottom_navbar" %>
   -->
-    
+
   </body>
 </html>
