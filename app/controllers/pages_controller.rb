@@ -59,10 +59,12 @@ class PagesController < ApplicationController
 
   def score
     home
-    @user_mood = mood_summary(@user)
-    @partner_mood = mood_summary(@partner)
-    @task_split = "TO DO"
-    @reward_split = "TO DO"
+    # @user_mood = mood_summary(@user)
+    # @partner_mood = mood_summary(@partner)
+    @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
+    @partner_mood = {sunny: 0.3, stormy: 0.1, rainy: 0.2, cloudy: 0.4 }.to_json
+    @user_tasks = {dishwashing: 0.3, laundry: 0.6, cleaning: 0.2, cooking: 0.4 }.to_json
+    @partner_tasks = {dishwashing: 0.7, laundry: 0.4, cleaning: 0.8, cooking: 0.6 }.to_json
     # raise
   end
 

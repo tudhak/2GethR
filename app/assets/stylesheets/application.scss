@@ -6,6 +6,7 @@
 // External libraries
 @import "bootstrap";
 @import "font-awesome";
+@import "simple_calendar";
 
 // Your CSS partials
 @import "components/index";
@@ -19,6 +20,16 @@
   min-height: 83vh;
 }
 
-#intercation {
-  height: calc(100vh - 250px) !important;
+#interaction {
+  height: calc(100vh - 308px - 125px) !important;
+}
+
+.score-card {
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 12px;
+}
+
+body {
+  font-family: $body-font !important;
 }

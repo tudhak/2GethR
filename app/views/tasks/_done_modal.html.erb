@@ -2,21 +2,24 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="doneModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="doneModalLabel">Mark this task as done</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Add proofs</p>
-         <%= simple_form_for task do |f| %>
+        <h4>Add proofs</h4>
+         <%= simple_form_for task, html: { class:"mb-3" } do |f| %>
            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-           <%= f.button :submit, "Submit proofs"  %>
+           <%= f.button :submit, "Submit proofs", class:"btn btn-primary"  %>
          <% end %>
-         <p>This task will earn you <%= @task.base_score %> points.</p>
-         <p>New score after confirmation:
-         <% unless @task.base_score.nil? %>
-         <%= current_user.score + @task.base_score %>
+         <% if @task.status == "done" %>
+          <p>This task is already done and cannot get you more points.</p>
+         <% elsif task.user.nickname == @task.assigned_to %>
+          <p>You have assigned this task to yourself and therefore cannot earn any points.</p>
+         <% else %>
+          <p>This task will earn you <%= @task.base_score %> points.</p>
+          <p>New score after confirmation:
+          <%= current_user.score + @task.base_score %>
          <% end %>
-         </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

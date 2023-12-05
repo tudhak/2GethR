@@ -2,12 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="add-task"
 export default class extends Controller {
-  static targets = ["firstTitle", "secondTitle", "description", "score", "taskForm"]
-  static values = { description: Array, score: Array, title: Array }
+  static targets = ["firstTitle", "secondTitle", "description", "score", "titleTemplates", "descriptionTemplates", "scoreTemplates"]
 
   connect() {
-    // console.log(this.element)
-    // console.log(this.firstTitleTarget)
   }
 
   toggle() {
@@ -32,29 +29,18 @@ export default class extends Controller {
   }
 
   autoComplete() {
-    console.log(this.descriptionValue)
-    console.log(this.scoreValue)
-    console.log(this.titleValue)
-    // console.log(this.titleValue.length)
-    // for (let i = 0; i++; i <= this.titleValue.length ) {
-    //   if (this.firstTitleTarget.value === this.titleValue[i]) {
-    //     this.descriptionTarget.value = this.descriptionValue[i]
-    //     this.scoreTarget.value = this.scoreValue[i]
-    //   }
-    // }
-    // event.preventDefault();
-    // const url = this.taskFormTarget.action
-    // const url = `${this.taskFormTarget.action}?other_params[title]=${this.firstTitleTarget.value}`
-    // console.log(url)
-    // fetch(url, {
-      // method: "POST",
-      // headers: { "Accept": "text/plain" },
-      // body: new FormData(this.taskFormTarget)
-    // })
-    //   .then(response => response.text())
-    //   .then((data) => {
-    //     console.log(data)
-        // this.descriptionTarget.value = data
-        // })
+    const titleList = this.titleTemplatesTarget.value.slice(0, -1).substr(1).replaceAll('"','').split(', ')
+    const descriptionList = this.descriptionTemplatesTarget.value.slice(0, -1).substr(1).replaceAll('"','').split(', ')
+    const scoreList = this.scoreTemplatesTarget.value.slice(0, -1).substr(1).replaceAll('"','').split(', ')
+
+    for (let i = 0; i <= titleList.length; i++) {
+      if (this.firstTitleTarget.value === titleList[i]) {
+        this.descriptionTarget.value = descriptionList[i];
+        this.scoreTarget.value = scoreList[i];
+      }
+      else if (this.firstTitleTarget.value === "Other") {
+        this.descriptionTarget.value = "";
+      }
+    }
     }
   }

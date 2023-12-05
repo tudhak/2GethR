@@ -47,4 +47,5 @@ Rails.application.routes.draw do
 
   get "score_dashboard", to: "pages#score", as: :score
 
+  resources :calendars, only: [:index]
 end

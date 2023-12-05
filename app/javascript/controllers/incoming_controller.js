@@ -3,7 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="actions-received"
 export default class extends Controller {
   connect() {
-    console.log("hello handsome, my name is Kim")
   }
 
   static values = {list: String};

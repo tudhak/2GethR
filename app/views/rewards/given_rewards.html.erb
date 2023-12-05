@@ -1,12 +1,34 @@
-
 <h1>Your well deserved recompenses</h1>
 
-<% @rewards.each do |reward| %>
-  <div class="reward-card">
-    <strong>Title:</strong> <%= reward.title %><br>
-    <strong>Date:</strong> <%= reward.date %><br>
-    <strong>Description:</strong> <%= reward.description %><br>
-    <strong>Statue:</strong> <%= reward.status %> <br>
-  </div>
-  <hr>
-<% end %>
+<div class="date-group">
+    <div class="status-group pending">
+      <h3>Pending Rewards</h3>
+
+      <% @pending_rewards.each do |pending_reward| %>
+        <div class="reward-card">
+          <strong>Title:</strong> <%= pending_reward.title %><br>
+          <strong>Description:</strong> <%= pending_reward.description %><br>
+          <strong>Status:</strong> <%= pending_reward.status %> <br>
+          <strong>Date:</strong> <%= pending_reward.date %> <br>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+
+
+  <% if @done_rewards.any? %>
+    <div class="status-group done">
+      <h3>Done Rewards</h3>
+
+      <% @done_rewards.each do |done_reward| %>
+        <div class="reward-card">
+          <strong>Title:</strong> <%= done_reward.title %><br>
+          <strong>Description:</strong> <%= done_reward.description %><br>
+          <strong>Status:</strong> <%= done_reward.status %> <br>
+          <strong>Date:</strong> <%= done_reward.date %> <br>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  <% end %>
+</div>
