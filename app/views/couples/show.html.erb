@@ -1,21 +1,41 @@
-<div class="container couple-chatroom"
-    data-controller="couple-subscription"
-    data-couple-subscription-couple-id-value="<%= @couple.id %>"
-    data-couple-subscription-current-user-id-value="<%= current_user.id %>"
->
-  <h1>#Chatroom</h1>
+<div class="layout-header">
+  <div class="d-flex flex-column align-items-center mt-4">
+    <h1>2gethr</h1>
 
-  <div class="messages" data-couple-subscription-target="messages">
-    <% @couple.messages.each do |message| %>
-      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-          <%= render "messages/message", message: message %>
-        </div>
-      </div>
-    <% end %>
+  <div class="navbar-top d-flex align-items-center gap-4 mt-1">
+
+    <%= link_to chatroom_couple_path(current_user.couple) do %>
+    <%= image_tag('icons/chat.svg') %>
+    <% end%>
+
+    <%= link_to tasks_path do %>
+    <%= image_tag('icons/task.svg') %>
+    <% end%>
+
+    <%= link_to calendars_path(current_user.couple) do %>
+    <%= image_tag('icons/calendar.svg') %>
+    <% end%>
+
+    <%= link_to couple_rewards_path(current_user.couple) do %>
+    <%= image_tag('icons/reward.svg') %>
+    <% end%>
+
+    <%= link_to clink_to score_path(current_user.couple) do %>
+    <%= image_tag('icons/analytics.svg') %>
+    <% end%>
+
+    <%= link_to user_session_path(current_user.couple) do %>
+    <%= image_tag('icons/profile.svg') %>
+    <% end%>
+
   </div>
 
-  <div data-couple-subscription-target="form">
-    <%= render "couple_form", couple: @couple, message: @message %>
   </div>
+
+
 </div>
+
+<div class="layout-main justify-content-center">
+  <%= image_tag('partner.png') %>
+</div>
+<div class="layout-footer"></div>
