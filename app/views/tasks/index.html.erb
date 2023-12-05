@@ -5,7 +5,7 @@
   </div>
   <div class="w-100 p-0 border-0 collapse" id="collapsePendingTasks">
     <% @my_pending_tasks.each do |pending_task| %>
-      <div class="border d-flex justify-content-between align-items-center p-2 shadow-sm">
+      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
         <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle" %></span>
         <strong><%= link_to pending_task.title, task_path(pending_task), class: "text-decoration-none text-black dropdown-items" %></strong>
         <span class="dropdown-items"><%= pending_task.date.strftime('%b %d, %Y') %></span>
