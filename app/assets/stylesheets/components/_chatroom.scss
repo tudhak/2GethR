@@ -1,12 +1,10 @@
 .couple-chatroom {
-  background: white;
   margin-top: 9px;
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
-  padding-bottom: 112px;
 
   h1 {
     border-bottom: 1px solid $gray-200;
@@ -18,6 +16,11 @@
     overflow: scroll;
     padding: 1rem;
     height: 100%;
+  }
+
+  #message_content{
+    border-radius: 12px;
+
   }
 
   #new_message {
