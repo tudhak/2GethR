@@ -7,7 +7,7 @@
         <% end %>
       <% end %>
         <div class="card-body-task">
-          <h4 class="card-title text-center"></i><strong> <%= @task.title %></strong></h4>
+          <h4 class="card-title text-center"></i><strong> <%= @task.title %><%= @task.emoji %></strong></h4>
           <div class="d-flex mb-2">
             <i class="fa-regular fa-folder me-3"></i>
             <p class="card-text"><%= @task.description %></p>

@@ -356,7 +356,8 @@ GenericTask.create(
   title: "Let the dogs out",
   description: "The dogs should take a walk to keep the flat clean.",
   base_score: 30,
-  couple: couple1
+  couple: couple1,
+  emoji: "🦮"
 )
 
 GenericTask.create(

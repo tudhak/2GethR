@@ -24,6 +24,8 @@
                         collection: ["pending", "done"],
                         selected: "pending",
                         placeholder: "Status" %>
+            <%= f.input :emoji,
+                        placeholder: "Emoji" %>
             <%= f.input :assigned_to,
                         collection: [current_user.nickname, partner.nickname, "any"],
                         selected: current_user.nickname,
