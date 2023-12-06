@@ -605,7 +605,8 @@ Reward.create!(
   status: 'pending',
   description: 'A special reward',
   title: 'Special Reward',
-  cost: 100
+  cost: 100,
+  emoji: "⭐"
 )
 
 Reward.create!(
@@ -614,7 +615,8 @@ Reward.create!(
   status: 'done',
   description: 'A well deserved massage',
   title: 'Special Massage',
-  cost: 100
+  cost: 100,
+  emoji: "🤲"
 )
 
 Reward.create!(
@@ -623,7 +625,8 @@ Reward.create!(
   status: 'pending',
   description: 'Another reward',
   title: 'Another Reward',
-  cost: 75
+  cost: 75,
+  emoji: "❓"
 )
 
 Reward.create!(
@@ -632,7 +635,8 @@ Reward.create!(
   status: 'done',
   description: 'A rejected reward',
   title: 'Rejected Reward',
-  cost: 120
+  cost: 120,
+  emoji: "❗"
 )
 
 puts 'Seed data for rewards created successfully!'
