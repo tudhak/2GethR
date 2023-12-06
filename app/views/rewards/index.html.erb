@@ -1,8 +1,8 @@
-<div class="py-5 bg_purple" style="overflow: scroll;">
+<div class="py-5" style="overflow: scroll;">
   <div class="container text-white">
     <h1 class="text-white text-left poppins-20">Ask a reward to your partner</h1>
     <div style="width: 94vw; overflow-x: hidden;">
-      <div class="d-flex flex-nowrap align-items-center pt-5" style="width: 100%; overflow-x: auto;">
+      <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
         <% @generic_rewards.each do |generic_reward| %>
           <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
             <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward">📽️</div>
@@ -23,7 +23,7 @@
           <button class="nav-link active" id="pills-hers-tab" data-bs-toggle="pill" data-bs-target="#pills-hers" type="button" role="tab" aria-controls="pills-hers" aria-selected="true">Yours</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-yours-tab" data-bs-toggle="pill" data-bs-target="#pills-yours" type="button" role="tab" aria-controls="pills-yours" aria-selected="false">Hers</button>
+          <button class="nav-link" id="pills-yours-tab" data-bs-toggle="pill" data-bs-target="#pills-yours" type="button" role="tab" aria-controls="pills-yours" aria-selected="false"><%= @other_person.nickname %></button>
         </li>
       </div>
     </ul>
