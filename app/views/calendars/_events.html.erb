@@ -31,10 +31,10 @@
             <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
           </p>
         <% else %>
-         <p class="mb-0 ms-2 flex-grow-1">
+         <div class="mb-0 ms-2 d-flex">
           <%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
-          <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle avatar-pos", crop: :fill %>
-         </p>
+          <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
+         </div>
         <% end %>
           </p>
       </div>
