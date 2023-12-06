@@ -6,6 +6,7 @@ export default class extends Controller {
   static targets = ["messages","contentInput", "form"];
 
   connect() {
+    console.log(this.currentUserIdValue)
     this.channel = createConsumer().subscriptions.create(
       { channel: "CoupleChannel", id: this.coupleIdValue },
       { received: data => this.#insertMessageAndScrollDown(data) }
@@ -13,6 +14,7 @@ export default class extends Controller {
   }
 
   #insertMessageAndScrollDown(data) {
+    console.log(data)
     this._updateForm(data.form);
 
     if (data.message) {
@@ -44,7 +46,7 @@ export default class extends Controller {
   }
 
   #userStyleClass(currentUserIsSender) {
-    return currentUserIsSender ? "sender-style" : "receiver-style";
+    return !currentUserIsSender ? "sender-style" : "receiver-style";
   }
 
   resetForm(event) {
