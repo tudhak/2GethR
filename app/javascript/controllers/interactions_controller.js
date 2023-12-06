@@ -9,18 +9,6 @@ export default class extends Controller {
 
   connect() {
     console.log(this.soundValue)
-    // this.punchTarget.animate(
-    //   [
-    //     // étapes/keyframes
-    //     { transform: "translateY(0px)" },
-    //     { transform: "translateY(-300px)" },
-    //   ],
-    //   {
-    //     // temporisation
-    //     duration: 1000,
-    //     iterations: Infinity,
-    //   },
-    // );
 
   }
 
