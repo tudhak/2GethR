@@ -159,3 +159,19 @@
     display: inline-block;
   }
 }
+
+.award-container {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.card_generic {
+  flex: 1;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+  margin-bottom: 20px; /* Optional: Add some margin between cards */
+  height: 240px; /* Set a fixed height for the cards */
+  /* Hide overflow content */
+}
