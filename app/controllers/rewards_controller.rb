@@ -5,12 +5,16 @@ class RewardsController < ApplicationController
     @generic_rewards = GenericReward.all
   end
 
+  def show
+    @reward = Reward.find(params[:id])
+  end
+
   def given_rewards
     @rewards = current_user.rewards
     @pending_rewards = current_user.rewards.where(status: 'pending').order(:date)
     @done_rewards = current_user.rewards.where(status: 'done').order(:date)
 
-    render 'given_rewards'
+    redirect_to couple_rewards_path(current_user.couple)
   end
 
   def to_do_rewards
@@ -22,7 +26,7 @@ class RewardsController < ApplicationController
   def mark_as_done
     @reward = Reward.find(params[:id])
     @reward.update(status: 'done')
-    redirect_to mark_as_done_couple_reward_path, notice: 'Reward marked as done.'
+    redirect_to couple_rewards_path(current_user.couple)
   end
 
 
