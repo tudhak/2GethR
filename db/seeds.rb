@@ -364,49 +364,56 @@ GenericTask.create(
   title: "Do the dishes",
   description: "Keeping the kitchen clean is a good medicine.",
   base_score: 40,
-  couple: couple1
+  couple: couple1,
+  emoji: "🫗"
 )
 
 GenericTask.create(
   title: "Iron clothes",
   description: "A little ironing to have presentable outfits.",
   base_score: 25,
-  couple: couple1
+  couple: couple1,
+  emoji: "♨️"
 )
 
 GenericTask.create(
   title: "Full house cleaning",
   description: "Basic hygiene for a better life.",
   base_score: 60,
-  couple: couple1
+  couple: couple1,
+  emoji: "🧽"
 )
 
 GenericTask.create(
   title: "Vacuum",
   description: "Keep the house tidy with some vacuum cleaning.",
   base_score: 15,
-  couple: couple2
+  couple: couple2,
+  emoji: "🧹"
 )
 
 GenericTask.create(
   title: "Prepare the dinner",
   description: "Cook some good food.",
   base_score: 50,
-  couple: couple2
+  couple: couple2,
+  emoji:"🍽️"
 )
 
 GenericTask.create(
   title: "Wash and hang clothes",
   description: "Taking showers is not enough, our clothes also have to smell good.",
   base_score: 35,
-  couple: couple2
+  couple: couple2,
+  emoji: "🧥"
 )
 
 GenericTask.create(
   title: "Change the bedding",
   description: "A fresh bed for a deep sleep.",
   base_score: 30,
-  couple: couple2
+  couple: couple2,
+  emoji: "🛏️"
 )
 
 GenericTask.create(
@@ -432,7 +439,8 @@ Task.create(
   base_score: 15,
   user: user2,
   status: "pending",
-  assigned_to: "Loulou"
+  assigned_to: "Loulou",
+  emoji: "🐟"
 )
 
 Task.create(
@@ -442,7 +450,8 @@ Task.create(
   base_score: 15,
   user: user2,
   status: "pending",
-  assigned_to: "any"
+  assigned_to: "any",
+  emoji: "🪴"
 )
 
 Task.create(
@@ -452,7 +461,8 @@ Task.create(
   base_score: 70,
   user: user2,
   status: "pending",
-  assigned_to: "Loulou"
+  assigned_to: "Loulou",
+  emoji: "🗻"
 )
 
 Task.create(
@@ -462,7 +472,8 @@ Task.create(
   base_score: 15,
   user: user2,
   status: "pending",
-  assigned_to: "any"
+  assigned_to: "any",
+  emoji: "🧹"
 )
 
 Task.create(
@@ -472,7 +483,8 @@ Task.create(
   base_score: 50,
   user: user4,
   status: "pending",
-  assigned_to: "Kim"
+  assigned_to: "Kim",
+  emoji: "🎁"
 )
 
 Task.create(
@@ -482,7 +494,8 @@ Task.create(
   base_score: 40,
   user: user3,
   status: "pending",
-  assigned_to: "Kim"
+  assigned_to: "Kim",
+  emoji: "🍷"
 )
 
 Task.create(
@@ -492,7 +505,8 @@ Task.create(
   base_score: 25,
   user: user3,
   status: "pending",
-  assigned_to: "Ye"
+  assigned_to: "Ye",
+  emoji: "👗"
 )
 
 Task.create(
@@ -502,7 +516,8 @@ Task.create(
   base_score: 25,
   user: user1,
   status: "pending",
-  assigned_to: "any"
+  assigned_to: "any",
+  emoji: "🏪"
 )
 
 Task.create(
@@ -512,7 +527,8 @@ Task.create(
   base_score: 30,
   user: user3,
   status: "pending",
-  assigned_to: "Ye"
+  assigned_to: "Ye",
+  emoji: "🗄️"
 )
 
 Task.create(
@@ -522,7 +538,8 @@ Task.create(
   base_score: 25,
   user: user4,
   status: "pending",
-  assigned_to: "any"
+  assigned_to: "any",
+  emoji: "🎧"
 )
 
 Task.create(
@@ -532,7 +549,8 @@ Task.create(
   base_score: 25,
   user: user4,
   status: "pending",
-  assigned_to: "any"
+  assigned_to: "any",
+  emoji: "💊"
 )
 
 Task.create(
@@ -542,7 +560,8 @@ Task.create(
   base_score: 30,
   user: user1,
   status: "pending",
-  assigned_to: "any"
+  assigned_to: "any",
+  emoji: "🛏️"
 )
 
 Task.create(
@@ -552,7 +571,8 @@ Task.create(
   base_score: 40,
   user: user2,
   status: "pending",
-  assigned_to: "any"
+  assigned_to: "any",
+  emoji: "🫗"
 )
 
 puts "Task instances created."
@@ -561,19 +581,22 @@ GenericReward.create!(
   title: 'Movie Night',
   description: 'Enjoy a movie night together.',
   cost: 50,
-  couple: couple1
+  couple: couple1,
+  emoji: "🎥"
 )
 GenericReward.create!(
   title: 'Dinner Date',
   description: 'Have a romantic dinner at your favorite restaurant.',
   cost: 80,
-  couple: couple1
+  couple: couple1,
+  emoji: "🥂"
 )
 GenericReward.create!(
   title: 'Weekend Getaway',
   description: 'Plan a weekend getaway to relax and unwind.',
   cost: 150,
-  couple: couple1
+  couple: couple1,
+  emoji: "✈️"
 )
 
 Reward.create!(
