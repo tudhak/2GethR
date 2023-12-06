@@ -20,3 +20,11 @@ $orange: #E2646C;
 .bg_orange {
   background-color: $orange;
 }
+
+.underline_purple {
+  border-bottom: 6px solid $orange !important;
+}
+
+.underline_transparent {
+  border-bottom: 6px solid transparent !important;
+}
