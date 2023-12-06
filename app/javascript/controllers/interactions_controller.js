@@ -9,7 +9,6 @@ export default class extends Controller {
     };
   static targets = ["punch", "love", "kiss", "peace", "status"]
 
-
   connect() {
     console.log("hello from interactions controller");
   }

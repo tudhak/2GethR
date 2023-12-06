@@ -3,6 +3,8 @@ class RewardsController < ApplicationController
 
   def index
     @generic_rewards = GenericReward.all
+    @couple = User.select {|user| user.couple_id == current_user.couple_id }
+    @other_person = @couple.select {|user| user != @current_user}.first
   end
 
   def show

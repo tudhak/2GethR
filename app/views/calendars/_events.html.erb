@@ -13,7 +13,7 @@
     <% end %>
 
     <%= link_to task_path(task), class:"text-decoration-none" do %>
-      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center <%= task_border_color %>" data-controller="task-select" data-action="click->task-select#reveal">
+      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative <%= task_border_color %>" data-controller="task-select" data-action="click->task-select#reveal">
         <div class="task-hole">
           <div class="inner-task-hole d-none" data-task-select-target="taskHole"></div>
         </div>
@@ -31,7 +31,7 @@
             <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
           </p>
         <% else %>
-         <p class="mb-0 ms-2 poppins-18 fw-bold flex-grow-1">
+         <p class="mb-0 ms-2 flex-grow-1">
           <%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
           <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle avatar-pos", crop: :fill %>
          </p>

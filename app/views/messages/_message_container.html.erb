@@ -1,5 +1,5 @@
 <div class="message-row d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-content-start' %>">
-  <div class="<%= message.user == current_user ? 'receiver-style' : 'sender-style' %>">
+  <div class="<%= message.user == current_user ? 'receiver-style bg_light_white text-dark' : 'sender-style' %>">
     <%= render "messages/message", message: message %>
   </div>
 </div>

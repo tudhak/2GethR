@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500&display=swap');
 
 // Define fonts for body and headers
-$body-font: 'VT323', sans-serif;
+$body-font: 'Poppins', sans-serif;
 $headers-font: 'VT323', sans-serif;
 
 .font_vt323 {
@@ -18,4 +18,8 @@ $headers-font: 'VT323', sans-serif;
 .poppins-18 {
   font-size: 18px;
   font-family: "Poppins", sans-serif;
+}
+
+.font-size-30px {
+  font-size: 30px;
 }
