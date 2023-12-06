@@ -26,17 +26,34 @@
 
   .action3 {
     font-size: 56px;
-    top: 65px;
-    left: 260px;
+    top: 35px;
+    left: 250px;
   }
 
   .action4 {
     font-size: 56px;
-    top: 165px;
-    left: 305px;
+    top: 150px;
+    left: 300px;
     transform: rotate(45deg);
   }
 
+  .action-sent {
+    top: 35%;
+    left: 30%;
+    font-size: 50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, font-size 0.5s ease-in-out;
+  }
+
+  .displayed {
+    font-size: 150px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+
+//  footer
   //  footer
 
   .Player1, .Player2 {
