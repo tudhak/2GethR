@@ -10,6 +10,7 @@
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:title) %>" data-add-task-target="titleTemplates">
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:description) %>" data-add-task-target="descriptionTemplates">
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:base_score) %>" data-add-task-target="scoreTemplates">
+          <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:emoji) %>" data-add-task-target="emojiTemplates">
           <%= f.input :title,
                       collection: GenericTask.where(couple: current_user.couple).pluck(:title),
                       label: false,
@@ -26,7 +27,6 @@
                       placeholder: "Description",
                       input_html: { data: { add_task_target: "description" } }
                        %>
-          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
           <%= f.input :date,
                       as: :string,
                       input_html: { data: { controller: "datepicker" } },
@@ -41,11 +41,16 @@
                       collection: ["pending", "done"],
                       selected: "pending",
                       placeholder: "Status" %>
+          <%= f.input :emoji,
+                      label: false,
+                      placeholder: "Emoji",
+                      input_html: { data: { add_task_target: "emoji" } }
+                      %>
           <%= f.input :assigned_to,
                       collection: [current_user.nickname, @partner.nickname, "any"],
                       selected: current_user.nickname,
                       placeholder: "Assigned to" %>
-          <%= f.button :submit, "Create task"  %>
+          <%= f.button :submit, "Create task", class:"btn btn-primary"  %>
           <% end %>
       </div>
     </div>

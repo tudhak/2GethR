@@ -3,17 +3,40 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="interactions"
 export default class extends Controller {
 
-  static values = { sound: String }
-  static values = {list: String};
-  static targets = ["punch", "love", "kiss", "peace"]
+  static values = {
+    list: String,
+    sound: String,
+    };
+  static targets = ["punch", "love", "kiss", "peace", "status"]
 
   connect() {
-    console.log(this.soundValue)
-
+    console.log("hello from interactions controller");
   }
 
   dodo(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async playmood() {
+    console.log("fire mood sound");
+    console.log(this.soundValue);
+
+    var audio = new Audio(this.soundValue)
+    audio.play();
+
+    await this.dodo(5000);
+
+    console.log("stop sound");
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  };
+
+
+  async togglestatus() {
+    console.log("fire togglestatus");
+    this.statusTarget.classList.toggle("d-none");
   }
 
   async firepunch() {

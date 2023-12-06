@@ -36,6 +36,6 @@ class GenericTasksController < ApplicationController
   end
 
   def generic_task_params
-    params.require(:generic_task).permit(:title, :description, :base_score, photos: [])
+    params.require(:generic_task).permit(:title, :description, :base_score, :emoji, photos: [])
   end
 end

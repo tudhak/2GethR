@@ -1,0 +1,16 @@
+  <div class="d-flex justify-content-between align-items-center">
+
+    <div class="pt-4">
+      <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="bg-danger mini-avatar"></div>
+      <h4 class="pt-2 text-center" style="font-size:30px;"> <%= @user.score %></h4>
+    </div>
+
+    <div>
+      <h1 class="text-center">Score</h1>
+    </div>
+
+    <div class="pt-4">
+      <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="bg-danger mini-avatar"></div>
+      <h4 class="pt-2 text-center" style="font-size:30px;"> <%= @partner.score %></h4>
+    </div>
+  </div>

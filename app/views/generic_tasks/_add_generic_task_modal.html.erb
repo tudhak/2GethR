@@ -15,10 +15,12 @@
                       label: false,
                       placeholder: "Description"
                        %>
-          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
           <%= f.input :base_score,
                       label: false,
                       placeholder: "Base score" %>
+          <%= f.input :emoji,
+                      label: false,
+                      placeholder: "Emoji" %>
           <%= f.button :submit, "Create task", class:"btn btn-primary"  %>
           <% end %>
       </div>
