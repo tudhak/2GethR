@@ -1,23 +1,40 @@
 
 <div style="height:100%" class="d-flex flex-column justify-content-center"
   data-controller="interactions"
-  data-interactions-sound-value="<%= asset_url("Punch.mp3") %>"
+  data-interactions-sound-value="<%= asset_url("#{@partner_mood_sound}") %>"
   data-interactions-list-value="<%= current_user.received_actions %>">
 
- <div class="flex-grow d-flex justify-content-center position-relative" id="partner-avatar">
-    <div class="rounded-circle position-absolute" style="top:15%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
-    <%= image_tag('partner.png') %>
-    <%= render "show_actions_icons" %>
-    <%= render "show_actions_toggled" %>
+
+<div class="mt-2"
+style="z-index:1000; width:100%; height:75px;position:absolute;top:120px;"
+data-action="click->interactions#togglestatus">
+  <h4 class="text-center" > What's on <%= @partner.nickname %> mind today? </h4>
+  <h4 class="text-center" ><strong>- "<%= @partner.statues.last.main_statue_message %>" -<strong></h4>
+</div>
+
+<div class="p-3 d-none" style="z-index:1000; width:100%; height:490px;position:absolute;top:200px;"
+data-interactions-target="status" >
+  <div class="d-flex flex-column justify-content-center align-items-center p-2 light-blue-background" style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
+    <%= render "show_status", partner: @partner %>
+  </div>
+</div>
+
+
+  <div class="flex-grow d-flex justify-content-center position-relative" id="partner-avatar">
+
+      <div class="rounded-circle position-absolute" style="top:15%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
+      <%= image_tag('partner.png', data: { action: 'click->interactions#playmood' }) %>
+      <%= render "show_actions_icons" %>
+      <%= render "show_actions_toggled" %>
 
   </div>
+
 
   <div class="layout-footer mt-4">
     <div class="d-flex align-items-center justify-content-around gap-3">
 
 
       <%# You - Start %>
-
       <div class="Player1 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
         <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path current_user.photo.key %>')">
           <%= render "show_incoming_actions" %>
