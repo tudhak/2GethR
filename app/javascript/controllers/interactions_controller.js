@@ -4,12 +4,25 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   static values = { sound: String }
+  static values = {list: String};
+  static targets = ["punch", "love", "kiss", "peace"]
 
   connect() {
     console.log(this.soundValue)
+    // this.punchTarget.animate(
+    //   [
+    //     // étapes/keyframes
+    //     { transform: "translateY(0px)" },
+    //     { transform: "translateY(-300px)" },
+    //   ],
+    //   {
+    //     // temporisation
+    //     duration: 1000,
+    //     iterations: Infinity,
+    //   },
+    // );
+
   }
-  static values = {list: String};
-  static targets = ["punch", "love", "kiss", "peace"]
 
   dodo(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
