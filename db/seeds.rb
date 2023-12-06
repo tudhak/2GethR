@@ -106,9 +106,9 @@ puts "Creating Mood Categories"
 
 mood_cat = [
   {title: "stormy", url: "https://gifdb.com/images/high/lightning-strikes-from-different-angles-nmtna33cvgzsao7g.gif"},
-  {title: "rainy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLuW0GIlrYKhIzynv9ITRKUnVzFvDkD5LU9Q&usqp=CAU"},
-  {title: "cloudy", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBeFuUS1xlGXN994FpFwVLhmZgUhEIfl8FDg&usqp=CAU"},
-  {title: "sunny", url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGv6foDhUwklEvERo1MuHykzepVY8cc64ipQ&usqp=CAU"}
+  {title: "rainy", url:"https://usagif.com/wp-content/uploads/rainy-6.gif"},
+  {title: "cloudy", url:"https://media.tenor.com/tQWmGFB9_SYAAAAd/moving-clouds-world-meteorological-day.gif"},
+  {title: "sunny", url:"https://64.media.tumblr.com/c4205bb1f4230f38c8e79b49055a9c67/b4d4f2e5ea6f4d8e-78/s640x960/a14a1b8f48c5d728c499c6ca9f2922003866bb63.gif"}
 ]
 
 mood_cat.each { |mood| MoodCategory.create(title: mood[:title], image_path: mood[:url]) }

@@ -1,19 +1,19 @@
 <div>
 
-  <h2 class="text-center">Couple meteo</h2>
+  <h2 class="text-center">What was the weather like last week?</h2>
+  <div class="d-flex justify-content-between">
 
-  <div class="chart">
-    <h4 class="text-center">Me</h4>
+    <div class="chart" style="width:50%;">
       <canvas data-controller="chart-usermood" data-chart-usermood-usermood-value="<%= @user_mood %>">
       <!-- TODO: Display doughnut chart below -->
       </canvas>
-  </div>
+    </div>
 
-  <div class="chart">
-    <h4 class="text-center">Her</h4>
-    <canvas data-controller="chart-partnermood" data-chart-partnermood-usermood-value="<%= @partner_mood %>">
-      <!-- TODO: Display doughnut chart below -->
-    </canvas>
+    <div class="chart" style="width:50%;">
+      <canvas data-controller="chart-partnermood" data-chart-partnermood-usermood-value="<%= @partner_mood %>">
+        <!-- TODO: Display doughnut chart below -->
+      </canvas>
+    </div>
   </div>
 
 </div>
