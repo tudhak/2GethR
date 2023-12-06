@@ -44,8 +44,7 @@
           <%= f.input :emoji,
                       label: false,
                       placeholder: "Emoji",
-                      input_html: { data: { add_task_target: "emoji" } }
-                      %>
+                      input_html: { data: { add_task_target: "emoji" } } %>
           <%= f.input :assigned_to,
                       collection: [current_user.nickname, @partner.nickname, "any"],
                       selected: current_user.nickname,

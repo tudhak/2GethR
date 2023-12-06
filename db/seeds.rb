@@ -397,7 +397,7 @@ GenericTask.create(
   description: "Cook some good food.",
   base_score: 50,
   couple: couple2,
-  emoji:"🍽️"
+  emoji: "🍽️"
 )
 
 GenericTask.create(
