@@ -2,15 +2,17 @@
 
     <div class="pt-4">
       <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="bg-danger mini-avatar"></div>
-      <h4 class="pt-2 text-center" style="font-size:30px;"> <%= @user.score %></h4>
+      <p class="pt-2 text-center" style="font-size:30px;"> <%= @user.score %></p>
     </div>
 
     <div>
-      <h1 class="text-center">Score</h1>
+      <h2 class="text-center">Score to date</h2>
+      <p class="text-center mb-0" style="font-size:20px;"><%= if @user.score>@partner.score then "You are ahead!" elsif @user.score<@partner.score then "You're behind!" else "It's a draw!" end  %></p>
+        <p class="text-center mx-2" style="font-size:16px;"><%= if @user.score>@partner.score then "Take it easy or get a reward" elsif @user.score<@partner.score then "Get some chores done and catch up!" else "You guys have found a balance!" end  %></p>
     </div>
 
     <div class="pt-4">
       <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="bg-danger mini-avatar"></div>
-      <h4 class="pt-2 text-center" style="font-size:30px;"> <%= @partner.score %></h4>
+      <p class="pt-2 text-center" style="font-size:30px;"> <%= @partner.score %></p>
     </div>
   </div>

@@ -709,7 +709,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user1
+  done_by: user1.nickname
 )
 Task.create(
   title: "Iron clothes",
@@ -720,7 +720,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Full house cleaning",
@@ -731,7 +731,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Prepare the dinner",
@@ -742,7 +742,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Let the dogs out",
@@ -753,7 +753,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 # Semaine 2---------------------------------------------------------------------
 puts "Tasks Couple 1 Week 2 (Seed Jerem)"
@@ -766,7 +766,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Iron clothes",
@@ -777,7 +777,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user1
+  done_by: user1.nickname
 )
 Task.create(
   title: "Full house cleaning",
@@ -788,7 +788,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Prepare the dinner",
@@ -799,7 +799,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Let the dogs out",
@@ -810,7 +810,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user1
+  done_by: user1.nickname
 )
 # Semaine 3---------------------------------------------------------------------
 puts "Tasks Couple 1 Week 3 (Seed Jerem)"
@@ -823,7 +823,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Iron clothes",
@@ -834,7 +834,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Full house cleaning",
@@ -845,7 +845,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user1
+  done_by: user1.nickname
 )
 Task.create(
   title: "Prepare the dinner",
@@ -856,7 +856,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Let the dogs out",
@@ -867,7 +867,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user1
+  done_by: user1.nickname
 )
 # Semaine 4---------------------------------------------------------------------
 puts "Tasks Couple 1 Week 4 (Seed Jerem)"
@@ -880,7 +880,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Iron clothes",
@@ -891,7 +891,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Full house cleaning",
@@ -902,7 +902,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user2
+  done_by: user2.nickname
 )
 Task.create(
   title: "Prepare the dinner",
@@ -913,7 +913,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user1
+  done_by: user1.nickname
 )
 Task.create(
   title: "Let the dogs out",
@@ -924,7 +924,7 @@ Task.create(
   status: "done",
   assigned_to: "any",
   emoji: "🫗",
-  done_by: user1
+  done_by: user1.nickname
 )
 # Ajout de tasks JM : ci-dessus-------------------------------------------------
 puts "Task instances created."
