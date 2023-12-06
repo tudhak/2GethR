@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
   <div class="row" data-controller="calendar">
 
     <input type="hidden" value="<%= Task.where(user: User.where(couple_id: current_user.couple)).pluck(:date).map { |date| date.strftime("%Y-%m-%d")} %>" data-calendar-target="taskDates">
@@ -8,7 +8,7 @@
       <span data-calendar-target="targetDate" data-action="click->calendar#showEvents"><%= date.day %></span>
     <% end %>
 
-    <div class="row mt-4">
+    <div class="row mt-4 p-0">
       <%= render 'calendars/events', tasks: @tasks, rewards: @rewards %>
     </div>
 

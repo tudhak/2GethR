@@ -2,6 +2,7 @@ class CalendarsController < ApplicationController
   def index
     @tasks = Task.where(user: User.where(couple_id: current_user.couple))
     @rewards = Reward.where(user: User.where(couple_id: current_user.couple))
+    @partner = User.where(couple_id: current_user.couple_id).where.not(id: current_user.id).first
 
     if params.present?
       @tasks = Task.where(user: User.where(couple_id: current_user.couple), date: params[:date])
