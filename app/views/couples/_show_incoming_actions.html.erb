@@ -1,0 +1,13 @@
+<%# la ligne du-dessous ne s'affiche pas et sert uniquement à stocker une variable %>
+  <% received_actions_nb = current_user.received_actions.nil? ? 0 : (current_user.received_actions.split(";").size - 1)  %>
+<%# la ligne du-dessous ne s'affiche pas et sert uniquement à stocker une variable %>
+
+<div data-action="click->interactions#unleash">
+  <% if received_actions_nb > 0  %>
+    <%= link_to delete_action_pages_path, data: {turbo_method: :patch}, style:"text-decoration:none; color:inherit;" do %>
+      <div class="incoming d-flex justify-content-center align-items center">
+        <%= received_actions_nb  %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

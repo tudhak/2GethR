@@ -1,15 +1,13 @@
-<div class="p-3">
+<div class="p-3" style="margin-bottom:175px">
 
-  <h1 class="text-center">Dashboard</h1>
+    <div class="score-card p-3"><%= render "score_avatar", user: @user, partner: @partner%> </div>
 
-  <div class="score-card p-2"><%= render "score_global", user: @user, partner: @partner %></div>
+    <div class="score-card p-3"><%= render "score_global", user: @user, partner: @partner%> </div>
 
-  <div class="score-card p-2"><%= render "score_meteo", user: @user, partner: @partner %></div>
+    <div class="score-card p-3"><%= render "score_meteo", user: @user, partner: @partner %></div>
 
-  <div class="score-card p-2"><%= render "score_task1", user: @user, partner: @partner %></div>
+    <div class="score-card p-3"><%= render "score_task", user: @user, partner: @partner %></div>
 
-  <div class="score-card p-2"><%= render "score_task2", user: @user, partner: @partner %></div>
-
-  <div class="score-card p-2"><%= render "score_reward", user: @user, partner: @partner %></div>
+    <div class="score-card p-3"><%= render "score_reward", user: @user, partner: @partner %></div>
 
 </div>

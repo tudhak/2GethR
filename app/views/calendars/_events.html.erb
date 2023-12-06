@@ -1,0 +1,67 @@
+<div data-calendar-target="events">
+
+  <% unless tasks.first.nil? %>
+    <h2 class="text-white ps-3 mb-3">Tasks</h2>
+  <% end %>
+
+  <% tasks.each do |task| %>
+
+   <% if task.status == "pending" %>
+      <% task_border_color = "event-pending" %>
+    <% else %>
+      <% task_border_color = "event-done" %>
+    <% end %>
+
+    <%= link_to task_path(task), class:"text-decoration-none" do %>
+      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center <%= task_border_color %>" data-controller="task-select" data-action="click->task-select#reveal">
+        <div class="task-hole">
+          <div class="inner-task-hole d-none" data-task-select-target="taskHole"></div>
+        </div>
+        <div class="d-flex flex-column me-3">
+          <p class="mb-0 ms-2 poppins-18 fw-bold event-display"><%= task.title %></p>
+          <p class="mb-0 ms-2 poppins-18 event-display"><%= task.base_score %> points</p>
+        </div>
+        <!-- <div class="badge <%= task.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= task.status %></div> -->
+        <% if task.assigned_to == current_user.nickname %>
+          <p class="mb-0 ms-2 poppins-18 fw-bold">
+            <%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
+          </p>
+        <% elsif task.assigned_to == @partner.nickname %>
+          <p class="mb-0 ms-2 poppins-18 fw-bold">
+            <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
+          </p>
+        <% else %>
+         <p class="mb-0 ms-2 flex-grow-1">
+          <%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %>
+          <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle avatar-pos", crop: :fill %>
+         </p>
+        <% end %>
+          </p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% unless rewards.first.nil? %>
+    <h2 class="text-white ps-3 mb-3">Rewards</h2>
+  <% end %>
+
+  <% rewards.each do |reward| %>
+
+    <% if reward.status == "pending" %>
+      <% reward_border_color = "event-pending" %>
+    <% else %>
+      <% reward_border_color = "event-done" %>
+    <% end %>
+
+      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-around align-items-center position-relative <%= reward_border_color %>">
+          <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= reward.emoji %></div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-center">
+              <p class="mb-0 ms-2 poppins-18 fw-bold me-3 event-display"><%= reward.title %></p>
+            <!-- <p class="mb-0 ms-2 poppins-18"><%= reward.date.strftime("%d/%m") %></p> -->
+            </div>
+            <p class="mb-0 ms-2 poppins-18 fw-bold"><%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %></p>
+          </div>
+      </div>
+      <!-- <div class="badge <%= reward.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= reward.status %></div> -->
+  <% end %>

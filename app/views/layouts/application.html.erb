@@ -19,24 +19,16 @@
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
-
-  <body class="layout d-flex flex-column justify-content-center <%= action_name == 'home' && controller_name == 'pages' ? 'bg_pages_home' : 'bg_mood' %>">
-    <%= yield %>
-
-  <!-- <body class="d-flex flex-column justify-content-between">
-    <div>
-      <%= render "shared/navbar", nb_actions: @nb_actions %>
-      <%= render "shared/flashes" %>
-      <p class="notice mb-0"><%= notice %></p>
-      <p class="alert mb-0"><%= alert %></p>
+  <body class="layout <%= action_name == 'home' && controller_name == 'pages' ? 'bg_pages_home' : 'bg_mood' %>">
+    <div class="py-2">
+      <%= render "shared/top_navbar" %>
     </div>
-
-    <div class="min-h-83 mb-layout">
+    <div style="height:calc(100vh - 121px); overflow-y:scroll;">
       <%= yield %>
     </div>
-
-    <%= render "shared/bottom_navbar" %>
-  -->
-
   </body>
+
+
+
+
 </html>

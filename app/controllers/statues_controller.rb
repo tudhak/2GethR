@@ -33,8 +33,6 @@ class StatuesController < ApplicationController
 
   private
 
-  private
-
   #------------ 1. set user, partner, couple------------------------------------
 
     def set_user

@@ -6,7 +6,7 @@
           <% unless generic_task.title == "Other" %>
             <div data-controller="edit-generic">
               <li class="list-group-item shadow-sm border-2 mb-3 generic-task-card">
-                  <span class="d-block mb-2"><strong><%= generic_task.title %></strong></span>
+                  <span class="d-block mb-2"><strong><%= generic_task.title %> <%= generic_task.emoji %></strong></span>
                     <div class="d-flex align-items-center">
                       <i class="fa-solid fa-file me-3"></i>
                       <span> <%= generic_task.description %></span>

@@ -5,7 +5,7 @@
   </div>
   <div class="w-100 p-0 border-0 collapse" id="collapsePendingTasks">
     <% @my_pending_tasks.each do |pending_task| %>
-      <div class="border d-flex justify-content-between align-items-center p-2 shadow-sm">
+      <div class="box-shadow-purple px-3 py-2 d-flex justify-content-between align-items-center dropdown-item">
         <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle" %></span>
         <strong><%= link_to pending_task.title, task_path(pending_task), class: "text-decoration-none text-black dropdown-items" %></strong>
         <span class="dropdown-items"><%= pending_task.date.strftime('%b %d, %Y') %></span>
@@ -15,23 +15,21 @@
   </div>
 
   <div data-controller="task-container" class="task-container mt-5">
-    <div class="d-flex justify-content-center align-items-center">
       <%= simple_form_for :my_params, url: tasks_path, method: :get, html: {class:
-        "mb-3 row row-cols-auto", data: {task_container_target: "form"} } do |f| %>
+        "mb-3 row row-cols-auto justify-content-center", data: {task_container_target: "form"} } do |f| %>
         <%= f.input :assigned_to,
-                    collection: [current_user.nickname, @partner.nickname, "any", "Choose a user"],
-                    selected: "Choose a user",
-                    disabled: "Choose a user",
-                    label: "Assigned to",
+                    collection: [current_user.nickname, @partner.nickname, "any", "Pick a user"],
+                    selected: "Pick a user",
+                    disabled: "Pick a user",
+                    label: false,
                     input_html: { data: { task_container_target: "assignInput", action: "change->task-container#reveal onload->task-container#reveal"} } %>
         <%= f.input :status,
-                  collection: ["pending", "done", "Choose a status"],
-                  selected: "Choose a status",
-                  disabled: "Choose a status",
-                  label: "Status",
+                  collection: ["pending", "done", "Pick a status"],
+                  selected: "Pick a status",
+                  disabled: "Pick a status",
+                  label: false,
                   input_html: { data: { task_container_target: "statusInput", action: "change->task-container#reveal onload->task-container#reveal" } } %>
       <% end %>
-  </div>
 
     <div class="row">
       <%= render 'tasks/content', tasks: @tasks %>

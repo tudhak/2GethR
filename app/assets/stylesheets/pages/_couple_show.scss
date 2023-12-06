@@ -1,3 +1,28 @@
+// animation
+@keyframes floatAnimationX {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes floatAnimationY {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
 .bg_mood {
 
   h1{
@@ -7,44 +32,81 @@
   }
 
   #partner-avatar img {
-    padding-top: 120px;
+    padding-top: 100px;
     width: 45%;
     padding-left: 20px;
-  }
-
-  .layout-footer {
-    color: white;
-  }
-
-  .Player1, .Player2 {
-    font-size:25px;
   }
 
   .action1 {
     font-size: 56px;
     top: 150px;
     left: 40px;
+
+    animation: floatAnimationX 2.2s infinite;
   }
 
   .action2 {
     font-size: 56px;
     top: 35px;
     left: 85px;
+
+    animation: floatAnimationX 2.4s infinite;
   }
 
   .action3 {
     font-size: 56px;
-    top: 65px;
-    left: 260px;
+    top: 35px;
+    left: 250px;
+
+    animation: floatAnimationX 2.6s infinite;
   }
 
   .action4 {
     font-size: 56px;
-    top: 165px;
-    left: 305px;
+    top: 150px;
+    left: 300px;
     transform: rotate(45deg);
+
+    animation: floatAnimationX 2s infinite;
+
   }
+
+  .action-sent {
+    top: 35%;
+    left: 30%;
+    font-size: 50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, font-size 0.5s ease-in-out;
+  }
+
+  .displayed {
+    font-size: 150px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .transparent-header {
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  .light-blue-background {
+    background-color: rgba(140, 87, 158, 0.90) !important;
+    color: whitesmoke
+  }
+
 //  footer
+  //  footer
+
+  .Player1, .Player2 {
+    font-size:25px;
+  }
+
+  .layout-footer {
+    color: white;
+  }
+
   .player1-pp img, .player2-pp img {
     width:50%;
 

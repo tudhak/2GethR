@@ -1,14 +1,16 @@
-<div class="container">
-  <div class="row">
-    <h1 class="mt-3">My calendar</h1>
+<div class="container mt-4">
+  <div class="row" data-controller="calendar">
 
-      <%= month_calendar(events: @tasks) do |date, tasks| %>
-        <%= date.day %>
-        <% tasks.each do |task| %>
-          <div class="tasks-display">
-            <%= link_to task.title, task, class:"event" %>
-          </div>
-        <% end %>
-      <% end %>
+    <input type="hidden" value="<%= Task.where(user: User.where(couple_id: current_user.couple)).pluck(:date).map { |date| date.strftime("%Y-%m-%d")} %>" data-calendar-target="taskDates">
+    <input type="hidden" value="<%= Reward.where(user: User.where(couple_id: current_user.couple)).pluck(:date).map { |date| date.strftime("%Y-%m-%d")} %>" data-calendar-target="rewardDates">
+
+    <%= month_calendar do |date| %>
+      <span data-calendar-target="targetDate" data-action="click->calendar#showEvents"><%= date.day %></span>
+    <% end %>
+
+    <div class="row mt-4 mx-0 p-0 justify-content-center">
+      <%= render 'calendars/events', tasks: @tasks, rewards: @rewards %>
+    </div>
+
   </div>
 </div>

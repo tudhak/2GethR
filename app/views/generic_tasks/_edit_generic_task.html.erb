@@ -1,6 +1,6 @@
 <div class="edit-display edit-form" data-edit-generic-target="editForm">
   <div class="d-flex justify-content-center">
-    <div class="card card-body">
+    <div class="card card-body edit-task">
       <%= simple_form_for generic_task do |f| %>
             <%= f.input :title,
                         label: false,
@@ -10,12 +10,15 @@
                         label: false,
                         placeholder: "Description"
                         %>
-            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
             <%= f.input :base_score,
                         label: false,
                         placeholder: "Base score"
                         %>
-            <%= f.button :submit, "Edit task"  %>
+            <%= f.input :emoji,
+                        label: false,
+                        placeholder: "Emoji"
+                        %>
+            <%= f.button :submit, "Edit task", class:"btn btn-primary" %>
             <% end %>
     </div>
   </div>
