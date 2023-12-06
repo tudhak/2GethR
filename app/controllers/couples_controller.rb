@@ -11,6 +11,7 @@ class CouplesController < ApplicationController
     @status_id_max = @partner.statues.map(&:id).max
     @last_status_id = @partner.statues.last.id
     @partner_mood_img = @partner.statues == [] ? MoodCategory.last.image_path : Statue.find(@status_id_max).mood_category.image_path
+    @partner_mood_sound =   set_mood_sound
     # raise
   end
 
@@ -32,5 +33,16 @@ class CouplesController < ApplicationController
   def set_partner
     set_couple
     @partner = (@couple.users - [current_user])[0]
+  end
+
+  def set_mood_sound
+    mood_title = Statue.find(@status_id_max).mood_category.title
+    mood = {
+      "rainy" => "rain.mp3",
+      "cloudy" => "cloud.mp3",
+      "sunny" => "sun.mp3",
+      "stormy" => "storm.mp3"
+    }
+    mood[mood_title]
   end
 end

@@ -38,13 +38,13 @@ export default class extends Controller {
           // labels: labels,
           datasets: [
             {
-              label: 'Gender Ratio',
+              label: 'Mood %',
               data,
               backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(255, 100, 50)',
+                'rgb(255, 255, 0)',
+                'rgb(46, 20, 104)',
+                'rgb(147, 187, 223)',
+                'rgb(142, 141, 146)',
               ],
               hoverOffset: 4
             }
