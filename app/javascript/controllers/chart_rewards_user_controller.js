@@ -16,33 +16,29 @@ export default class extends Controller {
 
   static values = {
     keystring: String,
-    keynumber: Number
+    keynumber: Number,
+    rewards: Object
   }
-
-  worldPopulation = {
-    "men": 504,
-    "women": 496
-  };
 
   connect() {
 
-    console.log("hello from charttest")
+    console.log("hello from user rewards chart")
 
-    const labels = Object.keys(this.worldPopulation);
-    const data = Object.values(this.worldPopulation);
-    console.log(labels);
-    console.log(data);
+    // const labels = Object.keys(this.worldPopulation);
+    // const data = Object.values(this.worldPopulation);
+    // console.log(labels);
+    // console.log(data);
 
     new Chart(
       this.element,
       {
         type: 'bar',
         data: {
-          labels: labels,
+          labels: ["a", "b", "c"],
           datasets: [
             {
               label: 'Gender Ratio',
-              data,
+              data: [10, 20, 30],
               backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
@@ -51,6 +47,31 @@ export default class extends Controller {
               hoverOffset: 4
             }
           ]
+        },
+
+        options: {
+          scales: {
+            x: {
+              reverse: true
+            }
+          },
+          indexAxis: 'y',
+          elements: {
+            bar: {
+              borderWidth: 2,
+            }
+          },
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'right',
+              display: false
+            },
+            // title: {
+            //   display: true,
+            //   text: 'Chart.js Horizontal Bar Chart'
+            //  }
+          }
         }
       }
     );

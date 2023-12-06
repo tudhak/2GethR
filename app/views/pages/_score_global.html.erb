@@ -1,4 +1,16 @@
+<div>
+  <h4 class="text-center">Last week metrics</h4>
+
   <div class="d-flex justify-content-between">
-    <p>Loulou : <%= user.score %></p>
-    <p>Choucou : <%= partner.score %></p>
+    <div><%= @user_period_tasks_points %></div>
+    <div><p class="text-center">Credits earned</p></div>
+    <div><%= @user_period_tasks_points %></div>
   </div>
+
+  <div class="d-flex justify-content-between">
+    <div><%= @partner_period_tasks_points %></div>
+      <div><p class="text-center">Credits spent</p></div>
+    <div><%= @partner_period_tasks_points %></div>
+  </div>
+
+</div>
