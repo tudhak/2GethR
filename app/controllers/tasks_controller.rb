@@ -30,10 +30,6 @@ class TasksController < ApplicationController
     else
       render partial: "tasks/add_task_modal", status: :unprocessable_entity
     end
-
-    if params[:other_params].present?
-      @description = GenericTask.where(title: params[:other_params][:title]).description
-    end
   end
 
   def update
@@ -74,6 +70,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :date, :base_score, :status, :assigned_to, photos: [])
+    params.require(:task).permit(:title, :description, :date, :base_score, :status, :assigned_to, :emoji, photos: [])
   end
 end

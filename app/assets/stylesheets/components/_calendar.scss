@@ -1,5 +1,11 @@
-.event {
+.task-event {
   color: #8052BD;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.reward-event {
+  color: #D5C6D0;
   font-weight: bolder;
   text-decoration: none;
 }
@@ -12,12 +18,100 @@
   justify-content: center;
 }
 
-@media(max-width: 576px) {
-  .event {
-    font-size: 0.7rem;
-  }
+.rewards-display {
+  border: 0.5px solid #333;
+  background-color: #6B8CD3;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 #calendar-display {
-  width: 80%;
+  width: 100%;
+  border: none;
+}
+
+.calendar-title {
+  color: #fff;
+}
+
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+#week-days {
+  color: #626262;
+  background-color: transparent;
+  border: none;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.simple-calendar {
+  .day {
+    background-color: transparent;
+    height: 20px;
+    width: 20px;
+    border: none;
+    text-align: center;
+    color: #fff;
+  }
+
+  .today {
+
+    span {
+      border: 1.5px solid #CE7E29;
+      border-radius: 50%;
+      padding: 7px;
+      color: #CE7E29;
+    }
+
+    span:hover, span:active {
+      background-color: #fff;
+    }
+  }
+}
+
+.selected {
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  padding: 7px;
+}
+
+.event-pending {
+  border: 1px solid #C96D1D;
+}
+
+.event-done {
+  border: 1px solid #19965A;
+}
+
+.task-hole {
+  backdrop-filter: blur(100px);
+  background-color: #9DA9B8;
+  font-size: 28px;
+  border: 0.5px solid #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-task-hole {
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.event-display {
+  color: #777;
+}
+
+.avatar-pos {
+  position: absolute;
+  right: 40px;
 }

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="add-task"
 export default class extends Controller {
-  static targets = ["firstTitle", "secondTitle", "description", "score", "titleTemplates", "descriptionTemplates", "scoreTemplates"]
+  static targets = ["firstTitle", "secondTitle", "description", "score", "emoji", "titleTemplates", "descriptionTemplates", "scoreTemplates", "emojiTemplates"]
 
   connect() {
   }
@@ -32,11 +32,13 @@ export default class extends Controller {
     const titleList = this.titleTemplatesTarget.value.slice(0, -1).substr(1).replaceAll('"','').split(', ')
     const descriptionList = this.descriptionTemplatesTarget.value.slice(0, -1).substr(1).replaceAll('"','').split(', ')
     const scoreList = this.scoreTemplatesTarget.value.slice(0, -1).substr(1).replaceAll('"','').split(', ')
+    const emojiList = this.emojiTemplatesTarget.value.slice(0, -1).substr(1).replaceAll('"','').split(', ')
 
     for (let i = 0; i <= titleList.length; i++) {
       if (this.firstTitleTarget.value === titleList[i]) {
         this.descriptionTarget.value = descriptionList[i];
         this.scoreTarget.value = scoreList[i];
+        this.emojiTarget.value = emojiList[i];
       }
       else if (this.firstTitleTarget.value === "Other") {
         this.descriptionTarget.value = "";
