@@ -34,7 +34,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :generic_tasks, only: [:index, :update, :create, :destroy]
   resources :generic_rewards, only: [:index, :show, :update, :destroy]
 
   resources :tasks do
