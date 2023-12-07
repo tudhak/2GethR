@@ -10,17 +10,19 @@
     transform: translateX(0);
   }
 }
+
 @keyframes floatAnimationY {
   0% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-18px);
+    transform: translateY(+38px);
   }
   100% {
     transform: translateY(0);
   }
 }
+
 // fin script animation
 
 .bg_mood {
@@ -34,6 +36,7 @@
   #partner-avatar img {
     height: 410px;
     margin-top: 100px;
+    animation: floatAnimationY 5.4s infinite;
   }
 
   .action1 {
