@@ -37,8 +37,8 @@
 
 .delete-task {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 150px;
+  right: 30px;
   font-size: 1.8rem;
   color: #333;
 }
@@ -58,6 +58,7 @@
   background-color: rgb(203, 193, 222);
   border-top-right-radius: 12px;
   border-bottom-left-radius: 12px;
+  position: relative;
 }
 
 .modal-content {

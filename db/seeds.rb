@@ -479,7 +479,7 @@ GenericTask.create(
   description: "Keeping the kitchen clean is a good medicine.",
   base_score: 40,
   couple: couple1,
-  emoji: "🫗"
+  emoji: "🧤"
 )
 
 GenericTask.create(
@@ -503,7 +503,7 @@ GenericTask.create(
   description: "Cook some good food.",
   base_score: 50,
   couple: couple2,
-  emoji:"🍽️"
+  emoji: "🍽️"
 )
 
 GenericTask.create(
@@ -694,7 +694,7 @@ Task.create(
   user: user2,
   status: "pending",
   assigned_to: "any",
-  emoji: "🫗"
+  emoji: "🧤"
 )
 
 # Ajout de tasks JM : ci-dessous------------------------------------------------
@@ -708,7 +708,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user1.nickname
 )
 Task.create(
@@ -719,7 +719,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "♨️",
   done_by: user2.nickname
 )
 Task.create(
@@ -730,7 +730,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧽",
   done_by: user2.nickname
 )
 Task.create(
@@ -741,7 +741,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🍽️",
   done_by: user2.nickname
 )
 Task.create(
@@ -752,7 +752,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🦮",
   done_by: user2.nickname
 )
 # Semaine 2---------------------------------------------------------------------
@@ -765,7 +765,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user2.nickname
 )
 Task.create(
@@ -776,7 +776,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "♨️",
   done_by: user1.nickname
 )
 Task.create(
@@ -787,7 +787,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧽",
   done_by: user2.nickname
 )
 Task.create(
@@ -798,7 +798,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🍽️",
   done_by: user2.nickname
 )
 Task.create(
@@ -809,7 +809,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🦮",
   done_by: user1.nickname
 )
 # Semaine 3---------------------------------------------------------------------
@@ -822,7 +822,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user2.nickname
 )
 Task.create(
@@ -833,7 +833,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "♨️",
   done_by: user2.nickname
 )
 Task.create(
@@ -844,7 +844,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧽",
   done_by: user1.nickname
 )
 Task.create(
@@ -855,7 +855,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🍽️",
   done_by: user2.nickname
 )
 Task.create(
@@ -866,7 +866,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🦮",
   done_by: user1.nickname
 )
 # Semaine 4---------------------------------------------------------------------
@@ -879,7 +879,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user2.nickname
 )
 Task.create(
@@ -890,7 +890,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "♨️",
   done_by: user2.nickname
 )
 Task.create(
@@ -901,7 +901,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧽",
   done_by: user2.nickname
 )
 Task.create(
@@ -912,7 +912,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🍽️",
   done_by: user1.nickname
 )
 Task.create(
@@ -923,7 +923,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🦮",
   done_by: user1.nickname
 )
 # Ajout de tasks JM : ci-dessus-------------------------------------------------

@@ -29,6 +29,7 @@
 #calendar-display {
   width: 100%;
   border: none;
+  background-color: rgba(250, 250, 250, 0.5);
 }
 
 .calendar-title {
@@ -53,7 +54,7 @@
     background-color: transparent;
     border: none;
     text-align: center;
-    color: #fff;
+    color: #000;
     height: 32px;
     width: 32px;
     line-height: 32px;
@@ -62,12 +63,12 @@
   .today {
 
     span {
-      border: 1.5px solid #CE7E29;
+      border: 1.5px solid $purple;
       border-radius: 50%;
       width: 30px;
       height: 30px;
       line-height: 30px;
-      color: #CE7E29;
+      color: $purple;
       text-align: center;
       display: inline-block;
     }
@@ -79,7 +80,7 @@
 }
 
 .selected {
-  border: 1.5px solid #fff;
+  border: 1.5px solid #000;
   border-radius: 50%;
   text-align: center;
   width: 30px;
@@ -117,7 +118,7 @@
 }
 
 .event-display {
-  color: #777;
+  color: #333;
 }
 
 .avatar-pos {
