@@ -4,22 +4,25 @@
   data-interactions-sound-value="<%= asset_url("#{@partner_mood_sound}") %>"
   data-interactions-list-value="<%= current_user.received_actions %>">
 
-
-<div class="mt-2"
-style="z-index:1000; width:100%; height:75px;position:absolute;top:120px;"
-data-action="click->interactions#togglestatus">
-  <h4 class="text-center font-size-30px mb-0" > What's on <%= @partner.nickname %> mind today? </h4>
-  <h4 class="text-center font-size-30px mb-0" ><strong>- "<%= @partner.statues.last.main_statue_message %>" -<strong></h4>
-</div>
-
-<div class="p-3 d-none" style="z-index:1000; width:100%; height:490px;position:absolute;top:200px;"
-data-interactions-target="status" >
-  <div class="d-flex flex-column justify-content-center align-items-center p-2 light-blue-background" style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
-    <%= render "show_status", partner: @partner %>
+  <%# 1. Main status message - Start %>
+  <div class="mt-2"
+  style="z-index:1000; width:100%; height:75px;position:absolute;top:120px;"
+  data-action="click->interactions#togglestatus">
+    <h4 class="text-center font-size-30px mb-0" > What's on <%= @partner.nickname %> mind today? </h4>
+    <h4 class="text-center font-size-30px mb-0" ><strong>- "<%= @partner.statues.last.main_statue_message %>" -<strong></h4>
   </div>
-</div>
+  <%# 1. Main status message - End %>
 
+  <%# 2. Detailed status messages - Click->toggleDisplay - Start %>
+  <div class="p-3 d-none" style="z-index:1000; width:100%; height:490px;position:absolute;top:200px;"
+  data-interactions-target="status" >
+    <div class="d-flex flex-column justify-content-center align-items-center p-2 light-background text-dark" style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
+      <%= render "show_status", partner: @partner %>
+    </div>
+  </div>
+  <%# 2. Detailed status messages - Click->toggleDisplay - End %>
 
+  <%# 3. Avatar & Actions %>
   <div class="flex-grow d-flex justify-content-center position-relative" id="partner-avatar">
 
       <div class="rounded-circle position-absolute" style="top:15%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
@@ -28,13 +31,13 @@ data-interactions-target="status" >
       <%= render "show_actions_toggled" %>
 
   </div>
+  <%# 3. Avatar & Actions %>
 
-
+  <%# 4. Footer score %>
   <div class="layout-footer mt-4">
     <div class="d-flex align-items-center justify-content-around gap-3">
 
-
-      <%# You - Start %>
+      <%# 4.1. Footer You - Start %>
       <div class="Player1 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
         <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path current_user.photo.key %>')">
           <%= render "show_incoming_actions" %>
@@ -42,18 +45,20 @@ data-interactions-target="status" >
         You
         <div class="score-p1"><%= "#{current_user.score}pts" %></div>
       </div>
-      <%# You - End %>
+      <%# 4.1. Footer You - End %>
 
-      <%# Partner - Start %>
       <div class="vs poppins-20 fw-bold">vs</div>
 
+      <%# 4.2. Footer Partner - Start %>
       <div class="Player2 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
         <div class="mini-avatar player2-pp" style="background-image: url('<%= cl_image_path @partner.photo.key %>')"></div>
         <%= @partner.nickname %>
         <div class="score-p2"><%= "#{@partner.score}pts" %></div>
       </div>
-      <%# Partner - End %>
+      <%# 4.2. Footer Partner - End %>
 
     </div>
   </div>
+  <%# 4. Footer score %>
+
 </div>
