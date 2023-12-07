@@ -1,24 +1,30 @@
 <div class="container">
   <div class="row px-3">
-    <h2 class="text-center my-3">Your list of generic tasks</h2>
-      <ul class="list-group mb-3">
+    <h1 class="text-center my-3 text-white">Your list of generic tasks</h1>
+      <ul class="mb-3 px-0">
         <% @generic_tasks.each do |generic_task| %>
           <% unless generic_task.title == "Other" %>
             <div data-controller="edit-generic">
-              <li class="list-group-item shadow-sm border-2 mb-3 generic-task-card">
-                  <span class="d-block mb-2"><strong><%= generic_task.title %> <%= generic_task.emoji %></strong></span>
-                    <div class="d-flex align-items-center">
-                      <i class="fa-solid fa-file me-3"></i>
-                      <span> <%= generic_task.description %></span>
+              <li class="list-group-item box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
+                <div class="d-flex">
+                  <div class="d-flex align-items-center justify-content-center emoji_reward_small flex-shrink-0"><%= generic_task.emoji %></div>
+                  <div class="d-flex flex-column align-items-start ms-2">
+                    <div class="d-flex align-items-center justify-content-start">
+                      <p class="mb-0 poppins-18 fw-bold text-dark"><%= generic_task.title %></p>
+                      <div class="ms-3 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-star text-orange me-1"></i>
+                        <p class="mb-0"><%= generic_task.base_score %></p>
+                      </div>
                     </div>
                     <div class="d-flex align-items-center">
-                      <i class="fa-solid fa-star me-3"></i>
-                      <span> <%= generic_task.base_score %></span>
+                      <span><%= generic_task.description %></span>
                     </div>
-                    <%= link_to generic_task_path(generic_task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-generic-task border-white" do %>
-                      <i class="fa-solid fa-xmark"></i>
-                    <% end %>
-                    <button class="border-0 generic-task-edit bg-transparent" data-edit-generic-target="button", data-action="click->edit-generic#display"><i class="fa-solid fa-pen"></i></button>
+                  </div>
+                </div>
+                  <%= link_to generic_task_path(generic_task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-generic-task border-white" do %>
+                    <i class="fa-solid fa-xmark"></i>
+                  <% end %>
+                  <button class="border-0 generic-task-edit bg-transparent" data-edit-generic-target="button", data-action="click->edit-generic#display"><i class="fa-solid fa-pen"></i></button>
               </li>
               <%= render 'generic_tasks/edit_generic_task', generic_task: generic_task %>
             </div>
@@ -29,7 +35,7 @@
         <%= link_to tasks_path, class:"bg-secondary text-decoration-none text-white rounded-circle link-button" do %>
          <i class="fa-solid fa-backward"></i>
         <% end %>
-        <a class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#addGenericTaskModal"><i class="fa-solid fa-plus"></i></a>
+        <a class="bg_orange rounded-circle link-button text-white" data-bs-toggle="modal" data-bs-target="#addGenericTaskModal"><i class="fa-solid fa-plus"></i></a>
         <%= render 'generic_tasks/add_generic_task_modal', generic_task: @generic_task %>
       </div>
   </div>

@@ -64,6 +64,12 @@ export default class extends Controller {
           ]
         },
         options: {
+          scales: {
+            r: {
+                suggestedMin: 0,
+                suggestedMax: 1
+            }
+          },
           elements: {
             line: {
               borderWidth: 3

@@ -4,8 +4,31 @@
 $red: #FD1015;
 $blue: #0D6EFD;
 $yellow: #FFC65A;
-$orange: #E2646C;
 $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
-$purple: #8059ff
+
+// color Together
+
+$purple: #8059ff;
+$orange: rgb(226, 100, 108);
+
+.text-dark {
+  color: #000000;
+}
+
+.text-orange {
+  color: $orange;
+}
+
+.bg_orange {
+  background-color: $orange;
+}
+
+.underline_purple {
+  border-bottom: 6px solid $orange !important;
+}
+
+.underline_transparent {
+  border-bottom: 6px solid transparent !important;
+}

@@ -1,6 +1,6 @@
 <div data-task-container-target="content" class="my-4">
 
-      <div class="my-tasks" data-bs-toggle="collapse" data-bs-target="#collapseTodayTasks" aria-expanded="false" aria-controls="collapseTodayTasks">
+      <div class="my-tasks bg_light_white text-dark" data-bs-toggle="collapse" data-bs-target="#collapseTodayTasks" aria-expanded="false" aria-controls="collapseTodayTasks">
         <p class="m-0 p-3">Today</p>
       </div>
 
@@ -8,7 +8,7 @@
           <% unless tasks.empty? %>
             <% tasks.each do |task| %>
               <% if task.date == Date.today %>
-                <%= link_to task_path(task), class:"text-decoration-none text-black" do %>
+                <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
                   <div class="border d-flex justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>
@@ -19,7 +19,7 @@
           <% end %>
         </div>
 
-      <div class="my-tasks mt-4" data-bs-toggle="collapse" data-bs-target="#collapseWeekTasks" aria-expanded="false" aria-controls="collapseWeekTasks">
+      <div class="my-tasks bg_light_white text-dark mt-4" data-bs-toggle="collapse" data-bs-target="#collapseWeekTasks" aria-expanded="false" aria-controls="collapseWeekTasks">
         <p class="m-0 p-3">This week</p>
       </div>
 
@@ -27,7 +27,7 @@
           <% unless tasks.empty? %>
             <% tasks.sort_by{ |item| item.date }.each do |task| %>
               <% if Date.today.all_week.to_a.include?(task.date) %>
-                <%= link_to task_path(task), class:"text-decoration-none text-black" do %>
+                <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
                   <div class="border d-flex justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>
@@ -39,7 +39,7 @@
         </div>
 
 
-     <div class="my-tasks mt-4" data-bs-toggle="collapse" data-bs-target="#collapseEarlierTasks" aria-expanded="false" aria-controls="collapseEarlierTasks">
+     <div class="my-tasks mt-4 bg_light_white text-dark" data-bs-toggle="collapse" data-bs-target="#collapseEarlierTasks" aria-expanded="false" aria-controls="collapseEarlierTasks">
         <p class="m-0 p-3">Earlier</p>
       </div>
 
@@ -47,7 +47,7 @@
           <% unless tasks.empty? %>
             <% tasks.sort_by{ |item| item.date }.each do |task| %>
               <% if task.date < Date.today.at_beginning_of_week %>
-                <%= link_to task_path(task), class:"text-decoration-none text-black" do %>
+                <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
                   <div class="border d-flex justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>
@@ -58,7 +58,7 @@
           <% end %>
         </div>
 
-      <div class="my-tasks my-4" data-bs-toggle="collapse" data-bs-target="#collapseLaterTasks" aria-expanded="false" aria-controls="collapseLaterTasks">
+      <div class="my-tasks my-4 bg_light_white text-dark" data-bs-toggle="collapse" data-bs-target="#collapseLaterTasks" aria-expanded="false" aria-controls="collapseLaterTasks">
         <p class="m-0 p-3">Later</p>
       </div>
 
@@ -66,7 +66,7 @@
           <% unless tasks.empty? %>
             <% tasks.sort_by{ |item| item.date }.each do |task| %>
               <% if task.date > Date.today.at_end_of_week %>
-                <%= link_to task_path(task), class:"text-decoration-none text-black" do %>
+                <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
                   <div class="border d-flex justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>

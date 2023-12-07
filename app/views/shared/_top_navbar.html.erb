@@ -1,42 +1,40 @@
 <% if user_signed_in? %>
   <div class="layout-header">
     <div class="d-flex flex-column align-items-center" style="width:100%;">
-
       <div style="width:100%;" class="px-3 d-flex justify-content-between align-items-center">
-        <%= link_to couple_path(current_user.couple) do %>
+        <%= link_to couple_path(current_user.couple), class: "text-decoration-none" do %>
           <h1 class="font_vt323">2gethr</h1>
         <% end %>
         <div> <%# Profile drop down - start %>
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag('icons/profile.svg') %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "My profile", statue_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Account settings", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </div> <%# Profile drop down - end %>
+          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= image_tag('icons/profile.svg') %>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "My profile", statue_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Account settings", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          </div>
+        </div> <%# Profile drop down - end %>
       </div>
-
       <div class="navbar-top d-flex align-items-center gap-4 mt-1">
 
-        <%= link_to chatroom_couple_path(current_user.couple) do %>
+        <%= link_to chatroom_couple_path(current_user.couple), class: action_name == 'chatroom' && controller_name == 'couples' ? "underline_purple pb-1" : "pb-1 underline_transparent" do %>
         <%= image_tag('icons/chat.svg') %>
         <% end%>
 
-        <%= link_to tasks_path do %>
+        <%= link_to tasks_path, class: action_name == 'index' && controller_name == 'tasks' ? "underline_purple pb-1" : "pb-1 underline_transparent" do %>
         <%= image_tag('icons/task.svg') %>
         <% end%>
 
-        <%= link_to calendars_path do %>
+        <%= link_to calendars_path, class: action_name == 'index' && controller_name == 'calendars'  ? "underline_purple pb-1" : "pb-1 underline_transparent" do %>
         <%= image_tag('icons/calendar.svg') %>
         <% end%>
 
-        <%= link_to couple_rewards_path(current_user.couple) do %>
+        <%= link_to couple_rewards_path(current_user.couple), class: action_name == 'index' && controller_name == 'rewards'  ? "underline_purple pb-1" : "pb-1 underline_transparent" do %>
         <%= image_tag('icons/reward.svg') %>
         <% end%>
 
-        <%= link_to score_path(current_user.couple) do %>
+        <%= link_to score_path(current_user.couple), class: action_name == 'score' && controller_name == 'pages'  ? "underline_purple pb-1" : "pb-1 underline_transparent" do %>
         <%= image_tag('icons/analytics.svg') %>
         <% end%>
 

@@ -1,13 +1,13 @@
-<div class="py-5" style="overflow: scroll;">
+<div class="" style="overflow: scroll;">
   <div class="container text-white">
-    <h1 class="text-white text-left poppins-20">Ask a reward to your partner</h1>
+    <h1 class="text-white text-left">Ask a reward to your partner</h1>
     <div style="width: 94vw; overflow-x: hidden;">
       <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
         <% @generic_rewards.each do |generic_reward| %>
           <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
             <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
             <div class="div-blur-transparent position-absolute"></div>
-            <h2 class="text-white text-center mt-3"><%= generic_reward.title %></h2>
+            <h2 class="text-center mt-3 text-dark"><%= generic_reward.title %></h2>
           <% end %>
         <% end %>
       </div>
@@ -37,7 +37,7 @@
               <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_for_me.title %></p>
             </div>
             <div class="badge <%= rewards_for_me.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_for_me.status %></div>
-            <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_for_me.date.strftime("%d/%m") %></p>
+            <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= rewards_for_me.date.strftime("%d/%m") %></p>
              <% end %>
           </div>
         <% end %>
@@ -52,7 +52,7 @@
               <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_to_do.title %></p>
             </div>
             <div class="badge <%= rewards_to_do.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_to_do.status %></div>
-            <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_to_do.date.strftime("%d/%m") %></p>
+            <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= rewards_to_do.date.strftime("%d/%m") %></p>
             <% end %>
           </div>
         <% end %>
