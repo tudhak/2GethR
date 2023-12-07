@@ -6,6 +6,10 @@
   color: #333;
 }
 
+.delete-generic-task:active {
+  color: $orange;
+}
+
 .generic-task-card {
   position: relative;
 }
@@ -14,11 +18,29 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #333;
+}
+
+.generic-task-edit:active {
+  color: $orange;
 }
 
 .edit-display {
   display: none;
   transition: all .35s ease;
+}
+
+.generic-task-container {
+  height: 200px;
+  overflow-y: auto;
+  width: 95%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.generic-task-main-container {
+  overflow-y: hidden;
+  width: 94vw;
 }
