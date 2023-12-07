@@ -41,10 +41,10 @@ export default class extends Controller {
               label: 'Mood %',
               data,
               backgroundColor: [
-                'rgb(255, 255, 0)',
-                'rgb(46, 20, 104)',
-                'rgb(147, 187, 223)',
-                'rgb(142, 141, 146)',
+                'rgb(32, 13, 92)',
+                'rgb(128, 89, 255)',
+                'rgb(93, 89, 96)',
+                'rgb(226, 100, 108)',
               ],
               hoverOffset: 4
             }

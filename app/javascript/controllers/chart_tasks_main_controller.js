@@ -41,34 +41,55 @@ export default class extends Controller {
           labels: labels,
           datasets: [
             {
-              label: 'user',
+              label: 'You',
               data: data_user,
               fill: true,
-              backgroungColor: 'rgb(255, 99, 132, 0.2)',
-              borderColor: 'rgb(255, 99, 132)',
-              pointBackgroundColor: 'rgb(255, 99, 132)',
+              backgroungColor: 'rgb(128, 89, 255, 0.2)',
+              borderColor: 'rgb(128, 89, 255)',
+              pointBackgroundColor: 'rgb(128, 89, 255)',
               pointBorderColor: '#fff',
               pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgb(255, 99, 132)'
+              pointHoverBorderColor: 'rgb(128, 89, 255)'
             }, {
-              label: 'partner',
+              label: 'Your partner',
               data: data_partner,
               fill: true,
-              backgroungColor: 'rgb(155, 200, 30, 0.2)',
-              borderColor: 'rgb(155, 200, 30)',
-              pointBackgroundColor: 'rgb(155, 200, 30)',
+              backgroungColor: 'rgb(226, 100, 108, 0.2)',
+              borderColor: 'rgb(226, 100, 108)',
+              pointBackgroundColor: 'rgb(226, 100, 108)',
               pointBorderColor: '#fff',
               pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgb(155, 200, 30)'
+              pointHoverBorderColor: 'rgb(226, 100, 108)'
             }
           ]
         },
         options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
           scales: {
             r: {
-                suggestedMin: 0,
-                suggestedMax: 1
-            }
+              suggestedMin: 0,
+              suggestedMax: 1,
+              pointLabels: { // nom de colonne
+                font: {
+                  size: 18
+                }
+              },
+              ticks: {
+                // étiquettes graduation
+              },
+              angleLines: {
+                color: 'rgba(100, 100, 100, 0.8)'
+              },
+            },
+          },
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 1,
+            stepSize: 0.2,
           },
           elements: {
             line: {

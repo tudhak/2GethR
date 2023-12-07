@@ -40,9 +40,9 @@ export default class extends Controller {
               label: 'Gender Ratio',
               data: [10, 20, 30],
               backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                'rgb(32, 13, 92)',
+                'rgb(128, 89, 255)',
+                'rgb(226, 100, 108)'
               ],
               hoverOffset: 4
             }
