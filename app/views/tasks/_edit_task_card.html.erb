@@ -4,32 +4,44 @@
       <%= simple_form_for task do |f| %>
             <%= f.input :title,
                         label: false,
-                        placeholder: "Title"
+                        placeholder: "Title",
+                        input_html: { class: "input-field" }
                         %>
             <%= f.input :description,
                         label: false,
-                        placeholder: "Description"
+                        placeholder: "Description",
+                        input_html: { class: "input-field" }
                         %>
-            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true },
+                        input_html: { class: "input-field" }
+                        %>
             <%= f.input :date,
                         as: :string,
                         label: false,
-                        placeholder: "Date"
+                        placeholder: "Date",
+                        input_html: { class: "input-field" }
                         %>
             <%= f.input :base_score,
                         label: false,
-                        placeholder: "Base score"
+                        placeholder: "Base score",
+                        input_html: { class: "input-field" }
                         %>
             <%= f.input :status,
                         collection: ["pending", "done"],
                         selected: "pending",
-                        placeholder: "Status" %>
+                        placeholder: "Status",
+                        input_html: { class: "input-field" }
+                        %>
             <%= f.input :emoji,
-                        placeholder: "Emoji" %>
+                        placeholder: "Emoji",
+                        input_html: { class: "input-field" }
+                        %>
             <%= f.input :assigned_to,
                         collection: [current_user.nickname, partner.nickname, "any"],
                         selected: current_user.nickname,
-                        placeholder: "Assigned to" %>
+                        placeholder: "Assigned to",
+                        input_html: { class: "input-field" }
+                        %>
             <%= f.button :submit, "Edit task", class:"btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none"  %>
             <% end %>
     </div>
