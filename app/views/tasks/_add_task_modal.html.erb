@@ -15,40 +15,43 @@
                       collection: GenericTask.where(couple: current_user.couple).pluck(:title),
                       label: false,
                       placeholder: "Title",
-                      input_html: { data: { add_task_target: "firstTitle",
+                      input_html: { class: "input-field", data: { add_task_target: "firstTitle",
                       action: "change->add-task#toggle add-task#untoggle add-task#fill add-task#autoComplete"
                       } } %>
           <%= f.input :title,
                       placeholder: "Please enter the title of your new task",
                       label: false,
-                      input_html: { class: "d-none", value: "", data: { add_task_target: "secondTitle"} } %>
+                      input_html: { class: "d-none input-field", value: "", data: { add_task_target: "secondTitle"} } %>
           <%= f.input :description,
                       label: false,
                       placeholder: "Description",
-                      input_html: { data: { add_task_target: "description" } }
+                      input_html: { class: "input-field", data: { add_task_target: "description" } }
                        %>
           <%= f.input :date,
                       as: :string,
-                      input_html: { data: { controller: "datepicker" } },
+                      input_html: { class: "input-field", data: { controller: "datepicker" } },
                       label: false,
                       placeholder: "Date"
                       %>
           <%= f.input :base_score,
                       label: false,
                       placeholder: "Base score",
-                      input_html: { data: { add_task_target: "score"} }  %>
+                      input_html: { class: "input-field", data: { add_task_target: "score" } }  %>
           <%= f.input :status,
                       collection: ["pending", "done"],
                       selected: "pending",
-                      placeholder: "Status" %>
+                      placeholder: "Status",
+                      input_html: { class: "input-field" }  %>
           <%= f.input :emoji,
                       label: false,
                       placeholder: "Emoji",
-                      input_html: { data: { add_task_target: "emoji" } } %>
+                      input_html: { class: "input-field", data: { add_task_target: "emoji" } } %>
           <%= f.input :assigned_to,
                       collection: [current_user.nickname, @partner.nickname, "any"],
                       selected: current_user.nickname,
-                      placeholder: "Assigned to" %>
+                      placeholder: "Assigned to",
+                      input_html: { class: "input-field" }
+                      %>
           <%= f.button :submit, "Create task", class:"btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none"  %>
           <% end %>
       </div>

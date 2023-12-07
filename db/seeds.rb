@@ -955,8 +955,8 @@ GenericReward.create!(
   title: 'Massage Ayurvedique',
   description: 'Give me a long oily massage',
   cost: 50,
-  couple: couple1,
-  emoji: "😍​"
+  couple: couple2,
+  emoji: "🤲"
 )
 
 GenericReward.create!(
@@ -975,47 +975,20 @@ GenericReward.create!(
   emoji: "🤮​​"
 )
 
-
-GenericReward.create!(
-  title: 'Massage Ayurvedique',
-  description: 'Give me a long oily massage',
-  cost: 50,
-  couple: couple2
-)
-
 GenericReward.create!(
   title: 'Make the brunch',
   description: 'Make a huge brunch for us to enjoy together.',
   cost: 50,
-  couple: couple2
-)
-
-GenericReward.create!(
-  title: 'Movie Night',
-  description: 'Enjoy a movie night together. I choose the movie',
-  cost: 25,
-  couple: couple2
-)
-
-GenericReward.create!(
-  title: 'Weekend Getaway',
-  description: 'Plan a weekend getaway for us. Surprise me',
-  cost: 150,
-  couple: couple2
-)
-
-GenericReward.create!(
-  title: 'Dinner Date',
-  description: 'Find a good restaurant and book it for us.',
-  cost: 50,
-  couple: couple2
+  couple: couple2,
+  emoji: "⭐"
 )
 
 GenericReward.create!(
   title: 'Buy me a gift',
   description: 'Surprise me',
   cost: 100,
-  couple: couple2
+  couple: couple2,
+  emoji: "🎁"
   )
 
 Reward.create!(
