@@ -6,25 +6,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <%# <%= raise %>
           <div class="d-flex justify-content-center">
             <div class="card card-body edit-task">
               <%= simple_form_for generic_task do |f| %>
                     <%= f.input :title,
                                 label: false,
-                                placeholder: "Title"
+                                placeholder: "Title",
+                                input_html: { class: "input-field" }
                                 %>
                     <%= f.input :description,
                                 label: false,
-                                placeholder: "Description"
+                                placeholder: "Description",
+                                input_html: { class: "input-field" }
                                 %>
                     <%= f.input :base_score,
                                 label: false,
-                                placeholder: "Base score"
+                                placeholder: "Base score",
+                                input_html: { class: "input-field" }
                                 %>
                     <%= f.input :emoji,
                                 label: false,
-                                placeholder: "Emoji"
+                                placeholder: "Emoji",
+                                input_html: { class: "input-field" }
                                 %>
                     <%= f.button :submit, "Edit task", class:"btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none" %>
                     <% end %>
