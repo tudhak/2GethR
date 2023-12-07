@@ -4,11 +4,10 @@ class TasksController < ApplicationController
   before_action :set_partner, only: [:index, :show]
 
   def index
-    # @tasks = Task.where(user: User.where(couple_id: @couple.id))
     @tasks = ""
     @my_pending_tasks = Task.where(assigned_to: current_user.nickname).where(status: "pending").order(date: :desc)
     @task = Task.new
-    @generic_tasks = GenericTask.where(couple: current_user.couple)
+    @generic_tasks = GenericTask.where(couple: current_user.couple).order(:created_at)
     @generic_task = GenericTask.new
 
     if params[:my_params].present?
