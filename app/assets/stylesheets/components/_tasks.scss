@@ -39,8 +39,15 @@
   color: #333;
 }
 
-.link-button {
-  padding: 6px 12px;
+.add-task-button {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  background-color: $orange;
+  border: 1px solid $orange;
+  text-align: center;
+  color: white;
 }
 
 .card-body-task {
