@@ -8,6 +8,7 @@ class TasksController < ApplicationController
     @tasks = ""
     @my_pending_tasks = Task.where(assigned_to: current_user.nickname).where(status: "pending").order(date: :desc)
     @task = Task.new
+    @generic_tasks = GenericTask.where(couple: current_user.couple)
 
     if params[:my_params].present?
       @tasks = Task.where(assigned_to: params[:my_params][:assigned_to], status: params[:my_params][:status], user: [current_user, @partner])

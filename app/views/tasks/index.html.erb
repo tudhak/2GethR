@@ -1,5 +1,60 @@
 <div class="container mt-3">
 
+  <div style="width: 94vw; overflow-x: hidden;">
+    <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
+      <% @generic_tasks.each do |generic_task| %>
+        <% unless generic_task.title == "Other" %>
+          <div class="card-task me-4 text-decoration-none outline-none position-relative box-shadow-purple">
+            <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward">📽️</div>
+            <div class="div-blur-transparent position-absolute"></div>
+            <div class="d-flex flex-column">
+              <div class="d-flex flex-row justify-content-between">
+                <i class="fa-solid fa-file-signature"></i>
+                <h2 class="text-center mt-3 text-dark"><%= generic_task.title %></h2>
+              </div>
+              <div class="d-flex flex-row justify-content-between">
+                <i class="fa-solid fa-file me-3"></i>
+                <span> <%= generic_task.description %></span>
+              </div>
+              <div class="d-flex flex-row justify-content-between">
+                <i class="fa-solid fa-star me-3"></i>
+                <span> <%= generic_task.base_score %></span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div style="width: 94vw; overflow-x: hidden;">
+    <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
+      <% @generic_tasks.each do |generic_task| %>
+        <% unless generic_task.title == "Other" %>
+          <div data-controller="edit-generic">
+            <div class="card-task me-4 shadow-sm border-2 mb-3">
+                <span class="d-block mb-2"><strong><%= generic_task.title %> <%= generic_task.emoji %></strong></span>
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-file me-3"></i>
+                    <span> <%= generic_task.description %></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-star me-3"></i>
+                    <span> <%= generic_task.base_score %></span>
+                  </div>
+                  <%= link_to generic_task_path(generic_task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-generic-task border-white" do %>
+                    <i class="fa-solid fa-xmark"></i>
+                  <% end %>
+                  <button class="border-0 generic-task-edit bg-transparent" data-edit-generic-target="button", data-action="click->edit-generic#display"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            <%= render 'generic_tasks/edit_generic_task', generic_task: generic_task %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+
   <div class="my-tasks bg_light_white text-dark" data-bs-toggle="collapse" data-bs-target="#collapsePendingTasks" aria-expanded="false" aria-controls="collapsePendingTasks">
     <p class="m-0 p-3">My pending tasks</p>
   </div>
