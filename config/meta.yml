@@ -1,0 +1,11 @@
+# config/meta.yml
+
+meta_product_name: "2GethR"
+
+meta_title: "2GethR – Play together, against each other"
+
+meta_description: "An all in one Gamify Apllication for couples that like to compete and have fun"
+
+meta_image: "apple-icon.png" # should exist in `app/assets/images/`
+
+twitter_account: "@product_twitter_account" # required for Twitter Cards

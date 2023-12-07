@@ -28,7 +28,6 @@
   h1{
     color: white;
     font-size: 48px;
-
   }
 
   #partner-avatar img {
@@ -90,9 +89,9 @@
     border: none !important;
   }
 
-  .light-blue-background {
-    background-color: rgba(140, 87, 158, 0.90) !important;
-    color: whitesmoke
+  .light-background {
+    background-color: rgba(245, 245, 245, 0.95) !important;
+    background-blend-mode: multiply;
   }
 
 //  footer

@@ -61,15 +61,15 @@ class PagesController < ApplicationController
 
   def score
     home
-    # @user_mood = mood_summary(@user)
-    # @partner_mood = mood_summary(@partner)
-    @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
-    @partner_mood = {sunny: 0.3, stormy: 0.1, rainy: 0.2, cloudy: 0.4 }.to_json
+    @user_mood = mood_summary(@user)[0].map do |mood, duration| [mood, duration / mood_summary(@user)[1]] end.compact.to_h.to_json
+    @partner_mood = mood_summary(@partner)[0].map do |mood, duration| [mood, duration / mood_summary(@partner)[1]] end.compact.to_h.to_json
+    # @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
+    # @partner_mood = {sunny: 0.3, stormy: 0.1, rainy: 0.2, cloudy: 0.4 }.to_json
 
-    # @user_tasks = tasks_metrics["user_prop"].to_json
-    # @partner_tasks = tasks_metrics["partner_prop"].to_json
-    @user_tasks = {dishwashing: 0.3, laundry: 0.6, cleaning: 0.4, cooking: 0.6, shopping: 0.5 }.to_json
-    @partner_tasks = {dishwashing: 0.7, laundry: 0.4, cleaning: 0.8, cooking: 0.4, shopping: 0.5 }.to_json
+    @user_tasks = tasks_metrics["user_prop"].to_json
+    @partner_tasks = tasks_metrics["partner_prop"].to_json
+    # @user_tasks = {dishwashing: 0.3, laundry: 0.6, cleaning: 0.4, cooking: 0.6, shopping: 0.5 }.to_json
+    # @partner_tasks = {dishwashing: 0.7, laundry: 0.4, cleaning: 0.8, cooking: 0.4, shopping: 0.5 }.to_json
 
     # @user_rewards = rewards_metrics(@user)
     # @partner_tasks = rewards_metrics(@partner)
@@ -79,12 +79,12 @@ class PagesController < ApplicationController
     # @user_period_tasks_points = tasks_points(@user)
     # @partner_period_tasks_points = tasks_points(@partner)
     @user_period_tasks_points = 40
-    @partner_period_tasks_points = -20
+    @partner_period_tasks_points = 20
 
     # @user_period_rewards_points = rewards_points(@user)
     # @partner_period_rewards_points = rewards_points(@partner)
     @user_period_rewards_points = 30
-    @partner_period_rewards_points = -20
+    @partner_period_rewards_points = 20
     # raise
   end
 
@@ -109,24 +109,22 @@ class PagesController < ApplicationController
 
 
   def opening_date
-    openingdate = (Date.today - 7)
+    openingdate = (Date.today - 30)
   end
 
   def mood_summary(user)
     opening_date
     openingtime = opening_date.to_time
-    status_scope = user.statues.all.where('created_at > ?', openingtime)
+    status_scope = user.statues.all.where('end_date > ?', openingtime)
     statuses_duration = {"stormy"=>0, "rainy"=>0, "cloudy"=>0, "sunny"=>0}
-    cumul_duration = 0
     status_scope.each do |status|
       mood = status.mood_category.title
-      start_time = [status.created_at, openingtime].max
+      start_time = [status.start_date, openingtime].max
       end_time = status.end_date == nil ? Time.now : status.end_date
       mood_duration = end_time - start_time
-      cumul_duration =+ mood_duration
       statuses_duration[mood] = statuses_duration[mood]&. + mood_duration
     end
-    return [statuses_duration, cumul_duration]
+    return [statuses_duration, statuses_duration.values.sum]
   end
 
   def tasks_metrics
@@ -138,8 +136,8 @@ class PagesController < ApplicationController
     tasks_summary = {user_nickname => {}, partner_nickname => {}, "couple" => {}, "user_prop" => {}, "partner_prop" => {} }
     tasks_scope.each do |task|
       task_title = gen_tasks.include?(task.title) ? task.title : "Other"
-      tasks_summary[task.done_by][task_title] = tasks_summary[task.done_by][:task_title].nil? ? task.base_score : tasks_summary[task.done_by][:task_title] + task.base_score
-      tasks_summary["couple"][task_title] = tasks_summary["couple"][:task_title].nil? ? task.base_score : tasks_summary["couple"][:task_title] + task.base_score
+      tasks_summary[task.done_by][task_title] = tasks_summary[task.done_by][task_title].nil? ? task.base_score : tasks_summary[task.done_by][task_title] + task.base_score
+      tasks_summary["couple"][task_title] = tasks_summary["couple"][task_title].nil? ? task.base_score : tasks_summary["couple"][task_title] + task.base_score
     end
     tasks_summary["user_prop"] = tasks_summary["couple"].map do |key, value|
       [key, tasks_summary[user_nickname][key].to_f / value.to_f]
