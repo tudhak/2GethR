@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
   end
 
+
   resources :statues, only: [:new, :create, :show]
 
   get "score_dashboard", to: "pages#score", as: :score

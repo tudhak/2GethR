@@ -4,6 +4,7 @@ class StatuesController < ApplicationController
     set_user
     set_partner
     @statue = Statue.new
+    # raise
   end
 
   def show
@@ -14,6 +15,9 @@ class StatuesController < ApplicationController
   end
 
   def create
+    set_user
+    set_couple
+    set_partner
     @statue = Statue.new(statue_params)
     @statue.user = current_user
     @last_status = current_user.statues.last
