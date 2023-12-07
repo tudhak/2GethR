@@ -1,13 +1,56 @@
-<div class="container">
+<div class="container mt-3">
 
-  <div class="my-tasks" data-bs-toggle="collapse" data-bs-target="#collapsePendingTasks" aria-expanded="false" aria-controls="collapsePendingTasks">
+  <div class="d-flex justify-content-center align-items-center me-3">
+    <h2 class="generic-title my-0 mx-4">My generic tasks</h2>
+    <a class="add-task-button" data-bs-toggle="modal" data-bs-target="#addGenericTaskModal"><i class="fa-solid fa-plus"></i></a>
+    <%= render 'generic_tasks/add_generic_task_modal', generic_task: @generic_task %>
+  </div>
+
+  <div class="generic-task-main-container">
+    <div class="generic-task-container">
+     <ul class="px-4">
+        <% @generic_tasks.each do |generic_task| %>
+          <% unless generic_task.title == "Other" %>
+              <li class="list-group-item box-shadow-purple mb-4 p-3 d-flex justify-content-between align-items-center position-relative">
+                <div class="d-flex">
+                  <div class="d-flex align-items-center justify-content-center emoji_reward_small flex-shrink-0"><%= generic_task.emoji %></div>
+                  <div class="d-flex flex-column align-items-start ms-2">
+                    <div class="d-flex align-items-center justify-content-start">
+                      <p class="mb-0 poppins-18 fw-bold text-dark"><%= generic_task.title %></p>
+                      <div class="ms-3 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-star text-orange me-1"></i>
+                        <p class="mb-0"><%= generic_task.base_score %></p>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <span><%= generic_task.description %></span>
+                    </div>
+                  </div>
+                </div>
+                  <%= link_to generic_task_path(generic_task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-generic-task border-white" do %>
+                    <i class="fa-solid fa-xmark"></i>
+                  <% end %>
+                  <button class="border-0 generic-task-edit bg-transparent" data-bs-toggle="modal" data-bs-target="#editGenericTaskModal<%= generic_task.id %>"><strong>Edit</strong></button>
+                  <%= render 'generic_tasks/edit_generic_task', generic_task: generic_task %>
+              </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+    <h2 class="generic-title mb-4 mx-4 text-center text-white">My tasks</h2>
+
+    <div class="btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 mb-4" data-bs-toggle="modal" data-bs-target="#addTaskModal">Create a new task</div>
+
+  <div class="my-tasks bg_light_white text-dark" data-bs-toggle="collapse" data-bs-target="#collapsePendingTasks" aria-expanded="false" aria-controls="collapsePendingTasks">
     <p class="m-0 p-3">My pending tasks</p>
   </div>
   <div class="w-100 p-0 border-0 collapse" id="collapsePendingTasks">
     <% @my_pending_tasks.each do |pending_task| %>
       <div class="box-shadow-purple px-3 py-2 d-flex justify-content-between align-items-center dropdown-item">
         <span><%= cl_image_tag pending_task.user.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle" %></span>
-        <strong><%= link_to pending_task.title, task_path(pending_task), class: "text-decoration-none text-black dropdown-items" %></strong>
+        <strong><%= link_to pending_task.title, task_path(pending_task), class: "text-decoration-none text-dark dropdown-items" %></strong>
         <span class="dropdown-items"><%= pending_task.date.strftime('%b %d, %Y') %></span>
         <i class="fa-solid fa-circle-dot"></i>
       </div>
@@ -36,12 +79,6 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-around align-items-center">
-    <a class="btn btn-primary rounded-circle" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa-solid fa-plus"></i></a>
-      <%= link_to generic_tasks_path, class:"bg-primary rounded-circle link-button text-white" do %>
-        <i class="fa-solid fa-list"></i>
-      <% end %>
-  </div>
-
   <%= render 'tasks/add_task_modal', task: @task %>
+
 </div>

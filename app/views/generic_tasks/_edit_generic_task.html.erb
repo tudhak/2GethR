@@ -1,25 +1,39 @@
-<div class="edit-display edit-form" data-edit-generic-target="editForm">
-  <div class="d-flex justify-content-center">
-    <div class="card card-body edit-task">
-      <%= simple_form_for generic_task do |f| %>
-            <%= f.input :title,
-                        label: false,
-                        placeholder: "Title"
-                        %>
-            <%= f.input :description,
-                        label: false,
-                        placeholder: "Description"
-                        %>
-            <%= f.input :base_score,
-                        label: false,
-                        placeholder: "Base score"
-                        %>
-            <%= f.input :emoji,
-                        label: false,
-                        placeholder: "Emoji"
-                        %>
-            <%= f.button :submit, "Edit task", class:"btn btn-primary" %>
-            <% end %>
+<div class="modal fade" id="editGenericTaskModal<%= generic_task.id %>" tabindex="-1" aria-labelledby="editGenericTaskModal<%= generic_task.id %>Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 color-blue" id="editGenericTaskModal<%= generic_task.id %>Label">Edit generic task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="d-flex justify-content-center">
+            <div class="card card-body edit-task">
+              <%= simple_form_for generic_task do |f| %>
+                    <%= f.input :title,
+                                label: false,
+                                placeholder: "Title",
+                                input_html: { class: "input-field" }
+                                %>
+                    <%= f.input :description,
+                                label: false,
+                                placeholder: "Description",
+                                input_html: { class: "input-field" }
+                                %>
+                    <%= f.input :base_score,
+                                label: false,
+                                placeholder: "Base score",
+                                input_html: { class: "input-field" }
+                                %>
+                    <%= f.input :emoji,
+                                label: false,
+                                placeholder: "Emoji",
+                                input_html: { class: "input-field" }
+                                %>
+                    <%= f.button :submit, "Edit task", class:"btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none" %>
+                    <% end %>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </div>

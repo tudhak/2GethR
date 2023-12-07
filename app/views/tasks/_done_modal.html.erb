@@ -9,7 +9,7 @@
         <h4>Add proofs</h4>
          <%= simple_form_for task, html: { class:"mb-3" } do |f| %>
            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-           <%= f.button :submit, "Submit proofs", class:"btn btn-primary"  %>
+           <%= f.button :submit, "Submit proofs", class:"btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none"  %>
          <% end %>
          <% if @task.status == "done" %>
           <p>This task is already done and cannot get you more points.</p>

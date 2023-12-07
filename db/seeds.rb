@@ -118,6 +118,63 @@ puts "Four Categories created"
 #------------------------------Status-------------------------------------------
 #---------------------------Status_User2----------------------------------------
 puts "Creating status for user2"
+
+puts "...30 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[0],
+  user: user2,
+  start_date: Time.now - (86_400 * 30),
+)
+
+puts "...27 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[1],
+  user: user2,
+  start_date: Time.now - (86_400 * 27),
+)
+
+puts "...22 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[2],
+  user: user2,
+  start_date: Time.now - (86_400 * 22),
+)
+
+puts "...18 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[3],
+  user: user2,
+  start_date: Time.now - (86_400 * 18),
+)
+
+puts "...15 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[0],
+  user: user2,
+  start_date: Time.now - (86_400 * 15),
+)
+
+puts "...12 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[1],
+  user: user2,
+  start_date: Time.now - (86_400 * 12),
+)
+
+puts "...9 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[3],
+  user: user2,
+  start_date: Time.now - (86_400 * 9),
+)
+
 puts "...7 days ago"
 
 Statue.create(
@@ -128,7 +185,7 @@ Statue.create(
   love_statue_message: "We could go out and dance tonight",
 )
 
-puts "...5 fays ago"
+puts "...5 days ago"
 
 Statue.create(
   mood_category: MoodCategory.all[1],
@@ -174,6 +231,63 @@ puts "4 status created for user 2"
 
 #---------------------------Status_User1----------------------------------------
 puts "Creating status for user1"
+
+puts "...30 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[0],
+  user: user1,
+  start_date: Time.now - (86_400 * 30),
+)
+
+puts "...27 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[1],
+  user: user1,
+  start_date: Time.now - (86_400 * 27),
+)
+
+puts "...22 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[2],
+  user: user1,
+  start_date: Time.now - (86_400 * 22),
+)
+
+puts "...18 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[3],
+  user: user1,
+  start_date: Time.now - (86_400 * 18),
+)
+
+puts "...15 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[0],
+  user: user1,
+  start_date: Time.now - (86_400 * 15),
+)
+
+puts "...12 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[1],
+  user: user1,
+  start_date: Time.now - (86_400 * 12),
+)
+
+puts "...9 days ago"
+
+Statue.create(
+  mood_category: MoodCategory.all[3],
+  user: user1,
+  start_date: Time.now - (86_400 * 9),
+)
+
 puts "...7 days ago"
 
 Statue.create(
@@ -228,7 +342,7 @@ end
 user1stat.last[:end_date] = nil
 user1stat.last.save
 
-puts "4 status created for user 1"
+puts "status created for user 1"
 
 #---------------------------Status_User4----------------------------------------
 puts "Creating status for user4"
@@ -385,6 +499,14 @@ GenericTask.create(
 )
 
 GenericTask.create(
+  title: "Prepare the dinner",
+  description: "Cook some good food.",
+  base_score: 50,
+  couple: couple2,
+  emoji:"🍽️"
+)
+
+GenericTask.create(
   title: "Vacuum",
   description: "Keep the house tidy with some vacuum cleaning.",
   base_score: 15,
@@ -397,7 +519,7 @@ GenericTask.create(
   description: "Cook some good food.",
   base_score: 50,
   couple: couple2,
-  emoji:"🍽️"
+  emoji: "🍽️"
 )
 
 GenericTask.create(
@@ -575,6 +697,236 @@ Task.create(
   emoji: "🫗"
 )
 
+# Ajout de tasks JM : ci-dessous------------------------------------------------
+# Semaine 1---------------------------------------------------------------------
+puts "Tasks Couple 1 Week 1 (Seed Jerem)"
+Task.create(
+  title: "Do the dishes",
+  description: "Keeping the kitchen clean is a good medicine.",
+  date: Date.today - 28,
+  base_score: 40,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user1.nickname
+)
+Task.create(
+  title: "Iron clothes",
+  description: "A little ironing to have presentable outfits.",
+  date: Date.today - 26,
+  base_score: 25,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Full house cleaning",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 24,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Prepare the dinner",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 23,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Let the dogs out",
+  description: "The dogs should take a walk to keep the flat clean.",
+  date: Date.today - 22,
+  base_score: 30,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+# Semaine 2---------------------------------------------------------------------
+puts "Tasks Couple 1 Week 2 (Seed Jerem)"
+Task.create(
+  title: "Do the dishes",
+  description: "Keeping the kitchen clean is a good medicine.",
+  date: Date.today - 20,
+  base_score: 40,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Iron clothes",
+  description: "A little ironing to have presentable outfits.",
+  date: Date.today - 18,
+  base_score: 25,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user1.nickname
+)
+Task.create(
+  title: "Full house cleaning",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 17,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Prepare the dinner",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 16,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Let the dogs out",
+  description: "The dogs should take a walk to keep the flat clean.",
+  date: Date.today - 15,
+  base_score: 30,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user1.nickname
+)
+# Semaine 3---------------------------------------------------------------------
+puts "Tasks Couple 1 Week 3 (Seed Jerem)"
+Task.create(
+  title: "Do the dishes",
+  description: "Keeping the kitchen clean is a good medicine.",
+  date: Date.today - 13,
+  base_score: 40,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Iron clothes",
+  description: "A little ironing to have presentable outfits.",
+  date: Date.today - 12,
+  base_score: 25,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Full house cleaning",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 10,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user1.nickname
+)
+Task.create(
+  title: "Prepare the dinner",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 9,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Let the dogs out",
+  description: "The dogs should take a walk to keep the flat clean.",
+  date: Date.today - 8,
+  base_score: 30,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user1.nickname
+)
+# Semaine 4---------------------------------------------------------------------
+puts "Tasks Couple 1 Week 4 (Seed Jerem)"
+Task.create(
+  title: "Do the dishes",
+  description: "Keeping the kitchen clean is a good medicine.",
+  date: Date.today - 6,
+  base_score: 40,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Iron clothes",
+  description: "A little ironing to have presentable outfits.",
+  date: Date.today - 5,
+  base_score: 25,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Full house cleaning",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 3,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user2.nickname
+)
+Task.create(
+  title: "Prepare the dinner",
+  description: "Basic hygiene for a better life.",
+  date: Date.today - 2,
+  base_score: 60,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user1.nickname
+)
+Task.create(
+  title: "Let the dogs out",
+  description: "The dogs should take a walk to keep the flat clean.",
+  date: Date.today - 1,
+  base_score: 30,
+  user: user2,
+  status: "done",
+  assigned_to: "any",
+  emoji: "🫗",
+  done_by: user1.nickname
+)
+# Ajout de tasks JM : ci-dessus-------------------------------------------------
 puts "Task instances created."
 
 GenericReward.create!(
@@ -603,42 +955,40 @@ GenericReward.create!(
   title: 'Massage Ayurvedique',
   description: 'Give me a long oily massage',
   cost: 50,
-  couple: couple2
+  couple: couple2,
+  emoji: "🤲"
+)
+
+GenericReward.create!(
+  title: 'Football night with my crew',
+  description: 'Let me have my friends over, watch football, drink beer and be real duuudes.',
+  cost: 75,
+  couple: couple1,
+  emoji: "⚽​"
+)
+
+GenericReward.create!(
+  title: 'Skip next dinner night with step-parents',
+  description: 'Let me pretend I am sick next time we are invited at your parents.',
+  cost: 50,
+  couple: couple1,
+  emoji: "🤮​​"
 )
 
 GenericReward.create!(
   title: 'Make the brunch',
   description: 'Make a huge brunch for us to enjoy together.',
   cost: 50,
-  couple: couple2
-)
-
-GenericReward.create!(
-  title: 'Movie Night',
-  description: 'Enjoy a movie night together. I choose the movie',
-  cost: 25,
-  couple: couple2
-)
-
-GenericReward.create!(
-  title: 'Weekend Getaway',
-  description: 'Plan a weekend getaway for us. Surprise me',
-  cost: 150,
-  couple: couple2
-)
-
-GenericReward.create!(
-  title: 'Dinner Date',
-  description: 'Find a good restaurant and book it for us.',
-  cost: 50,
-  couple: couple2
+  couple: couple2,
+  emoji: "⭐"
 )
 
 GenericReward.create!(
   title: 'Buy me a gift',
   description: 'Surprise me',
   cost: 100,
-  couple: couple2
+  couple: couple2,
+  emoji: "🎁"
   )
 
 Reward.create!(
@@ -680,5 +1030,105 @@ Reward.create!(
   cost: 120,
   emoji: "❗"
 )
+# Ajout de tasks JM : ci-dessous------------------------------------------------
+# Semaine 1---------------------------------------------------------------------
+puts "Rewards Couple 1 Week 1 (Seed Jerem)"
+Reward.create!(
+  date: Date.today - 24,
+  user: user2,
+  status: 'done',
+  description: 'Give me a long oily massage',
+  title: 'Massage Ayurvedique',
+  cost: 50,
+  emoji: "😍"
+)
+Reward.create!(
+  date: Date.today - 20,
+  user: user2,
+  status: 'done',
+  description: 'Plan a weekend getaway to relax and unwind.',
+  title: 'Weekend Getaway',
+  cost: 150,
+  emoji: "✈️"
+)
+# Semaine 2---------------------------------------------------------------------
+puts "Rewards Couple 1 Week 2 (Seed Jerem)"
+Reward.create!(
+  date: Date.today - 18,
+  user: user2,
+  status: 'done',
+  description: 'Enjoy a movie night together.',
+  title: 'Movie Night',
+  cost: 50,
+  emoji: "🎥"
+)
+Reward.create!(
+  date: Date.today - 16,
+  user: user2,
+  status: 'done',
+  description: 'Have a romantic dinner at your favorite restaurant.',
+  title: 'Dinner Date',
+  cost: 80,
+  emoji: "🥂"
+)
+# Semaine 3---------------------------------------------------------------------
+puts "Rewards Couple 1 Week 3 (Seed Jerem)"
+Reward.create!(
+  date: Date.today - 13,
+  user: user2,
+  status: 'done',
+  description: 'Give me a long oily massage',
+  title: 'Massage Ayurvedique',
+  cost: 50,
+  emoji: "😍"
+)
+Reward.create!(
+  date: Date.today - 10,
+  user: user2,
+  status: 'done',
+  description: 'Plan a weekend getaway to relax and unwind.',
+  title: 'Weekend Getaway',
+  cost: 150,
+  emoji: "✈️"
+)
+# Semaine 4---------------------------------------------------------------------
+puts "Rewards Couple 1 Week 4 (Seed Jerem)"
+Reward.create!(
+  date: Date.today - 6,
+  user: user1,
+  status: 'done',
+  description: 'Let me have my friends over, watch football, drink beer and be real duuudes.',
+  title: 'Football night with my crew',
+  cost: 75,
+  emoji: "⚽​"
+)
+Reward.create!(
+  date: Date.today - 5,
+  user: user2,
+  status: 'done',
+  description: 'Give me a long oily massage',
+  title: 'Massage Ayurvedique',
+  cost: 50,
+  emoji: "😍"
+)
+Reward.create!(
+  date: Date.today - 4,
+  user: user2,
+  status: 'done',
+  description: 'Have a romantic dinner at your favorite restaurant.',
+  title: 'Dinner Date',
+  cost: 80,
+  emoji: "🥂"
+)
+Reward.create!(
+  date: Date.today - 2,
+  user: user1,
+  status: 'done',
+  description: 'Let me pretend I am sick next time we are invited at your parents.',
+  title: 'Skip next dinner night with step-parents',
+  cost: 50,
+  emoji: "🤮"
+)
+
 
 puts 'Seed data for rewards created successfully!'
