@@ -6,6 +6,7 @@
 
 // To style the message itself
 .sender-style, .receiver-style {
+  z-index: -1;
   width: 70%;
   max-width: 400px;
   // border-radius: 4px;
@@ -17,7 +18,7 @@
 }
 
 .sender-style {
-  background-color: #e2646c;
+  background-color: #E2646C;
   border-radius: 12px 12px 12px 0px;
   color: white;
   backdrop-filter: blur(10px);
@@ -25,10 +26,11 @@
 }
 
 .receiver-style {
-  // backdrop-filter: blur(4px);
-  // background: radial-gradient(178.75% 139.16% at 109.39% 82.06%, #737ee42b 0%, rgba(179, 93, 68, 0.00) 100%), rgba(255, 255, 255, 0.10);
+  background-color: #8059ff;
   color: white;
-  // background-blend-mode: overlay;
   border-radius: 12px 12px 0px 12px;
+}
 
+.message_content {
+  margin-bottom: 0px !important;
 }

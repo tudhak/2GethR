@@ -9,7 +9,7 @@
             <% tasks.each do |task| %>
               <% if task.date == Date.today %>
                 <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
-                  <div class="border d-flex justify-content-between align-items-center p-3">
+                  <div class="border d-flex bg_light_white justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>
                   </div>
@@ -28,7 +28,7 @@
             <% tasks.sort_by{ |item| item.date }.each do |task| %>
               <% if Date.today.all_week.to_a.include?(task.date) %>
                 <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
-                  <div class="border d-flex justify-content-between align-items-center p-3">
+                  <div class="border d-flex bg_light_white justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>
                   </div>
@@ -48,7 +48,7 @@
             <% tasks.sort_by{ |item| item.date }.each do |task| %>
               <% if task.date < Date.today.at_beginning_of_week %>
                 <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
-                  <div class="border d-flex justify-content-between align-items-center p-3">
+                  <div class="border d-flex bg_light_white justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>
                   </div>
@@ -67,7 +67,7 @@
             <% tasks.sort_by{ |item| item.date }.each do |task| %>
               <% if task.date > Date.today.at_end_of_week %>
                 <%= link_to task_path(task), class:"text-decoration-none text-dark" do %>
-                  <div class="border d-flex justify-content-between align-items-center p-3">
+                  <div class="border d-flex bg_light_white justify-content-between align-items-center p-3">
                     <span><%= task.title %></span>
                     <span><%= task.date.strftime('%b %d, %Y') %></span>
                   </div>

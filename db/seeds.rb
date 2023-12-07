@@ -976,7 +976,7 @@ GenericReward.create!(
 )
 
 GenericReward.create!(
-  title: 'Skip next dinner night with step-parents',
+  title: 'Skip In-laws dinner',
   description: 'Let me pretend I am sick next time we are invited at your parents.',
   cost: 50,
   couple: couple1,

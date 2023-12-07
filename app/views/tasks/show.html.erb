@@ -7,7 +7,7 @@
         <% end %>
       <% end %>
         <div class="card-body-task p-4">
-          <h4 class="card-title text-center"></i><strong> <%= @task.title %> <%= @task.emoji %></strong></h4>
+          <h4 class="card-title text-center mb-4 fs-1"></i><strong> <%= @task.title %> <%= @task.emoji %></strong></h4>
           <div class="d-flex mb-2">
             <i class="fa-regular fa-folder me-3"></i>
             <p class="card-text"><%= @task.description %></p>
@@ -47,7 +47,7 @@
                 <% end %>
               </div>
               <div class="d-flex align-items-center">
-                <button class="btn btn-info py-3", data-bs-toggle="collapse" href="#editTaskCollapse" role="button" aria-expanded="false" aria-controls="editTaskCollapse"><i class="fa-solid fa-pen"></i> Edit</button>
+                <button class="btn btn-primary text-white py-3", data-bs-toggle="collapse" href="#editTaskCollapse" role="button" aria-expanded="false" aria-controls="editTaskCollapse"><i class="fa-solid fa-pen"></i> Edit</button>
               </div>
             </div>
 

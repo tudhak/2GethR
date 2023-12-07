@@ -5,7 +5,7 @@ class GenericRewardsController < ApplicationController
 
   def show
     @generic_reward = GenericReward.find(params[:id])
-    @reward = Reward.new(title: @generic_reward.title, description: @generic_reward.description, cost: @generic_reward.cost)
+    @reward = Reward.new(title: @generic_reward.title, description: @generic_reward.description, cost: @generic_reward.cost, emoji: @generic_reward.emoji)
   end
 
   def generic_reward_params
