@@ -8,7 +8,7 @@ class GenericTasksController < ApplicationController
 
   def destroy
     @generic_task.destroy
-    redirect_to tasks_path, notice: 'Generic task was successfully destroyed.'
+    redirect_to generic_task_path(@generic_task), notice: 'Generic task was successfully destroyed.'
   end
 
   def create
