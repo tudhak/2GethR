@@ -52,6 +52,8 @@
 
 .card-body-task {
   background-color: rgb(203, 193, 222);
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 
 .modal-content {
@@ -80,7 +82,7 @@
 
 .input-field, .input-field:focus {
   background-color: rgba(250, 250, 250, 0.5);
-  color: #fff;
+  color: #000;
 }
 
 .edit-task {
@@ -91,6 +93,22 @@
   background-color: rgba(250, 250, 250, 0.5);
 }
 
-::placeholder {
-  color: #fff;
+.modal-heading {
+  font-size: 42px;
+}
+
+.bg_light_white {
+  background-color: rgba(250, 250, 250, 0.5);
+}
+
+label {
+  color: white;
+}
+
+select {
+  background-color: #bda9fc !important;
+}
+
+option:checked, option:hover {
+  background-color: #bda9fc !important;
 }
