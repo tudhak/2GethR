@@ -28,7 +28,7 @@
                     </div>
                   </div>
                 </div>
-                  <%= link_to tasks_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-generic-task border-white" do %>
+                  <%= link_to generic_tasks_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"delete-generic-task border-white" do %>
                     <i class="fa-solid fa-xmark"></i>
                   <% end %>
                   <button class="border-0 generic-task-edit bg-transparent" data-bs-toggle="modal" data-bs-target="#editGenericTaskModal"><strong>Edit</strong></button>
