@@ -5,7 +5,7 @@
       <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
         <% @generic_rewards.each do |generic_reward| %>
           <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
-            <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward">📽️</div>
+            <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
             <div class="div-blur-transparent position-absolute"></div>
             <h2 class="text-center mt-3 text-dark"><%= generic_reward.title %></h2>
           <% end %>
@@ -33,8 +33,8 @@
           <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
             <%= link_to couple_reward_path(current_user.couple, rewards_for_me), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit;" do %>
             <div class="d-flex align-items-center">
-              <div class="d-flex align-items-center justify-content-center emoji_reward_small">📽️</div>
-              <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= rewards_for_me.title %></p>
+              <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= rewards_for_me.emoji %></div>
+              <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_for_me.title %></p>
             </div>
             <div class="badge <%= rewards_for_me.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_for_me.status %></div>
             <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= rewards_for_me.date.strftime("%d/%m") %></p>
@@ -48,8 +48,8 @@
             <%= link_to couple_reward_path(current_user.couple, rewards_to_do), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit;" do %>
 
             <div class="d-flex align-items-center">
-              <div class="d-flex align-items-center justify-content-center emoji_reward_small flex-shrink-0">📽️</div>
-              <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= rewards_to_do.title %></p>
+              <div class="d-flex align-items-center justify-content-center emoji_reward_small"> <%= rewards_to_do.emoji %> </div>
+              <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_to_do.title %></p>
             </div>
             <div class="badge <%= rewards_to_do.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_to_do.status %></div>
             <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= rewards_to_do.date.strftime("%d/%m") %></p>
