@@ -2,7 +2,6 @@ class TasksController < ApplicationController
   before_action :set_couple, only: [:index]
   before_action :set_task, only: [:show, :update, :destroy]
   before_action :set_partner, only: [:index, :show]
-  before_action :set_generic_task, only: [:update, :destroy]
 
   def index
     # @tasks = Task.where(user: User.where(couple_id: @couple.id))
@@ -77,6 +76,6 @@ class TasksController < ApplicationController
   end
 end
 
-def set_generic_task
-  @generic_task = GenericTask.find(params[:id])
-end
+# def set_generic_task
+#   @generic_task_spec = GenericTask.find(params[:id])
+# end
