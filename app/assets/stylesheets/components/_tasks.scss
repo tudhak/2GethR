@@ -101,6 +101,10 @@
   font-size: 42px;
 }
 
+.modal-heading-sub {
+  font-size: 33px;
+}
+
 .bg_light_white {
   background-color: rgba(250, 250, 250, 0.5);
 }
@@ -115,4 +119,12 @@ select {
 
 option:checked, option:hover {
   background-color: #bda9fc !important;
+}
+
+input::file-selector-button {
+  background-color: #bda9fc !important;
+}
+
+.btn-cross-white {
+  color: white;
 }

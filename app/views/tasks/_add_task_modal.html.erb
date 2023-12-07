@@ -13,8 +13,10 @@
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:base_score) %>" data-add-task-target="scoreTemplates">
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:emoji) %>" data-add-task-target="emojiTemplates">
           <%= f.input :title,
-                      collection: GenericTask.where(couple: current_user.couple).pluck(:title),
+                      collection: GenericTask.where(couple: current_user.couple).pluck(:title) << "Pick a title",
                       label: false,
+                      selected: "Pick a title",
+                      disabled: "Pick a title",
                       placeholder: "Title",
                       input_html: { class: "input-field", data: { add_task_target: "firstTitle",
                       action: "change->add-task#toggle add-task#untoggle add-task#fill add-task#autoComplete"
