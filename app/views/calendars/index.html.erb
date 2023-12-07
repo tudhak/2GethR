@@ -4,6 +4,8 @@
     <input type="hidden" value="<%= Task.where(user: User.where(couple_id: current_user.couple)).pluck(:date).map { |date| date.strftime("%Y-%m-%d")} %>" data-calendar-target="taskDates">
     <input type="hidden" value="<%= Reward.where(user: User.where(couple_id: current_user.couple)).pluck(:date).map { |date| date.strftime("%Y-%m-%d")} %>" data-calendar-target="rewardDates">
 
+    <h2 class="generic-title text-center mb-4">Our calendar</h2>
+
     <%= month_calendar do |date| %>
       <span data-calendar-target="targetDate" data-action="click->calendar#showEvents"><%= date.day %></span>
     <% end %>

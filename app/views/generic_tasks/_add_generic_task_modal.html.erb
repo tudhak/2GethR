@@ -9,18 +9,24 @@
         <%= simple_form_for generic_task do |f| %>
           <%= f.input :title,
                       label: false,
-                      placeholder: "Title"
+                      placeholder: "Title",
+                      input_html: { class: "input-field" }
                       %>
           <%= f.input :description,
                       label: false,
-                      placeholder: "Description"
+                      placeholder: "Description",
+                      input_html: { class: "input-field" }
                        %>
           <%= f.input :base_score,
                       label: false,
-                      placeholder: "Base score" %>
+                      placeholder: "Base score",
+                      input_html: { class: "input-field" }
+                      %>
           <%= f.input :emoji,
                       label: false,
-                      placeholder: "Emoji" %>
+                      placeholder: "Emoji",
+                      input_html: { class: "input-field" }
+                      %>
           <%= f.button :submit, "Create task", class:"btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none"  %>
           <% end %>
       </div>
