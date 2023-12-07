@@ -23,7 +23,7 @@ data-interactions-target="status" >
   <div class="flex-grow d-flex justify-content-center position-relative" id="partner-avatar">
 
       <div class="rounded-circle position-absolute" style="top:15%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
-      <%= image_tag('partner.png', data: { action: 'click->interactions#playmood' }) %>
+      <%= image_tag("avatar-#{@partner.statues.order(:created_at).last.mood_category.title}.png", data: { action: 'click->interactions#playmood' }) %>
       <%= render "show_actions_icons" %>
       <%= render "show_actions_toggled" %>
 

@@ -8,9 +8,60 @@
   background-image: asset_url('backgrounds/landing_bg.svg');
 }
 
-.bg_mood {
+.bg_static {
   background-image: asset_url('backgrounds/show_bg.svg');
   background-size: cover;
   background-position: top;
+
+}
+
+.bg-layer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+
+  &#pattern {
+    background-size: cover;
+    background-position: bottom;
+  }
+
+  &#noise {
+    background-image: url("backgrounds/noise.png");
+    background-size: cover;
+    background-position: bottom;
+    mix-blend-mode: color-dodge;
+  }
+
+}
+
+body.cloudy {
+  background: linear-gradient(0deg, rgba(141, 112, 255, 0.38) 0%, rgba(141, 112, 255, 0.38) 100%), radial-gradient(396.76% 180.76% at -52.57% -117.87%, #FF4D00 0%, rgba(255, 77, 0, 0.00) 100%), radial-gradient(292.34% 185.27% at 0% 0%, rgba(12, 23, 55, 0.93) 0%, rgba(12, 23, 55, 0.00) 100%), #FFD6E0;
+  background-blend-mode: color-dodge, lighten, normal, normal;
+
+  & #pattern {
+    background-image: url("backgrounds/cloudy.png");
+  }
+
+}
+
+body.stormy {
+  background: linear-gradient(0deg, rgba(255, 112, 112, 0.38) 0%, rgba(255, 112, 112, 0.38) 100%), radial-gradient(396.76% 180.76% at -52.57% -117.87%, #FF4D00 0%, rgba(255, 77, 0, 0.00) 100%), radial-gradient(292.34% 185.27% at 0% 0%, rgba(12, 23, 55, 0.93) 0%, rgba(12, 23, 55, 0.00) 100%), linear-gradient(180deg, #0C1737 0%, rgba(12, 23, 55, 0.00) 100%), #5C5E95;
+  background-blend-mode: color-dodge, lighten, normal, normal, normal;
+  & #pattern {
+    background-image: url("backgrounds/stormy.png");
+  }
+
+
+}
+
+body.sunny {
+  background: linear-gradient(0deg, #3822C1 0%, #3822C1 100%), radial-gradient(396.76% 180.76% at -52.57% -117.87%, #FF4D00 0%, rgba(255, 77, 0, 0.00) 100%), radial-gradient(292.34% 185.27% at 0% 0%, rgba(12, 23, 55, 0.93) 0%, rgba(12, 23, 55, 0.00) 100%), #A06B6B;
+  background-blend-mode: color-dodge, lighten, normal, normal;
+  & #pattern {
+    background-image: url("backgrounds/sunny.png");
+  }
+
+
 
 }
