@@ -1,6 +1,6 @@
 <div class="p-3 mb-5">
-  <h1>Create a New Reward</h1>
-  <%= link_to 'Back to Rewards', couple_rewards_path(current_user.couple), class: "text-black pb-3 d-inline-block" %>
+  <h1 class="text-center mb-2">Create a New Reward</h1>
+  <%= link_to 'Back to Rewards', couple_rewards_path(current_user.couple), class:"text-black pb-3 d-inline-block back-reward-button" %>
 
   <%= simple_form_for [current_user.couple, @reward], html: { class: 'create_reward p-3 text-dark' } do |f| %>
     <%= f.input :date, label: 'Choose Date' %>
@@ -8,6 +8,6 @@
     <%= f.input :description %>
     <%= f.input :cost %>
     <%= f.input :emoji %>
-    <%= f.button :submit, 'Create Reward', class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
+    <%= f.button :submit, 'Ask a new reward', class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
   <% end %>
 </div>
