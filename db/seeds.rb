@@ -952,7 +952,7 @@ GenericReward.create!(
 )
 
 GenericReward.create!(
-  title: 'Massage Ayurvedique',
+  title: 'Ayurvedic massage',
   description: 'Give me a long oily massage',
   cost: 50,
   couple: couple2,
@@ -1038,7 +1038,7 @@ Reward.create!(
   user: user2,
   status: 'done',
   description: 'Give me a long oily massage',
-  title: 'Massage Ayurvedique',
+  title: 'Ayurvedic massage',
   cost: 50,
   emoji: "😍"
 )
@@ -1107,7 +1107,7 @@ Reward.create!(
   user: user2,
   status: 'done',
   description: 'Give me a long oily massage',
-  title: 'Massage Ayurvedique',
+  title: 'Ayurvedic massage',
   cost: 50,
   emoji: "😍"
 )
@@ -1125,7 +1125,7 @@ Reward.create!(
   user: user1,
   status: 'done',
   description: 'Let me pretend I am sick next time we are invited at your parents.',
-  title: 'Skip next dinner night with step-parents',
+  title: 'Skip dinner with step-parents',
   cost: 50,
   emoji: "🤮"
 )

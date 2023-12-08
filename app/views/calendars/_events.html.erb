@@ -13,11 +13,11 @@
     <% end %>
 
     <%= link_to task_path(task), class:"text-decoration-none" do %>
-      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative <%= task_border_color %>" data-controller="task-select" data-action="click->task-select#reveal">
+      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex align-items-center position-relative <%= task_border_color %>" data-controller="task-select" data-action="click->task-select#reveal">
         <div class="task-hole flex-shrink-0 me-3">
-          <div class="inner-task-hole d-none" data-task-select-target="taskHole"></div>
+          <div><%= task.emoji %></div>
         </div>
-        <div class="d-flex flex-column align-items-start flex-shrink-1" style="width: 150px">
+        <div class="d-flex flex-column align-items-start flex-shrink-1" style="width: 175px">
           <p class="mb-0 ms-2 poppins-18 fs-6 fw-bold event-display"><%= task.title %></p>
           <p class="mb-0 ms-2 poppins-18 fs-6 event-display"><%= task.base_score %> points</p>
         </div>
@@ -53,15 +53,14 @@
       <% reward_border_color = "event-done" %>
     <% end %>
 
-      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-around align-items-center position-relative <%= reward_border_color %>">
-          <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= reward.emoji %></div>
-          <div class="d-flex justify-content-between">
-            <div class="d-flex flex-column justify-content-center">
-              <p class="mb-0 ms-2 poppins-18 fw-bold me-3 fs-6 event-display"><%= reward.title %></p>
-            <!-- <p class="mb-0 ms-2 poppins-18"><%= reward.date.strftime("%d/%m") %></p> -->
-            </div>
-            <p class="mb-0 ms-2 poppins-18 fw-bold"><%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle", crop: :fill %></p>
+      <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex align-items-center position-relative <%= reward_border_color %>">
+        <div class="task-hole flex-shrink-0 me-3">
+          <div><%= reward.emoji %></div>
+        </div>
+          <div style="width: 200px">
+            <p class="mb-0 ms-2 poppins-18 fw-bold me-3 fs-6 event-display"><%= reward.title %></p>
           </div>
+          <p class="mb-0 ms-2"><%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle avatar-main", crop: :fill %></p>
       </div>
       <!-- <div class="badge <%= reward.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= reward.status %></div> -->
   <% end %>
