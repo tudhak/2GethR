@@ -479,7 +479,7 @@ GenericTask.create(
   description: "Keeping the kitchen clean is a good medicine.",
   base_score: 40,
   couple: couple1,
-  emoji: "🫗"
+  emoji: "🧤"
 )
 
 GenericTask.create(
@@ -511,7 +511,7 @@ GenericTask.create(
   description: "Cook some good food.",
   base_score: 50,
   couple: couple2,
-  emoji:"🍽️"
+  emoji: "🍽️"
 )
 
 GenericTask.create(
@@ -640,7 +640,7 @@ Task.create(
 )
 
 Task.create(
-  title: "Go to the grocery store",
+  title: "Grocery list",
   description: "We ran out of pasta.",
   date: Date.parse("12/12/2023"),
   base_score: 25,
@@ -702,7 +702,7 @@ Task.create(
   user: user2,
   status: "pending",
   assigned_to: "any",
-  emoji: "🫗"
+  emoji: "🧤"
 )
 
 # Ajout de tasks JM : ci-dessous------------------------------------------------
@@ -716,7 +716,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user1.nickname
 )
 Task.create(
@@ -773,7 +773,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user2.nickname
 )
 Task.create(
@@ -830,7 +830,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user2.nickname
 )
 Task.create(
@@ -887,7 +887,7 @@ Task.create(
   user: user2,
   status: "done",
   assigned_to: "any",
-  emoji: "🫗",
+  emoji: "🧤",
   done_by: user2.nickname
 )
 Task.create(
@@ -960,7 +960,7 @@ GenericReward.create!(
 )
 
 GenericReward.create!(
-  title: 'Massage Ayurvedique',
+  title: 'Ayurvedic massage',
   description: 'Give me a long oily massage',
   cost: 50,
   couple: couple2,
@@ -976,7 +976,7 @@ GenericReward.create!(
 )
 
 GenericReward.create!(
-  title: 'Skip In-laws dinner',
+  title: 'Skip in-laws dinner',
   description: 'Let me pretend I am sick next time we are invited at your parents.',
   cost: 50,
   couple: couple1,
@@ -1054,7 +1054,7 @@ Reward.create!(
   user: user2,
   status: 'done',
   description: 'Give me a long oily massage',
-  title: 'Massage Ayurvedique',
+  title: 'Ayurvedic massage',
   cost: 50,
   emoji: "😍"
 )
@@ -1123,7 +1123,7 @@ Reward.create!(
   user: user2,
   status: 'done',
   description: 'Give me a long oily massage',
-  title: 'Massage Ayurvedique',
+  title: 'Ayurvedic massage',
   cost: 50,
   emoji: "😍"
 )
@@ -1141,7 +1141,7 @@ Reward.create!(
   user: user1,
   status: 'done',
   description: 'Let me pretend I am sick next time we are invited at your parents.',
-  title: 'Skip next dinner night with step-parents',
+  title: 'Skip in-laws dinner',
   cost: 50,
   emoji: "🤮"
 )

@@ -29,6 +29,8 @@
 .task-picture {
   width: 100%;
   object-fit: content;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .task-card {
@@ -37,8 +39,8 @@
 
 .delete-task {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 150px;
+  right: 30px;
   font-size: 1.8rem;
   color: #333;
 }
@@ -56,8 +58,9 @@
 
 .card-body-task {
   background-color: rgb(203, 193, 222);
-  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
+  position: relative;
 }
 
 .modal-content {
@@ -101,6 +104,10 @@
   font-size: 42px;
 }
 
+.modal-heading-sub {
+  font-size: 33px;
+}
+
 .bg_light_white {
   background-color: rgba(250, 250, 250, 0.5);
 }
@@ -115,4 +122,16 @@ select {
 
 option:checked, option:hover {
   background-color: #bda9fc !important;
+}
+
+input::file-selector-button {
+  background-color: #bda9fc !important;
+}
+
+.btn-cross-white {
+  color: white;
+}
+
+.task-custom-show {
+  border-radius: 12px;
 }

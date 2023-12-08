@@ -1,7 +1,9 @@
 <div class="" style="overflow: scroll;">
   <div class="container text-white">
-    <h1 class="text-white text-left">Ask a reward to your partner</h1>
+
+    <h1 class="text-white text-center">Ask a reward to your partner</h1>
     <h4 class="text-white text-left" style="font-size:30px;">Credits available : <%= current_user.score %>points </h4>
+
     <div style="width: 94vw; overflow-x: hidden;">
       <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
         <% @generic_rewards.each do |generic_reward| %>
@@ -32,15 +34,17 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-hers" role="tabpanel" aria-labelledby="pills-hers-tab">
         <% current_user.rewards.each do |rewards_for_me| %>
-          <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
+          <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex align-items-center position-relative">
             <%= link_to couple_reward_path(current_user.couple, rewards_for_me), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit;" do %>
-            <div class="d-flex align-items-center">
-              <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= rewards_for_me.emoji %></div>
-              <p class="mb-0 ms-2 poppins-18 fw-bold"><%= rewards_for_me.title %></p>
-            </div>
-            <div class="badge <%= rewards_for_me.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_for_me.status %></div>
-            <p class="reward_date mb-0 ms-2 poppins-18 fw-bold text-dark"><%= rewards_for_me.date.strftime("%d/%m") %></p>
-             <% end %>
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <div class="d-flex align-items-center" style="width: 200px">
+                  <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= rewards_for_me.emoji %></div>
+                  <p class="mb-0 ms-2 poppins-18 fs-6 event-display fw-bold"><%= rewards_for_me.title %></p>
+                </div>
+                <div class="badge <%= rewards_for_me.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_for_me.status %></div>
+                <p class="reward_date mb-0 ms-2 poppins-18 fs-6 event-display opacity-75 fw-bold text-dark"><%= rewards_for_me.date.strftime("%d/%m") %></p>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>
