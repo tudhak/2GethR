@@ -1,0 +1,108 @@
+<div class="container p-3">
+
+  <%# 1 - Titre dynamique page - ci-dessous %>
+  <h1 class="text-white text-left">Let's have a closer look at...</h1>
+  <h2 class="text-white" style="font-size:36px;">...who did the <%= @task.capitalize %> tasks last month</h2>
+  <%# 2 - Titre dynamique page - ci-dessus %>
+
+  <%# 2 - Rappel metrics last month de la category - ci-dessous %>
+  <div>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="pt-4">
+        <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="mini-avatar"></div>
+      </div>
+      <div>
+        <h2 class="text-center">Last month</h2>
+      </div>
+      <div class="pt-4">
+        <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="bg-danger mini-avatar"></div>
+      </div>
+    </div>
+
+    <div class="px-3 d-flex justify-content-between">
+      <div style="font-size:24px;" class="text-primary"><strong><%= @user_task_credit %></strong></div>
+      <div style="font-size:20px;"><p class="text-center">Credits earned</p></div>
+      <div style="font-size:24px;" class="text-primary"><strong><%= @partner_task_credit %></strong></div>
+    </div>
+
+    <div class="px-3 d-flex justify-content-between">
+      <div style="font-size:24px;" class="text-warning"><strong><%= @user_task_nb %></strong></div>
+        <div style="font-size:20px;"><p class="text-center">Number of tasks</p></div>
+      <div style="font-size:24px;" class="text-warning"><strong><%= @partner_task_nb %></strong></div>
+    </div>
+  </div>
+  <%# 2 - Rappel metrics last month de la category - ci-dessus %>
+
+  <%# 4 - List detail - ci-dessous %>
+  <%# 4.1 - Bouton toggle -  ci-dessous %>
+  <ul class="nav nav-pills mb-1 d-flex align-items-center justify-content-between" id="pills-tab" role="tablist">
+
+    <h3 class="mb-4 mt-4 text-left poppins-20">Done by : </h3>
+
+    <div class="d-flex">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-hers-tab" data-bs-toggle="pill" data-bs-target="#pills-hers" type="button" role="tab" aria-controls="pills-hers" aria-selected="true">You</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-yours-tab" data-bs-toggle="pill" data-bs-target="#pills-yours" type="button" role="tab" aria-controls="pills-yours" aria-selected="false"><%= @partner.nickname %></button>
+      </li>
+    </div>
+  <%# 4.1 - Bouton toggle -  ci-dessus %>
+
+  </ul>
+
+  <%# 4.2 - Liste user -  ci-dessous %>
+  <div class="tab-content" id="pills-tabContent">
+
+    <div class="tab-pane fade show active" id="pills-hers" role="tabpanel" aria-labelledby="pills-hers-tab">
+      <% @user_tasks.each do |task| %>
+        <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
+          <%= link_to task_path(task), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit;" do %>
+
+              <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= task.emoji %></div>
+                <p class="mb-0 ms-2 poppins-18 fw-bold" style="width:150px"><%= task.title %></p>
+              </div>
+              <p class="mb-0 ms-2 poppins-18 fw-bold text-dark" style="width:75px"><%= task.date.strftime("%d/%m") %></p>
+              <div class="d-flex">
+                <i class="fa-solid fa-star text-orange"></i>
+                <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= task.base_score %></p>
+              </div>
+
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%# 4.2 - Liste user -  ci-dessus %>
+
+    <%# 4.3 - Liste partner -  ci-dessous %>
+    <div class="tab-pane fade" id="pills-yours" role="tabpanel" aria-labelledby="pills-yours-tab">
+      <% @partner_tasks.each do |task| %>
+       <div class="box-shadow-purple reward-card mb-4 px-3 py-2 d-flex justify-content-between align-items-center position-relative">
+          <%= link_to task_path(task), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit;" do %>
+            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= task.emoji %></div>
+              <p class="mb-0 ms-2 poppins-18 fw-bold" style="width:150px"><%= task.title %></p>
+            </div>
+            <p class="mb-0 ms-2 poppins-18 fw-bold text-dark" style="width:75px"><%= task.date.strftime("%d/%m") %></p>
+            <div class="d-flex">
+              <i class="fa-solid fa-star text-orange"></i>
+              <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= task.base_score %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%# 4.3 - Liste partner -  ci-dessus %>
+  </div>
+  <%# 4 - Liste user & partner -  ci-dessus %>
+
+  <%# 3 - Link to back - ci-dessous %>
+  <%= link_to score_path do %>
+    <div class="btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none">
+      Back to Scores
+    </div>
+  <% end %>
+  <%# 3 - Link to back - ci-dessus %>
+
+</div>

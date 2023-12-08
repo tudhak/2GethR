@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :statues, only: [:new, :create, :show]
 
   get "score_dashboard", to: "pages#score", as: :score
+  get "score_details", to: "pages#scoredetails", as: :score_details
 
   resources :calendars, only: [:index]
 end

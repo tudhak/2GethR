@@ -79,6 +79,7 @@ export default class extends Controller {
                 }
               },
               ticks: {
+                display:false
                 // étiquettes graduation
               },
               angleLines: {

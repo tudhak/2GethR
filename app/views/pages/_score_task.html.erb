@@ -1,8 +1,8 @@
 
 <div>
-  <h2 class="text-center">Let's find out who does what?</h2>
-  <div class="chart">
-    <canvas data-controller="chart-tasks-main" data-chart-tasks-main-usertasks-value="<%= @user_tasks %>" data-chart-tasks-main-partnertasks-value="<%= @partner_tasks %>">
+  <h2 class="text-center">Now let's find out who does what?</h2>
+  <div>
+    <canvas data-controller="chart-tasks-main" data-chart-tasks-main-usertasks-value="<%= @user_tasks_prop %>" data-chart-tasks-main-partnertasks-value="<%= @partner_tasks_prop %>">
     <!-- TODO: Display horizontal bar chart 100% below -->
     </canvas>
   </div>
@@ -19,5 +19,14 @@
     </div>
   </div>
   <%# legend manuelle - ci-dessus %>
+
+  <h4 class="text-center mb-3 text-primary text-dark" style="font-size:24px;"> Browse by task category: </h4>
+  <div class="icon-grid">
+    <% @categories.each do |category|%>
+      <%= link_to score_details_path(title:category), class:"bg-primary vignette text-decoration-none p-1 ps-2 vignette" do %>
+        <%= category %>
+      <% end %>
+    <% end %>
+  </div>
 
 </div>

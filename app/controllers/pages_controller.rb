@@ -66,26 +66,41 @@ class PagesController < ApplicationController
     # @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
     # @partner_mood = {sunny: 0.3, stormy: 0.1, rainy: 0.2, cloudy: 0.4 }.to_json
 
-    @user_tasks = tasks_metrics["user_prop"].to_json
-    @partner_tasks = tasks_metrics["partner_prop"].to_json
+    @user_tasks_prop = tasks_metrics["user_prop"].to_json
+    @partner_tasks_prop = tasks_metrics["partner_prop"].to_json
+    @categories = tasks_metrics["couple"].keys
+
     # @user_tasks = {dishwashing: 0.3, laundry: 0.6, cleaning: 0.4, cooking: 0.6, shopping: 0.5 }.to_json
     # @partner_tasks = {dishwashing: 0.7, laundry: 0.4, cleaning: 0.8, cooking: 0.4, shopping: 0.5 }.to_json
 
-    # @user_rewards = rewards_metrics(@user)
-    # @partner_tasks = rewards_metrics(@partner)
-    @user_rewards =     { massage: 100, restaurant: 50, we: 75, cine: 20, fleur: 10, cadeau: 40, homiesnight: 75, breakfast: 30 }.to_json
-    @partner_rewards =  { massage: 80, restaurant: 20, we: 35, cine: 10, fleur:40, cadeau: 5, homiesnight: 30, breakfast: 15 }.to_json
+    @user_rewards = rewards_metrics(@user)
+    @partner_tasks = rewards_metrics(@partner)
+    # @user_rewards =     { massage: 100, restaurant: 50, we: 75, cine: 20, fleur: 10, cadeau: 40, homiesnight: 75, breakfast: 30 }.to_json
+    # @partner_rewards =  { massage: 80, restaurant: 20, we: 35, cine: 10, fleur:40, cadeau: 5, homiesnight: 30, breakfast: 15 }.to_json
 
-    # @user_period_tasks_points = tasks_points(@user)
-    # @partner_period_tasks_points = tasks_points(@partner)
-    @user_period_tasks_points = 40
-    @partner_period_tasks_points = 20
+    @user_period_tasks_points = tasks_points(@user)
+    @partner_period_tasks_points = tasks_points(@partner)
+    # @user_period_tasks_points = 40
+    # @partner_period_tasks_points = 20
 
-    # @user_period_rewards_points = rewards_points(@user)
-    # @partner_period_rewards_points = rewards_points(@partner)
-    @user_period_rewards_points = 30
-    @partner_period_rewards_points = 20
+    @user_period_rewards_points = rewards_points(@user)
+    @partner_period_rewards_points = rewards_points(@partner)
+    # @user_period_rewards_points = 30
+    # @partner_period_rewards_points = 20
     # raise
+  end
+
+  def scoredetails
+    set_user
+    set_couple
+    @partner = set_partner
+    @task = params[:title]
+    @user_tasks = Task.all.where('done_by = ? AND date >= ? AND title = ?', @user.nickname,  opening_date, @task)
+    @partner_tasks = Task.all.where('done_by = ? AND date >= ? AND title = ?', @partner.nickname,  opening_date, @task)
+    @user_task_credit = @user_tasks.map { |task| task[:base_score] }.sum
+    @partner_task_credit = @partner_tasks.map { |task| task[:base_score] }.sum
+    @user_task_nb = @user_tasks.map { |task| task[:base_score] }.size
+    @partner_task_nb = @partner_tasks.map { |task| task[:base_score] }.size
   end
 
   private
@@ -149,15 +164,23 @@ class PagesController < ApplicationController
   end
 
   def rewards_metrics(user)
-    "hello"
+    rewards_scope = user.rewards.where('date >= ?', opening_date)
+    gen_rewards = GenericReward.where(couple: user.couple).pluck(:title)
+    gen_rewards = !gen_rewards.include?("Other") ? gen_rewards + ["Other"] : gen_rewards
+    rewards_summary = { }
+    rewards_scope.each do |reward|
+      reward_title = gen_rewards.include?(reward.title) ? reward.title : "Other"
+      rewards_summary[reward_title] = rewards_summary[reward_title].nil? ? reward.cost : rewards_summary[reward_title] + reward.cost
+    end
+    return rewards_summary
   end
 
   def tasks_points(user)
-    "hello"
+    tasks_metrics[user.nickname].values.sum
   end
 
   def rewards_points(user)
-    "hello"
+    rewards_metrics(user).values.sum
   end
 
 end
