@@ -5,18 +5,19 @@
   data-interactions-list-value="<%= current_user.received_actions %>">
 
   <%# 1. Main status message - Start %>
-  <div class="mt-2"
+  <div class="p-2"
   style="z-index:1000; width:100%; height:75px;position:absolute;top:120px;"
   data-action="click->interactions#togglestatus">
-    <h4 class="text-center font-size-30px mb-0" > What's on <%= @partner.nickname %> mind today? </h4>
-    <h4 class="text-center font-size-30px mb-0" ><strong>- "<%= @partner.statues.last.main_statue_message %>" -<strong></h4>
+    <h4 class="text-center font-size-28px mb-0" > What's on <%= @partner.nickname %>'s mind today? </h4>
+    <h4 class="text-center font-size-30px mb-0" ><strong>"<%= @partner.statues.order(:created_at).last.main_statue_message %>"<strong></h4>
   </div>
   <%# 1. Main status message - End %>
 
   <%# 2. Detailed status messages - Click->toggleDisplay - Start %>
-  <div class="p-3 d-none" style="z-index:1000; width:100%; height:490px;position:absolute;top:200px;"
+  <div class="p-3 d-none" style="z-index:1000; width:100%; height:475px;position:absolute;top:200px;overflow:scroll;"
   data-interactions-target="status" >
-    <div class="d-flex flex-column justify-content-center align-items-center p-2 light-background text-dark" style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
+    <div style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
+    <%# NB : anciennement dans la présente Div : class="d-flex flex-column justify-content-center align-items-center p-2 text-dark" %>
       <%= render "show_status", partner: @partner %>
     </div>
   </div>
@@ -25,7 +26,7 @@
   <%# 3. Avatar & Actions %>
   <div class="flex-grow d-flex justify-content-center position-relative" id="partner-avatar">
 
-      <div class="rounded-circle position-absolute" style="top:15%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
+      <div class="rounded-circle position-absolute" style="top:20%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
       <%= image_tag("avatar-#{@partner.statues.order(:created_at).last.mood_category.title}.png", data: { action: 'click->interactions#playmood' }) %>
       <%= render "show_actions_icons" %>
       <%= render "show_actions_toggled" %>

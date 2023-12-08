@@ -213,9 +213,9 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user2,
   start_date: Time.now - (86_400 * 2),
-  main_statue_message: "Don't even talk to me!",
-  love_statue_message: "you clean up your mess! ",
-  hate_statue_message: "you come back completely drunk at 5am and trow up in the bed!"
+  main_statue_message: "Don't even want to hear from you!",
+  love_statue_message: "you could clean up your mess!",
+  hate_statue_message: "you come back completely drunk at 5am and mistake my dressing for the toilets!"
 )
 
 user2stat = user2.statues
@@ -327,7 +327,7 @@ Statue.create(
   mood_category: (MoodCategory.all[2]),
   user: user1,
   start_date: Time.now - 86_400,
-  main_statue_message: "So so",
+  main_statue_message: "Toujours la même histoire",
   love_statue_message: "you can leave my stuff where they are! ",
   hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
 )
@@ -350,7 +350,7 @@ puts "...7 days ago"
 Statue.create(
   mood_category: MoodCategory.all[0],
   user: user4,
-  start_date: Time.now - (85_400 * 7),
+  start_date: Time.now - (86_400 * 7),
   main_statue_message: "You drive me f**in' maad!",
   love_statue_message: "you can leave my stuff where they are! ",
   hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
@@ -467,7 +467,7 @@ puts "4 status created for user 3"
 puts "Creating task templates (generic tasks)..."
 
 GenericTask.create(
-  title: "Let the dogs out",
+  title: "Dog Out",
   description: "The dogs should take a walk to keep the flat clean.",
   base_score: 30,
   couple: couple1,
@@ -475,7 +475,7 @@ GenericTask.create(
 )
 
 GenericTask.create(
-  title: "Do the dishes",
+  title: "Dishwashing",
   description: "Keeping the kitchen clean is a good medicine.",
   base_score: 40,
   couple: couple1,
@@ -483,7 +483,7 @@ GenericTask.create(
 )
 
 GenericTask.create(
-  title: "Iron clothes",
+  title: "Ironing",
   description: "A little ironing to have presentable outfits.",
   base_score: 25,
   couple: couple1,
@@ -491,11 +491,19 @@ GenericTask.create(
 )
 
 GenericTask.create(
-  title: "Full house cleaning",
+  title: "Cleaning",
   description: "Basic hygiene for a better life.",
   base_score: 60,
   couple: couple1,
   emoji: "🧽"
+)
+
+GenericTask.create(
+  title: "Cooking",
+  description: "Cook some good food.",
+  base_score: 50,
+  couple: couple1,
+  emoji:"🍽️"
 )
 
 GenericTask.create(
@@ -701,7 +709,7 @@ Task.create(
 # Semaine 1---------------------------------------------------------------------
 puts "Tasks Couple 1 Week 1 (Seed Jerem)"
 Task.create(
-  title: "Do the dishes",
+  title: "Dishwashing",
   description: "Keeping the kitchen clean is a good medicine.",
   date: Date.today - 28,
   base_score: 40,
@@ -712,7 +720,7 @@ Task.create(
   done_by: user1.nickname
 )
 Task.create(
-  title: "Iron clothes",
+  title: "Ironing",
   description: "A little ironing to have presentable outfits.",
   date: Date.today - 26,
   base_score: 25,
@@ -723,7 +731,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Full house cleaning",
+  title: "Cleaning",
   description: "Basic hygiene for a better life.",
   date: Date.today - 24,
   base_score: 60,
@@ -734,7 +742,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Prepare the dinner",
+  title: "Cooking",
   description: "Basic hygiene for a better life.",
   date: Date.today - 23,
   base_score: 60,
@@ -745,7 +753,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Let the dogs out",
+  title: "Dog out",
   description: "The dogs should take a walk to keep the flat clean.",
   date: Date.today - 22,
   base_score: 30,
@@ -758,7 +766,7 @@ Task.create(
 # Semaine 2---------------------------------------------------------------------
 puts "Tasks Couple 1 Week 2 (Seed Jerem)"
 Task.create(
-  title: "Do the dishes",
+  title: "Dishwashing",
   description: "Keeping the kitchen clean is a good medicine.",
   date: Date.today - 20,
   base_score: 40,
@@ -769,7 +777,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Iron clothes",
+  title: "Ironing",
   description: "A little ironing to have presentable outfits.",
   date: Date.today - 18,
   base_score: 25,
@@ -780,7 +788,7 @@ Task.create(
   done_by: user1.nickname
 )
 Task.create(
-  title: "Full house cleaning",
+  title: "Cleaning",
   description: "Basic hygiene for a better life.",
   date: Date.today - 17,
   base_score: 60,
@@ -791,7 +799,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Prepare the dinner",
+  title: "Cooking",
   description: "Basic hygiene for a better life.",
   date: Date.today - 16,
   base_score: 60,
@@ -802,7 +810,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Let the dogs out",
+  title: "Dog out",
   description: "The dogs should take a walk to keep the flat clean.",
   date: Date.today - 15,
   base_score: 30,
@@ -815,7 +823,7 @@ Task.create(
 # Semaine 3---------------------------------------------------------------------
 puts "Tasks Couple 1 Week 3 (Seed Jerem)"
 Task.create(
-  title: "Do the dishes",
+  title: "Dishwashing",
   description: "Keeping the kitchen clean is a good medicine.",
   date: Date.today - 13,
   base_score: 40,
@@ -826,7 +834,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Iron clothes",
+  title: "Ironing",
   description: "A little ironing to have presentable outfits.",
   date: Date.today - 12,
   base_score: 25,
@@ -837,7 +845,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Full house cleaning",
+  title: "Cleaning",
   description: "Basic hygiene for a better life.",
   date: Date.today - 10,
   base_score: 60,
@@ -848,7 +856,7 @@ Task.create(
   done_by: user1.nickname
 )
 Task.create(
-  title: "Prepare the dinner",
+  title: "Cooking",
   description: "Basic hygiene for a better life.",
   date: Date.today - 9,
   base_score: 60,
@@ -859,7 +867,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Let the dogs out",
+  title: "Dog out",
   description: "The dogs should take a walk to keep the flat clean.",
   date: Date.today - 8,
   base_score: 30,
@@ -872,7 +880,7 @@ Task.create(
 # Semaine 4---------------------------------------------------------------------
 puts "Tasks Couple 1 Week 4 (Seed Jerem)"
 Task.create(
-  title: "Do the dishes",
+  title: "Dishwashing",
   description: "Keeping the kitchen clean is a good medicine.",
   date: Date.today - 6,
   base_score: 40,
@@ -883,7 +891,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Iron clothes",
+  title: "Ironing",
   description: "A little ironing to have presentable outfits.",
   date: Date.today - 5,
   base_score: 25,
@@ -894,7 +902,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Full house cleaning",
+  title: "Cleaning",
   description: "Basic hygiene for a better life.",
   date: Date.today - 3,
   base_score: 60,
@@ -905,7 +913,7 @@ Task.create(
   done_by: user2.nickname
 )
 Task.create(
-  title: "Prepare the dinner",
+  title: "Cooking",
   description: "Basic hygiene for a better life.",
   date: Date.today - 2,
   base_score: 60,
@@ -916,7 +924,7 @@ Task.create(
   done_by: user1.nickname
 )
 Task.create(
-  title: "Let the dogs out",
+  title: "Dog out",
   description: "The dogs should take a walk to keep the flat clean.",
   date: Date.today - 1,
   base_score: 30,
@@ -973,6 +981,14 @@ GenericReward.create!(
   cost: 50,
   couple: couple1,
   emoji: "🤮​​"
+)
+
+GenericReward.create!(
+  title: 'Sexual fantasy',
+  description: 'I would love that you seat on my face and spank me',
+  cost: 100,
+  couple: couple1,
+  emoji: "🌶️"
 )
 
 GenericReward.create!(

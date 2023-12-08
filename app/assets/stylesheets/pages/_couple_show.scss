@@ -40,7 +40,7 @@
 
   .action1 {
     font-size: 56px;
-    top: 150px;
+    top: 175px;
     left: 40px;
 
     animation: floatAnimationX 2.2s infinite;
@@ -48,7 +48,7 @@
 
   .action2 {
     font-size: 56px;
-    top: 35px;
+    top: 60px;
     left: 85px;
 
     animation: floatAnimationX 2.4s infinite;
@@ -56,7 +56,7 @@
 
   .action3 {
     font-size: 56px;
-    top: 35px;
+    top: 60px;
     left: 250px;
 
     animation: floatAnimationX 2.6s infinite;
@@ -64,7 +64,7 @@
 
   .action4 {
     font-size: 56px;
-    top: 150px;
+    top: 175px;
     left: 300px;
     transform: rotate(45deg);
 
@@ -116,6 +116,17 @@
     font-family: 'VT323';
     font-size: 35px;
     line-height: 30px;
+  }
+
+  .status-card {
+    border-radius: 12px;
+    box-shadow: 5px 5px 5px rgba(175, 89, 255, 0.35);
+  }
+  .status-titles {
+    font-size:18px;
+    background: radial-gradient(rgba(128, 89, 255, 0.10), rgba(226, 100, 108, 0.5));
+    border-top-left-radius:12px;
+    border-top-right-radius:12px;
   }
 
 }
