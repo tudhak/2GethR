@@ -213,9 +213,9 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user2,
   start_date: Time.now - (86_400 * 2),
-  main_statue_message: "Don't even talk to me!",
-  love_statue_message: "you clean up your mess! ",
-  hate_statue_message: "you come back completely drunk at 5am and trow up in the bed!"
+  main_statue_message: "Don't even want to hear from you!",
+  love_statue_message: "you could clean up your mess!",
+  hate_statue_message: "you come back completely drunk at 5am and mistake my dressing for the toilets!"
 )
 
 user2stat = user2.statues
@@ -327,7 +327,7 @@ Statue.create(
   mood_category: (MoodCategory.all[2]),
   user: user1,
   start_date: Time.now - 86_400,
-  main_statue_message: "So so",
+  main_statue_message: "Toujours la même histoire",
   love_statue_message: "you can leave my stuff where they are! ",
   hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
 )
@@ -350,7 +350,7 @@ puts "...7 days ago"
 Statue.create(
   mood_category: MoodCategory.all[0],
   user: user4,
-  start_date: Time.now - (85_400 * 7),
+  start_date: Time.now - (86_400 * 7),
   main_statue_message: "You drive me f**in' maad!",
   love_statue_message: "you can leave my stuff where they are! ",
   hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
@@ -981,6 +981,14 @@ GenericReward.create!(
   cost: 50,
   couple: couple1,
   emoji: "🤮​​"
+)
+
+GenericReward.create!(
+  title: 'Sexual fantasy',
+  description: 'I would love that you seat on my face and spank me',
+  cost: 100,
+  couple: couple1,
+  emoji: "🌶️"
 )
 
 GenericReward.create!(
