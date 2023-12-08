@@ -29,6 +29,8 @@
 .task-picture {
   width: 100%;
   object-fit: content;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .task-card {
@@ -56,7 +58,7 @@
 
 .card-body-task {
   background-color: rgb(203, 193, 222);
-  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
   position: relative;
 }
@@ -128,4 +130,8 @@ input::file-selector-button {
 
 .btn-cross-white {
   color: white;
+}
+
+.task-custom-show {
+  border-radius: 12px;
 }

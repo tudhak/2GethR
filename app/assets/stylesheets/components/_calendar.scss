@@ -133,6 +133,19 @@
   top: 8px;
 }
 
-.flatpickr-calendar {
-  background-color: red;
+.flatpickr-innerContainer {
+  background: #bda9fc !important;
+}
+
+.flatpickr-month, .flatpickr-weekdays, .flatpickr-weekday, .flatpickr-monthDropdown-months {
+  background: $orange !important;
+  color: #fff !important;
+}
+
+.flatpickr-day {
+  color: #000 !important;
+}
+
+.prevMonthDay, .nextMonthDay {
+  opacity: 0.4 !important;
 }
