@@ -12,14 +12,11 @@
                         placeholder: "Description",
                         input_html: { class: "input-field" }
                         %>
-            <%= f.input :photos, as: :file, input_html: { multiple: true },
-                        input_html: { class: "input-field" }
-                        %>
             <%= f.input :date,
                         as: :string,
                         label: false,
                         placeholder: "Date",
-                        input_html: { class: "input-field" }
+                        input_html: { class: "input-field", data: { controller: "datepicker" } }
                         %>
             <%= f.input :base_score,
                         label: false,

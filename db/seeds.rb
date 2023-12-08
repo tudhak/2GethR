@@ -632,7 +632,7 @@ Task.create(
 )
 
 Task.create(
-  title: "Go to the grocery store",
+  title: "Grocery list",
   description: "We ran out of pasta.",
   date: Date.parse("12/12/2023"),
   base_score: 25,
@@ -968,7 +968,7 @@ GenericReward.create!(
 )
 
 GenericReward.create!(
-  title: 'Skip In-laws dinner',
+  title: 'Skip in-laws dinner',
   description: 'Let me pretend I am sick next time we are invited at your parents.',
   cost: 50,
   couple: couple1,
@@ -1125,7 +1125,7 @@ Reward.create!(
   user: user1,
   status: 'done',
   description: 'Let me pretend I am sick next time we are invited at your parents.',
-  title: 'Skip dinner with step-parents',
+  title: 'Skip in-laws dinner',
   cost: 50,
   emoji: "🤮"
 )

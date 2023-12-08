@@ -74,7 +74,3 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :description, :date, :base_score, :status, :assigned_to, :emoji, photos: [])
   end
 end
-
-# def set_generic_task
-#   @generic_task_spec = GenericTask.find(params[:id])
-# end
