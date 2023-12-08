@@ -2,7 +2,7 @@
   <h1>Create a New Reward</h1>
   <%= link_to 'Back to Rewards', couple_rewards_path(current_user.couple), class: "text-black pb-3 d-inline-block" %>
 
-  <%= simple_form_for [current_user.couple, @reward], html: { class: 'bg_light_white p-3 bg_light_white text-dark' } do |f| %>
+  <%= simple_form_for [current_user.couple, @reward], html: { class: 'create_reward p-3 text-dark' } do |f| %>
     <%= f.input :date, label: 'Choose Date' %>
     <%= f.input :title %>
     <%= f.input :description %>
