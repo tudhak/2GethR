@@ -2,7 +2,7 @@
 
   <%# 1 - Titre dynamique page - ci-dessous %>
   <h1 class="text-white text-left">Let's have a closer look at...</h1>
-  <h2 class="text-white" style="font-size:36px;">...who did the <%= @task.capitalize %> tasks last month</h2>
+  <h2 class="text-black" style="font-size:30px;">...who does the <%= @task.capitalize %> </h2>
   <%# 2 - Titre dynamique page - ci-dessus %>
 
   <%# 2 - Rappel metrics last month de la category - ci-dessous %>
@@ -61,9 +61,9 @@
 
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= task.emoji %></div>
-                <p class="mb-0 ms-2 poppins-18 fw-bold" style="width:150px"><%= task.title %></p>
+                <p class="mb-0 ms-2 poppins-18 fw-bold" style="width:140px"><%= task.title %></p>
               </div>
-              <p class="mb-0 ms-2 poppins-18 fw-bold text-dark" style="width:75px"><%= task.date.strftime("%d/%m") %></p>
+              <p class="mb-0 ms-2 poppins-18 fw-bold text-dark" style="width:60px"><%= task.date.strftime("%d/%m") %></p>
               <div class="d-flex">
                 <i class="fa-solid fa-star text-orange"></i>
                 <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= task.base_score %></p>
@@ -82,9 +82,9 @@
           <%= link_to task_path(task), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit;" do %>
             <div class="d-flex align-items-center">
               <div class="d-flex align-items-center justify-content-center emoji_reward_small"><%= task.emoji %></div>
-              <p class="mb-0 ms-2 poppins-18 fw-bold" style="width:150px"><%= task.title %></p>
+              <p class="mb-0 ms-2 poppins-18 fw-bold" style="width:140px"><%= task.title %></p>
             </div>
-            <p class="mb-0 ms-2 poppins-18 fw-bold text-dark" style="width:75px"><%= task.date.strftime("%d/%m") %></p>
+            <p class="mb-0 ms-2 poppins-18 fw-bold text-dark" style="width:60px"><%= task.date.strftime("%d/%m") %></p>
             <div class="d-flex">
               <i class="fa-solid fa-star text-orange"></i>
               <p class="mb-0 ms-2 poppins-18 fw-bold text-dark"><%= task.base_score %></p>
