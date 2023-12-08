@@ -77,3 +77,15 @@ body {
 .bg-sunny {
   background-color:rgb(226, 100, 108);
 }
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 6px;
+  grid-auto-rows: 1fr;
+}
+
+.vignette {
+  border-radius:10px;
+  box-shadow: 5 5 5 grey;
+  }

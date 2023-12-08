@@ -68,6 +68,8 @@ class PagesController < ApplicationController
 
     @user_tasks_prop = tasks_metrics["user_prop"].to_json
     @partner_tasks_prop = tasks_metrics["partner_prop"].to_json
+    @categories = tasks_metrics["couple"].keys
+
     # @user_tasks = {dishwashing: 0.3, laundry: 0.6, cleaning: 0.4, cooking: 0.6, shopping: 0.5 }.to_json
     # @partner_tasks = {dishwashing: 0.7, laundry: 0.4, cleaning: 0.8, cooking: 0.4, shopping: 0.5 }.to_json
 
@@ -95,7 +97,10 @@ class PagesController < ApplicationController
     @task = params[:title]
     @user_tasks = Task.all.where('done_by = ? AND date >= ? AND title = ?', @user.nickname,  opening_date, @task)
     @partner_tasks = Task.all.where('done_by = ? AND date >= ? AND title = ?', @partner.nickname,  opening_date, @task)
-    # raise
+    @user_task_credit = @user_tasks.map { |task| task[:base_score] }.sum
+    @partner_task_credit = @partner_tasks.map { |task| task[:base_score] }.sum
+    @user_task_nb = @user_tasks.map { |task| task[:base_score] }.size
+    @partner_task_nb = @partner_tasks.map { |task| task[:base_score] }.size
   end
 
   private

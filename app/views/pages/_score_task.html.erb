@@ -20,4 +20,13 @@
   </div>
   <%# legend manuelle - ci-dessus %>
 
+  <h4 class="text-center mb-3 text-primary text-dark" style="font-size:24px;"> Browse by task category: </h4>
+  <div class="icon-grid">
+    <% @categories.each do |category|%>
+      <%= link_to score_details_path(title:category), class:"bg-primary vignette text-decoration-none p-1 ps-2 vignette" do %>
+        <%= category %>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>
