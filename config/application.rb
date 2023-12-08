@@ -1,5 +1,4 @@
 require_relative "boot"
-
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -28,6 +27,7 @@ module ToGethR
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.assets.enabled = true
 
     # Ajout JM : importmap (suivi des instruction chatgpt)
     config.importmap.enabled = true
