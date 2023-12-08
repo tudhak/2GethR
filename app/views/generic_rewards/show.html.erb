@@ -1,13 +1,33 @@
 <div class="p-3 mb-5">
   <h1><%= @generic_reward.title %></h1>
-  <%= link_to 'Back to Rewards', couple_rewards_path(current_user.couple), class: "text-black pb-3 d-inline-block" %>
-
+  <%= link_to 'Back', couple_rewards_path(current_user.couple), class:"back-reward-button" %>
   <%= simple_form_for [current_user.couple, @reward], html: {class: 'create_reward p-3 text-dark'} do |f| %>
-    <%= f.input :date, label: 'Choose Date' %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :cost %>
-    <%= f.input :emoji %>
-    <%= f.button :submit, 'Create Reward', class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
+    <%= f.input :date,
+                as: :string,
+                input_html: { class: "input-field", data: { controller: "datepicker" } },
+                label: false,
+                placeholder: "Choose a date"
+                %>
+    <%= f.input :title,
+                input_html: { class: "input-field" },
+                label: false,
+                placeholder: "Title"
+                %>
+    <%= f.input :description,
+                input_html: { class: "input-field" },
+                label: false,
+                placeholder: "Description"
+                %>
+    <%= f.input :cost,
+                input_html: { class: "input-field" },
+                label: false,
+                placeholder: "Cost"
+                %>
+    <%= f.input :emoji,
+                input_html: { class: "input-field" },
+                label: false,
+                placeholder: "Emoji"
+                %>
+    <%= f.button :submit, 'Ask a new reward', class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
   <% end %>
 </div>
