@@ -79,6 +79,6 @@
     </div>
   </div>
 
-  <%= render 'tasks/add_task_modal', task: @task %>
+  <%= render partial: 'tasks/add_task_modal', locals: {task: @task, partner: @partner} %>
 
 </div>
