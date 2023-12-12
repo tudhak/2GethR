@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_couple, only: [:index]
   before_action :set_task, only: [:show, :update, :destroy]
-  before_action :set_partner, only: [:index, :show]
+  before_action :set_partner, only: [:index, :show, :create]
 
   def index
     @tasks = ""
@@ -26,10 +26,10 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
-    if @task.save!
+    if @task.save
       redirect_to task_path(@task)
     else
-      render partial: "tasks/add_task_modal", status: :unprocessable_entity
+      render partial: "tasks/add_task_modal", locals: { task: @task, partner: @partner }, status: :unprocessable_entity
     end
   end
 
