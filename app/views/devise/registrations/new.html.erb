@@ -1,49 +1,65 @@
-<h2>Sign up</h2>
+<div class="container my-4 mx-auto">
+  <div class="row justify-content-center">
+    <div class="col-8 col-md-6">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+      <h2 class="mb-4">Sign up</h2>
 
- <% if resource.errors.any?  %>
-    <p class="text-danger">Please review the problems below: </p>
-    <% resource.errors.full_messages.each do |message|  %>
-      <div class="text-danger mb-2"><%= message %></div>
-    <% end %>
-  <% end %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :first_name,
-                required: true %>
-    <%= f.input :last_name,
-                required: true %>
-    <%= f.input :nickname,
-                required: true %>
-    <%= f.input :mode,
-                required: false %>
-    <%= f.input :photo, as: :file %>
-    <div class="mb-3 string optional token">
-      <label class="string optional" for="token">Token</label>
-      <input class="form-control string optional" type="text" name="token" id="token">
-    </div>
-    <div class="mb-3 string optional group_name">
-      <label class="string optional" for="group_name">Name</label>
-      <input class="form-control string optional" type="text" name="group[name]" id="group_name">
+      <% if resource.errors.any?  %>
+          <p class="text-danger">Please review the problems below: </p>
+          <% resource.errors.full_messages.each do |message|  %>
+            <div class="text-danger mb-2"><%= message %></div>
+          <% end %>
+        <% end %>
+
+        <div class="form-inputs mb-5">
+          <h3><em>User information</em></h3>
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" }%>
+            <%= f.input :password,
+                        required: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation,
+                        required: true,
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :first_name,
+                        required: true %>
+            <%= f.input :last_name,
+                        required: true %>
+            <%= f.input :nickname,
+                        required: true %>
+            <%= f.input :mode,
+                        required: false %>
+            <%= f.input :photo, as: :file %>
+            <h3 class="mt-5"><em>Couple information</em></h3>
+            <p>If any, please enter below the couple token provided by your partner:</p>
+            <div class="mb-3 string optional token">
+              <label class="string optional" for="token">Token</label>
+              <input class="form-control string optional" type="text" name="token" id="token">
+            </div>
+            <p>If you do not have any token, please enter below your couple address and nickname:</p>
+            <div class="mb-3 string optional couple_nickname">
+              <label class="string optional" for="group_name">Nickname</label>
+              <input class="form-control string optional" type="text" name="couple[nickname]" id="couple_nickname">
+            </div>
+            <div class="mb-3 string optional couple_address">
+              <label class="string optional" for="couple_address">Address</label>
+              <input class="form-control string optional" type="text" name="couple[address]" id="couple_address">
+            </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class: "btn btn-lightpurple" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
     </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
