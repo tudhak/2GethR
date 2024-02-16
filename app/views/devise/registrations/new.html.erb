@@ -3,6 +3,13 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
+ <% if resource.errors.any?  %>
+    <p class="text-danger">Please review the problems below: </p>
+    <% resource.errors.full_messages.each do |message|  %>
+      <div class="text-danger mb-2"><%= message %></div>
+    <% end %>
+  <% end %>
+
   <div class="form-inputs">
     <%= f.input :email,
                 required: true,
@@ -24,6 +31,14 @@
     <%= f.input :mode,
                 required: false %>
     <%= f.input :photo, as: :file %>
+    <div class="mb-3 string optional token">
+      <label class="string optional" for="token">Token</label>
+      <input class="form-control string optional" type="text" name="token" id="token">
+    </div>
+    <div class="mb-3 string optional group_name">
+      <label class="string optional" for="group_name">Name</label>
+      <input class="form-control string optional" type="text" name="group[name]" id="group_name">
+    </div>
   </div>
 
   <div class="form-actions">
