@@ -5,4 +5,7 @@ class Couple < ApplicationRecord
   has_many :generic_rewards, dependent: :destroy
 
   generates_token_for :check_couple
+
+  validates :nickname, presence: true, uniqueness: true
+  validates :address, presence: true
 end
