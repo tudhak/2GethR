@@ -8,7 +8,7 @@
   </h1>
   <div class="cta text-center mt-5">
     <% if user_signed_in? %>
-      <%= link_to "Play", couple_path(current_user.couple) %>
+      <%= link_to "Play", couple_path(current_user.couple), class: "play-link" %>
     <% else %>
       <%= link_to "Sign in", new_user_session_path %>
     <% end %>
