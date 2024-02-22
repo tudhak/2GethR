@@ -44,7 +44,10 @@ Rails.application.routes.draw do
   end
 
 
-  resources :statues, only: [:new, :create, :show]
+  resources :statues, only: [:new, :create, :show] do
+    # ci-après : ajout d'une route pour toggle le mode autopilot (création d'un nouveau statut)
+    post "autopilot_toggle", on: :collection
+  end
 
   get "score_dashboard", to: "pages#score", as: :score
   get "score_details", to: "pages#scoredetails", as: :score_details

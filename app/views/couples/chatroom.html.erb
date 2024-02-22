@@ -3,7 +3,15 @@
     data-couple-subscription-couple-id-value="<%= @couple.id %>"
     data-couple-subscription-current-user-id-value="<%= current_user.id %>"
 >
-  <h1>Chat</h1>
+  <div  class="d-flex justify-content-between align-items-center"
+        data-controller="autopilot">
+    <h1>Chat</h1>
+    <%# ci-après : modification autopilot - ajout d'un link post pour toggle le statut autopilot  %>
+    <%= link_to autopilot_toggle_statues_path, data: {turbo_method: :post} do %>
+      <div data-autopilot-target="autopilot-icon" data-action="click->autopilot#toggle" class="rounded-circle btn btn-danger"><h1>Autopilot</h1></div>
+    <% end %>
+    <%# ci-dessus : modification autopilot - ajout d'un link post pour toggle le statut autopilot %>
+  </div>
 
   <div class="messages" data-couple-subscription-target="messages">
     <% @couple.messages.each do |message| %>
