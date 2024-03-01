@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  # TODO: Il faut pouvoir arriver sur la page d'accueil de l'application lorsqu'on est pas connecté. Il faut décommenter le code ci-dessous
+  # Problème : la page est codée en partant du principe qu'il existe un couple. Un utilisateur non connecté donc sans couple fait planter la page.
   # skip_before_action :authenticate_user!, only: :home
 
   def home
