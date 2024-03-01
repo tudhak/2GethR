@@ -7,7 +7,7 @@
     <h2 class="generic-title text-center mb-4">Our calendar</h2>
 
     <%= month_calendar do |date| %>
-      <span data-calendar-target="targetDate" data-action="click->calendar#showEvents"><%= date.day %></span>
+      <span data-calendar-target="targetDate" data-action="click->calendar#showEvents click->calendar#changeBackground"><%= date.day %></span>
     <% end %>
 
     <div class="row mt-4 mx-0 p-0 justify-content-center">

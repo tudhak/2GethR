@@ -8,33 +8,33 @@
       <% end %>
         <div class="card-body-task p-4">
           <h4 class="card-title text-center mb-4 fs-1"></i><strong> <%= @task.title %> <%= @task.emoji %></strong></h4>
-          <div class="d-flex mb-2">
-            <i class="fa-regular fa-folder me-3"></i>
-            <p class="card-text"><%= @task.description %></p>
+          <div class="d-flex align-items-center mb-2">
+            <i class="fa-regular fa-folder task-show-icon"></i>
+            <p class="card-text m-0"><%= @task.description %></p>
           </div>
-          <div class="d-flex mb-2">
-            <i class="fa-solid fa-person me-3"></i>
-            <p class="card-text"><%= @task.user.nickname %></p>
+          <div class="d-flex align-items-center mb-2">
+            <i class="fa-solid fa-person task-show-icon"></i>
+            <p class="card-text m-0"><%= @task.user.nickname %></p>
           </div>
-          <div class="d-flex mb-2">
-            <i class="fa-solid fa-person-chalkboard me-3"></i>
-            <p class="card-text"><%= @task.assigned_to %></p>
+          <div class="d-flex align-items-center mb-2">
+            <i class="fa-solid fa-person-chalkboard task-show-icon"></i>
+            <p class="card-text m-0"><%= @task.assigned_to %></p>
           </div>
-          <div class="d-flex mb-2">
-            <i class="fa-solid fa-person-circle-check me-3"></i>
-            <p class="card-text"><%= @task.done_by %></p>
+          <div class="d-flex align-items-center mb-2">
+            <i class="fa-solid fa-person-circle-check task-show-icon"></i>
+            <p class="card-text m-0"><%= @task.done_by %></p>
           </div>
-           <div class="d-flex mb-2">
-            <i class="fa-solid fa-list me-3"></i>
-            <p class="card-text"><%= @task.status %></p>
+           <div class="d-flex align-items-center mb-2">
+            <i class="fa-solid fa-list task-show-icon"></i>
+            <p class="card-text m-0"><%= @task.status %></p>
           </div>
-           <div class="d-flex mb-2">
-           <i class="fa-solid fa-calendar-days me-3"></i>
-            <p class="card-text"><%= @task.date.strftime('%B %d, %Y') %></p>
+           <div class="d-flex align-items-center mb-2">
+           <i class="fa-solid fa-calendar-days task-show-icon"></i>
+            <p class="card-text m-0"><%= @task.date.strftime('%B %d, %Y') %></p>
           </div>
-           <div class="d-flex mb-2">
-           <i class="fa-solid fa-star me-3"></i>
-            <p class="card-text"><%= @task.base_score %></p>
+           <div class="d-flex align-items-center mb-2">
+           <i class="fa-solid fa-star task-show-icon"></i>
+            <p class="card-text m-0"><%= @task.base_score %></p>
           </div>
           <div class="d-flex justify-content-between flex-column">
             <div class="d-flex align-items-center">
