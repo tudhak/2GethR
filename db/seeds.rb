@@ -33,8 +33,8 @@ puts "Destroying couples..."
 Couple.destroy_all
 
 puts "Creating couples..."
-couple1 = Couple.create(address: '12 rue de passy 75016 Paris', token: 123_456)
-couple2 = Couple.create(address: '58 rue pierre charron 75008 Paris', token: 789_012)
+couple1 = Couple.create(nickname: "Chouchou & Loulou", address: '12 rue de passy 75016 Paris', token: 123_456)
+couple2 = Couple.create(nickname: "Kim & Ye", address: '58 rue pierre charron 75008 Paris', token: 789_012)
 puts "Couples created"
 
 puts "Creating users"
