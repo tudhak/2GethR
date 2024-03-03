@@ -21,7 +21,7 @@
     <% end %>
     <%# Boutons d'action en position absolute - end %>
 
-    <div id="big-avatar" class="d-flex justify-content-center" style="position:absolute; bottom:-30px; left:10%; background-position: center;  background-size: cover; width:80%; aspect-ratio: 1/1; border-radius:50%; border:solid; border-width:2px; border-color:white;">
+    <div id="big-avatar" class="d-flex justify-content-center" style="position:absolute; bottom:-30px; left:10%; background-image: url('<%= cl_image_path @partner.photo.key %>'); background-position: center;  background-size: cover; width:80%; aspect-ratio: 1/1; border-radius:50%; border:solid; border-width:2px; border-color:white;">
       <%# Affichage action à toggle d-none - start %>
       <div id="action-punch" data-interactions-target="punch" class="action-sent d-none"><h1 class="fa-solid fa-hand-fist" style="font-size:200px; color:white;"></h1></div>
       <div id="action-love" data-interactions-target="love" class="action-sent d-none"><h1 class="fa-solid fa-heart" style="font-size:200px; color:white;"></h1></div>
