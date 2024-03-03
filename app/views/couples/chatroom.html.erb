@@ -3,21 +3,28 @@
     data-couple-subscription-couple-id-value="<%= @couple.id %>"
     data-couple-subscription-current-user-id-value="<%= current_user.id %>"
 >
-  <div  class="d-flex justify-content-between align-items-center"
-        data-controller="autopilot">
-    <h1>Chat</h1>
-    <%# ci-après : modification autopilot - ajout d'un link post pour toggle le statut autopilot  %>
-    <%= link_to autopilot_toggle_statues_path, data: {turbo_method: :post} do %>
-      <div data-autopilot-target="autopilot-icon" data-action="click->autopilot#toggle" class="rounded-circle btn btn-danger"><h1>Autopilot</h1></div>
-    <% end %>
-    <%# ci-dessus : modification autopilot - ajout d'un link post pour toggle le statut autopilot %>
-  </div>
+
+  <h1>Chat</h1>
 
   <div class="messages" data-couple-subscription-target="messages">
     <% @couple.messages.each do |message| %>
       <%= render "messages/message_container", message: message %>
     <% end %>
   </div>
+
+  <%# ci-après : modification autopilot - ajout d'un link post pour toggle le statut autopilot  %>
+    <div class="form-check form-switch mx-3 pt-2" style="border-top: 1px solid #CCCCCC;" data-controller="autopilot" data-autopilot-url="<%= autopilot_toggle_statues_path %>">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" <%= current_user.statues.last.autopilot ? 'checked' : '' %> data-action="click->autopilot#toggle">
+      <label class="form-check-label" for="flexSwitchCheckDefault"> <i class="fa-solid fa-plane"></i> Autopilot </label>
+    </div>
+
+    <%# Méthode alternative => link + turbo method : POST %>
+    <%# <div> %>
+      <%# <%= link_to autopilot_toggle_statues_path, data: {turbo_method: :post} do %>
+        <%# <div><h1>Click</h1></div> %>
+      <%# end %>
+    <%# </div> %>
+  <%# ci-dessus : modification autopilot - ajout d'un link post pour toggle le statut autopilot %>
 
   <%= simple_form_for [@couple, @message], html: { class: "d-flex flex-column", data: { couple_subscription_target: "form", action: "turbo:submit-end->couple-subscription#resetForm" }}  do |f| %>
     <%# <div class="d-flex align-items-center justify-content-center"> %>
