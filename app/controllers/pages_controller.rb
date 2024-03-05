@@ -2,64 +2,17 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    if user_signed_in?
-      set_user
-      set_couple
-      set_partner
-      @actions_received = @user.received_actions
-      @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
-      @nb_actions = @received_actions.size
-    end
-    unless @partner.nil? # TODO: Première modif tentée pour faire fonctionner la page en l'absence de partner
-      @partner_mood_img = @partner.statues == [] ? MoodCategory.last.image_path : @partner.statues.last.mood_category.image_path
-    end
-  end
-
-  def punch_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "punch;"
-    else
-      @partner.received_actions += "punch;"
-    end
-    @partner.save
-  end
-
-  def love_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "love;"
-    else
-      @partner.received_actions += "love;"
-    end
-      @partner.save
-  end
-
-  def peace_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "peace;"
-    else
-      @partner.received_actions += "peace;"
-    end
-    @partner.save
-  end
-
-  def kiss_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "kiss;"
-    else
-      @partner.received_actions += "kiss;"
-    end
-    @partner.save
-  end
-
-  def delete_action
-    home
-    @user.received_actions = nil
-    @user.save
-
+    # if user_signed_in?
+    #   set_user
+    #   set_couple
+    #   set_partner
+    #   @actions_received = @user.received_actions
+    #   @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
+    #   @nb_actions = @received_actions.size
+    # end
+    # unless @partner.nil? # TODO: Première modif tentée pour faire fonctionner la page en l'absence de partner
+    #   @partner_mood_img = @partner.statues == [] ? MoodCategory.last.image_path : @partner.statues.last.mood_category.image_path
+    # end
   end
 
   def score
@@ -107,21 +60,6 @@ class PagesController < ApplicationController
   end
 
   private
-
-#------------ 1. set user, partner, couple------------------------------------
-
-  def set_user
-    @user = current_user
-  end
-
-  def set_couple
-    @couple = current_user.couple
-  end
-
-  def set_partner
-    set_couple
-    @partner = (@couple.users - [current_user])[0]
-  end
 
   #------------ 2. Set variables for score--------------------------------------
 
