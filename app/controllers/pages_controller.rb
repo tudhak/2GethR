@@ -1,15 +1,15 @@
 class PagesController < ApplicationController
-  # TODO: Il faut pouvoir arriver sur la page d'accueil de l'application lorsqu'on est pas connecté. Il faut décommenter le code ci-dessous
-  # Problème : la page est codée en partant du principe qu'il existe un couple. Un utilisateur non connecté donc sans couple fait planter la page.
-  # skip_before_action :authenticate_user!, only: :home
+  skip_before_action :authenticate_user!, only: :home
 
   def home
-    set_user
-    set_couple
-    set_partner
-    @actions_received = @user.received_actions
-    @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
-    @nb_actions = @received_actions.size
+    if user_signed_in?
+      set_user
+      set_couple
+      set_partner
+      @actions_received = @user.received_actions
+      @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
+      @nb_actions = @received_actions.size
+    end
     unless @partner.nil? # TODO: Première modif tentée pour faire fonctionner la page en l'absence de partner
       @partner_mood_img = @partner.statues == [] ? MoodCategory.last.image_path : @partner.statues.last.mood_category.image_path
     end
