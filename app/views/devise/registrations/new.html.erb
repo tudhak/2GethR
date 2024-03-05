@@ -7,7 +7,7 @@
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
-      <% if resource.errors.any?  %>
+        <% if resource.errors.any?  %>
           <p class="text-danger">Please review the problems below: </p>
           <% resource.errors.full_messages.each do |message|  %>
             <div class="text-danger mb-2"><%= message %></div>
@@ -43,13 +43,13 @@
               <input class="form-control string optional" type="text" name="token" id="token">
             </div>
             <p>If you do not have any token, please enter below your couple address and couple nickname:</p>
-            <div class="mb-3 string optional couple_nickname">
-              <label class="string optional" for="group_name">Nickname</label>
-              <input class="form-control string optional" type="text" name="couple[nickname]" id="couple_nickname">
+            <div class="mb-3 string required couple_nickname">
+              <label class="string required" for="group_name">Nickname</label>
+              <input class="form-control string required" type="text" name="couple[nickname]" id="couple_nickname">
             </div>
-            <div class="mb-3 string optional couple_address">
-              <label class="string optional" for="couple_address">Address</label>
-              <input class="form-control string optional" type="text" name="couple[address]" id="couple_address">
+            <div class="mb-3 string required couple_address">
+              <label class="string required" for="couple_address">Address</label>
+              <input class="form-control string required" type="text" name="couple[address]" id="couple_address">
             </div>
         </div>
 

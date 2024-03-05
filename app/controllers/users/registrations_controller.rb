@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.new(user_params)
+    @user.score = 0
     if params[:token].present?
       @couple = Couple.find_by_token_for(:check_couple, params[:token])
       @user.couple = @couple
@@ -21,12 +22,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if @couple.save
         @user.couple = @couple
       else
-        render :new, status: :unprocessable_entity
         flash[:alert] = "Your account could not be created. Please review the form."
+        render :new, status: :unprocessable_entity
+        return
       end
     end
     if @user.save
-      redirect_to root_path
+      redirect_to couple_path(@couple)
       flash[:notice] = "Account successfully created!"
     else
       render :new, status: :unprocessable_entity
@@ -83,7 +85,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :first_name, :last_name, :nickname, :date_of_birth, :mode, :photo)
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :nickname, :date_of_birth, :mode, :photo)
   end
 
   def couple_params

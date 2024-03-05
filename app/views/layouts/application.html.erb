@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ToGethR - The best application for couples</title>
+    <title>2GethR - The best application for couples</title>
 
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
@@ -56,21 +56,18 @@
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
-  <body class="layout bg_mood <%= action_name == 'show' && controller_name == 'couples' ? @partner.statues.order(:created_at).last.mood_category.title : '' %> <%= action_name == 'show' && controller_name == 'couples' ? 'bg_dynamic' : 'bg_static' %>">
 
-    <% if action_name == 'show' %>
-      <div id="pattern" class="bg-layer"></div>
-      <div id="noise" class="bg-layer"></div>
-    <% end %>
-    <div class="py-2">
-      <%= render "shared/top_navbar" %>
-    </div>
-    <div style="height:calc(100vh - 145px); overflow-y:scroll;">
-      <%= yield %>
-    </div>
-  </body>
-
-
-
+  <body class="layout bg_mood <%= action_name == 'show' && controller_name == 'couples' && @partner ? @partner.statues.order(:created_at).last.mood_category.title : 'cloudy' %> <%= action_name == 'show' && controller_name == 'couples' ? 'bg_dynamic' : 'bg_static' %>">
+  <% if action_name == 'show' %>
+    <div id="pattern" class="bg-layer"></div>
+    <div id="noise" class="bg-layer"></div>
+  <% end %>
+  <div class="py-2">
+    <%= render "shared/top_navbar" %>
+  </div>
+  <div style="height:calc(100vh - 145px); overflow-y:scroll;">
+    <%= yield %>
+  </div>
+</body>
 
 </html>
