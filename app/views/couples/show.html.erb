@@ -5,12 +5,12 @@
   data-interactions-list-value="<%= current_user.received_actions %>">
 
   <%# 1. Main status message - Start %>
-  <div class="p-2"
-  style="z-index:1000; width:100%; height:75px;position:absolute;top:110px;"
+  <div class="py-2 px-4"
+  style="<%= @partner ? "z-index:1000; width:100%; height:75px; position:absolute; top:110px;" : "" %>"
   data-action="click->interactions#togglestatus">
     <% if @partner.nil? %>
-      <h4 class="text-center font-size-28px mb-0">It seems your partner has not joined yet...</h4>
-      <h4 class="text-center font-size-30px mb-0"><strong>Show him / her the power of being 2gethr!</strong></h4>
+      <h4 class="text-center font-size-28px mb-0">It seems your partner has not joined yet.</h4>
+      <h4 class="text-center font-size-30px mb-0"><strong>Be 2gethr, be happier!</strong></h4>
     <% else %>
       <h4 class="text-center font-size-28px mb-0"> What's on <%= @partner.nickname %>'s mind today? </h4>
       <h4 class="text-center font-size-30px mb-0"><strong>"<%= @partner.statues.order(:created_at).last.main_statue_message %>"</strong></h4>
@@ -20,7 +20,7 @@
 
   <%# 2. Detailed status messages - Click->toggleDisplay - Start %>
   <% unless @partner.nil? %>
-    <div class="p-3 d-none" style="z-index:1000; width:100%; height:475px;position:absolute;top:200px;overflow:scroll;"
+    <div class="p-3 d-none" style="z-index:1000; width:100%; height:475px; position:absolute; top:200px; overflow:scroll;"
     data-interactions-target="status" >
       <div style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
       <%# NB : anciennement dans la présente Div : class="d-flex flex-column justify-content-center align-items-center p-2 text-dark" %>
@@ -32,7 +32,11 @@
 
   <%# 3. Avatar & Actions %>
   <% if @partner.nil? %>
-    <%= image_tag("question-mark-1.png") %>
+  <div class="d-flex justify-content-center">
+  <div class="py-5">
+    <%= image_tag "question-mark-1.png", alt: "Question mark image", width: 300, height: 300 %>
+  </div>
+  </div>
   <% else %>
     <div class="flex-grow-1 d-flex justify-content-center align-items-end position-relative" id="partner-avatar">
         <div class="rounded-circle position-absolute" style="top:25%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
@@ -44,7 +48,7 @@
   <%# 3. Avatar & Actions %>
 
   <%# 4. Footer score %>
-  <div class="layout-footer mt-4">
+  <div class="layout-footer <%= @partner ? "mt-4" : "mt-5" %>">
     <div class="d-flex align-items-center justify-content-around gap-3">
 
       <%# 4.1. Footer You - Start %>
