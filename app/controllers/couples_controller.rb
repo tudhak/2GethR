@@ -4,7 +4,6 @@ class CouplesController < ApplicationController
     set_user
     set_couple
     set_partner
-    # @couple = Couple.find(params[:id])
     @actions_received = @user.received_actions
     @received_actions = @actions_received.nil? ? [] : @actions_received.split(";")
     @nb_actions = @received_actions.size
