@@ -1,5 +1,4 @@
 class CouplesController < ApplicationController
-
   def show
     set_user
     set_couple

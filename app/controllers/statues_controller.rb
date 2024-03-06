@@ -1,5 +1,6 @@
 class StatuesController < ApplicationController
   before_action :set_user, :set_partner, only: %i[new show create]
+  before_action :set_couple, only: [:create]
 
   def new
     @statue = Statue.new
@@ -13,18 +14,14 @@ class StatuesController < ApplicationController
   end
 
   def create
-    set_couple
     @statue = Statue.new(statue_params)
-    @statue.user = current_user
-    @last_status = current_user.statues.last
+    @statue.user = @user
+    @last_status = current_user.statues.last unless @user.statues.empty?
     if @statue.save
       @statue.start_date = @statue.created_at
       @statue.save
-      if @last_status != nil
-        then @last_status.end_date = @statue.start_date
-      end
+      @last_status.end_date = @statue.start_date
       @last_status.save
-      # raise
       redirect_to statue_path(current_user.statues.last)
     else
       render :new, status: :unprocessable_entity
