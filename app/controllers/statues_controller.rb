@@ -1,23 +1,19 @@
 class StatuesController < ApplicationController
+  before_action :set_user, :set_partner, only: %i[new show create]
 
   def new
-    set_user
-    set_partner
     @statue = Statue.new
-    # raise
   end
 
   def show
-    set_partner
-    @statue = current_user.statues.last
+    return if @user.statues.empty?
+
+    @statue = @user.statues.last
     @user_mood_img = @statue.mood_category.image_path
-    # raise
   end
 
   def create
-    set_user
     set_couple
-    set_partner
     @statue = Statue.new(statue_params)
     @statue.user = current_user
     @last_status = current_user.statues.last
@@ -37,23 +33,7 @@ class StatuesController < ApplicationController
 
   private
 
-  #------------ 1. set user, partner, couple------------------------------------
-
-    def set_user
-      @user = current_user
-    end
-
-    def set_couple
-      @couple = current_user.couple
-    end
-
-    def set_partner
-      set_couple
-      @partner = (@couple.users - [current_user])[0]
-    end
-
-    def statue_params
-      params.require(:statue).permit(:main_statue_message, :love_statue_message, :hate_statue_message, :mood_category_id)
-    end
-
+  def statue_params
+    params.require(:statue).permit(:main_statue_message, :love_statue_message, :hate_statue_message, :mood_category_id)
+  end
 end

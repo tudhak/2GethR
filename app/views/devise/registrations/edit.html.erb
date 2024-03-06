@@ -33,6 +33,8 @@
                       required: true %>
           <%= f.input :nickname,
                       required: true %>
+          <%= f.input :date_of_birth,
+                      required: false %>
           <%= f.input :mode,
                       required: false %>
           <%= f.input :received_actions,
@@ -41,7 +43,7 @@
         </div>
 
         <h3>Couple information</h3>
-        <p class="mb-4"><%= @group.token %></p>
+        <p class="mb-4"><%= @couple.token %></p>
 
         <div class="form-actions">
           <%= f.button :submit, "Update" %>

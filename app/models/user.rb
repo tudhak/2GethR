@@ -11,8 +11,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :email, :password, :last_name, :first_name, :nickname, :date_of_birth, presence: true
+
+  # TODO: Remplacer les variables @partner par la méthode user.mate ?
   def mate
     couple.users.find { |u| u.id != id }
   end
-
 end
