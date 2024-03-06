@@ -57,7 +57,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
-  <body class="layout bg_mood <%= action_name == 'show' && controller_name == 'couples' && @partner ? @partner.statues.order(:created_at).last.mood_category.title : 'bg_static' %> <%= action_name == 'show' && controller_name == 'couples' && @partner ? 'bg_dynamic' : 'bg_static' %>">
+  <body class="layout bg_mood <%= action_name == 'show' && controller_name == 'couples' && @partner && !@user.statues.nil? ? @partner.statues.order(:created_at).last.mood_category.title : 'bg_static' %> <%= action_name == 'show' && controller_name == 'couples' && @partner ? 'bg_dynamic' : '' %>">
   <% if action_name == 'show' %>
     <div id="pattern" class="bg-layer"></div>
     <div id="noise" class="bg-layer"></div>

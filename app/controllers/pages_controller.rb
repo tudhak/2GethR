@@ -2,17 +2,6 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    # if user_signed_in?
-    #   set_user
-    #   set_couple
-    #   set_partner
-    #   @actions_received = @user.received_actions
-    #   @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
-    #   @nb_actions = @received_actions.size
-    # end
-    # unless @partner.nil? # TODO: Première modif tentée pour faire fonctionner la page en l'absence de partner
-    #   @partner_mood_img = @partner.statues == [] ? MoodCategory.last.image_path : @partner.statues.last.mood_category.image_path
-    # end
   end
 
   def score
@@ -61,7 +50,7 @@ class PagesController < ApplicationController
 
   private
 
-  #------------ 2. Set variables for score--------------------------------------
+  #------------ Set variables for score--------------------------------------
 
 
   def opening_date

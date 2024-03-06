@@ -37,24 +37,35 @@
                       required: false %>
           <%= f.input :mode,
                       required: false %>
-          <%= f.input :received_actions,
-                      required: false %>
           <%= f.input :photo, as: :file %>
         </div>
 
-        <h3>Couple information</h3>
-        <p class="mb-4"><%= @couple.token %></p>
+        <h3 class="mb-3">Couple information</h3>
+
+        <p class="text-white mb-3">Couple token </p>
+
+        <div class="d-flex justify-content-center flex-wrap border border-2 border-white mb-4">
+          <span class="p-3 text-center couple-token"><%= @couple.token %></span>
+        </div>
+
+        <div class="mb-3 string required couple_nickname">
+          <label class="form-label string required" for="couple_nickname">Couple nickname <abbr title="required">*</abbr></label>
+          <input class="form-control is-valid string required" required="required" aria-required="true" type="text" value="<%= @user.couple.nickname %>" name="couple[nickname]" id="couple_nickname">
+        </div>
+
+        <div class="mb-3 string required couple_address">
+          <label class="form-label string required" for="couple_address">Couple address <abbr title="required">*</abbr></label>
+          <input class="form-control is-valid string required" required="required" aria-required="true" type="text" value="<%= @user.couple.address %>" name="couple[address]" id="couple_address">
+        </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Update" %>
+          <%= f.button :submit, "Update", class: "btn btn-lightpurple mt-4 mb-5" %>
         </div>
       <% end %>
 
-      <h3>Cancel my account</h3>
+      <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-purple mb-3" %></div>
 
-      <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-      <%= link_to "Back", :back %>
+      <%= link_to "Back", :back, class: "btn btn-purple" %>
 
     </div>
   </div>
