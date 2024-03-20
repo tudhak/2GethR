@@ -59,6 +59,6 @@ class RewardsController < ApplicationController
   end
 
   def partner_nickname
-    @partner_nickname = @partner.nil? ? "???" : @partner.partner_nickname
+    @partner_nickname = @partner.nil? ? "???" : @partner.nickname
   end
 end
