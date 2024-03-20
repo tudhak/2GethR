@@ -50,11 +50,11 @@
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%# Fin ajout JM : configuration Mobile App %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
   </head>
 
   <body class="layout bg_mood <%= action_name == 'show' && controller_name == 'couples' && @partner && !@user.statues.nil? ? @partner.statues.order(:created_at).last.mood_category.title : 'bg_static' %> <%= action_name == 'show' && controller_name == 'couples' && @partner ? 'bg_dynamic' : '' %>">

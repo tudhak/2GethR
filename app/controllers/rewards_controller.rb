@@ -1,5 +1,5 @@
 class RewardsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :set_partner, only: [:index, :to_do_rewards]
 
   def index
     @generic_rewards = GenericReward.all

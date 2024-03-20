@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" data-controller="add-task">
-        <%= simple_form_for task do |f| %>
+        <%= simple_form_for task, html: { data: { controller: "datepicker" }} do |f| %>
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:title) %>" data-add-task-target="titleTemplates">
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:description) %>" data-add-task-target="descriptionTemplates">
           <input type="hidden" value="<%= GenericTask.where(couple: current_user.couple).pluck(:base_score) %>" data-add-task-target="scoreTemplates">
@@ -32,7 +32,7 @@
                        %>
           <%= f.input :date,
                       as: :string,
-                      input_html: { class: "input-field", data: { controller: "datepicker" } },
+                      input_html: { class: "input-field", data: { datepicker_target: "dateField" } },
                       label: false,
                       placeholder: "Date"
                       %>
@@ -50,7 +50,7 @@
                       placeholder: "Emoji",
                       input_html: { class: "input-field", data: { add_task_target: "emoji" } } %>
           <%= f.input :assigned_to,
-                      collection: [current_user.nickname, @partner.nickname, "any"],
+                      collection: [current_user.nickname, @partner_nickname, "any"],
                       selected: current_user.nickname,
                       placeholder: "Assigned to",
                       input_html: { class: "input-field" }
