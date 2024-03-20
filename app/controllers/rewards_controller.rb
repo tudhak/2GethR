@@ -1,10 +1,10 @@
 class RewardsController < ApplicationController
-  before_action :set_partner, only: [:index, :to_do_rewards]
+  before_action :set_partner, only: %i[index to_do_rewards]
+  before_action :partner_nickname, only: %i[index to_do_rewards]
 
   def index
     @generic_rewards = GenericReward.all
     @couple = User.select {|user| user.couple_id == current_user.couple_id }
-    @other_person = @couple.select {|user| user != @current_user}.first
   end
 
   def show
@@ -31,7 +31,6 @@ class RewardsController < ApplicationController
     redirect_to couple_rewards_path(current_user.couple)
   end
 
-
   def new
     @reward = Reward.new
   end
@@ -57,5 +56,9 @@ class RewardsController < ApplicationController
 
   def reward_params
     params.require(:reward).permit(:title, :description, :cost, :category, :date, :emoji)
+  end
+
+  def partner_nickname
+    @partner_nickname = @partner.nil? ? "???" : @partner.partner_nickname
   end
 end
