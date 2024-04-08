@@ -5,6 +5,16 @@
       <h2>Log in</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <%= f.error_notification %>
+
+       <% if resource.errors.any? %>
+          <p class="text-danger">Please review the problems below: </p>
+          <% resource.errors.full_messages.each do |message| %>
+            <div class="text-danger mb-2"><%= message %></div>
+          <% end %>
+        <% end %>
+
         <div class="form-inputs">
           <%= f.input :email,
                       required: false,
