@@ -41,18 +41,18 @@
             <%= f.input :photo, as: :file %>
             <h3 class="mt-5"><em>Couple information</em></h3>
             <p>If any, please enter below the couple token provided by your partner:</p>
-            <div class="mb-3 string optional token">
+            <div class="mb-3 string optional">
               <label class="string optional" for="token">Token</label>
-              <input class="form-control string optional" type="text" name="token" id="token">
+              <input class="form-control string optional" type="text" name="couple[token]" id="token">
             </div>
             <p>If you do not have any token, please enter below your couple address and couple nickname:</p>
-            <div class="mb-3 string required couple_nickname">
-              <label class="string required" for="group_name">Nickname <abbr title="required">*</abbr></label>
-              <input class="form-control string required" required="required" type="text" name="couple[nickname]" id="couple_nickname">
+            <div class="mb-3 string optional">
+              <label class="string optional" for="couple_name">Nickname</label>
+              <input class="form-control string optional" type="text" name="couple[nickname]" id="couple_nickname">
             </div>
-            <div class="mb-3 string required couple_address">
-              <label class="string required" required="required" for="couple_address">Address <abbr title="required">*</abbr></label>
-              <input class="form-control string required" type="text" name="couple[address]" id="couple_address">
+            <div class="mb-3 string optional">
+              <label class="string optional" for="couple_address">Address</label>
+              <input class="form-control string optional" type="text" name="couple[address]" id="couple_address">
             </div>
         </div>
 

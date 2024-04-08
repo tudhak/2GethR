@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["token", "button"];
   static values = {
     feedbackText: String,
+    token: String,
   };
 
   // connect() {

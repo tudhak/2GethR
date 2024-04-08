@@ -15,8 +15,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # super do
     @user = User.new(user_params)
     @user.score = 0
-    if params[:token].present?
-      @couple = Couple.find_by_token_for(:check_couple, params[:token])
+    if params[:couple][:token].present?
+      @couple = Couple.find_by_token_for(:check_couple, params[:couple][:token])
       @user.couple = @couple
     else
       @couple = Couple.new(couple_params)
@@ -106,6 +106,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def couple_params
-    params.require(:couple).permit(:address, :nickname)
+    params.require(:couple).permit(:address, :nickname, :couple)
   end
 end

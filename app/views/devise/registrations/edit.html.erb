@@ -46,8 +46,8 @@
 
         <p class="text-white mb-3">Couple token</p>
 
-        <div class="mb-4" data-controller="clipboard" data-clipboard-feedback-text-value="Copied!">
-          <div class="d-flex justify-content-center flex-wrap border border-2 border-white mb-3">
+        <div class="mb-4" data-controller="clipboard" data-clipboard-feedback-text-value="Copied!" data-clipboard-token-value=<%= @couple.token %>>
+          <div class="d-flex justify-content-center border border-2 border-white mb-3">
             <span class="p-3 text-center couple-token" data-clipboard-target="token"><%= @couple.token %></span>
           </div>
           <button class="btn btn-lightpurple" data-clipboard-target="button" data-action="click->clipboard#copy">Copy to clipboard</button>
