@@ -8,8 +8,8 @@ class PagesController < ApplicationController
   end
 
   def score
-    @user_mood = mood_summary(@user)[0].map do |mood, duration| [mood, duration / mood_summary(@user)[1]] end.compact.to_h.to_json
-    @partner_mood = @partner.nil? ? {sunny: 0, stormy: 0, rainy: 0, cloudy: 0}.to_json : mood_summary(@partner)[0].map do |mood, duration| [mood, duration / mood_summary(@partner)[1]] end.compact.to_h.to_json
+    @user_mood = mood_summary(@user)[1] == 0 ? { sunny: 0, stormy: 0, rainy: 0, cloudy: 0 }.to_json : mood_summary(@user)[0].map do |mood, duration| [mood, duration / mood_summary(@user)[1]] end.compact.to_h.to_json
+    @partner_mood = @partner.nil? || mood_summary(@partner)[1] == 0 ? { sunny: 0, stormy: 0, rainy: 0, cloudy: 0 }.to_json : mood_summary(@partner)[0].map do |mood, duration| [mood, duration / mood_summary(@partner)[1]] end.compact.to_h.to_json
     @partner_score = @partner.nil? ? 0 : @partner.score
     @partner_nickname = @partner.nil? ? "???" : @partner.nickname
     # @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
@@ -53,16 +53,15 @@ class PagesController < ApplicationController
 
   #------------ Set variables for score--------------------------------------
 
-
   def opening_date
-    openingdate = (Date.today - 30)
+    Date.today - 30
   end
 
   def mood_summary(user)
     opening_date
     openingtime = opening_date.to_time
     status_scope = user.statues.all.where('end_date > ?', openingtime)
-    statuses_duration = {"stormy"=>0, "rainy"=>0, "cloudy"=>0, "sunny"=>0}
+    statuses_duration = { "stormy" => 0, "rainy" => 0, "cloudy" => 0, "sunny" => 0 }
     status_scope.each do |status|
       mood = status.mood_category.title
       start_time = [status.start_date, openingtime].max

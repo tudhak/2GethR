@@ -20,8 +20,10 @@ class StatuesController < ApplicationController
     if @statue.save
       @statue.start_date = @statue.created_at
       @statue.save
-      @last_status.end_date = @statue.start_date
-      @last_status.save
+      if @last_status
+        @last_status.end_date = @statue.start_date
+        @last_status.save
+      end
       redirect_to statue_path(current_user.statues.last)
     else
       render :new, status: :unprocessable_entity
