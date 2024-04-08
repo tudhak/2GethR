@@ -6,9 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_user, :set_couple, only: [:edit, :update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super do
+      @couple = Couple.new
+    end
+  end
 
   # POST /resource
   def create
