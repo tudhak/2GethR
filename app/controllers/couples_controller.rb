@@ -8,7 +8,7 @@ class CouplesController < ApplicationController
     @nb_actions = @received_actions.size
 
     # For users who have created their account and couple, waiting for their partner to join
-    if @partner.nil?
+    if @partner.nil? || @partner.statues.empty?
     # For couple members who have both joined (standard case)
     else
       @status_id_max = @partner.statues.map(&:id).max

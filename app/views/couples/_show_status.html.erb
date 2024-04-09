@@ -1,8 +1,9 @@
+<!-- Include placeholders (no partner, partner exists but is under approval, partner has been confirmed but has not set any status) -->
 
 <div style="width:100%">
   <div class="my-3 text-center light-background status-card">
     <p class="py-2 status-titles">😍 That would make me so happy if ... </p>
-    <h4  class="px-2" style="font-size:30px;">...<%= partner.statues.order(:created_at).last.love_statue_message %></h4>
+    <h4 class="px-2" style="font-size:30px;">...<%= partner.statues.order(:created_at).last.love_statue_message %></h4>
   </div>
 
   <div class="my-3  text-center light-background status-card">
