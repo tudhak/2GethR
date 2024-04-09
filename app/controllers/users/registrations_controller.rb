@@ -3,7 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :set_user, :set_couple, only: [:edit, :update]
+  before_action :set_user, only: %i[edit update pending]
+  before_action :set_couple, only: %i[edit update]
 
   # GET /resource/sign_up
   def new
@@ -24,6 +25,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if @couple_to_find
         @couple = @couple_to_find
         @user.couple = @couple
+        @user.confirmed = false
+        redirect_to pending_path if @user.save
+        return
       else
         # If couple token is invalid, new empty couple is instantiated so that @couple exists in the view
         @couple = Couple.new
@@ -31,9 +35,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       # If no couple token is entered by user, new couple is instantiated from user input (couple nickname and couple address)
       # New couple is created with new couple token
+      # TODO: To be refactored. This code allows to create a couple independently from a user (if couple info is correct and user info is not, the couple could be created but not the user)
       @couple = Couple.new(couple_params)
-      @couple.token = @couple.generate_token_for(:check_couple)
       if @couple.save
+        @couple.token = @couple.generate_token_for(:check_couple)
+        @couple.save
         @user.couple = @couple
       else
         flash[:alert] = "Your account could not be created. Please review the form."
@@ -42,6 +48,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
     if @user.save
+      # confirm first couple partner - to be refactored later
+      @user.confirmed = true
+      @user.save
       redirect_to couple_path(@couple)
       flash[:notice] = "Account successfully created!"
     else
@@ -88,6 +97,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+  def pending
+  end
 
   # protected
 
