@@ -17,10 +17,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # super do
     @user = User.new(user_params)
     @user.score = 0
+    # Checking if user has entered a couple token
     if params[:couple][:token].present?
-      @couple = Couple.find_by_token_for(:check_couple, params[:couple][:token])
-      @user.couple = @couple
+      @couple_to_find = Couple.find_by_token_for(:check_couple, params[:couple][:token])
+      # If couple token is valid, user couple is set to found couple
+      if @couple_to_find
+        @couple = @couple_to_find
+        @user.couple = @couple
+      else
+        # If couple token is invalid, new empty couple is instantiated so that @couple exists in the view
+        @couple = Couple.new
+      end
     else
+      # If no couple token is entered by user, new couple is instantiated from user input (couple nickname and couple address)
+      # New couple is created with new couple token
       @couple = Couple.new(couple_params)
       @couple.token = @couple.generate_token_for(:check_couple)
       if @couple.save
@@ -108,6 +118,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def couple_params
-    params.require(:couple).permit(:address, :nickname, :couple)
+    params.require(:couple).permit(:address, :nickname)
   end
 end
