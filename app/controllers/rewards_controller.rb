@@ -1,6 +1,5 @@
 class RewardsController < ApplicationController
   before_action :set_partner, only: %i[index to_do_rewards]
-  before_action :partner_nickname, only: %i[index to_do_rewards]
 
   def index
     @generic_rewards = GenericReward.all
@@ -56,9 +55,5 @@ class RewardsController < ApplicationController
 
   def reward_params
     params.require(:reward).permit(:title, :description, :cost, :category, :date, :emoji)
-  end
-
-  def partner_nickname
-    @partner_nickname = @partner.nil? ? "???" : @partner.nickname
   end
 end

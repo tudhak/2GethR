@@ -9,7 +9,6 @@ class TasksController < ApplicationController
     @task = Task.new
     @generic_tasks = GenericTask.where(couple: current_user.couple).order(:created_at)
     @generic_task = GenericTask.new
-    @partner_nickname = @partner.nil? ? "???" : @partner.nickname
 
     if params[:my_params].present?
       @tasks = Task.where(assigned_to: params[:my_params][:assigned_to], status: params[:my_params][:status], user: [current_user, @partner])

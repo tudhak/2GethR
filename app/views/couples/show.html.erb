@@ -73,19 +73,13 @@
 
       <%# 4.2. Footer Partner - Start %>
       <div class="Player2 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
-        <% if @partner.nil? %>
-          <div class="mini-avatar player2-pp" style="background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
-          <span><%= "???" %></span>
-          <div class="score-p2"><%= "0 pts" %></div>
+        <% if @partner && @partner.photo.key %>
+          <div class="mini-avatar player2-pp" style="background-image: url('<%= cl_image_path @partner_picture %>')"></div>
         <% else %>
-          <% if @partner && @partner.photo.key %>
-            <div class="mini-avatar player2-pp" style="background-image: url('<%= cl_image_path @partner.photo.key %>')"></div>
-          <% else %>
-            <div class="mini-avatar player2-pp" style="background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
-          <% end %>
-          <span><%= @partner.nickname %></span>
-          <div class="score-p2"><%= "#{@partner.score}pts" %></div>
+          <div class="mini-avatar player2-pp" style="background-image: url('<%= image_path(@partner_picture) %>')"></div>
         <% end %>
+          <span><%= @partner_nickname %></span>
+          <div class="score-p2"><%= @partner.score ? "#{@partner.score} pts" : "0 pts" %></div>
       </div>
       <%# 4.2. Footer Partner - End %>
 

@@ -11,7 +11,6 @@ class PagesController < ApplicationController
     @user_mood = mood_summary(@user)[1] == 0 ? { sunny: 0, stormy: 0, rainy: 0, cloudy: 0 }.to_json : mood_summary(@user)[0].map do |mood, duration| [mood, duration / mood_summary(@user)[1]] end.compact.to_h.to_json
     @partner_mood = @partner.nil? || mood_summary(@partner)[1] == 0 ? { sunny: 0, stormy: 0, rainy: 0, cloudy: 0 }.to_json : mood_summary(@partner)[0].map do |mood, duration| [mood, duration / mood_summary(@partner)[1]] end.compact.to_h.to_json
     @partner_score = @partner.nil? ? 0 : @partner.score
-    @partner_nickname = @partner.nil? ? "???" : @partner.nickname
     # @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
     # @partner_mood = {sunny: 0.3, stormy: 0.1, rainy: 0.2, cloudy: 0.4 }.to_json
 

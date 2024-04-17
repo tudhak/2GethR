@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :check_confirmed_user
+  before_action :check_confirmed_user, :partner_nickname, :partner_picture
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nickname, :date_of_birth, :mode, :photo])
@@ -28,6 +28,16 @@ class ApplicationController < ActionController::Base
   def set_partner
     set_couple
     @partner = (@couple.users - [current_user])[0]
+  end
+
+  def partner_nickname
+    # Safe navigation operator
+    @partner_nickname = @partner&.confirmed ? @partner.nickname : "???"
+  end
+
+  def partner_picture
+    # Safe navigation operator
+    @partner_picture = @partner&.photo&.key ? @partner.photo.key : "unknown_person.jpg"
   end
 
   def check_confirmed_user
