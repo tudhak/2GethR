@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get "pending", to: "users/registrations#pending"
+    patch "users/confirmed", to: "users/registrations#confirmed", as: :partner_confirm
   end
 
   root to: "pages#home"

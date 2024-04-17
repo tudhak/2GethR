@@ -8,7 +8,7 @@
   <div class="py-2 px-4"
   style="<%= @partner ? "z-index:1000; width:100%; height:75px; position:absolute; top:110px;" : "" %>"
   data-action="click->interactions#togglestatus">
-    <% if @partner.nil? || !@partner.confirmed %>
+    <% unless @partner && @partner.confirmed %>
       <h4 class="text-center font-size-28px mb-0">It seems your partner has not joined yet.</h4>
       <h4 class="text-center font-size-30px mb-0"><strong>Be 2gethr, be happier!</strong></h4>
     <% else %>
@@ -22,8 +22,12 @@
   </div>
   <%# 1. Main status message - End %>
 
+    <div data-controller="confirm-partner" data-confirm-partner-partner-confirmed-value=<%= @partner.confirmed %>>
+      <%= render "confirm_partner_modal", partner: @partner, couple: @couple %>
+    </div>
+
   <%# 2. Detailed status messages - Click->toggleDisplay - Start %>
-  <% unless @partner.nil? || !@partner.confirmed || @partner.statues.empty? %>
+  <% if @partner && @partner.confirmed && !@partner.statues.empty? %>
     <div class="p-3 d-none" style="z-index:1000; width:100%; height:475px; position:absolute; top:200px; overflow:scroll;"
     data-interactions-target="status" >
       <div style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
@@ -35,11 +39,11 @@
   <%# 2. Detailed status messages - Click->toggleDisplay - End %>
 
   <%# 3. Avatar & Actions %>
-  <% if @partner.nil? || !@partner.confirmed %>
+  <% unless @partner && @partner.confirmed && !@partner.statues.empty? %>
   <div class="d-flex justify-content-center">
-  <div class="py-5">
-    <%= image_tag "question-mark-1.png", alt: "Question mark image", width: 300, height: 300 %>
-  </div>
+    <div class="py-5">
+      <%= image_tag "question-mark-1.png", alt: "Question mark image", width: 300, height: 300 %>
+    </div>
   </div>
   <% else %>
     <div class="flex-grow-1 d-flex justify-content-center align-items-end position-relative" id="partner-avatar">
@@ -58,12 +62,11 @@
       <%# 4.1. Footer You - Start %>
       <div class="Player1 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
       <% if @user.photo.attached? %>
-        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path current_user.photo.key %>')">
+        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path current_user.photo.key %>')"></div>
       <% else %>
-        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= image_path("unknown_person.jpg") %>')">
+        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
       <% end %>
-          <%= render "show_incoming_actions" %>
-        </div>
+        <%= render "show_incoming_actions" %>
         You
         <div class="score-p1"><%= @user.score %> pts</div>
       </div>
@@ -85,6 +88,5 @@
 
     </div>
   </div>
-  <%# 4. Footer score %>
 
 </div>
