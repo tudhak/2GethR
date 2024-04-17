@@ -36,7 +36,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       # If no couple token is entered by user, new couple is instantiated from user input (couple nickname and couple address)
       # New couple is created with new couple token
-      # TODO: To be refactored. This code allows to create a couple independently from a user (if couple info is correct and user info is not, the couple could be created but not the user)
+      # TODO: To be refactored. This code allows to create a couple independently from a user
+      # (if couple info is correct and user info is not, the couple could be created but not the user)
       @couple = Couple.new(couple_params)
       if @couple.save
         @couple.token = @couple.generate_token_for(:check_couple)
