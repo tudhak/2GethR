@@ -49,12 +49,22 @@
                       label: false,
                       placeholder: "Emoji",
                       input_html: { class: "input-field", data: { add_task_target: "emoji" } } %>
-          <%= f.input :assigned_to,
-                      collection: [current_user.nickname, @partner_nickname, "any"],
-                      selected: current_user.nickname,
-                      placeholder: "Assigned to",
-                      input_html: { class: "input-field" }
-                      %>
+          <!-- Disallow first user to add tasks in absence of confirmed partner -->
+          <% if @partner && @partner.confirmed %>
+            <%= f.input :assigned_to,
+                        collection: [current_user.nickname, @partner_nickname, "any"],
+                        selected: current_user.nickname,
+                        placeholder: "Assigned to",
+                        input_html: { class: "input-field" }
+                        %>
+          <% else %>
+            <%= f.input :assigned_to,
+                          collection: [current_user.nickname, "any"],
+                          selected: current_user.nickname,
+                          placeholder: "Assigned to",
+                          input_html: { class: "input-field" }
+                          %>
+          <% end %>
           <%= f.button :submit, "Create task", class:"btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none"  %>
           <% end %>
       </div>

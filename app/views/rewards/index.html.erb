@@ -4,21 +4,45 @@
     <h1 class="text-white text-center">Ask a reward to your partner</h1>
     <h4 class="text-black text-center" style="font-size: 30px;"><strong>Credits available: <%= current_user.score %></strong></h4>
 
+    <!-- Generic rewards slider -->
+
     <div style="width: 94vw; overflow-x: hidden;">
       <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
         <% @generic_rewards.each do |generic_reward| %>
-          <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
-            <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
-            <div class="div-blur-transparent position-absolute"></div>
-            <h2 class="text-center mt-2 text-dark title-container" style="width:100px"><%= generic_reward.title %></h2>
-            <p class="text-center mt-2 text-dark title-container"><i class="fa-solid fa-star text-orange"></i> <%= generic_reward.cost %></p>
+          <!-- TODO: Find a cleaner way to disable the links to the rewards conditionally (whether partner exists and is confirmed or not) -->
+          <% if @partner && @partner.confirmed %>
+            <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
+              <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
+              <div class="div-blur-transparent position-absolute"></div>
+              <h2 class="text-center mt-2 text-dark title-container" style="width:100px"><%= generic_reward.title %></h2>
+              <p class="text-center mt-2 text-dark title-container"><i class="fa-solid fa-star text-orange"></i> <%= generic_reward.cost %></p>
+            <% end %>
+          <% else %>
+            <div class="card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple">
+              <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
+              <div class="div-blur-transparent position-absolute"></div>
+              <h2 class="text-center mt-2 text-dark title-container" style="width:100px"><%= generic_reward.title %></h2>
+              <p class="text-center mt-2 text-dark title-container"><i class="fa-solid fa-star text-orange"></i> <%= generic_reward.cost %></p>
+            </div>
           <% end %>
         <% end %>
       </div>
     </div>
     <h3 class="my-3 text-center poppins-20">or</h3>
 
-    <%= link_to "Ask a new reward", new_couple_reward_path(current_user.couple), class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
+    <!-- Ask a new reward button -->
+    <!-- TODO: Find a cleaner way to disable the create new reward link conditionally (whether partner exists and is confirmed or not) -->
+    <% if @partner && @partner.confirmed %>
+      <%= link_to "Ask a new reward", new_couple_reward_path(current_user.couple), class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
+    <% else %>
+      <a data-bs-toggle="modal" data-bs-target="#noPartnerModal">
+        <div class="btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>Ask a new reward</div>
+      </a>
+    <% end %>
+
+      <%= render "nopartner_modal", partner: @partner %>
+
+    <!-- Rewards display -->
 
     <ul class="mt-5 mb-5 nav nav-pills mb-1 d-flex align-items-center justify-content-between" id="pills-tab" role="tablist">
       <h3 class="poppins-20 m-0 ms-2">All the rewards</h3>
