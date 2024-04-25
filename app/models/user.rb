@@ -12,7 +12,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, :nickname, presence: true, uniqueness: true
-  validates :password, :last_name, :first_name, :date_of_birth, presence: true
+  validates :last_name, :first_name, :date_of_birth, presence: true
 
   # TODO: Remplacer les variables @partner par la méthode user.mate ?
   def mate
