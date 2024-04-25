@@ -1,8 +1,7 @@
 class CouplesController < ApplicationController
+  before_action :set_user, :set_couple, :set_partner, :partner_nickname, :partner_picture, only: [:show]
+
   def show
-    set_user
-    set_couple
-    set_partner
     @actions_received = @user.received_actions
     @received_actions = @actions_received.nil? ? [] : @actions_received.split(";")
     @nb_actions = @received_actions.size

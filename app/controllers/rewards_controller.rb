@@ -1,5 +1,5 @@
 class RewardsController < ApplicationController
-  before_action :set_partner, only: %i[index to_do_rewards]
+  before_action :set_partner, :partner_nickname, only: %i[index to_do_rewards]
 
   def index
     @generic_rewards = GenericReward.all
