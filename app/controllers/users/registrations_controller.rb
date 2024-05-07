@@ -25,10 +25,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.save
     if @user.errors.full_messages[0] == "Couple must exist"
       # Checking if user has entered a couple token
-      if params[:couple][:token].present?
+      if params[:couple][:token].present? && couple_token_check
         couple_assign
+        return
       else
-        couple_create
+        return if couple_create == false
       end
       @user.confirmed = true
       @user.save
@@ -135,19 +136,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:couple).permit(:address, :nickname)
   end
 
-  def couple_assign
+  def couple_token_check
     @couple_to_find = Couple.find_by_token_for(:check_couple, params[:couple][:token])
+  end
+
+  def couple_assign
     # If couple token is valid, user couple is set to found couple
+    couple_token_check
     if @couple_to_find
       @couple = @couple_to_find
       @user.couple = @couple
       @user.confirmed = false
       @user.save
       redirect_to pending_path
-      return
-    else
-      # If couple token is invalid, new empty couple is instantiated so that @couple exists in the view
-      @couple = Couple.new
     end
   end
 
@@ -162,6 +163,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       flash[:alert] = "Your account could not be created. Please review the couple information provided."
       render :new, status: :unprocessable_entity
+      false
     end
   end
 end
