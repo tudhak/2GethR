@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "pending", to: "users/registrations#pending"
     patch "users/confirmed", to: "users/registrations#confirmed", as: :partner_confirm
     patch "users/rejected", to: "users/registrations#rejected", as: :partner_reject
+    patch "users/after_reject", to: "users/registrations#after_reject", as: :after_reject
   end
 
   root to: "pages#home"

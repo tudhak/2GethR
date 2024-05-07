@@ -31,6 +31,10 @@
                 <input class="form-control string optional" type="text" name="couple[token]" id="token">
               </div>
             </div>
+            <%= f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: true,
+                      input_html: { autocomplete: "current-password" } %>
             <div class="form-actions">
               <%= f.button :submit, "Next", class: "confirm-button mt-4 mb-5" %>
             </div>

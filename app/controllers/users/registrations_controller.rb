@@ -3,8 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :set_user, only: %i[edit update pending confirmed rejected]
-  before_action :set_couple, only: %i[edit update confirmed rejected]
+  before_action :set_user, only: %i[edit update pending confirmed rejected after_reject]
+  before_action :set_couple, only: %i[edit update confirmed rejected after_reject]
   before_action :set_partner, only: %i[edit confirmed rejected]
   skip_before_action :check_confirmed_user
 
@@ -44,15 +44,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_reject
     if params[:couple][:token].present?
       @couple_to_find = Couple.find_by_token_for(:check_couple, params[:couple][:token])
-      if @couple_to_find && @user.update_without_password(couple: @couple_to_find)
-        redirect_to couple_path(@couple_to_find)
+      if @couple_to_find && @user.update_without_password(couple: @couple_to_find, confirmed: false)
+        redirect_to pending_path
+        flash[:notice] = "You succesfully requested to join another couple."
+      else
+        render "couples/rejected_modal", status: :unprocessable_entity
+        flash[:alert] = "Wrong couple token provided."
       end
     else
       @couple = Couple.new(couple_params)
-      if @couple.save
+      if @couple.valid?
         @couple.token = @couple.generate_token_for(:check_couple)
         @couple.save
-        @user.update_without_password(couple: @couple)
+        @user.update_without_password(couple: @couple, confirmed: true)
+        redirect_to couples_path(@couple)
+        flash[:notice] = "You successfully created a couple!"
       else
         flash[:alert] = "Your couple could not be created. Please review the form."
         render "couples/rejected_modal", status: :unprocessable_entity
@@ -156,7 +162,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # If no couple token is entered by user, new couple is instantiated from user input (couple nickname and address)
     # New couple is created with new couple token
     @couple = Couple.new(couple_params)
-    if @couple.save
+    if @couple.valid?
       @couple.token = @couple.generate_token_for(:check_couple)
       @couple.save
       @user.couple = @couple

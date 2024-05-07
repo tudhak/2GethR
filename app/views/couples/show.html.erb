@@ -14,9 +14,9 @@
     <% else %>
       <h4 class="text-center font-size-28px mb-0"> What's on <%= @partner.nickname %>'s mind today? </h4>
       <% if @partner.statues.empty? %>
-        <h4 class="text-center font-size-30px mb-0"><strong>"Your partner has not created any status yet."</strong></h4>
+        <h4 class="text-center font-size-30px mb-0"><strong>Your partner has not created any status yet.</strong></h4>
       <% else %>
-        <h4 class="text-center font-size-30px mb-0"><strong>"<%= @partner.statues.order(:created_at).last.main_statue_message %>"</strong></h4>
+        <h4 class="text-center font-size-30px mb-0"><strong><%= @partner.statues.order(:created_at).last.main_statue_message %></strong></h4>
       <% end %>
     <% end %>
   </div>
