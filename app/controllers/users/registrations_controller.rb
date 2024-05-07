@@ -3,9 +3,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :set_user, only: %i[edit update pending confirmed]
-  before_action :set_couple, only: %i[edit update confirmed]
-  before_action :set_partner, only: %i[confirmed]
+  before_action :set_user, only: %i[edit update pending confirmed rejected]
+  before_action :set_couple, only: %i[edit update confirmed rejected]
+  before_action :set_partner, only: %i[confirmed rejected]
   skip_before_action :check_confirmed_user
 
   # GET /resource/sign_up
@@ -106,6 +106,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def confirmed
     if @partner.update_without_password(confirmed: true)
+      redirect_to couple_path(@couple)
+    else
+      render @partner.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  def rejected
+    updated_rejects = @partner.rejected_by.push(@user.id)
+    if @partner.update_without_password(rejected_by: updated_rejects)
       redirect_to couple_path(@couple)
     else
       render @partner.errors.full_messages, status: :unprocessable_entity

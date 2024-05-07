@@ -22,7 +22,7 @@
   </div>
   <%# 1. Main status message - End %>
 
-    <div data-controller="confirm-partner" data-confirm-partner-partner-confirmed-value=<%= @partner.confirmed %>>
+    <div data-controller="confirm-partner" data-confirm-partner-partner-confirmed-value=<%= @partner.confirmed %> data-confirm-partner-partner-rejected-check-value=<%= @partner.rejected_by %> data-confirm-partner-user-check-value=<%= @user.id %>>
       <%= render "confirm_partner_modal", partner: @partner, couple: @couple %>
     </div>
 

@@ -4,12 +4,17 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static values = {
     partnerConfirmed: Boolean,
+    partnerRejectedCheck: Array,
+    userCheck: Number,
   };
 
   connect() {
+    const rejectorsArray = this.partnerRejectedCheckValue;
+    const userId = this.userCheckValue;
     const confirmPartnerModal = new bootstrap.Modal(
       document.getElementById("confirmPartnerModal")
     );
-    if (!this.partnerConfirmedValue) confirmPartnerModal.show();
+    if (!this.partnerConfirmedValue && !rejectorsArray.includes(userId))
+      confirmPartnerModal.show();
   }
 }
