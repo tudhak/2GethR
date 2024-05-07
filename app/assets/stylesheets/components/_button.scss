@@ -55,3 +55,17 @@
   color: $lightWhite;
   background-color: $lightPurple;
 }
+
+.reject-button {
+  background-color: $reject;
+  border: 1px solid $lightWhite;
+  padding: 12px 10px;
+  color: $lightWhite;
+}
+
+.confirm-button {
+  background-color: $confirm;
+  border: 1px solid $lightWhite;
+  padding: 12px 10px;
+  color: $lightWhite;
+}

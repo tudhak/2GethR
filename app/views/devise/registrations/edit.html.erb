@@ -73,5 +73,13 @@
       <%= link_to "Back", :back, class: "btn btn-purple" %>
 
     </div>
+
+    <%# Modal for rejected partner %>
+      <% if @partner %>
+        <div data-controller="rejected-partner" data-rejected-partner-user-rejected-check-value=<%= @user.rejected_by %> data-rejected-partner-partner-check-value=<%= @partner.id %>>
+          <%= render "couples/rejected_modal", partner: @partner %>
+        </div>
+      <% end %>
+    <%# Modal for rejected partner - End %>
   </div>
 </div>

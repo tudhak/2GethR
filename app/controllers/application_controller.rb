@@ -41,7 +41,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_confirmed_user
-    return if current_user.confirmed == true
+    set_user
+    set_partner
+    return if @user.confirmed == true || @user.rejected_by.include?(@partner.id)
 
     flash[:error] = "Your profile has not yet been confirmed by your partner."
     redirect_to pending_path

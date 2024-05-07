@@ -1,0 +1,40 @@
+<div class="modal fade" id="rejectedModal" tabindex="-1" aria-labelledby="rejectedModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 game-font-24" id="rejectedModalLabel">We're sorry...</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body vt323-standard">
+        <div>
+          <p class="text-white">Oh no, it seems your partner <strong><%= @partner.first_name %></strong> <strong><%= @partner.last_name %></strong> declined your request to join his/her couple.</p>
+          <p class="border-top pt-2">You may now either create your own couple or join another couple if you have the corresponding token.</p>
+          <p class="border-top pt-2 text-white mb-4">Please note that in the absence of any action from you, your profile will be automatically deleted in 10 days.</p>
+        </div>
+        <div>
+          <h3 class="text-white"><u>Create my own couple</u></h3>
+          <div class="mb-3 string optional">
+            <label class="string optional" for="couple_name">Nickname</label>
+            <input class="form-control string optional" type="text" name="couple[nickname]" id="couple_nickname">
+          </div>
+          <div class="mb-3 string optional">
+            <label class="string optional" for="couple_address">Address</label>
+            <input class="form-control string optional" type="text" name="couple[address]" id="couple_address">
+          </div>
+        </div>
+        <div>
+          <h3 class="text-white"><u>Join a new couple</u></h3>
+          <p>Please enter below the couple token provided by your partner:</p>
+          <div class="mb-3 string optional">
+            <label class="string optional" for="token">Token</label>
+            <input class="form-control string optional" type="text" name="couple[token]" id="token">
+          </div>
+        </div>
+      </div>
+        <div class="d-flex flex-grow-1 justify-content-end pb-3">
+          <%= link_to partner_confirm_path, data: {turbo_method: :patch}, class:"text-decoration-none me-3" do %>
+            <button class="confirm-button">Next</button>
+          <% end %>
+      </div>
+  </div>
+</div>

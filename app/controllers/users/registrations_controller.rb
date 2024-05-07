@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   before_action :set_user, only: %i[edit update pending confirmed rejected]
   before_action :set_couple, only: %i[edit update confirmed rejected]
-  before_action :set_partner, only: %i[confirmed rejected]
+  before_action :set_partner, only: %i[edit confirmed rejected]
   skip_before_action :check_confirmed_user
 
   # GET /resource/sign_up
