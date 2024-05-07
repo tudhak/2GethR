@@ -33,7 +33,7 @@
   <%# 1C. Modal for rejected partner %>
     <% if @partner %>
       <div data-controller="rejected-partner" data-rejected-partner-user-rejected-check-value=<%= @user.rejected_by %> data-rejected-partner-partner-check-value=<%= @partner.id %>>
-        <%= render "rejected_modal", partner: @partner %>
+        <%= render "rejected_modal", user: @user, partner: @partner %>
       </div>
     <% end %>
   <%# 1C. Modal for rejected partner - End %>

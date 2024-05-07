@@ -14,8 +14,16 @@ class User < ApplicationRecord
   validates :email, :nickname, presence: true, uniqueness: true
   validates :last_name, :first_name, :date_of_birth, presence: true
 
+  before_create :default_points
+
+  private
+
   # TODO: Remplacer les variables @partner par la méthode user.mate ?
   def mate
     couple.users.find { |u| u.id != id }
+  end
+
+  def default_points
+    self.score = 0
   end
 end
