@@ -24,7 +24,7 @@
 
   <%# 1B. Modal to confirm partner %>
     <% if @partner %>
-      <div data-controller="confirm-partner" data-confirm-partner-partner-confirmed-value=<%= @partner.confirmed %> data-confirm-partner-partner-rejected-check-value=<%= @partner.rejected_by %> data-confirm-partner-user-check-value=<%= @user.id %>>
+      <div data-controller="confirm-partner" data-confirm-partner-partner-confirmed-value=<%= @partner.confirmed %> data-confirm-partner-partner-rejected-check-value=<%= @partner.rejected_by.to_json %> data-confirm-partner-user-check-value=<%= @user.id %>>
         <%= render "confirm_partner_modal", partner: @partner %>
       </div>
     <% end %>
@@ -32,7 +32,7 @@
 
   <%# 1C. Modal for rejected partner %>
     <% if @partner %>
-      <div data-controller="rejected-partner" data-rejected-partner-user-rejected-check-value=<%= @user.rejected_by %> data-rejected-partner-partner-check-value=<%= @partner.id %>>
+      <div data-controller="rejected-partner" data-rejected-partner-user-rejected-check-value=<%= @user.rejected_by.to_json %> data-rejected-partner-partner-check-value=<%= @partner.id %>>
         <%= render "rejected_modal", user: @user, partner: @partner %>
       </div>
     <% end %>

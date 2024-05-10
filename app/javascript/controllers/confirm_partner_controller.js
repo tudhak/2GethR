@@ -9,12 +9,12 @@ export default class extends Controller {
   };
 
   connect() {
-    const rejectorsArray = this.partnerRejectedCheckValue;
+    let partnerRejectorsArray = this.partnerRejectedCheckValue;
     const userId = this.userCheckValue;
     const confirmPartnerModal = new bootstrap.Modal(
       document.getElementById("confirmPartnerModal")
     );
-    if (!this.partnerConfirmedValue && !rejectorsArray.includes(userId))
+    if (!this.partnerConfirmedValue && !partnerRejectorsArray.includes(userId))
       confirmPartnerModal.show();
   }
 }

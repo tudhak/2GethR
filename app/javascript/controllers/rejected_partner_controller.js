@@ -8,12 +8,14 @@ export default class extends Controller {
   };
 
   connect() {
-    const rejectorsArray = this.userRejectedCheckValue;
-    const partnerId = this.partnerCheckValue;
-    console.log(rejectorsArray, partnerId);
-    const rejectedModal = new bootstrap.Modal(
-      document.getElementById("rejectedModal")
-    );
-    if (rejectorsArray.includes(partnerId)) rejectedModal.show();
+    let userRejectorsArray = this.userRejectedCheckValue;
+    if (userRejectorsArray) {
+      const partnerId = this.partnerCheckValue;
+      // console.log(userRejectorsArray, partnerId);
+      const rejectedModal = new bootstrap.Modal(
+        document.getElementById("rejectedModal")
+      );
+      if (userRejectorsArray.includes(partnerId)) rejectedModal.show();
+    }
   }
 }
