@@ -12,23 +12,23 @@
           <p class="border-top pt-2 text-white mb-4">Please note that in the absence of any action from you, your profile will be automatically deleted in 10 days.</p>
         </div>
         <div>
-          <%= simple_form_for(user, url: registration_path(user), html: { method: :put }) do |f| %>
+          <%= simple_form_for(user, url: after_reject_path, html: { method: :patch }) do |f| %>
             <%= f.error_notification %>
             <h3 class="text-white"><u>Create my own couple</u></h3>
             <div class="mb-3 string optional">
-              <label class="string optional" for="couple_name">Nickname</label>
-              <input class="form-control string optional" type="text" name="couple[nickname]" id="couple_nickname">
+              <label class="string optional" for="new_couple_name">Nickname</label>
+              <input class="form-control string optional" type="text" name="couple[nickname]" id="new_couple_nickname">
             </div>
             <div class="mb-3 string optional">
-              <label class="string optional" for="couple_address">Address</label>
-              <input class="form-control string optional" type="text" name="couple[address]" id="couple_address">
+              <label class="string optional" for="new_couple_address">Address</label>
+              <input class="form-control string optional" type="text" name="couple[address]" id="new_couple_address">
             </div>
             <div>
               <h3 class="text-white"><u>Join a new couple</u></h3>
               <p>Please enter below the couple token provided by your partner:</p>
               <div class="mb-3 string optional">
-                <label class="string optional" for="token">Token</label>
-                <input class="form-control string optional" type="text" name="couple[token]" id="token">
+                <label class="string optional" for="new_couple_token">Token</label>
+                <input class="form-control string optional" type="text" name="couple[token]" id="new_couple_token">
               </div>
             </div>
             <%= f.input :current_password,

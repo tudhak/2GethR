@@ -74,7 +74,7 @@
       </div>
       <div class="tab-pane fade" id="pills-yours" role="tabpanel" aria-labelledby="pills-yours-tab">
         <% if @partner && @partner.confirmed %>
-          <% current_user.mate.rewards.order(date: :desc).each do |rewards_to_do| %>
+          <% @partner.rewards.order(date: :desc).each do |rewards_to_do| %>
             <div class="box-shadow-purple reward-card mb-4 px-3 py-2 position-relative">
               <%= link_to couple_reward_path(current_user.couple, rewards_to_do), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit" do %>
                 <div class="d-flex justify-content-between align-items-center w-100">
