@@ -97,6 +97,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def confirmed
     if @partner.update_without_password(confirmed: true)
       redirect_to couple_path(@couple)
+      flash[:notice] = "You accepted #{@partner.nickname}'s request."
     else
       render @partner.errors.full_messages, status: :unprocessable_entity
     end
@@ -106,6 +107,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     updated_rejects = @partner.rejected_by.push(@user.id)
     if @partner.update_without_password(rejected_by: updated_rejects)
       redirect_to couple_path(@couple)
+      flash[:alert] = "You declined #{@partner.nickname}'s request."
     else
       render @partner.errors.full_messages, status: :unprocessable_entity
     end

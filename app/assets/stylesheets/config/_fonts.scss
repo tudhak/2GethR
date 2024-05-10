@@ -14,12 +14,17 @@ $game-font: "Press Start 2P", sans-serif;
 
 .poppins-20 {
   font-size: 20px !important;
-  font-family: $body-font;
+  font-family: $body-font !important;
 }
 
 .poppins-18 {
   font-size: 18px !important;
   font-family: $body-font;
+}
+
+.poppins-16 {
+  font-size: 16px !important;
+  font-family: $body-font !important;
 }
 
 .font-size-30px {
