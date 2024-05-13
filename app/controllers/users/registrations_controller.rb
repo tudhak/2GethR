@@ -21,12 +21,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The creation of a couple is necessary for the user to be saved to the DB
   def create
     @user = User.new(user_params)
+    @couple = Couple.new
     # Checking whether all validations besides couple existence are OK
     @user.save
-    if @user.errors.full_messages[0] == "Couple must exist"
+    if @user.errors.full_messages.length == 1 && @user.errors.full_messages[0] == "Couple must exist"
       # Checking if user has entered a couple token
       if params[:couple][:token].present? && couple_token_check
         couple_assign
+        return
+      elsif params[:couple][:token].present? && !couple_token_check
+        new_couple_error("Your couple token is invalid.")
         return
       else
         return if couple_create == false
@@ -36,8 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_session_path
       flash[:notice] = "Account successfully created!"
     else
-      render :new, status: :unprocessable_entity
-      flash[:alert] = "Your account could not be created. Please review the user information provided."
+      new_couple_error("Your account could not be created. Please review the user information provided.")
     end
   end
 
@@ -62,7 +65,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         flash[:notice] = "You successfully created a couple!"
       else
         flash[:alert] = "Your couple could not be created. Please review the form."
-        render "couples/rejected_modal", locals: { user: @user, partner: @partner }, status: :unprocessable_entity
+        render partial: "couples/rejected_modal", locals: { user: @user, partner: @partner }, status: :unprocessable_entity
         return
       end
     end
@@ -99,7 +102,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to couple_path(@couple)
       flash[:notice] = "You accepted #{@partner.nickname}'s request."
     else
-      render @partner.errors.full_messages, status: :unprocessable_entity
+      render partial: "couples/confirm_partner_modal", locals: { partner: @partner }, status: :unprocessable_entity
+      flash[:alert] = "An error occurred."
     end
   end
 
@@ -109,7 +113,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to couple_path(@couple)
       flash[:alert] = "You declined #{@partner.nickname}'s request."
     else
-      render @partner.errors.full_messages, status: :unprocessable_entity
+      render partial: "couples/confirm_partner_modal", locals: { partner: @partner}, status: :unprocessable_entity
+      flash[:notice] = "An error occurred."
     end
   end
 
@@ -149,16 +154,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @couple_to_find = Couple.find_by_token_for(:check_couple, params[:couple][:token])
   end
 
+  def new_couple_error(message)
+    render :new, status: :unprocessable_entity
+    flash[:alert] = message
+  end
+
   def couple_assign
     # If couple token is valid, user couple is set to found couple
-    couple_token_check
-    if @couple_to_find
-      @couple = @couple_to_find
-      @user.couple = @couple
-      @user.confirmed = false
-      @user.save
-      redirect_to pending_path
-    end
+    # couple_token_check
+    @couple = @couple_to_find
+    @user.couple = @couple
+    @user.confirmed = false
+    @user.save
+    redirect_to pending_path
   end
 
   def couple_create
@@ -171,8 +179,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @couple.save
       @user.couple = @couple
     else
-      flash[:alert] = "Your account could not be created. Please review the couple information provided."
-      render :new, status: :unprocessable_entity
+      new_couple_error("Your account could not be created. Please review the couple information provided.")
       false
     end
   end

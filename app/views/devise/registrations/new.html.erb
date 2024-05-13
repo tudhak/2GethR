@@ -5,7 +5,7 @@
       <h2 class="mb-4">Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { controller: "datepicker" }})  do |f| %>
-        <%= f.error_notification %>
+        <%# <%= f.error_notification %>
         <%# TODO: Ajouter l'affichage des erreurs de formulaire qui ne s'affichent pas pour le moment %>
         <% if @user.errors.any? %>
           <p class="text-danger">Please review the following problems related to user information:</p>
