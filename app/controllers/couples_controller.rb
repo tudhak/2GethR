@@ -1,5 +1,5 @@
 class CouplesController < ApplicationController
-  before_action :set_user, :set_couple, :set_partner, :partner_nickname, :partner_picture, only: [:show]
+  before_action :set_user, :set_couple, :set_partner, :partner_nickname, :partner_picture, :rejected?, only: [:show]
 
   def show
     @actions_received = @user.received_actions

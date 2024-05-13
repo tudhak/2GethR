@@ -27,12 +27,17 @@ class ApplicationController < ActionController::Base
 
   def set_partner
     set_couple
-    @partner = (@couple.users - [current_user])[0]
+    @partner = (@couple.users - [current_user]).find { |user| !user.rejected_by.include?(current_user.id) }
   end
 
   def partner_nickname
     # Safe navigation operator
-    @partner_nickname = @partner&.confirmed ? @partner.nickname : "???"
+    rejected?
+    @partner_nickname = @partner&.confirmed && !@rejected ? @partner.nickname : "???"
+  end
+
+  def rejected?
+    @rejected = current_user.rejected_by.include?(@partner.id)
   end
 
   def partner_picture

@@ -47,9 +47,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_reject
     if params[:couple][:token].present?
       @couple_to_find = Couple.find_by_token_for(:check_couple, params[:couple][:token])
-      if @couple_to_find && @user.update_without_password(couple: @couple_to_find, confirmed: false)
+      if @couple_to_find && !full_couple?(@couple_to_find) && @user.update_without_password(couple: @couple_to_find, confirmed: false)
         redirect_to pending_path
         flash[:notice] = "You succesfully requested to join another couple."
+      elsif @couple_to_find && full_couple?(@couple_to_find)
+        render partial: "couples/rejected_modal", locals: { user: @user, partner: @partner }, status: :unprocessable_entity
+        flash[:alert] = "This couple is already full!"
       else
         render partial: "couples/rejected_modal", locals: { user: @user, partner: @partner }, status: :unprocessable_entity
         flash[:alert] = "Wrong couple token provided."
@@ -159,14 +162,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     flash[:alert] = message
   end
 
+  def full_couple?(couple)
+    couple.users.reject { |user| user.rejected_by.include?(couple.users.min_by(&:created_at).id) }.length >= 2
+  end
+
   def couple_assign
     # If couple token is valid, user couple is set to found couple
     # couple_token_check
     @couple = @couple_to_find
-    @user.couple = @couple
-    @user.confirmed = false
-    @user.save
-    redirect_to pending_path
+    if full_couple?(@couple_to_find)
+      new_couple_error("This couple is already full!")
+    else
+      @user.couple = @couple
+      @user.confirmed = false
+      @user.save
+      redirect_to pending_path
+    end
   end
 
   def couple_create

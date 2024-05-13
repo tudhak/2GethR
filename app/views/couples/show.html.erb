@@ -8,7 +8,7 @@
   <div class="py-2 px-4"
   style="<%= @partner ? "z-index:1000; width:100%; height:75px; position:absolute; top:110px;" : "" %>"
   data-action="click->interactions#togglestatus">
-    <% unless @partner&.confirmed %>
+    <% unless @partner&.confirmed && !@rejected %>
       <h4 class="text-center font-size-28px mb-0">It seems your partner has not joined yet.</h4>
       <h4 class="text-center font-size-30px mb-0"><strong>Be 2gethr, be happier!</strong></h4>
     <% else %>
@@ -39,7 +39,7 @@
   <%# 1C. Modal for rejected partner - End %>
 
   <%# 2. Detailed status messages - Click->toggleDisplay - Start %>
-  <% if @partner&.confirmed && !@partner&.statues.empty? %>
+  <% if @partner&.confirmed && !@rejected && !@partner&.statues.empty? %>
     <div class="p-3 d-none" style="z-index:1000; width:100%; height:475px; position:absolute; top:200px; overflow:scroll;"
     data-interactions-target="status" >
       <div style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
@@ -51,7 +51,7 @@
   <%# 2. Detailed status messages - Click->toggleDisplay - End %>
 
   <%# 3. Avatar & Actions %>
-  <% unless @partner&.confirmed && !@partner&.statues.empty? %>
+  <% unless @partner&.confirmed && !@rejected && !@partner&.statues.empty? %>
   <div class="d-flex justify-content-center">
     <div class="py-5">
       <%= image_tag "question-mark-1.png", alt: "Question mark image", width: 300, height: 300 %>
@@ -88,7 +88,7 @@
 
       <%# 4.2. Footer Partner - Start %>
       <div class="Player2 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
-        <% if @partner && @partner.photo.key %>
+        <% if @partner && @partner.photo.key && !@rejected %>
           <div class="mini-avatar player2-pp" style="background-image: url('<%= cl_image_path @partner_picture %>')"></div>
         <% else %>
           <div class="mini-avatar player2-pp" style="background-image: url('<%= image_path(@partner_picture) %>')"></div>
