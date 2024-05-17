@@ -874,8 +874,7 @@ demo_task = Task.create(
   done_by: user1.nickname
 )
 
-demo_task.photos.attach(io: URI.open("https://as1.ftcdn.net/v2/jpg/04/18/51/22/1000_F_418512250_dGHkhlcXL4y83pT4oH3rwkzPUEqEKGIo.jpg"),
-                       filename: "demo.jpg", content_type: "image/jpg")
+demo_task.photos.attach(io: URI.open("https://as1.ftcdn.net/v2/jpg/04/18/51/22/1000_F_418512250_dGHkhlcXL4y83pT4oH3rwkzPUEqEKGIo.jpg"),filename: "demo.jpg", content_type: "image/jpg")
 
 Task.create(
   title: "Cooking",
