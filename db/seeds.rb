@@ -65,8 +65,7 @@ user2 = User.create(
   mode: 'normal',
   couple: couple1
 )
-user2.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/978/b7qnddsqzri4wfy26msigfmftho-468.jpg"),
-                   filename: "user2.jpg", content_type: "image/jpg")
+user2.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/978/b7qnddsqzri4wfy26msigfmftho-468.jpg"), filename: "user2.jpg", content_type: "image/jpg")
 
 user3 = User.create(
   email: 'user3@example.com',
@@ -80,8 +79,7 @@ user3 = User.create(
   mode: 'normal',
   couple: couple2
 )
-user3.photo.attach(io: URI.open("https://img-3.journaldesfemmes.fr/Si7QKJ-qnM9z6DN9XzKSH7ilc3U=/1500x/smart/45ebd918085745208e74acd424eb68c0/ccmcms-jdf/39927151.jpg"),
-                   filename: "user3.jpg", content_type: "image/jpg")
+user3.photo.attach(io: URI.open("https://img-3.journaldesfemmes.fr/Si7QKJ-qnM9z6DN9XzKSH7ilc3U=/1500x/smart/45ebd918085745208e74acd424eb68c0/ccmcms-jdf/39927151.jpg"), filename: "user3.jpg", content_type: "image/jpg")
 
 user4 = User.create(
   email: 'user4@example.com',
@@ -95,8 +93,7 @@ user4 = User.create(
   mode: 'normal',
   couple: couple2
 )
-user4.photo.attach(io: URI.open("https://ngroup.gumlet.io/IMAGE/IMAGE-S1-00016/68445-kanye-west.jpg?w=600"),
-                   filename: "user4.jpg", content_type: "image/jpg")
+user4.photo.attach(io: URI.open("https://ngroup.gumlet.io/IMAGE/IMAGE-S1-00016/68445-kanye-west.jpg?w=600"), filename: "user4.jpg", content_type: "image/jpg")
 
 puts "Users created."
 
@@ -125,6 +122,7 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user2,
   start_date: Time.now - (86_400 * 30),
+  autopilot: false
 )
 
 puts "...27 days ago"
@@ -133,6 +131,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user2,
   start_date: Time.now - (86_400 * 27),
+  autopilot: false
 )
 
 puts "...22 days ago"
@@ -141,6 +140,7 @@ Statue.create(
   mood_category: MoodCategory.all[2],
   user: user2,
   start_date: Time.now - (86_400 * 22),
+  autopilot: false
 )
 
 puts "...18 days ago"
@@ -149,6 +149,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user2,
   start_date: Time.now - (86_400 * 18),
+  autopilot: false
 )
 
 puts "...15 days ago"
@@ -157,6 +158,7 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user2,
   start_date: Time.now - (86_400 * 15),
+  autopilot: false
 )
 
 puts "...12 days ago"
@@ -165,6 +167,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user2,
   start_date: Time.now - (86_400 * 12),
+  autopilot: false
 )
 
 puts "...9 days ago"
@@ -173,6 +176,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user2,
   start_date: Time.now - (86_400 * 9),
+  autopilot: false
 )
 
 puts "...7 days ago"
@@ -183,6 +187,7 @@ Statue.create(
   start_date: Time.now - (86_400 * 7),
   main_statue_message: "Love you darling!",
   love_statue_message: "We could go out and dance tonight",
+  autopilot: false
 )
 
 puts "...5 days ago"
@@ -193,7 +198,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 5),
   main_statue_message: "You better have a good reason for not returning my calls!",
   love_statue_message: "you prepare a nice dinner tonight",
-  hate_statue_message: "you do not recall my call!"
+  hate_statue_message: "you do not recall my call!",
+  autopilot: false
 )
 
 puts "...4 days ago"
@@ -204,7 +210,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 4),
   main_statue_message: "You're so annoying!",
   love_statue_message: "you apologize and make it up to me!" ,
-  hate_statue_message: "you forget my birthday!"
+  hate_statue_message: "you forget my birthday!",
+  autopilot: false
 )
 
 puts "...2 days ago"
@@ -215,7 +222,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 2),
   main_statue_message: "Don't even want to hear from you!",
   love_statue_message: "you could clean up your mess!",
-  hate_statue_message: "you come back completely drunk at 5am and mistake my dressing for the toilets!"
+  hate_statue_message: "you come back completely drunk at 5am and mistake my dressing for the toilets!",
+  autopilot: true
 )
 
 user2stat = user2.statues
@@ -246,6 +254,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user1,
   start_date: Time.now - (86_400 * 27),
+  autopilot: false
 )
 
 puts "...22 days ago"
@@ -254,6 +263,7 @@ Statue.create(
   mood_category: MoodCategory.all[2],
   user: user1,
   start_date: Time.now - (86_400 * 22),
+  autopilot: false
 )
 
 puts "...18 days ago"
@@ -262,6 +272,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user1,
   start_date: Time.now - (86_400 * 18),
+  autopilot: false
 )
 
 puts "...15 days ago"
@@ -270,6 +281,7 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user1,
   start_date: Time.now - (86_400 * 15),
+  autopilot: false
 )
 
 puts "...12 days ago"
@@ -278,6 +290,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user1,
   start_date: Time.now - (86_400 * 12),
+  autopilot: false
 )
 
 puts "...9 days ago"
@@ -286,6 +299,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user1,
   start_date: Time.now - (86_400 * 9),
+  autopilot: false
 )
 
 puts "...7 days ago"
@@ -296,7 +310,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 7),
   main_statue_message: "You drive me f**in' maad!",
   love_statue_message: "you can leave my stuff where they are! ",
-  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!",
+  autopilot: false
 )
 
 puts "...5 days ago"
@@ -307,7 +322,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 5),
   main_statue_message: "Not so happy",
   love_statue_message: "you can leave my stuff where they are! ",
-  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!",
+  autopilot: false
 )
 
 puts "...3 days ago"
@@ -318,7 +334,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 3),
   main_statue_message: "Life is good!",
   love_statue_message: "I could spend the week-end with my homies",
-  hate_statue_message: "it's soccer game night and you make me watch The f**ing notebook! "
+  hate_statue_message: "it's soccer game night and you make me watch The f**ing notebook! ",
+  autopilot: false
 )
 
 puts "...yesterday"
@@ -329,7 +346,8 @@ Statue.create(
   start_date: Time.now - 86_400,
   main_statue_message: "Toujours la même histoire",
   love_statue_message: "you can leave my stuff where they are! ",
-  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!",
+  autopilot: false
 )
 
 
@@ -856,8 +874,7 @@ demo_task = Task.create(
   done_by: user1.nickname
 )
 
-demo_task.photos.attach(io: URI.open("https://as1.ftcdn.net/v2/jpg/04/18/51/22/1000_F_418512250_dGHkhlcXL4y83pT4oH3rwkzPUEqEKGIo.jpg"),
-                       filename: "demo.jpg", content_type: "image/jpg")
+demo_task.photos.attach(io: URI.open("https://as1.ftcdn.net/v2/jpg/04/18/51/22/1000_F_418512250_dGHkhlcXL4y83pT4oH3rwkzPUEqEKGIo.jpg"),filename: "demo.jpg", content_type: "image/jpg")
 
 Task.create(
   title: "Cooking",

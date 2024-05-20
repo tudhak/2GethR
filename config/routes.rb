@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     member do
       get :chatroom
     end
-    resources :messages, only: [:index, :create]
+    resources :messages, only: [:index, :create] do
+      # ci-après : création d'une route pour actionner la méthode trigger_autopilot à la réception d'un nouveau message
+      post 'trigger_autopilot', on: :collection
+    end
 
     resources :rewards, except: [:destroy] do
       collection do
@@ -44,10 +47,14 @@ Rails.application.routes.draw do
   end
 
 
-  resources :statues, only: [:new, :create, :show]
+  resources :statues, only: [:new, :create, :show] do
+    # ci-après : ajout d'une route pour toggle le mode autopilot (création d'un nouveau statut)
+    post "autopilot_toggle", on: :collection
+  end
 
   get "score_dashboard", to: "pages#score", as: :score
   get "score_details", to: "pages#scoredetails", as: :score_details
+
 
   resources :calendars, only: [:index]
 end

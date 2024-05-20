@@ -35,6 +35,25 @@ class StatuesController < ApplicationController
     end
   end
 
+  def autopilot_toggle
+    last_status = current_user.statues.last
+    if last_status.present?
+    new_status = Statue.new(
+      main_statue_message: last_status.main_statue_message,
+      love_statue_message: last_status.love_statue_message,
+      hate_statue_message: last_status.hate_statue_message,
+      mood_category_id: last_status.mood_category_id,
+      user_id: last_status.user_id,
+      autopilot: !last_status.autopilot)
+    else
+      new_status = Statue.new(
+        user_id: current_user,
+        autopilot: true)
+    end
+    new_status.save
+  end
+
+
   private
 
   #------------ 1. set user, partner, couple------------------------------------
