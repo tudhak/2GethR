@@ -14,16 +14,11 @@ class MessagesController < ApplicationController
         @couple,
         {
           form: render_to_string(partial: "couples/couple_form", locals: { couple: @couple, message: Message.new }),
-          # JM : ligne du dessus passée en commentaire car avai pour effet de réinitialiser le form de celui qui recevait le message.
-          # La méthode updateForm dans le controller JS a du être neutralisée égaement
           message: render_to_string(partial: "message", locals: { message: @message }),
           sender_id: @message.user.id
         }
       )
       head :ok
-      # Ci-après : modification autopilot chat gpt
-      trigger_autopilot if @partner.statues.last.autopilot
-      # Ci-dessus : modification autopilot chat gpt
 
     else
       CoupleChannel.broadcast_to(
@@ -35,34 +30,19 @@ class MessagesController < ApplicationController
     end
   end
 
-
-  private
-
-  def set_user
-    @user = current_user
-  end
-
-  def set_couple
-    @couple = current_user.couple
-  end
-
-  def set_partner
-    set_couple
-    @partner = (@couple.users - [current_user])[0]
-  end
-
-  def message_params
-    params.require(:message).permit(:content)
-  end
-
   def trigger_autopilot
-    sleep(rand(10..20))
-    if @couple.messages.last.user == @user
+
+    set_user
+    set_couple
+    set_partner
+    @couple = Couple.find(params[:couple_id])
+    sleep(rand(5..15))
+    if @user.statues.last.autopilot && @couple.messages.order(id: :asc).last.user == @partner
       gpt_prompt
       gpt_answer = OpenaiAutopilot.new(@couple).get_gpt_answer(@prompt)
       gpt_message = Message.new(
         content: gpt_answer,
-        user_id: @partner.id,
+        user_id: @user.id,
         couple_id: @couple.id,
       )
       if gpt_message.save
@@ -87,33 +67,45 @@ class MessagesController < ApplicationController
     # raise
   end
 
+  private
+
+  def set_user
+    @user = current_user
+  end
+
+  def set_couple
+    @couple = current_user.couple
+  end
+
+  def set_partner
+    set_couple
+    @partner = (@couple.users - [current_user])[0]
+  end
+
+  def message_params
+    params.require(:message).permit(:content)
+  end
+
   def gpt_prompt
     # capturer les 25 derniers messages
     # les parser pour les intégrer dans le script/prompt de l'API GPT
     instructions = instructions_system
-    conversation = @couple.messages
+    conversation = @couple.messages.order(id: :asc)
     chat_history = conversation[[conversation.length-20, 0].max..conversation.length]
     chat_history_formatted = chat_history.map do |message|
-      role = message.user == current_user ? "user" : "assistant"
+      role = message.user == current_user ? "assistant" : "user"
       {"role": role, "content": message.content}
     end
     @prompt = chat_history_formatted.insert(0,{"role": "system", "content": instructions})
-    # raise
-    # [
-    #   {"role": "system", "content": instructions},
-    #   {"role": "user", "content": "salut mon amour"},
-    #   {"role": "assistant", "content": "Salut bébé, j'ai très envie de toi"},
-    #   {"role": "user", "content": "tu me prévois une surprise ce soir?"}
-    # ]
   end
 
   def instructions_system
-      "Tu te fais passer pour un humain dont le nom est #{@partner.first_name} #{@partner.last_name}.
+      "Tu te fais passer pour un humain dont le nom est #{@user.first_name} #{@user.last_name}.
       Si on te demande ton nom, tu dois donc donner ce nom à tout prix.
       En fonction du prénom , détermine si tu es un homme ou une femme.
-      Si on devait comparer ton humeur actuelle à une météo, on pourrait la qualifier de #{MoodCategory.find(@partner.statues.last.mood_category_id).title}
-      Tu es en couple avec #{@user.first_name} #{@user.last_name}. Son humeur actuelle pourrait être qualifiée de #{MoodCategory.find(@user.statues.last.mood_category_id).title}
-      Toi (role : assistant) et #{@user.first_name} (role : user) vivez ensemble depuis 5 ans à Paris à l'adresse suivante :#{@couple.address}
+      Si on devait comparer ton humeur actuelle à une météo, on pourrait la qualifier de #{MoodCategory.find(@user.statues.last.mood_category_id).title}
+      Tu es en couple avec #{@partner.first_name} #{@partner.last_name}. Son humeur actuelle pourrait être qualifiée de #{MoodCategory.find(@partner.statues.last.mood_category_id).title}
+      Toi (role : assistant) et #{@partner.first_name} (role : user) vivez ensemble depuis 5 ans à Paris à l'adresse suivante :#{@couple.address}
       Vous êtes en train d'avoir une discussion par message.
       Tu lui réponds comme si tu étais réellement sa / son partenaire.
       Ne laisse jamais entendre que tu es un programme informatique ou une IA à travers tes réponses.
@@ -132,6 +124,7 @@ class MessagesController < ApplicationController
       Ne dis pas 'je suis là pour toi'
       Tache de limiter tes réponses et rester évasif dans la mesure du possible.
       Dans la mesure du possible évite de relancer la conversation pour ne pas trop en dire et ne pas te faire démasquer comme étant une IA
-      Si la conversation te pousse à mentionner où tu te trouves actuellement, assure toi avant tout d'avoir identifié où se trouve #{@user.first_name} en lui posant la question. Tu veilleras alors à ne pas indiquer que tu te trouves au même endroit que ton / ta partenaire car tu te ferais alors démasqué (exemple : ne dis pas que tu trouves à la maison si ton / ta partenaire s'y trouve aussi!)"
+      Si la conversation te pousse à mentionner où tu te trouves actuellement, assure toi avant tout d'avoir identifié où se trouve #{@partner.first_name} en lui posant la question. Tu veilleras alors à ne pas indiquer que tu te trouves au même endroit que ton / ta partenaire car tu te ferais alors démasqué (exemple : ne dis pas que tu trouves à la maison si ton / ta partenaire s'y trouve aussi!
+      )"
   end
 end

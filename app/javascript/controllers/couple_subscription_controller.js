@@ -12,7 +12,11 @@ export default class extends Controller {
     console.log(this.currentUserIdValue)
     this.channel = createConsumer().subscriptions.create(
       { channel: "CoupleChannel", id: this.coupleIdValue },
-      { received: data => this.#insertMessageAndScrollDown(data) }
+      { received: data => {
+        this.#insertMessageAndScrollDown(data);
+        this.triggerAutopilot(data);
+        }
+      },
     );
   }
 
@@ -29,6 +33,21 @@ export default class extends Controller {
       lastMessage.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
       // ajouter ici le déclenchement de la fonction autopilot
 
+    }
+  }
+
+  triggerAutopilot(data) {
+    // console.log(data.sender_id);
+    // console.log(this.currentUserIdValue);
+    if (data.sender_id !== this.currentUserIdValue) {
+      console.log(this.coupleIdValue);
+      console.log(document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+      const url = `/couples/${this.coupleIdValue}/messages/trigger_autopilot`;
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      fetch(url, {
+          method : "POST",
+          headers : {'X-CSRF-Token': csrfToken}
+          });
     }
   }
 
