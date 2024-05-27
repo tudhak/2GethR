@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_partner
+    # Méthode qui va considérer qu'un user 2 est le partenaire d'un user 1 s'il n'a pas été rejeté par user 1
     set_couple
     @partner = (@couple.users - [current_user]).find { |user| !user.rejected_by.include?(current_user.id) }
   end
@@ -37,12 +38,15 @@ class ApplicationController < ActionController::Base
   end
 
   def rejected?
-    @rejected = current_user.rejected_by.include?(@partner.id)
+    # Méthode qui va vérifier si un user a été rejeté par son partenaire -> restreint l'affichage des vues
+    # Méthode réciproque a set_partner pour l'utilisateur refusé
+    @rejected = current_user.rejected_by.include?(@partner.id) if @partner
   end
 
   def partner_picture
     # Safe navigation operator
-    @partner_picture = @partner&.photo&.key ? @partner.photo.key : "unknown_person.jpg"
+    rejected?
+    @partner_picture = @partner&.photo&.key && !@rejected ? @partner.photo.key : "unknown_person.jpg"
   end
 
   def check_confirmed_user

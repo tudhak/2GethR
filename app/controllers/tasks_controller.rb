@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_couple, only: [:index]
+  before_action :set_couple, :partner_nickname, only: [:index]
   before_action :set_task, only: %i[show update destroy]
   before_action :set_partner, only: %i[index show]
 

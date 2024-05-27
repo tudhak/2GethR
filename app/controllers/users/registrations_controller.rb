@@ -47,13 +47,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_reject
     if params[:couple][:token].present?
       @couple_to_find = Couple.find_by_token_for(:check_couple, params[:couple][:token])
-      if @couple_to_find && !full_couple?(@couple_to_find) && @user.update_without_password(couple: @couple_to_find, confirmed: false)
+      if @couple_to_find && !rejected_by_couple_owner?(@couple_to_find) && !full_couple?(@couple_to_find) && @user.update_without_password(couple: @couple_to_find, confirmed: false)
         redirect_to pending_path
         flash[:notice] = "You succesfully requested to join another couple."
       elsif @couple_to_find && full_couple?(@couple_to_find)
         render partial: "couples/rejected_modal", locals: { user: @user, partner: @partner }, status: :unprocessable_entity
         flash[:alert] = "This couple is already full!"
-      else
+      elsif @couple_to_find && rejected_by_couple_owner?(@couple_to_find)
+        render partial: "couples/rejected_modal", locals: { user: @user, partner: @partner }, status: :unprocessable_entity
+        flash[:alert] = "Sorry, you can't join this couple. #{@couple_to_find.users.min_by(&:created_at).nickname} already declined your request."
+      elsif !@couple_to_find
         render partial: "couples/rejected_modal", locals: { user: @user, partner: @partner }, status: :unprocessable_entity
         flash[:alert] = "Wrong couple token provided."
       end
@@ -163,7 +166,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def full_couple?(couple)
+    # En principe couple.users.min_by(&:created_at) permet de récupérer le 1er utilisateur, qui a crée le couple. C'est en fonction de lui/elle qu'on vérifie
+    # s'il / elle a rejeté les autres users
     couple.users.reject { |user| user.rejected_by.include?(couple.users.min_by(&:created_at).id) }.length >= 2
+  end
+
+  def rejected_by_couple_owner?(couple)
+    current_user.rejected_by.include?(couple.users.min_by(&:created_at).id)
   end
 
   def couple_assign

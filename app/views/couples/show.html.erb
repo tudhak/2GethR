@@ -88,7 +88,7 @@
 
       <%# 4.2. Footer Partner - Start %>
       <div class="Player2 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
-        <% if @partner && @partner.photo.key && !@rejected %>
+        <% if @partner && @partner.photo.key %>
           <div class="mini-avatar player2-pp" style="background-image: url('<%= cl_image_path @partner_picture %>')"></div>
         <% else %>
           <div class="mini-avatar player2-pp" style="background-image: url('<%= image_path(@partner_picture) %>')"></div>
