@@ -4,21 +4,45 @@
     <h1 class="text-white text-center">Ask a reward to your partner</h1>
     <h4 class="text-black text-center" style="font-size: 30px;"><strong>Credits available: <%= current_user.score %></strong></h4>
 
+    <!-- Generic rewards slider -->
+
     <div style="width: 94vw; overflow-x: hidden;">
       <div class="d-flex flex-nowrap align-items-center pt-5 award-container" style="width: 100%; overflow-x: auto;">
         <% @generic_rewards.each do |generic_reward| %>
-          <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
-            <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
-            <div class="div-blur-transparent position-absolute"></div>
-            <h2 class="text-center mt-2 text-dark title-container" style="width:100px"><%= generic_reward.title %></h2>
-            <p class="text-center mt-2 text-dark title-container"><i class="fa-solid fa-star text-orange"></i> <%= generic_reward.cost %></p>
+          <!-- TODO: Find a cleaner way to disable the links to the rewards conditionally (whether partner exists and is confirmed or not) -->
+          <% if @partner && @partner.confirmed %>
+            <%= link_to generic_reward_path(generic_reward), class: "card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple" do %>
+              <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
+              <div class="div-blur-transparent position-absolute"></div>
+              <h2 class="text-center mt-2 text-dark title-container" style="width:100px"><%= generic_reward.title %></h2>
+              <p class="text-center mt-2 text-dark title-container"><i class="fa-solid fa-star text-orange"></i> <%= generic_reward.cost %></p>
+            <% end %>
+          <% else %>
+            <div class="card_generic me-4 text-decoration-none outline-none position-relative box-shadow-purple">
+              <div class="d-flex align-items-center justify-content-center position-absolute bg-white emoji_reward"> <%= generic_reward.emoji %> </div>
+              <div class="div-blur-transparent position-absolute"></div>
+              <h2 class="text-center mt-2 text-dark title-container" style="width:100px"><%= generic_reward.title %></h2>
+              <p class="text-center mt-2 text-dark title-container"><i class="fa-solid fa-star text-orange"></i> <%= generic_reward.cost %></p>
+            </div>
           <% end %>
         <% end %>
       </div>
     </div>
     <h3 class="my-3 text-center poppins-20">or</h3>
 
-    <%= link_to "Ask a new reward", new_couple_reward_path(current_user.couple), class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
+    <!-- Ask a new reward button -->
+    <!-- TODO: Find a cleaner way to disable the create new reward link conditionally (whether partner exists and is confirmed or not) -->
+    <% if @partner && @partner.confirmed %>
+      <%= link_to "Ask a new reward", new_couple_reward_path(current_user.couple), class: "btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>
+    <% else %>
+      <a data-bs-toggle="modal" data-bs-target="#noPartnerModal">
+        <div class="btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2" %>Ask a new reward</div>
+      </a>
+    <% end %>
+
+      <%= render "nopartner_modal" %>
+
+    <!-- Rewards display -->
 
     <ul class="mt-5 mb-5 nav nav-pills mb-1 d-flex align-items-center justify-content-between" id="pills-tab" role="tablist">
       <h3 class="poppins-20 m-0 ms-2">All the rewards</h3>
@@ -27,13 +51,13 @@
           <button class="nav-link active" id="pills-hers-tab" data-bs-toggle="pill" data-bs-target="#pills-hers" type="button" role="tab" aria-controls="pills-hers" aria-selected="true">Yours</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-yours-tab" data-bs-toggle="pill" data-bs-target="#pills-yours" type="button" role="tab" aria-controls="pills-yours" aria-selected="false"><%= @other_person.nickname %></button>
+          <button class="nav-link" id="pills-yours-tab" data-bs-toggle="pill" data-bs-target="#pills-yours" type="button" role="tab" aria-controls="pills-yours" aria-selected="false"><%= @partner_nickname %></button>
         </li>
       </div>
     </ul>
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-hers" role="tabpanel" aria-labelledby="pills-hers-tab">
-        <% current_user.rewards.each do |rewards_for_me| %>
+        <% current_user.rewards.order(date: :desc).each do |rewards_for_me| %>
           <div class="box-shadow-purple reward-card mb-4 px-3 py-2 position-relative">
             <%= link_to couple_reward_path(current_user.couple, rewards_for_me), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit;" do %>
               <div class="d-flex justify-content-between align-items-center w-100">
@@ -49,19 +73,21 @@
         <% end %>
       </div>
       <div class="tab-pane fade" id="pills-yours" role="tabpanel" aria-labelledby="pills-yours-tab">
-        <% current_user.mate.rewards.each do |rewards_to_do| %>
-          <div class="box-shadow-purple reward-card mb-4 px-3 py-2 position-relative">
-            <%= link_to couple_reward_path(current_user.couple, rewards_to_do), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit" do %>
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <div class="d-flex align-items-center" style="width: 200px">
-                  <div class="d-flex align-items-center justify-content-center emoji_reward_small"> <%= rewards_to_do.emoji %> </div>
-                  <p class="mb-0 ms-3 poppins-18 fs-6 event-display fw-bold"><%= rewards_to_do.title %></p>
+        <% if @partner && @partner.confirmed %>
+          <% @partner.rewards.order(date: :desc).each do |rewards_to_do| %>
+            <div class="box-shadow-purple reward-card mb-4 px-3 py-2 position-relative">
+              <%= link_to couple_reward_path(current_user.couple, rewards_to_do), class: "d-flex align-items-center", style: "text-decoration: none; color: inherit" do %>
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <div class="d-flex align-items-center" style="width: 200px">
+                    <div class="d-flex align-items-center justify-content-center emoji_reward_small"> <%= rewards_to_do.emoji %> </div>
+                    <p class="mb-0 ms-3 poppins-18 fs-6 event-display fw-bold"><%= rewards_to_do.title %></p>
+                  </div>
+                  <div class="badge <%= rewards_to_do.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_to_do.status %></div>
+                  <p class="reward_date mb-0 ms-2 poppins-18 fs-6 event-display opacity-75 fw-bold text-dark"><%= rewards_to_do.date.strftime("%d/%m") %></p>
                 </div>
-                <div class="badge <%= rewards_to_do.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= rewards_to_do.status %></div>
-                <p class="reward_date mb-0 ms-2 poppins-18 fs-6 event-display opacity-75 fw-bold text-dark"><%= rewards_to_do.date.strftime("%d/%m") %></p>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

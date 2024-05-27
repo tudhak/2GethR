@@ -2,10 +2,10 @@
   <h1 class="text-center mb-3">Create a New Reward</h1>
   <%= link_to 'Back', couple_rewards_path(current_user.couple), class:"back-reward-button" %>
 
-  <%= simple_form_for [current_user.couple, @reward], html: { class: 'create_reward p-3 text-dark' } do |f| %>
+  <%= simple_form_for [current_user.couple, @reward], html: { class: 'create_reward p-3 text-dark', data: { controller: "datepicker" }} do |f| %>
     <%= f.input :date,
                 as: :string,
-                input_html: { class: "input-field", data: { controller: "datepicker" } },
+                input_html: { class: "input-field", data: { datepicker_target: "dateField" } },
                 label: false,
                 placeholder: "Choose a date"
                 %>

@@ -6,7 +6,8 @@
   border-radius: 4px;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: $purple;
   background-color: white;
 }
@@ -16,5 +17,55 @@
 }
 
 .box-shadow-purple {
-  box-shadow: 0px 4px 14px rgba(0,0,0,0.25);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.small-button {
+  width: 86px;
+}
+
+.btn-lightpurple {
+  border: 1px solid $lightWhite;
+  background-color: $lightPurple;
+}
+
+.btn-purple {
+  border: 1px solid $lightWhite;
+  color: $lightWhite;
+  background-color: $purple;
+}
+
+.btn-lightpurple:hover {
+  background-color: #d3c5ff;
+  border: 1px solid $lightWhite;
+}
+
+.btn-purple:hover {
+  background-color: #a185ff;
+  border: 1px solid $lightWhite;
+  color: $lightWhite;
+}
+
+.game-button {
+  padding: 12px 24px;
+  border: 2px solid $lightWhite;
+  border-radius: 25px;
+  font-family: $game-font;
+  font-size: 20px;
+  color: $lightWhite;
+  background-color: $lightPurple;
+}
+
+.reject-button {
+  background-color: $reject;
+  border: 1px solid $lightWhite;
+  padding: 12px 10px;
+  color: $lightWhite;
+}
+
+.confirm-button {
+  background-color: $confirm;
+  border: 1px solid $lightWhite;
+  padding: 12px 10px;
+  color: $lightWhite;
 }

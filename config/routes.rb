@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    sessions: "users/sessions"
+  }
 
-  devise_for :users
+  devise_scope :user do
+    get "pending", to: "users/registrations#pending"
+    patch "users/confirmed", to: "users/registrations#confirmed", as: :partner_confirm
+    patch "users/rejected", to: "users/registrations#rejected", as: :partner_reject
+    patch "users/after_reject", to: "users/registrations#after_reject", as: :after_reject
+  end
+
   root to: "pages#home"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -9,16 +19,16 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-  resources :pages, only: :home do
+  resources :pages, only: :home
+
+  resources :couples, only: [:show, :create, :update] do
+
     patch "punch_action", on: :collection
     patch "kiss_action", on: :collection
     patch "love_action", on: :collection
     patch "peace_action", on: :collection
     patch "delete_action", on: :collection
-  end
-  resources :couples, only: [:show, :create, :update] do
+
     member do
       get :chatroom
     end
@@ -45,7 +55,6 @@ Rails.application.routes.draw do
       patch "mark_as_done"
     end
   end
-
 
   resources :statues, only: [:new, :create, :show] do
     # ci-après : ajout d'une route pour toggle le mode autopilot (création d'un nouveau statut)

@@ -5,61 +5,100 @@
   data-interactions-list-value="<%= current_user.received_actions %>">
 
   <%# 1. Main status message - Start %>
-  <div class="p-2"
-  style="z-index:1000; width:100%; height:75px;position:absolute;top:110px;"
+  <div class="py-2 px-4"
+  style="<%= @partner ? "z-index:1000; width:100%; height:75px; position:absolute; top:110px;" : "" %>"
   data-action="click->interactions#togglestatus">
-    <h4 class="text-center font-size-28px mb-0" > What's on <%= @partner.nickname %>'s mind today? </h4>
-    <h4 class="text-center font-size-30px mb-0" ><strong>"<%= @partner.statues.order(:created_at).last.main_statue_message %>"</strong></h4>
+    <% unless @partner&.confirmed && !@rejected %>
+      <h4 class="text-center font-size-28px mb-0">It seems your partner has not joined yet.</h4>
+      <h4 class="text-center font-size-30px mb-0"><strong>Be 2gethr, be happier!</strong></h4>
+    <% else %>
+      <h4 class="text-center font-size-28px mb-0"> What's on <%= @partner.nickname %>'s mind today? </h4>
+      <% if @partner.statues.empty? || @partner.statues[0].main_statue_message.empty? %>
+        <h4 class="text-center font-size-30px mb-0"><strong>Your partner has not created any status yet.</strong></h4>
+      <% else %>
+        <h4 class="text-center font-size-30px mb-0"><strong><%= @partner.statues.order(:created_at).last.main_statue_message %></strong></h4>
+      <% end %>
+    <% end %>
   </div>
   <%# 1. Main status message - End %>
 
+  <%# 1B. Modal to confirm partner %>
+    <% if @partner %>
+      <div data-controller="confirm-partner" data-confirm-partner-partner-confirmed-value=<%= @partner.confirmed %> data-confirm-partner-partner-rejected-check-value=<%= @partner.rejected_by.to_json %> data-confirm-partner-user-check-value=<%= @user.id %>>
+        <%= render "confirm_partner_modal", partner: @partner %>
+      </div>
+    <% end %>
+  <%# 1B. Modal to confirm partner - End %>
+
+  <%# 1C. Modal for rejected partner %>
+    <% if @partner %>
+      <div data-controller="rejected-partner" data-rejected-partner-user-rejected-check-value=<%= @user.rejected_by.to_json %> data-rejected-partner-partner-check-value=<%= @partner.id %>>
+        <%= render "rejected_modal", user: @user, partner: @partner %>
+      </div>
+    <% end %>
+  <%# 1C. Modal for rejected partner - End %>
+
   <%# 2. Detailed status messages - Click->toggleDisplay - Start %>
-  <div class="p-3 d-none" style="z-index:1000; width:100%; height:475px;position:absolute;top:200px;overflow:scroll;"
-  data-interactions-target="status" >
-    <div style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
-    <%# NB : anciennement dans la présente Div : class="d-flex flex-column justify-content-center align-items-center p-2 text-dark" %>
-      <%= render "show_status", partner: @partner %>
+  <% if @partner&.confirmed && !@rejected && !@partner&.statues.empty? %>
+    <div class="p-3 d-none" style="z-index:1000; width:100%; height:475px; position:absolute; top:200px; overflow:scroll;"
+    data-interactions-target="status" >
+      <div style="border-radius: 20px; z-index:1001; width:100%; height:100%;">
+      <%# NB : anciennement dans la présente Div : class="d-flex flex-column justify-content-center align-items-center p-2 text-dark" %>
+        <%= render "show_status", partner: @partner %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <%# 2. Detailed status messages - Click->toggleDisplay - End %>
 
   <%# 3. Avatar & Actions %>
-  <div class="flex-grow-1 d-flex justify-content-center align-items-end position-relative" id="partner-avatar">
-
-      <div class="rounded-circle position-absolute" style="top:25%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
-      <%= image_tag("avatar-#{@partner.statues.order(:created_at).last.mood_category.title}.png", data: { action: 'click->interactions#playmood' }) %>
-      <%= render "show_actions_icons" %>
-      <%= render "show_actions_toggled" %>
-
+  <% unless @partner&.confirmed && !@rejected && !@partner&.statues.empty? %>
+  <div class="d-flex justify-content-center">
+    <div class="py-5">
+      <%= image_tag "question-mark-1.png", alt: "Question mark image", width: 300, height: 300 %>
+    </div>
   </div>
+  <% else %>
+    <div class="flex-grow-1 d-flex justify-content-center align-items-end position-relative" id="partner-avatar">
+        <div class="rounded-circle position-absolute" style="top:25%;filter: blur(7px);background-blend-mode: multiply; background-image: url('<%= @partner_mood_img %>');z-index:-1;width:250px;height:250px;"></div>
+        <%= image_tag("avatar-#{@partner.statues.order(:created_at).last.mood_category.title}.png", data: { action: 'click->interactions#playmood' }) %>
+        <%= render "show_actions_icons" %>
+        <%= render "show_actions_toggled" %>
+    </div>
+  <% end %>
   <%# 3. Avatar & Actions %>
 
   <%# 4. Footer score %>
-  <div class="layout-footer mt-4">
+  <div class="layout-footer <%= @partner ? "mt-4" : "mt-5" %>">
     <div class="d-flex align-items-center justify-content-around gap-3">
 
       <%# 4.1. Footer You - Start %>
       <div class="Player1 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
-        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path current_user.photo.key %>')">
-          <%= render "show_incoming_actions" %>
-        </div>
+      <% if @user.photo.attached? %>
+        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path current_user.photo.key %>')"></div>
+      <% else %>
+        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
+      <% end %>
+        <%= render "show_incoming_actions" %>
         You
-        <div class="score-p1"><%= "#{current_user.score}pts" %></div>
+        <div class="score-p1"><%= @user.score %> pts</div>
       </div>
       <%# 4.1. Footer You - End %>
 
-      <div class="vs poppins-20 fw-bold">vs</div>
+      <div class="game-font-24 fw-bold">VS</div>
 
       <%# 4.2. Footer Partner - Start %>
       <div class="Player2 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
-        <div class="mini-avatar player2-pp" style="background-image: url('<%= cl_image_path @partner.photo.key %>')"></div>
-        <%= @partner.nickname %>
-        <div class="score-p2"><%= "#{@partner.score}pts" %></div>
+        <% if @partner && @partner.photo.key %>
+          <div class="mini-avatar player2-pp" style="background-image: url('<%= cl_image_path @partner_picture %>')"></div>
+        <% else %>
+          <div class="mini-avatar player2-pp" style="background-image: url('<%= image_path(@partner_picture) %>')"></div>
+        <% end %>
+          <span><%= @partner_nickname %></span>
+          <div class="score-p2"><%= @partner&.score ? "#{@partner.score} pts" : "0 pts" %></div>
       </div>
       <%# 4.2. Footer Partner - End %>
 
     </div>
   </div>
-  <%# 4. Footer score %>
 
 </div>

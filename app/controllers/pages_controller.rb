@@ -1,68 +1,15 @@
 class PagesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: :home
+  skip_before_action :authenticate_user!, :check_confirmed_user, only: :home
+  before_action :set_user, :set_partner, :partner_nickname, :partner_picture, only: %i[score scoredetails]
+  before_action :set_couple, only: %i[scoredetails]
 
   def home
-    set_user
-    set_couple
-    set_partner
-    @actions_received = @user.received_actions
-    @received_actions = @actions_received == nil ? [] : @actions_received.split(";")
-    @nb_actions = @received_actions.size
-    @partner_mood_img = @partner.statues == [] ? MoodCategory.last.image_path : @partner.statues.last.mood_category.image_path
-
-  end
-
-  def punch_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "punch;"
-    else
-      @partner.received_actions += "punch;"
-    end
-    @partner.save
-  end
-
-  def love_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "love;"
-    else
-      @partner.received_actions += "love;"
-    end
-      @partner.save
-  end
-
-  def peace_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "peace;"
-    else
-      @partner.received_actions += "peace;"
-    end
-    @partner.save
-  end
-
-  def kiss_action
-    home
-    if @partner.received_actions == nil
-      then @partner.received_actions = "kiss;"
-    else
-      @partner.received_actions += "kiss;"
-    end
-    @partner.save
-  end
-
-  def delete_action
-    home
-    @user.received_actions = nil
-    @user.save
-
   end
 
   def score
-    home
-    @user_mood = mood_summary(@user)[0].map do |mood, duration| [mood, duration / mood_summary(@user)[1]] end.compact.to_h.to_json
-    @partner_mood = mood_summary(@partner)[0].map do |mood, duration| [mood, duration / mood_summary(@partner)[1]] end.compact.to_h.to_json
+    @user_mood = mood_summary(@user)[1] == 0 ? { sunny: 0, stormy: 0, rainy: 0, cloudy: 0 }.to_json : mood_summary(@user)[0].map do |mood, duration| [mood, duration / mood_summary(@user)[1]] end.compact.to_h.to_json
+    @partner_mood = @partner.nil? || mood_summary(@partner)[1] == 0 ? { sunny: 0, stormy: 0, rainy: 0, cloudy: 0 }.to_json : mood_summary(@partner)[0].map do |mood, duration| [mood, duration / mood_summary(@partner)[1]] end.compact.to_h.to_json
+    @partner_score = @partner.nil? ? 0 : @partner.score
     # @user_mood = {sunny: 0.2, stormy: 0.3, rainy: 0.4, cloudy: 0.1 }.to_json
     # @partner_mood = {sunny: 0.3, stormy: 0.1, rainy: 0.2, cloudy: 0.4 }.to_json
 
@@ -74,26 +21,23 @@ class PagesController < ApplicationController
     # @partner_tasks = {dishwashing: 0.7, laundry: 0.4, cleaning: 0.8, cooking: 0.4, shopping: 0.5 }.to_json
 
     @user_rewards = rewards_metrics(@user)
-    @partner_tasks = rewards_metrics(@partner)
+    @partner_tasks = @partner.nil? ? "None" : rewards_metrics(@partner)
     # @user_rewards =     { massage: 100, restaurant: 50, we: 75, cine: 20, fleur: 10, cadeau: 40, homiesnight: 75, breakfast: 30 }.to_json
     # @partner_rewards =  { massage: 80, restaurant: 20, we: 35, cine: 10, fleur:40, cadeau: 5, homiesnight: 30, breakfast: 15 }.to_json
 
     @user_period_tasks_points = tasks_points(@user)
-    @partner_period_tasks_points = tasks_points(@partner)
+    @partner_period_tasks_points = @partner.nil? ? 0 : tasks_points(@partner)
     # @user_period_tasks_points = 40
     # @partner_period_tasks_points = 20
 
     @user_period_rewards_points = rewards_points(@user)
-    @partner_period_rewards_points = rewards_points(@partner)
+    @partner_period_rewards_points = @partner.nil? ? 0 : rewards_points(@partner)
     # @user_period_rewards_points = 30
     # @partner_period_rewards_points = 20
     # raise
   end
 
   def scoredetails
-    set_user
-    set_couple
-    @partner = set_partner
     @task = params[:title]
     @user_tasks = Task.all.where('done_by = ? AND date >= ? AND title = ?', @user.nickname,  opening_date, @task)
     @partner_tasks = Task.all.where('done_by = ? AND date >= ? AND title = ?', @partner.nickname,  opening_date, @task)
@@ -105,33 +49,17 @@ class PagesController < ApplicationController
 
   private
 
-#------------ 1. set user, partner, couple------------------------------------
-
-  def set_user
-    @user = current_user
-  end
-
-  def set_couple
-    @couple = current_user.couple
-  end
-
-  def set_partner
-    set_couple
-    @partner = (@couple.users - [current_user])[0]
-  end
-
-  #------------ 2. Set variables for score--------------------------------------
-
+  #------------ Set variables for score--------------------------------------
 
   def opening_date
-    openingdate = (Date.today - 30)
+    Date.today - 30
   end
 
   def mood_summary(user)
     opening_date
     openingtime = opening_date.to_time
     status_scope = user.statues.all.where('end_date > ?', openingtime)
-    statuses_duration = {"stormy"=>0, "rainy"=>0, "cloudy"=>0, "sunny"=>0}
+    statuses_duration = { "stormy" => 0, "rainy" => 0, "cloudy" => 0, "sunny" => 0 }
     status_scope.each do |status|
       mood = status.mood_category.title
       start_time = [status.start_date, openingtime].max
@@ -144,8 +72,8 @@ class PagesController < ApplicationController
 
   def tasks_metrics
     user_nickname = @user.nickname
-    partner_nickname = @partner.nickname
-    tasks_scope = Task.all.where('(done_by = ? OR done_by = ?) AND date >= ?', @user.nickname,  @partner.nickname, opening_date)
+    partner_nickname = @partner.nil? ? "???" : @partner.nickname
+    tasks_scope = Task.all.where('(done_by = ? OR done_by = ?) AND date >= ?', @user.nickname, partner_nickname, opening_date)
     gen_tasks = GenericTask.where(couple: current_user.couple).pluck(:title)
     gen_tasks = !gen_tasks.include?("Other") ? gen_tasks + ["Other"] : gen_tasks
     tasks_summary = {user_nickname => {}, partner_nickname => {}, "couple" => {}, "user_prop" => {}, "partner_prop" => {} }

@@ -1,27 +1,26 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="interactions"
 export default class extends Controller {
-
   static values = {
     list: String,
     sound: String,
-    };
-  static targets = ["punch", "love", "kiss", "peace", "status"]
+  };
+  static targets = ["punch", "love", "kiss", "peace", "status"];
 
   connect() {
-    console.log("hello from interactions controller");
+    // console.log("hello from interactions controller");
   }
 
   dodo(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async playmood() {
     console.log("fire mood sound");
     console.log(this.soundValue);
 
-    var audio = new Audio(this.soundValue)
+    var audio = new Audio(this.soundValue);
     audio.play();
 
     await this.dodo(5000);
@@ -31,8 +30,7 @@ export default class extends Controller {
       audio.pause();
       audio.currentTime = 0;
     }
-  };
-
+  }
 
   async togglestatus() {
     console.log("fire togglestatus");
@@ -47,7 +45,7 @@ export default class extends Controller {
     this.punchTarget.classList.toggle("displayed");
     await this.dodo(500);
     this.punchTarget.classList.toggle("displayed");
-    };
+  }
 
   async firelove() {
     console.log("fire love");
@@ -72,7 +70,7 @@ export default class extends Controller {
 
   async unleash() {
     let arraylist = this.listValue.split(";");
-    arraylist.pop()
+    arraylist.pop();
     console.log(arraylist);
 
     for (const element of arraylist) {
@@ -86,19 +84,17 @@ export default class extends Controller {
           break;
         case "love":
           this.firelove();
-        break;
+          break;
         case "punch":
           this.firepunch();
-        break;
+          break;
       }
       await this.dodo(1000);
       //   this.inyourfaceTarget.innertext = element;
       // await new Promise(resolve => setTimeout(resolve, 1000));
       //   this.inyourfaceTarget.innerText = "";
-    };
+    }
 
     location.reload();
-
-  };
-
+  }
 }

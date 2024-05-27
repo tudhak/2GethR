@@ -1,0 +1,27 @@
+<div class="modal fade" id="confirmPartnerModal" tabindex="-1" aria-labelledby="confirmPartnerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 game-font-24" id="confirmPartnerModalLabel">Confirmation request from your partner</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body vt323-standard">
+        <p>Someone wants to join your couple!</p>
+        <p class="text-white"><u>Firstname</u>: <strong><%= partner.first_name %></strong></p>
+        <p class="text-white"><u>Lastname</u>: <strong><%= partner.last_name %></strong></p>
+        <p class="text-white mb-5"><u>Email</u>: <strong><%= partner.email %></strong></p>
+        <p class="border-top border-bottom text-white mb-5">Do you want to accept this request?</p>
+        <p>Once accepted, this member will join your couple and become your partner. You'll be finally 2gethR, ready to use the app!</p>
+      </div>
+      <div class="modal-footer">
+        <div class="d-flex flex-grow-1 justify-content-end">
+          <%= link_to partner_confirm_path, data: {turbo_method: :patch}, class:"text-decoration-none me-3" do %>
+            <button class="confirm-button">Confirm</button>
+          <% end %>
+          <%= link_to partner_reject_path, data: {turbo_method: :patch}, class:"text-decoration-none" do %>
+            <button class="reject-button">Reject</button>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

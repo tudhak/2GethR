@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ToGethR - The best application for couples</title>
+    <title>2GethR - The best application for couples</title>
 
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
@@ -34,11 +34,11 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
+    <%# <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png"> %>
+    <%# <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> %>
+    <%# <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"> %>
+    <%# <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> %>
+    <%# <link rel="manifest" href="/manifest.json"> %>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -50,27 +50,25 @@
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%# Fin ajout JM : configuration Mobile App %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
   </head>
-  <body class="layout bg_mood <%= action_name == 'show' && controller_name == 'couples' ? @partner.statues.order(:created_at).last.mood_category.title : '' %> <%= action_name == 'show' && controller_name == 'couples' ? 'bg_dynamic' : 'bg_static' %>">
 
-    <% if action_name == 'show' %>
-      <div id="pattern" class="bg-layer"></div>
-      <div id="noise" class="bg-layer"></div>
-    <% end %>
-    <div class="py-2">
-      <%= render "shared/top_navbar" %>
-    </div>
-    <div style="height:calc(100vh - 145px); overflow-y:scroll;">
-      <%= yield %>
-    </div>
-  </body>
-
-
-
+  <body class="layout bg_mood <%= action_name == 'show' && controller_name == 'couples' && @partner && !@partner.statues.empty? ? @partner.statues.order(:created_at).last.mood_category.title : 'bg_static' %> <%= action_name == 'show' && controller_name == 'couples' && @partner ? 'bg_dynamic' : '' %>">
+  <% if action_name == 'show' %>
+    <div id="pattern" class="bg-layer"></div>
+    <div id="noise" class="bg-layer"></div>
+  <% end %>
+  <div class="py-2">
+    <%= render "shared/top_navbar" %>
+  </div>
+  <div style="height:calc(100vh - 145px); overflow-y:scroll;">
+    <%= yield %>
+    <%= render "shared/flashes" %>
+  </div>
+</body>
 
 </html>

@@ -1,22 +1,26 @@
 // Define variables for your color scheme
 
 // For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+$red: #fd1015;
+$blue: #0d6efd;
+$yellow: #ffc65a;
+$green: #1edd88;
+$gray: #0e0000;
+$light-gray: #f4f4f4;
 
 // color Together
 
 $purple: rgb(128, 89, 255);
+$altPurple: #8f4ca5;
+$lightPurple: #bda9fc;
+$lightWhite: #f4f4f4;
 $orange: rgb(226, 100, 108);
-
 $stormy: rgb(32, 13, 92);
 $rainy: rgb(128, 89, 255);
 $cloudy: rgb(93, 89, 96);
 $sunny: rgb(226, 100, 108);
+$confirm: #48a075;
+$reject: #c63c3c;
 
 .text-dark {
   color: #000000;

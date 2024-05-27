@@ -1,18 +1,18 @@
 .task-event {
-  color: #8052BD;
+  color: #8052bd;
   font-weight: bolder;
   text-decoration: none;
 }
 
 .reward-event {
-  color: #D5C6D0;
+  color: #d5c6d0;
   font-weight: bolder;
   text-decoration: none;
 }
 
 .tasks-display {
   border: 0.5px solid #333;
-  background-color: #D6B4C3;
+  background-color: #d6b4c3;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@
 
 .rewards-display {
   border: 0.5px solid #333;
-  background-color: #6B8CD3;
+  background-color: #6b8cd3;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -61,7 +61,6 @@
   }
 
   .today {
-
     span {
       border: 1.5px solid $purple;
       border-radius: 50%;
@@ -73,7 +72,8 @@
       display: inline-block;
     }
 
-    span:hover, span:active {
+    span:hover,
+    span:active {
       background-color: #fff;
     }
   }
@@ -90,16 +90,16 @@
 }
 
 .event-pending {
-  border: 1px solid #C96D1D;
+  border: 1px solid #c96d1d;
 }
 
 .event-done {
-  border: 1px solid #19965A;
+  border: 1px solid #19965a;
 }
 
 .task-hole {
   backdrop-filter: blur(100px);
-  background-color: #9DA9B8;
+  background-color: #9da9b8;
   font-size: 28px;
   border: 0.5px solid #fff;
   border-radius: 50%;
@@ -137,7 +137,10 @@
   background: #bda9fc !important;
 }
 
-.flatpickr-month, .flatpickr-weekdays, .flatpickr-weekday, .flatpickr-monthDropdown-months {
+.flatpickr-month,
+.flatpickr-weekdays,
+.flatpickr-weekday,
+.flatpickr-monthDropdown-months {
   background: $orange !important;
   color: #fff !important;
 }
@@ -146,6 +149,11 @@
   color: #000 !important;
 }
 
-.prevMonthDay, .nextMonthDay {
+.prevMonthDay,
+.nextMonthDay {
   opacity: 0.4 !important;
+}
+
+.event-background-color {
+  background-color: #fff;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_22_121731) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_082632) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,9 +44,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_121731) do
 
   create_table "couples", force: :cascade do |t|
     t.string "address"
-    t.integer "token"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
   end
 
   create_table "generic_rewards", force: :cascade do |t|
@@ -148,6 +149,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_121731) do
     t.bigint "couple_id"
     t.string "received_actions"
     t.string "wishlist"
+    t.boolean "confirmed"
+    t.integer "rejected_by", default: [], array: true
     t.index ["couple_id"], name: "index_users_on_couple_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
