@@ -112,6 +112,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_082632) do
     t.datetime "updated_at", null: false
     t.datetime "end_date"
     t.datetime "start_date"
+    t.boolean "autopilot", default: false
     t.index ["mood_category_id"], name: "index_statues_on_mood_category_id"
     t.index ["user_id"], name: "index_statues_on_user_id"
   end
