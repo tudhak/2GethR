@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_couple, :partner_nickname, only: [:index]
-  before_action :set_task, only: %i[show update destroy]
   before_action :set_partner, only: %i[index show]
+  before_action :set_task, only: %i[show update destroy]
 
   def index
     @tasks = ""
@@ -58,16 +58,8 @@ class TasksController < ApplicationController
 
   private
 
-  def set_couple
-    @couple = current_user.couple
-  end
-
   def set_task
     @task = Task.find(params[:id])
-  end
-
-  def set_partner
-    @partner = User.where(couple_id: current_user.couple_id).where.not(id: current_user.id).first
   end
 
   def task_params
