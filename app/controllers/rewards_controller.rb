@@ -1,10 +1,9 @@
 class RewardsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :set_partner, :partner_nickname, only: %i[index to_do_rewards]
 
   def index
     @generic_rewards = GenericReward.all
     @couple = User.select {|user| user.couple_id == current_user.couple_id }
-    @other_person = @couple.select {|user| user != @current_user}.first
   end
 
   def show
@@ -30,7 +29,6 @@ class RewardsController < ApplicationController
     @reward.update(status: 'done')
     redirect_to couple_rewards_path(current_user.couple)
   end
-
 
   def new
     @reward = Reward.new

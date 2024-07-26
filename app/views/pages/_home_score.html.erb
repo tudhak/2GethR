@@ -4,7 +4,7 @@
   <div style="width:100%;" class="d-flex justify-content-between px-3">
 
     <div class="d-flex align-items-center">
-      <div style="background-image: url('<%= cl_image_path user.photo.key %>');background-position: center;  background-size: cover; height:25px; width:25px; border-radius:50%;"></div>
+      <div style="background-image: url('<%= cl_image_path user.photo.key %>'); background-position: center;  background-size: cover; height:25px; width:25px; border-radius:50%;"></div>
       <div class="px-3"><%= "You >> #{user.score}pts" %></div>
     </div>
 
@@ -12,7 +12,7 @@
 
     <div class="d-flex align-items-center">
       <div class="px-3"><%= "#{partner.score}pts << #{partner.nickname} " %></div>
-      <div style="background-image: url('<%= cl_image_path partner.photo.key %>');background-position: center;  background-size: cover; height:25px; width:25px; border-radius:50%;"></div>
+      <div style="background-image: url('<%= cl_image_path partner.photo.key %>'); background-position: center;  background-size: cover; height:25px; width:25px; border-radius:50%;"></div>
     </div>
 
 </div>

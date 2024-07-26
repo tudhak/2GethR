@@ -33,8 +33,8 @@ puts "Destroying couples..."
 Couple.destroy_all
 
 puts "Creating couples..."
-couple1 = Couple.create(address: '12 rue de passy', token: 123456)
-couple2 = Couple.create(address: '58 rue pierre charron', token: 789012)
+couple1 = Couple.create(nickname: "Chouchou & Loulou", address: '12 rue de passy 75016 Paris', token: "123_456")
+couple2 = Couple.create(nickname: "Kim & Ye", address: '58 rue pierre charron 75008 Paris', token: "789_012")
 puts "Couples created"
 
 puts "Creating users"
@@ -52,7 +52,6 @@ user1 = User.create(
 )
 user1.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/965/fpnjxvl3i4atlsmwjqmvzdr4twi-724.jpg"), filename: "user1.jpg", content_type: "image/jpg")
 
-
 user2 = User.create(
   email: 'user2@example.com',
   password: 'password456',
@@ -65,8 +64,7 @@ user2 = User.create(
   mode: 'normal',
   couple: couple1
 )
-user2.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/978/b7qnddsqzri4wfy26msigfmftho-468.jpg"),
-                   filename: "user2.jpg", content_type: "image/jpg")
+user2.photo.attach(io: URI.open("https://www.ecranlarge.com/media/cache/155x155/uploads/image/000/978/b7qnddsqzri4wfy26msigfmftho-468.jpg"), filename: "user2.jpg", content_type: "image/jpg")
 
 user3 = User.create(
   email: 'user3@example.com',
@@ -80,8 +78,7 @@ user3 = User.create(
   mode: 'normal',
   couple: couple2
 )
-user3.photo.attach(io: URI.open("https://img-3.journaldesfemmes.fr/Si7QKJ-qnM9z6DN9XzKSH7ilc3U=/1500x/smart/45ebd918085745208e74acd424eb68c0/ccmcms-jdf/39927151.jpg"),
-                   filename: "user3.jpg", content_type: "image/jpg")
+user3.photo.attach(io: URI.open("https://img-3.journaldesfemmes.fr/Si7QKJ-qnM9z6DN9XzKSH7ilc3U=/1500x/smart/45ebd918085745208e74acd424eb68c0/ccmcms-jdf/39927151.jpg"), filename: "user3.jpg", content_type: "image/jpg")
 
 user4 = User.create(
   email: 'user4@example.com',
@@ -95,8 +92,7 @@ user4 = User.create(
   mode: 'normal',
   couple: couple2
 )
-user4.photo.attach(io: URI.open("https://ngroup.gumlet.io/IMAGE/IMAGE-S1-00016/68445-kanye-west.jpg?w=600"),
-                   filename: "user4.jpg", content_type: "image/jpg")
+user4.photo.attach(io: URI.open("https://ngroup.gumlet.io/IMAGE/IMAGE-S1-00016/68445-kanye-west.jpg?w=600"), filename: "user4.jpg", content_type: "image/jpg")
 
 puts "Users created."
 
@@ -125,6 +121,7 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user2,
   start_date: Time.now - (86_400 * 30),
+  autopilot: false
 )
 
 puts "...27 days ago"
@@ -133,6 +130,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user2,
   start_date: Time.now - (86_400 * 27),
+  autopilot: false
 )
 
 puts "...22 days ago"
@@ -141,6 +139,7 @@ Statue.create(
   mood_category: MoodCategory.all[2],
   user: user2,
   start_date: Time.now - (86_400 * 22),
+  autopilot: false
 )
 
 puts "...18 days ago"
@@ -149,6 +148,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user2,
   start_date: Time.now - (86_400 * 18),
+  autopilot: false
 )
 
 puts "...15 days ago"
@@ -157,6 +157,7 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user2,
   start_date: Time.now - (86_400 * 15),
+  autopilot: false
 )
 
 puts "...12 days ago"
@@ -165,6 +166,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user2,
   start_date: Time.now - (86_400 * 12),
+  autopilot: false
 )
 
 puts "...9 days ago"
@@ -173,6 +175,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user2,
   start_date: Time.now - (86_400 * 9),
+  autopilot: false
 )
 
 puts "...7 days ago"
@@ -183,6 +186,7 @@ Statue.create(
   start_date: Time.now - (86_400 * 7),
   main_statue_message: "Love you darling!",
   love_statue_message: "We could go out and dance tonight",
+  autopilot: false
 )
 
 puts "...5 days ago"
@@ -193,7 +197,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 5),
   main_statue_message: "You better have a good reason for not returning my calls!",
   love_statue_message: "you prepare a nice dinner tonight",
-  hate_statue_message: "you do not recall my call!"
+  hate_statue_message: "you do not recall my call!",
+  autopilot: false
 )
 
 puts "...4 days ago"
@@ -204,7 +209,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 4),
   main_statue_message: "You're so annoying!",
   love_statue_message: "you apologize and make it up to me!" ,
-  hate_statue_message: "you forget my birthday!"
+  hate_statue_message: "you forget my birthday!",
+  autopilot: false
 )
 
 puts "...2 days ago"
@@ -215,7 +221,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 2),
   main_statue_message: "Don't even want to hear from you!",
   love_statue_message: "you could clean up your mess!",
-  hate_statue_message: "you come back completely drunk at 5am and mistake my dressing for the toilets!"
+  hate_statue_message: "you come back completely drunk at 5am and mistake my dressing for the toilets!",
+  autopilot: true
 )
 
 user2stat = user2.statues
@@ -246,6 +253,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user1,
   start_date: Time.now - (86_400 * 27),
+  autopilot: false
 )
 
 puts "...22 days ago"
@@ -254,6 +262,7 @@ Statue.create(
   mood_category: MoodCategory.all[2],
   user: user1,
   start_date: Time.now - (86_400 * 22),
+  autopilot: false
 )
 
 puts "...18 days ago"
@@ -262,6 +271,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user1,
   start_date: Time.now - (86_400 * 18),
+  autopilot: false
 )
 
 puts "...15 days ago"
@@ -270,6 +280,7 @@ Statue.create(
   mood_category: MoodCategory.all[0],
   user: user1,
   start_date: Time.now - (86_400 * 15),
+  autopilot: false
 )
 
 puts "...12 days ago"
@@ -278,6 +289,7 @@ Statue.create(
   mood_category: MoodCategory.all[1],
   user: user1,
   start_date: Time.now - (86_400 * 12),
+  autopilot: false
 )
 
 puts "...9 days ago"
@@ -286,6 +298,7 @@ Statue.create(
   mood_category: MoodCategory.all[3],
   user: user1,
   start_date: Time.now - (86_400 * 9),
+  autopilot: false
 )
 
 puts "...7 days ago"
@@ -296,7 +309,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 7),
   main_statue_message: "You drive me f**in' maad!",
   love_statue_message: "you can leave my stuff where they are! ",
-  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!",
+  autopilot: false
 )
 
 puts "...5 days ago"
@@ -307,7 +321,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 5),
   main_statue_message: "Not so happy",
   love_statue_message: "you can leave my stuff where they are! ",
-  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!",
+  autopilot: false
 )
 
 puts "...3 days ago"
@@ -318,7 +333,8 @@ Statue.create(
   start_date: Time.now - (86_400 * 3),
   main_statue_message: "Life is good!",
   love_statue_message: "I could spend the week-end with my homies",
-  hate_statue_message: "it's soccer game night and you make me watch The f**ing notebook! "
+  hate_statue_message: "it's soccer game night and you make me watch The f**ing notebook! ",
+  autopilot: false
 )
 
 puts "...yesterday"
@@ -327,9 +343,10 @@ Statue.create(
   mood_category: (MoodCategory.all[2]),
   user: user1,
   start_date: Time.now - 86_400,
-  main_statue_message: "Toujours la même histoire",
+  main_statue_message: "Still the same story",
   love_statue_message: "you can leave my stuff where they are! ",
-  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!"
+  hate_statue_message: "you think you're tidying up but are in fact just hiddin stuff!",
+  autopilot: false
 )
 
 
@@ -412,8 +429,8 @@ Statue.create(
   user: user3,
   start_date: Time.now - (85_400 * 7),
   main_statue_message: "Don't even talk to me!",
-  love_statue_message: "you clean up your mess! ",
-  hate_statue_message: "you come back completely drunk at 5am and trow up in the bed!"
+  love_statue_message: "you clean up your mess!",
+  hate_statue_message: "you come back completely drunk at 5am and throw up in the bed!"
 )
 
 puts "...6 days ago"
@@ -434,7 +451,7 @@ Statue.create(
   user: user3,
   start_date: Time.now - (85_400 * 3),
   main_statue_message: "You're so annoying!",
-  love_statue_message: "you apologize and make it up to me!" ,
+  love_statue_message: "you apologize and make it up to me!",
   hate_statue_message: "you forget my birthday!"
 
 )
@@ -447,7 +464,7 @@ Statue.create(
   start_date: Time.now - (85_400 * 2),
   main_statue_message: "Don't even talk to me!",
   love_statue_message: "you clean up your mess! ",
-  hate_statue_message: "you come back completely drunk at 5am and trow up in the bed!"
+  hate_statue_message: "you come back completely drunk at 5am and throw up in the bed!"
 
 )
 
@@ -503,7 +520,7 @@ GenericTask.create(
   description: "Cook some good food.",
   base_score: 50,
   couple: couple1,
-  emoji:"🍽️"
+  emoji: "🍽️"
 )
 
 GenericTask.create(
@@ -565,7 +582,7 @@ puts "Creating task instances (tasks)..."
 Task.create(
   title: "Feed the fishes",
   description: "Feed our lovely fishes with adapted pet food.",
-  date: Date.parse("30/11/2023"),
+  date: Date.parse("05/03/2024"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -576,7 +593,7 @@ Task.create(
 Task.create(
   title: "Water the plants",
   description: "Our plants look rather dry.",
-  date: Date.parse("01/12/2023"),
+  date: Date.parse("03/03/2024"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -585,9 +602,9 @@ Task.create(
 )
 
 Task.create(
-  title: "Book winter holidays",
+  title: "Book spring holidays",
   description: "Time flies. Please take some time to book our next holidays.",
-  date: Date.parse("30/11/2023"),
+  date: Date.parse("15/03/2024"),
   base_score: 70,
   user: user2,
   status: "pending",
@@ -598,7 +615,7 @@ Task.create(
 Task.create(
   title: "Clean the carpet",
   description: "There is dust all over the carpet. It pisses me off.",
-  date: Date.parse("06/12/2023"),
+  date: Date.parse("04/03/2024"),
   base_score: 15,
   user: user2,
   status: "pending",
@@ -609,7 +626,7 @@ Task.create(
 Task.create(
   title: "Buy a gift for my nephew",
   description: "I think he likes video games.",
-  date: Date.parse("15/12/2023"),
+  date: Date.parse("15/03/2024"),
   base_score: 50,
   user: user4,
   status: "pending",
@@ -620,7 +637,7 @@ Task.create(
 Task.create(
   title: "Order some wine for Christmas",
   description: "Please take some quality wine this time. I don't like piss.",
-  date: Date.parse("16/12/2023"),
+  date: Date.parse("16/03/2024"),
   base_score: 40,
   user: user3,
   status: "pending",
@@ -631,7 +648,7 @@ Task.create(
 Task.create(
   title: "Take my dress to the dry cleaning",
   description: "There are some blemishes on my dress I would like to get rid of.",
-  date: Date.parse("09/12/2023"),
+  date: Date.parse("09/03/2024"),
   base_score: 25,
   user: user3,
   status: "pending",
@@ -642,7 +659,7 @@ Task.create(
 Task.create(
   title: "Grocery list",
   description: "We ran out of pasta.",
-  date: Date.parse("12/12/2023"),
+  date: Date.parse("06/03/2024"),
   base_score: 25,
   user: user1,
   status: "pending",
@@ -653,7 +670,7 @@ Task.create(
 Task.create(
   title: "Fix the cupboard",
   description: "I can't stand this defective cupboard anymore. Do something.",
-  date: Date.parse("07/12/2023"),
+  date: Date.parse("07/03/2024"),
   base_score: 30,
   user: user3,
   status: "pending",
@@ -664,7 +681,7 @@ Task.create(
 Task.create(
   title: "Send back my headphones for refund",
   description: "This garbage does not work.",
-  date: Date.parse("08/12/2023"),
+  date: Date.parse("08/03/2024"),
   base_score: 25,
   user: user4,
   status: "pending",
@@ -675,7 +692,7 @@ Task.create(
 Task.create(
   title: "Buy some painkillers at the drugstore",
   description: "My back hurts.",
-  date: Date.parse("02/12/2023"),
+  date: Date.parse("05/03/2024"),
   base_score: 25,
   user: user4,
   status: "pending",
@@ -686,7 +703,7 @@ Task.create(
 Task.create(
   title: "Change the bedding",
   description: "A fresh bed for a deep sleep.",
-  date: Date.parse("03/12/2023"),
+  date: Date.parse("08/03/2024"),
   base_score: 30,
   user: user1,
   status: "pending",
@@ -697,7 +714,7 @@ Task.create(
 Task.create(
   title: "Do the dishes",
   description: "Keeping the kitchen clean is a good medicine.",
-  date: Date.parse("01-12-2023"),
+  date: Date.parse("09-03-2024"),
   base_score: 40,
   user: user2,
   status: "pending",
@@ -856,8 +873,7 @@ demo_task = Task.create(
   done_by: user1.nickname
 )
 
-demo_task.photos.attach(io: URI.open("https://as1.ftcdn.net/v2/jpg/04/18/51/22/1000_F_418512250_dGHkhlcXL4y83pT4oH3rwkzPUEqEKGIo.jpg"),
-                       filename: "demo.jpg", content_type: "image/jpg")
+demo_task.photos.attach(io: URI.open("https://as1.ftcdn.net/v2/jpg/04/18/51/22/1000_F_418512250_dGHkhlcXL4y83pT4oH3rwkzPUEqEKGIo.jpg"),filename: "demo.jpg", content_type: "image/jpg")
 
 Task.create(
   title: "Cooking",
@@ -989,7 +1005,7 @@ GenericReward.create!(
 
 GenericReward.create!(
   title: 'Sexual fantasy',
-  description: 'I would love that you seat on my face and spank me',
+  description: 'I would love that you sit on my face and spank me',
   cost: 100,
   couple: couple1,
   emoji: "🌶️"
@@ -1012,43 +1028,43 @@ GenericReward.create!(
   )
 
 Reward.create!(
-  date: "02/12/2023",
-  user: user1,
-  status: 'pending',
-  description: 'A special reward',
-  title: 'Special Reward',
+  date: "08/01/2024",
+  user: user2,
+  status: 'done',
+  description: 'A nice bouquet of flowers',
+  title: 'Bouquet of flowers',
   cost: 100,
-  emoji: "⭐"
+  emoji: "💐"
 )
 
 Reward.create!(
-  date: "06/12/2023",
+  date: "26/01/2024",
+  user: user2,
+  status: 'done',
+  description: 'A box of delicious chocolates',
+  title: 'Box of chocolates',
+  cost: 100,
+  emoji: "🍫"
+)
+
+Reward.create!(
+  date: "11/02/2024",
   user: user1,
   status: 'done',
-  description: 'A well deserved massage',
-  title: 'Special Massage',
-  cost: 100,
-  emoji: "🤲"
-)
-
-Reward.create!(
-  date: "02/12/2023",
-  user: user2,
-  status: 'pending',
-  description: 'Another reward',
-  title: 'Another Reward',
+  description: 'Pancakes forever',
+  title: 'Cook my favorite breakfast',
   cost: 75,
-  emoji: "❓"
+  emoji: "🥞"
 )
 
 Reward.create!(
-  date: "02/12/2023",
-  user: user2,
+  date: "16/02/2024",
+  user: user1,
   status: 'done',
-  description: 'A rejected reward',
-  title: 'Rejected Reward',
-  cost: 120,
-  emoji: "❗"
+  description: 'Let\'s party',
+  title: 'Let\'s dance tonight',
+  cost: 80,
+  emoji: "🪩"
 )
 # Ajout de tasks JM : ci-dessous------------------------------------------------
 # Semaine 1---------------------------------------------------------------------

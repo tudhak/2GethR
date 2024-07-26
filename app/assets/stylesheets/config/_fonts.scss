@@ -1,25 +1,42 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 // Define fonts for body and headers
-$body-font: 'Poppins', sans-serif;
-$headers-font: 'VT323', sans-serif;
+$body-font: "Poppins", sans-serif;
+$headers-font: "VT323", sans-serif;
+$game-font: "Press Start 2P", sans-serif;
 
 .font_vt323 {
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
 }
 
 .poppins-20 {
   font-size: 20px !important;
-  font-family: "Poppins", sans-serif;
+  font-family: $body-font !important;
 }
 
 .poppins-18 {
   font-size: 18px !important;
-  font-family: "Poppins", sans-serif;
+  font-family: $body-font;
+}
+
+.poppins-16 {
+  font-size: 16px !important;
+  font-family: $body-font !important;
 }
 
 .font-size-30px {
   font-size: 30px;
+}
+
+.game-font-24 {
+  font-family: $game-font;
+  font-size: 24px;
+}
+
+.vt323-standard {
+  font-family: $headers-font;
+  font-size: 24px;
 }

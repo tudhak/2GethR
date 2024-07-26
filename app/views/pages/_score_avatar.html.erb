@@ -1,18 +1,33 @@
   <div class="d-flex justify-content-between align-items-center">
 
     <div class="pt-4">
-      <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="mini-avatar"></div>
+      <% if @user.photo.attached? %>
+        <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="mini-avatar"></div>
+      <% else %>
+        <div style="background-image: url('<%= image_path("unknown_person.jpg") %>')" class="mini-avatar"></div>
+      <% end %>
+
       <p class="pt-2 text-center" style="font-size:30px;"> <%= @user.score %></p>
     </div>
 
     <div>
       <h2 class="text-center">Score to date</h2>
-      <p class="text-center mb-0" style="font-size:20px;"><%= if @user.score>@partner.score then "You are ahead!" elsif @user.score<@partner.score then "You're behind!" else "It's a draw!" end  %></p>
-        <p class="text-center mx-2" style="font-size:16px;"><%= if @user.score>@partner.score then "Take it easy or get a reward" elsif @user.score<@partner.score then "Get some chores done and catch up!" else "You guys have found a balance!" end  %></p>
+
+      <p class="text-center mb-0" style="font-size:20px;"><%= if @user.score>@partner_score then "You are ahead!" elsif @user.score<@partner_score then "You're behind!" else "It's a draw!" end  %></p>
+        <p class="text-center mx-2" style="font-size:16px;"><%= if @user.score>@partner_score then "Take it easy or get a reward" elsif @user.score<@partner_score then "Get some chores done and catch up!" else "You guys have found a balance!" end  %></p>
     </div>
 
     <div class="pt-4">
-      <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="bg-danger mini-avatar"></div>
-      <p class="pt-2 text-center" style="font-size:30px;"> <%= @partner.score %></p>
+      <% if @partner.nil? %>
+        <div class="mini-avatar" style="background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
+        <p class="pt-2 text-center" style="font-size:30px;"> <%= @partner_score %></p>
+      <% else %>
+        <% if @partner && @partner.photo.key %>
+          <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="mini-avatar"></div>
+        <% else %>
+          <div class="mini-avatar" style="background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
+        <% end %>
+        <p class="pt-2 text-center" style="font-size:30px;"> <%= @partner_score %></p>
+      <% end %>
     </div>
   </div>

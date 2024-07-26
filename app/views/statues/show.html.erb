@@ -1,31 +1,37 @@
 <div class="px-4">
   <h1 class="text-center my-3">My status</h1>
 
+  <% if @user.statues.empty? %>
+    <div class="d-flex justify-content-center align-items-center px-4" style="height: 30vh;">
+    <p class="game-font-24 text-center">No status yet !</p>
+    </div>
+  <% else %>
+    <div class="p-2 my-3 border-bottom bg_light_white text-dark" style="border-radius:12px;">
+      <h4 style="font-size:24px;">What's on your mind today?</h4>
 
-  <div class="p-2 my-3 border-bottom bg_light_white text-dark" style="border-radius:12px;">
-    <h4 style="font-size:24px;">What's on your mind today?</h4>
-    <div class="d-flex ">
-      <div style="background-image: url('<%= @user_mood_img %>'); border-radius: 12px; background-position: center; background-size: cover; width:100px; height:100px; filter: blur(1px); "></div>
-      <div class="ms-3">
-        <p style="font-size:20px"><%= @statue.main_statue_message %></p>
-        <p>Weather forecast for today is <%= @statue.mood_category.title %></p>
+      <div class="d-flex">
+        <div style="background-image: url('<%= @user_mood_img %>'); border-radius: 12px; background-position: center; background-size: cover; width:100px; height:100px; filter: blur(1px); "></div>
+        <div class="ms-3">
+          <p style="font-size:20px"><%= @statue.main_statue_message %></p>
+          <p>Weather forecast for today is <%= @statue.mood_category.title %></p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="p-2 my-3  border-bottom bg_light_white text-dark" style="border-radius:12px;">
-    <h4 style="font-size:24px;">That would make me so happy if ... </h4>
-    <p style="font-size:20px"><%= @statue.love_statue_message %></p>
-  </div>
+    <div class="p-2 my-3  border-bottom bg_light_white text-dark" style="border-radius:12px;">
+      <h4 style="font-size:24px;">That would make me so happy if ... </h4>
+      <p style="font-size:20px"><%= @statue.love_statue_message %></p>
+    </div>
 
-  <div class="p-2 my-3 border-bottom bg_light_white text-dark" style="border-radius:12px;">
-    <h4 style="font-size:24px;">You really drove / drive me mad when ...</h4>
-    <p style="font-size:20px"><%= @statue.hate_statue_message %></p>
-  </div>
+    <div class="p-2 my-3 border-bottom bg_light_white text-dark" style="border-radius:12px;">
+      <h4 style="font-size:24px;">You really drove / drive me mad when ...</h4>
+      <p style="font-size:20px"><%= @statue.hate_statue_message %></p>
+    </div>
+  <% end %>
 
   <%= link_to new_statue_path do %>
     <div class="btn_orange text-center py-2 px-4 text-decoration-none outline-none text-white my-2 border-0 outline-none">
-      Update status
+      <%= @user.statues.empty? ? "Create status" : "Update status" %>
     </div>
   <% end %>
 

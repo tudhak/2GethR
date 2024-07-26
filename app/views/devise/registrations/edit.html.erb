@@ -1,46 +1,85 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container my-4 mx-auto">
+  <div class="row justify-content-center">
+    <div class="col-8 col-md-6">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+      <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: { controller: "datepicker" }}) do |f| %>
+        <%= f.error_notification %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+        <div class="form-inputs mb-4">
+          <%= f.input :email, required: true, autofocus: true %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :first_name,
-                required: true %>
-    <%= f.input :last_name,
-                required: true %>
-    <%= f.input :nickname,
-                required: true %>
-    <%= f.input :mode,
-                required: false %>
-    <%= f.input :received_actions,
-                required: false %>
-    <%= f.input :photo, as: :file %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+
+          <h3>User information</h3>
+
+          <%= f.input :password,
+                      hint: "leave it blank if you don't want to change it",
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: true,
+                      input_html: { autocomplete: "current-password" } %>
+          <%= f.input :first_name,
+                      required: true %>
+          <%= f.input :last_name,
+                      required: true %>
+          <%= f.input :nickname,
+                      required: true %>
+          <%= f.input :date_of_birth,
+                      required: false,
+                      as: :string,
+                      input_html: { data: { datepicker_target: "birthDate" } } %>
+          <%= f.input :mode,
+                      required: false %>
+          <%= f.input :photo, as: :file %>
+        </div>
+
+        <h3 class="mb-3">Couple information</h3>
+
+        <p class="text-white mb-3">Couple token</p>
+
+        <div class="mb-4" data-controller="clipboard" data-clipboard-feedback-text-value="Copied!" data-clipboard-token-value=<%= @couple.token %>>
+          <div class="d-flex justify-content-center border border-2 border-white mb-3">
+            <span class="p-3 text-center couple-token" data-clipboard-target="token"><%= @couple.token %></span>
+          </div>
+          <button class="btn btn-lightpurple" data-clipboard-target="button" data-action="click->clipboard#copy">Copy to clipboard</button>
+        </div>
+
+        <div class="mb-3 string required couple_nickname">
+          <label class="form-label string required" for="couple_nickname">Couple nickname <abbr title="required">*</abbr></label>
+          <input class="form-control is-valid string required" required="required" aria-required="true" type="text" value="<%= @user.couple.nickname %>" name="couple[nickname]" id="couple_nickname">
+        </div>
+
+        <div class="mb-3 string required couple_address">
+          <label class="form-label string required" for="couple_address">Couple address <abbr title="required">*</abbr></label>
+          <input class="form-control is-valid string required" required="required" aria-required="true" type="text" value="<%= @user.couple.address %>" name="couple[address]" id="couple_address">
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Update", class: "btn btn-lightpurple mt-4 mb-5" %>
+        </div>
+      <% end %>
+
+      <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-purple mb-3" %></div>
+
+      <%= link_to "Back", :back, class: "btn btn-purple" %>
+
+    </div>
+
+    <%# Modal for rejected partner %>
+      <% if @partner %>
+        <div data-controller="rejected-partner" data-rejected-partner-user-rejected-check-value=<%= @user.rejected_by %> data-rejected-partner-partner-check-value=<%= @partner.id %>>
+          <%= render "couples/rejected_modal", user: @user, partner: @partner %>
+        </div>
+      <% end %>
+    <%# Modal for rejected partner - End %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>
