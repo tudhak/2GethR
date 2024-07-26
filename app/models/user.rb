@@ -14,8 +14,9 @@ class User < ApplicationRecord
   # The built-in email validation regexp below is not bulletproof, but no regexp is
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Please enter a valid email" }
 
-  validates :nickname, presence: true
-  validates :last_name, :first_name, :date_of_birth, presence: true
+  validates :date_of_birth, comparison: { greater_than: Date.new(1940, 12, 31), less_than: Date.new(2006, 12, 31), message: "invalid." }
+
+  validates :last_name, :first_name, :nickname, presence: true
 
   validate :password_complexity
 
