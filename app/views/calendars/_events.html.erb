@@ -24,16 +24,34 @@
         <!-- <div class="badge <%= task.status == "pending" ? 'bg-primary' : 'bg-secondary' %> position-absolute" style="top: -10px; right: 5px;"><%= task.status %></div> -->
         <% if task.assigned_to == current_user.nickname %>
           <div class="mb-0 d-flex justify-content-end flex-shrink-1">
-            <%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle d-inline-block", crop: :fill %>
+            <% if @user.photo.attached? %>
+              <%= cl_image_tag @user_picture, height: 50, width: 50, class: "rounded-circle d-inline-block", crop: :fill %>
+            <% else %>
+              <%= image_tag @user_picture, height: 50, width: 50, class: "rounded-circle d-inline-block", crop: :fill %>
+            <% end %>
           </div>
         <% elsif task.assigned_to == @partner.nickname %>
           <div class="mb-0 d-flex justify-content-end flex-shrink-1">
-            <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle d-inline-block", crop: :fill %>
+            <% if @partner && @partner.photo.key %>
+              <%= cl_image_tag @partner_picture, height: 50, width: 50, class: "rounded-circle d-inline-block", crop: :fill %>
+            <% else %>
+              <%= image_tag @partner_picture, height: 50, width: 50, class: "rounded-circle d-inline-block", crop: :fill %>
+            <% end %>
           </div>
         <% else %>
          <div class="mb-0 d-flex justify-content-end">
-          <%= cl_image_tag current_user.photo.key, height: 50, width: 50, class: "rounded-circle avatar-main", crop: :fill %>
-          <%= cl_image_tag @partner.photo.key, height: 50, width: 50, class: "rounded-circle avatar-pos", crop: :fill %>
+          <% if @user.photo.attached? %>
+            <%= cl_image_tag @user_picture, height: 50, width: 50, class: "rounded-circle avatar-main", crop: :fill %>
+          <% end %>
+          <% if !@user.photo.attached? %>
+            <%= image_tag @user_picture, height: 50, width: 50, class: "rounded-circle avatar-main", crop: :fill %>
+          <% end %>
+          <% if @partner && @partner.photo.key %>
+            <%= cl_image_tag @partner_picture, height: 50, width: 50, class: "rounded-circle avatar-pos", crop: :fill %>
+          <% end %>
+          <% if !@partner || !@partner.photo.key %>
+            <%= image_tag @partner_picture, height: 50, width: 50, class: "rounded-circle avatar-pos", crop: :fill %>
+          <% end %>
          </div>
         <% end %>
           </p>

@@ -49,6 +49,11 @@ class ApplicationController < ActionController::Base
     @partner_picture = @partner&.photo&.key && !@rejected ? @partner.photo.key : "unknown_person.jpg"
   end
 
+  def user_picture
+    # Safe navigation operator
+    @user_picture = @user.photo.attached? ? @user.photo.key : "unknown_person.jpg"
+  end
+
   def check_confirmed_user
     set_user
     set_partner

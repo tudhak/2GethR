@@ -2,9 +2,9 @@
 
     <div class="pt-4">
       <% if @user.photo.attached? %>
-        <div style="background-image: url('<%= cl_image_path @user.photo.key %>');" class="mini-avatar"></div>
+        <div style="background-image: url('<%= cl_image_path @user_picture %>')" class="mini-avatar"></div>
       <% else %>
-        <div style="background-image: url('<%= image_path("unknown_person.jpg") %>')" class="mini-avatar"></div>
+        <div style="background-image: url('<%= image_path(@user_picture) %>')" class="mini-avatar"></div>
       <% end %>
 
       <p class="pt-2 text-center" style="font-size:30px;"> <%= @user.score %></p>
@@ -19,13 +19,13 @@
 
     <div class="pt-4">
       <% if @partner.nil? %>
-        <div class="mini-avatar" style="background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
+        <div class="mini-avatar" style="background-image: url('<%= image_path(@partner_picture) %>')"></div>
         <p class="pt-2 text-center" style="font-size:30px;"> <%= @partner_score %></p>
       <% else %>
         <% if @partner && @partner.photo.key %>
-          <div style="background-image: url('<%= cl_image_path @partner.photo.key %>');" class="mini-avatar"></div>
+          <div style="background-image: url('<%= cl_image_path @partner_picture %>');" class="mini-avatar"></div>
         <% else %>
-          <div class="mini-avatar" style="background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
+          <div class="mini-avatar" style="background-image: url('<%= image_path(@partner_picture) %>')"></div>
         <% end %>
         <p class="pt-2 text-center" style="font-size:30px;"> <%= @partner_score %></p>
       <% end %>

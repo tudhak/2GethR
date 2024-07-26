@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, :check_confirmed_user, only: :home
-  before_action :set_user, :set_partner, :partner_nickname, :partner_picture, only: %i[score scoredetails]
+  before_action :set_user, :set_partner, :partner_nickname, :partner_picture, :user_picture, only: %i[score scoredetails]
   before_action :set_couple, only: %i[scoredetails]
 
   def home
