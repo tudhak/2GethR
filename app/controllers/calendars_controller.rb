@@ -1,4 +1,6 @@
 class CalendarsController < ApplicationController
+  before_action :partner_picture, :user_picture, only: [:index]
+
   def index
     @tasks = Task.where(user: User.where(couple_id: current_user.couple))
     @rewards = Reward.where(user: User.where(couple_id: current_user.couple))

@@ -74,9 +74,9 @@
       <%# 4.1. Footer You - Start %>
       <div class="Player1 d-flex flex-column justify-content-center align-items-center poppins-20 fw-bold">
       <% if @user.photo.attached? %>
-        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path current_user.photo.key %>')"></div>
+        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= cl_image_path @user_picture %>')"></div>
       <% else %>
-        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= image_path("unknown_person.jpg") %>')"></div>
+        <div class="mini-avatar player1-pp" style="position:relative; background-image: url('<%= image_path(@user_picture) %>')"></div>
       <% end %>
         <%= render "show_incoming_actions" %>
         You

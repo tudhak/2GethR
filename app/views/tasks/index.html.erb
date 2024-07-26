@@ -13,10 +13,10 @@
         <p class="vt323-standard m-0">Your couple does not have any generic tasks yet! Start creating recurring tasks now.</p>
         </div>
       <% else %>
-        <ul class="px-4">
+        <ul class="list-group w- px-4">
           <% @generic_tasks.each do |generic_task| %>
             <% unless generic_task.title == "Other" %>
-                <li class="list-group-item box-shadow-purple mb-4 p-3 d-flex justify-content-between align-items-center position-relative">
+                <li class="list-group-item box-shadow-purple mb-4 p-3 position-relative generic-task-display">
                   <div class="d-flex">
                     <div class="d-flex align-items-center justify-content-center emoji_reward_small flex-shrink-0"><%= generic_task.emoji %></div>
                     <div class="d-flex flex-column align-items-start ms-2">
@@ -85,6 +85,6 @@
     </div>
   </div>
 
-  <%= render 'tasks/add_task_modal', task: @task %>
+  <%= render partial: 'tasks/add_task_modal', locals: {task: @task, partner: @partner} %>
 
 </div>

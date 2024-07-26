@@ -14,7 +14,7 @@
 
   <%# ci-après : modification autopilot - ajout d'un link post pour toggle le statut autopilot  %>
     <div class="form-check form-switch mx-3 pt-2" style="border-top: 1px solid #CCCCCC;" data-controller="autopilot" data-autopilot-url="<%= autopilot_toggle_statues_path %>">
-      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" <%= current_user.statues.last.autopilot ? 'checked' : '' %> data-action="click->autopilot#toggle">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" <%= current_user&.statues&.last&.autopilot ? 'checked' : '' %> data-action="click->autopilot#toggle">
       <label class="form-check-label" for="flexSwitchCheckDefault"> <i class="fa-solid fa-plane"></i> Autopilot </label>
     </div>
 
